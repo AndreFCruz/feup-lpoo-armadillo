@@ -7,6 +7,6 @@ import com.lpoo.game.Spheral;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new Spheral(), config);
+		new LwjglApplication(Spheral.getInstance(), config);
 	}
 }

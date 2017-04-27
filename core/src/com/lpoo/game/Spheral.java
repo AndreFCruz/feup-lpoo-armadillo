@@ -4,9 +4,27 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**
+ * Created by andre on 27/04/2017.
+ */
+
 public class Spheral extends Game {
-    SpriteBatch batch;
-    AssetManager assetManager;
+
+    // Lazy, thread-safe Singleton implementation
+    private static class HelperHolder {
+        private static final Spheral INSTANCE = new Spheral();
+    }
+
+    public static Spheral getInstance() {
+        return HelperHolder.INSTANCE;
+    }
+
+    private SpriteBatch batch;
+    private AssetManager assetManager;
+
+    private Spheral() {
+
+    }
 
     @Override
     public void create() {
@@ -43,4 +61,5 @@ public class Spheral extends Game {
      * @return the asset manager
      */
     public AssetManager getAssetManager() { return assetManager; }
+
 }
