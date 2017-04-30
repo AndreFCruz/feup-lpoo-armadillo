@@ -1,6 +1,14 @@
 # LPOO1617_T6G5
 
-## (Expected) Design Patterns Used ##
+|Table of Contents|
+|:---------------:|
+|[Package and class diagram (UML)]()|
+|[Design Patterns Used](#expected-design-patterns-used)|
+|GUI Design and Mock-Ups |
+|List of Tests |
+
+
+## (Expected) Design Patterns Used
 
   * ### Model–view–controller (MVC) - architectural pattern
     ![MVC Pattern](https://cloud.githubusercontent.com/assets/13498941/25564480/f6cd9b1a-2dab-11e7-8815-7a04fd35cfd7.png)
