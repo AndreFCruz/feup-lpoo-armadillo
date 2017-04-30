@@ -72,4 +72,19 @@
   * ### Main Menu
   ![MainMenu](http://imgur.com/tJOtAo2.png)
 
+## Functionalities:
+* Choose to Play a game.
+* Choose to Play a multiplayer game.
+* Choose to Customize the game (the ball skin).
+
+  
+  * ### Levels Menu
+  ![LevelsMenu](http://imgur.com/IxRENwS.png)
+  
+  * ### Play Screen
+  ![PlayScreen](http://imgur.com/QVstH0g.png)
+  
+  * ### Customize Menu
+  ![CustomizeMenu](http://imgur.com/FdSkxPV.png)
+ 
 ## List of Tests
