@@ -69,10 +69,10 @@
   * ### GameLoop
     ![GameLoop Pattern](https://cloud.githubusercontent.com/assets/13498941/25568348/a44aab88-2df8-11e7-95f5-3206f001386a.png)
     
-    Participating classes:
+    Implemented using LibGDX's Game template method pattern.
+    Participating classes: Spheral, GameScreen and GameModel.
   
-    Why we decide to use it:
-    * 
+    Why we decide to use it: decouples the progression of game time from user input and processor speed.
   
   
   * ### Update Method
