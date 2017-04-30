@@ -93,41 +93,41 @@
 ## GUI Design and Mock-Ups
 
   * ### Main Menu
-  ![MainMenu](http://imgur.com/tJOtAo2.png)
+    ![MainMenu](http://imgur.com/tJOtAo2.png)
 
-## Functionalities:
-* Choose to Play a game.
-* Choose to Play a multiplayer game.
-* Choose to Customize the game (the ball's skin).
+    **Functionalities:**
+    * Choose to Play a game.
+    * Choose to Play a multiplayer game.
+    * Choose to Customize the game (the ball's skin).
 
   
   * ### Levels Menu
-  ![LevelsMenu](http://imgur.com/IxRENwS.png)
+    ![LevelsMenu](http://imgur.com/IxRENwS.png)
   
-  ## Functionalities:
-  (When a User chose to play a Game, this menu appears.)
-*	Select from a possible playable level to play.
-*	Swipe down to navigate between levels.
-*	Levels completed have the fastest time they were completed in, above them.
-*	Levels that are available for play, have a different color.
-*	Return to the Main Menu, by clicking in the respective button.
+    **Functionalities:**
+    (Appears on App Launch)
+    *	Select from a possible playable level to play.
+    *	Swipe down to navigate between levels.
+    *	Levels completed have the fastest time they were completed in, above them.
+    *	Levels that are available for play, have a different color.
+    *	Return to the Main Menu, by clicking in the respective button.
 
   
   * ### Play Screen
-  ![PlayScreen](http://imgur.com/QVstH0g.png)
+    ![PlayScreen](http://imgur.com/QVstH0g.png)
  
- ## Functionalities:
-(This Screen appears by initiating a Multiplayer game or by clicking in an available Level)
-*	Play the game, with the phone’s accelerometer and the touch screen.
-*	Pause the Game, where the User can choose to resume the game, restart the game, exit the play mode or change the volume.
+    **Functionalities:**
+    (This Screen appears by initiating a Multiplayer game or by clicking in an available Level)
+    *	Play the game, with the phone’s accelerometer and the touch screen.
+    *	Pause the Game, where the User can choose to resume the game, restart the game, exit the play mode or change the volume.
 
   
   * ### Customize Menu
-  ![CustomizeMenu](http://imgur.com/FdSkxPV.png)
+    ![CustomizeMenu](http://imgur.com/FdSkxPV.png)
   
-  ## Functionalities:
-*	By swiping left and right the User can choose which skin his ball will have.
-*	Return to the Main Menu, by clicking in the respective button.
+    **Functionalities:**
+    *	By swiping left and right the User can choose which skin his ball will have.
+    *	Return to the Main Menu, by clicking in the respective button.
 
  
 ## List of Tests
