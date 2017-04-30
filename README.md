@@ -133,3 +133,24 @@
 
  
 ## List of Tests
+
+Note: Ball represents the Object the User is able to control.
+
+* Test if the ball moves accordingly to the User's input. (**testMoveBall**)
+* Test if othe ball jumps acorddingly to the User's input. (**testBallJump**)
+* Test if the score is incresingly correctly over time. (**testScore**)
+* Colliding with an enemy object will make the User lose the game (switching to game over screen). (**testGameOver & testEnemyCollision**)
+* Reaching the Win Position will make the User win the current Level and go to the Next Level. (**testEndOfLevel**)
+* Winning the Level in a faster time than the current fastest time, will set the fastest time to the new time. (**setNewFastestTime**)
+* Picking up a gravity power-up will change the world’s gravity.(**testGravityPowerUp**)
+* Picking up a restitution power-up will change the ball’s restitution coefficient value.
+* Picking up a density power-up will change the ball’s density value. (**testDensityPowerUp**)
+* Picking up a velocity power-up will change the ball’s acceleration value. (**testVelocityPowerUp**)
+* Picking up a power-up will make the power-up disappear.(**testGravityPowerUp & testVelocityPowerUp & testDensityPowerUp**)
+* Test if enemies with random movement eventually move in all directions. (**testEnemyMovement**)
+* Restarting a game will effectively reset all changes made in the level.
+* Colliding with a kinematic body will not change its trajectory. (**testWorldCollision**)
+* Colliding with a static body (for example: a wall), will not affect the body. (**testWorldCollision**)
+* Colliding with a dynamic body will change its trajectory/position. (**testWorldCollision & testMoveSquare**)
+* The ball will not jump, unless there is an object underneath it. (**testBallJump**)
+* Changing the current skin implies that the ball has that skin when the User begins a new Game. (**testSkinChange**)
