@@ -43,7 +43,8 @@
     
     Participating classes: ViewFactory and GameScreen.
     
-    Why we decided to use it: Creates objects without exposing the instantiation logic to the client (therefore allowing for higher abstraction and cleaner code in the GameScreen class).
+    Why we decided to use it: 
+    * Creates objects without exposing the instantiation logic to the client (therefore allowing for higher abstraction and cleaner code in the GameScreen class).
   
   
   * ### Factory Method
@@ -52,13 +53,29 @@
     Participating classes: EntityView and all sub-classes (namely BallView, PowerUpView, ...).
     
     Why we decided to use it:
-    
+    * Allows the subclasses to decide which class to instantiate (useful for when a class knows it should create an object, but not it's type).
     
   * ### State
   
+  Participating classes: 
+  
+  Why we decide to use it:
+  * Useful for making the code more logic and understandable.
+  * When the internal state of an object changes, it allows it to change its behaviour.
+  
   * ### GameLoop
   
+  Participating classes:
+  
+  Why we decide to use it:
+  * 
+  
   * ### Update Method
+    
+  Participating classes:
+  
+  Why we decide to use it:
+  * 
   
   * ### Singleton
   
