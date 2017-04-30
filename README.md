@@ -76,6 +76,7 @@
   
   
   * ### Update Method
+    ![Update Method](https://cloud.githubusercontent.com/assets/13498941/25568380/5f2be7fa-2df9-11e7-88b4-7c4a002f4cc0.png)
     
     Participating classes:
   
