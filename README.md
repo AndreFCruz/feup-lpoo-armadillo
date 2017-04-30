@@ -86,6 +86,7 @@
   
   
   * ### Singleton
+    ![Singleton Pattern](https://cloud.githubusercontent.com/assets/13498941/25568510/4ef3037a-2dfc-11e7-9a61-9559406e8a4a.png)
   
     Participating classes: GameModel.
     
