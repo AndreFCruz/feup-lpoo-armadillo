@@ -59,7 +59,7 @@
     
   * ### State
   
-    Participating classes: 
+    Participating classes: BallModel, SquareModel.
   
     Why we decide to use it:
     * Useful for making the code more logic and understandable.
@@ -78,7 +78,7 @@
   * ### Update Method
     ![Update Method](https://cloud.githubusercontent.com/assets/13498941/25568393/cdc324f8-2df9-11e7-9e6c-1d0823576018.png)
     
-    Participating classes: EntityModel, 
+    Participating classes: EntityModel and all sub-classes (BallModel, SquareModel, PowerUp).
   
     Why we decide to use it:
     * facilitates updating all entities in the game. 
@@ -89,7 +89,7 @@
   
     Participating classes: GameModel.
     
-    Why we decided to use it: 
+    Why we decided to use it: Game needs only one GameModel, which must be accessed in several different places of our code.
   
     
 ## GUI Design and Mock-Ups
