@@ -67,7 +67,8 @@
   
   
   * ### GameLoop
-  
+    ![GameLoop Pattern](https://cloud.githubusercontent.com/assets/13498941/25568348/a44aab88-2df8-11e7-95f5-3206f001386a.png)
+    
     Participating classes:
   
     Why we decide to use it:
