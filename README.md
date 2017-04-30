@@ -8,6 +8,7 @@
 |[List of Tests](#list-of-tests)|
 
 ## Package and class diagram (UML)
+![UML Diagram](https://cloud.githubusercontent.com/assets/13498941/25568250/97bd0156-2df6-11e7-89f4-447b37c0c771.png)
 
 ## (Expected) Design Patterns Used
 
