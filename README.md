@@ -56,27 +56,31 @@
     Why we decided to use it:
     * Allows the subclasses to decide which class to instantiate (useful for when a class knows it should create an object, but not it's type).
     
+    
   * ### State
   
-  Participating classes: 
+    Participating classes: 
   
-  Why we decide to use it:
-  * Useful for making the code more logic and understandable.
-  * When the internal state of an object changes, it allows it to change its behaviour.
+    Why we decide to use it:
+    * Useful for making the code more logic and understandable.
+    * When the internal state of an object changes, it allows it to change its behaviour.
+  
   
   * ### GameLoop
   
-  Participating classes:
+    Participating classes:
   
-  Why we decide to use it:
-  * 
+    Why we decide to use it:
+    * 
+  
   
   * ### Update Method
     
-  Participating classes:
+    Participating classes:
   
-  Why we decide to use it:
-  * 
+    Why we decide to use it:
+    * 
+  
   
   * ### Singleton
   
