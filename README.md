@@ -25,11 +25,17 @@
     * reduces coupling of components and, therefore, facilitates testing;
     * models can have multiple views.
 
+
   * ### Observer
-    Implemented using LibGDX's Listeners: InputListener and ContactListener (as Listeners/Observers), Actor (as Subject).
+    ![Observer Pattern](https://cloud.githubusercontent.com/assets/13498941/25565835/08738738-2dc7-11e7-96d5-9f74cb6ac843.png)
+  
+    Participating classes:
+    * Observers: GameController (implements InputListener), WorldContactListener (implements ContactListener).
+    * Subjects: several GUI elements (extends Actor), EntityModel (which has Fixtures).
   
     Why we decided to use it:
-    * Stuff 
+    * Maintains consistency between related objects.
+    * Permits cleaner code with event based design.
 
 ## GUI Design and Mock-Ups
 
