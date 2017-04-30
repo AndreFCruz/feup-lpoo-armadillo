@@ -12,7 +12,7 @@
 ## (Expected) Design Patterns Used
 
   * ### Model–view–controller (MVC) - architectural pattern
-    ![MVC Pattern](https://cloud.githubusercontent.com/assets/13498941/25564480/f6cd9b1a-2dab-11e7-8815-7a04fd35cfd7.png)
+    ![MVC Pattern](https://cloud.githubusercontent.com/assets/13498941/25565767/8fd78eb0-2dc5-11e7-8a9c-a2fb769c0215.png)
     The Game features three main packages:
     * **Model**: It expresses the application's behavior in terms of the problem domain, independent of the user interface (Controller package). It directly manages the data, logic and rules of the application.
     * **View**: An output representation of the model's information.
