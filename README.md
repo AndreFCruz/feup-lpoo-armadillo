@@ -58,7 +58,7 @@
     
     
   * ### State
-  
+    EntityModel's state is controlled by a state machine and its restrict transactions.
     Participating classes: BallModel, SquareModel.
   
     Why we decide to use it:
