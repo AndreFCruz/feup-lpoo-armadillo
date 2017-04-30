@@ -40,7 +40,7 @@
   
   
   * ### Factory
-    ![Factory]()
+    ![Factory](https://cloud.githubusercontent.com/assets/13498941/25568305/a50c0ed2-2df7-11e7-9883-cd7e08b9e3cc.png)
     
     Participating classes: ViewFactory and GameScreen.
     
