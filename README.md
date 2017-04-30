@@ -60,6 +60,12 @@
   
   * ### Update Method
   
+  * ### Singleton
+  
+    Participating classes: GameModel.
+    
+    Why we decided to use it: 
+  
     
 ## GUI Design and Mock-Ups
 
