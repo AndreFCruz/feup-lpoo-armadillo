@@ -69,4 +69,7 @@
     
 ## GUI Design and Mock-Ups
 
+  * ### Main Menu
+  ![MainMenu](http://imgur.com/a/e7Dz6)
+
 ## List of Tests
