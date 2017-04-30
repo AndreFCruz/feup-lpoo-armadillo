@@ -78,10 +78,11 @@
   * ### Update Method
     ![Update Method](https://cloud.githubusercontent.com/assets/13498941/25568393/cdc324f8-2df9-11e7-9e6c-1d0823576018.png)
     
-    Participating classes:
+    Participating classes: EntityModel, 
   
     Why we decide to use it:
-    * 
+    * facilitates updating all entities in the game. 
+    * renders smooth animation of entities (independent of frame-rate).
   
   
   * ### Singleton
