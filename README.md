@@ -36,6 +36,9 @@
     Why we decided to use it:
     * Maintains consistency between related objects.
     * Permits cleaner code with event based design.
+    
+  * ### Factory Method
+    ![Factory Method](https://cloud.githubusercontent.com/assets/13498941/25565883/fbb6c1c6-2dc7-11e7-8301-0bdbcaa90a28.png)
 
 ## GUI Design and Mock-Ups
 
