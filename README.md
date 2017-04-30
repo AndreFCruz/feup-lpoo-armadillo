@@ -2,11 +2,12 @@
 
 |Table of Contents|
 |:---------------:|
-|[Package and class diagram (UML)]()|
+|[Package and class diagram (UML)](#package-and-class-diagram-uml)|
 |[Design Patterns Used](#expected-design-patterns-used)|
-|GUI Design and Mock-Ups |
-|List of Tests |
+|[GUI Design and Mock-Ups](#gui-design-and-mock-ups)|
+|[List of Tests](#list-of-tests)|
 
+## Package and class diagram (UML)
 
 ## (Expected) Design Patterns Used
 
@@ -28,3 +29,7 @@
   
     Why we decided to use it:
     * Stuff 
+
+## GUI Design and Mock-Ups
+
+## List of Tests
