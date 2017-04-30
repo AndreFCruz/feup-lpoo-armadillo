@@ -36,10 +36,31 @@
     Why we decided to use it:
     * Maintains consistency between related objects.
     * Permits cleaner code with event based design.
+  
+  
+  * ### Factory
+    ![Factory]()
     
+    Participating classes: ViewFactory and GameScreen.
+    
+    Why we decided to use it: Creates objects without exposing the instantiation logic to the client (therefore allowing for higher abstraction and cleaner code in the GameScreen class).
+  
+  
   * ### Factory Method
     ![Factory Method](https://cloud.githubusercontent.com/assets/13498941/25565883/fbb6c1c6-2dc7-11e7-8301-0bdbcaa90a28.png)
 
+    Participating classes: EntityView and all sub-classes (namely BallView, PowerUpView, ...).
+    
+    Why we decided to use it:
+    
+    
+  * ### State
+  
+  * ### GameLoop
+  
+  * ### Update Method
+  
+    
 ## GUI Design and Mock-Ups
 
 ## List of Tests
