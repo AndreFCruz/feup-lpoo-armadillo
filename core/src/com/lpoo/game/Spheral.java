@@ -14,7 +14,7 @@ public class Spheral extends ApplicationAdapter {
 
     public BitmapFont font = new BitmapFont();
     private Texture img;
-
+    
     @Override
 	public void create () {
 		batch = new SpriteBatch();

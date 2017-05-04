@@ -10,6 +10,7 @@ public class DesktopLauncher {
         config.title = "Spheral - The Game";
         config.height = 720;
         config.width = 1280;
-		new LwjglApplication(new Spheral(), config);
+
+        new LwjglApplication(new Spheral(), config);
 	}
 }
