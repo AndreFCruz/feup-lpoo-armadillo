@@ -1,4 +1,4 @@
-package com.lpoo.game.model.utils;
+package com.lpoo.game.model.tools;
 
 import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.maps.MapObject;

@@ -3,11 +3,8 @@ package com.lpoo.game.view.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.lpoo.game.Spheral;
-import com.lpoo.game.model.GameModel;
 
 /**
  * Created by andre on 27/04/2017.
@@ -31,11 +28,6 @@ public class GameScreen extends ScreenAdapter {
     private static final float VIEWPORT_WIDTH = 20;
 
     /**
-     * The model drawn by this screen.
-     */
-    private final GameModel model;
-
-    /**
      * The camera used to show the viewport.
      */
     private final OrthographicCamera camera;
@@ -51,9 +43,7 @@ public class GameScreen extends ScreenAdapter {
      */
     private Matrix4 debugCamera;
 
-    public GameScreen(GameModel model) {
-        this.model = model;
-
+    public GameScreen() {
         loadAssets();
 
         camera = createCamera();
@@ -68,12 +58,11 @@ public class GameScreen extends ScreenAdapter {
      * Loads the assets needed by this screen.
      */
     private void loadAssets() {
-        Spheral game = Spheral.getInstance();
 
         // Load Assets
 //        game.getAssetManager().load( "" , Texture.class);
-
-        game.getAssetManager().finishLoading();
+//
+//        game.getAssetManager().finishLoading();
     }
 
     private OrthographicCamera createCamera() {
