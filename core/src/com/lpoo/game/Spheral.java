@@ -5,19 +5,25 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Spheral extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-    AssetManager assetManager;
-	
-	@Override
+	private SpriteBatch batch;
+    private AssetManager assetManager;
+
+    public BitmapFont font = new BitmapFont();
+    private Texture img;
+
+    @Override
 	public void create () {
 		batch = new SpriteBatch();
         assetManager = new AssetManager();
 
-        startGame();	}
+        img = new Texture("badlogic.jpg");
+
+        startGame();
+    }
 
     private void startGame() {
         // TODO
