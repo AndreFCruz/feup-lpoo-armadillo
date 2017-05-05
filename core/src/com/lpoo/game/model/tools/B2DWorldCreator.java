@@ -14,10 +14,9 @@ import com.badlogic.gdx.physics.box2d.World;
  * Created by andre on 27/04/2017.
  */
 
-public class B2DWorldCreator implements WorldCreator {
+public class B2DWorldCreator {
 
-    @Override
-    public void generateWorld(World world, Map map) {
+    public static void generateWorld(World world, Map map) {
 
         // Body and Fixture variables
         BodyDef bdef = new BodyDef();
@@ -42,5 +41,4 @@ public class B2DWorldCreator implements WorldCreator {
 
     }
 
-    // TODO check this whole class
 }

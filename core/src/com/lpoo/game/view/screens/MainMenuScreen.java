@@ -112,4 +112,9 @@ public class MainMenuScreen extends ScreenAdapter {
         camera.update();
     }
 
+    @Override
+    public void hide() {
+        Gdx.input.setInputProcessor(null);
+    }
+
 }
