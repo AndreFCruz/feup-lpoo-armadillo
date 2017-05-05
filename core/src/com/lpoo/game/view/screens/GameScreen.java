@@ -2,9 +2,15 @@ package com.lpoo.game.view.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.lpoo.game.model.GameModel;
+import com.lpoo.game.model.entities.EntityModel;
+
+import java.util.List;
 
 /**
  * Created by andre on 27/04/2017.
@@ -25,7 +31,7 @@ public class GameScreen extends ScreenAdapter {
      * The width of the viewport in meters. The height is
      * automatically calculated using the screen ratio.
      */
-    private static final float VIEWPORT_WIDTH = 20;
+    private static final float VIEWPORT_WIDTH = 35;
 
     /**
      * The camera used to show the viewport.
@@ -43,15 +49,52 @@ public class GameScreen extends ScreenAdapter {
      */
     private Matrix4 debugCamera;
 
+    private OrthogonalTiledMapRenderer mapRenderer;
+
+    private GameModel model;
+
     public GameScreen() {
         loadAssets();
 
+        model = GameModel.getInstance();
+
         camera = createCamera();
+
+        mapRenderer = new OrthogonalTiledMapRenderer(model.getMap());
     }
 
     @Override
     public void render(float delta) {
-        super.render(delta);
+        Gdx.gl.glClearColor(1,1,1,1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+
+        model.update(delta);
+
+        updateCamera();
+        drawBackground();
+        drawEntities();
+
+        //check
+        mapRenderer.setView(camera);
+        mapRenderer.render();
+
+    }
+
+    private void drawEntities() {
+        List<EntityModel> models = model.getModels();
+    }
+
+    private void drawBackground() {
+
+    }
+
+    private void updateCamera() {
+
+        // Follow player
+        // TODO
+        // camera.pos.set();
+
+        camera.update();
     }
 
     /**
