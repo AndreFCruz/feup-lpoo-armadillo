@@ -36,8 +36,8 @@ public class MainMenuScreen extends ScreenAdapter {
         this.game = game;
         this.batch = game.getBatch();
 
-        atlas = new TextureAtlas("comic-ui.atlas");
-        skin = new Skin(Gdx.files.internal("comic-ui.json"), atlas);
+        atlas = new TextureAtlas("uiskin.atlas");
+        skin = new Skin(Gdx.files.internal("uiskin.json"), atlas);
 
         camera = new OrthographicCamera();
         viewport = new ScreenViewport();
@@ -84,7 +84,9 @@ public class MainMenuScreen extends ScreenAdapter {
         //Add buttons to table
         table.add(playButton);
         table.row();
+        table.row();
         table.add(optionsButton);
+        table.row();
         table.row();
         table.add(exitButton);
 
