@@ -49,7 +49,7 @@ public class GameModel {
 
 
         TmxMapLoader mapLoader = new TmxMapLoader();
-        map = mapLoader.load("SampleMap.tmx");
+        map = mapLoader.load("SampleMap01.tmx");
 
         B2DWorldCreator.generateWorld(world, map);
 
