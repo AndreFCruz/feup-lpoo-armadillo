@@ -5,6 +5,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -32,6 +33,29 @@ public class MainMenuScreen extends ScreenAdapter {
     private Skin skin;
     private TextureAtlas atlas;
 
+    /**
+     * Variable representing the Main Menu's background image.
+     */
+    private Texture background;
+    /**
+     * Variable representing the Title's image.
+     */
+    private Texture title;
+
+    //Layout Macros
+    /**
+     * Constant representing all the Buttons' Width.
+     */
+    private static final int BUTTON_WIDTH = 400;
+    /**
+     * Constant representing the extra space around the edges of all Buttons.
+     */
+    private static final int BUTTON_EDGE = 15;
+    /**
+     * Constant representing the extra space around the bottom edge of the bottom Button.
+     */
+    private static final int BOTTOM_EDGE = 50;
+
     public MainMenuScreen(final Spheral game) {
         this.game = game;
         this.batch = game.getBatch();
@@ -47,7 +71,8 @@ public class MainMenuScreen extends ScreenAdapter {
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
         camera.update();
 
-
+        background = new Texture("background.png");
+        title = new Texture("spheral.png");
 
         Gdx.input.setInputProcessor(stage);
     }
@@ -64,6 +89,7 @@ public class MainMenuScreen extends ScreenAdapter {
 
         //Create buttons
         TextButton playButton = new TextButton("Play", skin);
+        //playButton.getLabel().setFontScale(2, 2);
         TextButton optionsButton = new TextButton("Options", skin);
         TextButton exitButton = new TextButton("Exit", skin);
 
@@ -82,14 +108,13 @@ public class MainMenuScreen extends ScreenAdapter {
         });
 
         //Add buttons to table
-        table.add(playButton);
+        //table.setDebug(true); //Testing Purposes
+        table.bottom();
+        table.add(playButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
         table.row();
+        table.add(optionsButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
         table.row();
-        table.add(optionsButton);
-        table.row();
-        table.row();
-        table.add(exitButton);
-
+        table.add(exitButton).width(BUTTON_WIDTH).padBottom(BOTTOM_EDGE).padTop(BUTTON_EDGE);
 
         // Add table to stage
         stage.addActor(table);
@@ -98,8 +123,12 @@ public class MainMenuScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1,1,1,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        //Gdx.gl.glClearColor(1,1,1,1);
+        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        /*batch.begin();
+        batch.draw(background, 0, 0);//, camera.viewportWidth, camera.viewportHeight);
+        batch.draw(title, 0, 0, (camera.viewportWidth / 2) - (title.getWidth() / 2), (camera.viewportHeight /3) - (title.getHeight() / 2));
+        batch.end();*/
 
         stage.act();
         stage.draw();
