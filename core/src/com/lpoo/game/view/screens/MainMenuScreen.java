@@ -97,7 +97,7 @@ public class MainMenuScreen extends ScreenAdapter {
         playButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new GameScreen());
+                game.setScreen(new GameScreen(game));
             }
         });
         exitButton.addListener(new ClickListener(){

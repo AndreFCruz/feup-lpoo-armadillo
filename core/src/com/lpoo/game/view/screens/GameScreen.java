@@ -4,9 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.lpoo.game.Spheral;
 import com.lpoo.game.model.GameModel;
 import com.lpoo.game.model.entities.EntityModel;
 
@@ -53,7 +55,11 @@ public class GameScreen extends ScreenAdapter {
 
     private GameModel model;
 
-    public GameScreen() {
+    private Spheral game;
+
+    public GameScreen(Spheral game) {
+        this.game = game;
+
         loadAssets();
 
         model = GameModel.getInstance();
@@ -103,9 +109,9 @@ public class GameScreen extends ScreenAdapter {
     private void loadAssets() {
 
         // Load Assets
-//        game.getAssetManager().load( "" , Texture.class);
-//
-//        game.getAssetManager().finishLoading();
+        game.getAssetManager().load( "ball.png" , Texture.class);
+
+        game.getAssetManager().finishLoading();
     }
 
     private OrthographicCamera createCamera() {

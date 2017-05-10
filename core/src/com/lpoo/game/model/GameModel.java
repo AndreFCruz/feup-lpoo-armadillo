@@ -57,7 +57,7 @@ public class GameModel {
 
         models = new ArrayList<EntityModel>();
 
-        player = new BallModel();
+        player = new BallModel(world, new Vector2(50, 200));
     }
 
     public void update(float delta) {
@@ -71,5 +71,9 @@ public class GameModel {
     public List<EntityModel> getModels() {
         models.add(player);
         return models;
+    }
+
+    public BallModel getBall() {
+        return player;
     }
 }
