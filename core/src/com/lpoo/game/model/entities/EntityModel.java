@@ -18,7 +18,8 @@ public abstract class EntityModel {
     public enum ModelType {BALL};
 
     // Constants for collision mask
-    final static short BALL_BODY = 0x01;
+    final static short GROUND_BIT = 0x01;
+    final static short BALL_BIT = 0x02;
 
     final private ModelType type;
 

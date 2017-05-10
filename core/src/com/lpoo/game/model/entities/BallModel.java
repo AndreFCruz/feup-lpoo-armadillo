@@ -22,7 +22,7 @@ public class BallModel extends EntityModel {
         Shape circle = new CircleShape();
         circle.setRadius(radius);
 
-        createFixture(circle, density, friction, restitution, BALL_BODY, BALL_BODY );
+        createFixture(circle, density, friction, restitution, BALL_BIT, BALL_BIT);
 
     }
 
