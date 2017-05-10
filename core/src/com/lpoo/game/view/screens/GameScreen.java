@@ -11,6 +11,8 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.lpoo.game.Spheral;
 import com.lpoo.game.model.GameModel;
 import com.lpoo.game.model.entities.EntityModel;
+import com.lpoo.game.view.entities.EntityView;
+import com.lpoo.game.view.entities.ViewFactory;
 
 import java.util.List;
 
@@ -78,7 +80,10 @@ public class GameScreen extends ScreenAdapter {
 
         updateCamera();
         drawBackground();
+
+        game.getBatch().begin();
         drawEntities();
+        game.getBatch().end();
 
         //check
         mapRenderer.setView(camera);
@@ -88,6 +93,11 @@ public class GameScreen extends ScreenAdapter {
 
     private void drawEntities() {
         List<EntityModel> models = model.getModels();
+        for (EntityModel model : models) {
+            EntityView view = ViewFactory.makeView(game, model);
+            view.update(model);
+            view.draw(game.getBatch());
+        }
     }
 
     private void drawBackground() {
