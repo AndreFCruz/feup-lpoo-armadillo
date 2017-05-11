@@ -12,6 +12,8 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
+
 /**
  * Created by andre on 27/04/2017.
  */
@@ -28,16 +30,15 @@ public class B2DWorldCreator {
         Body body;
 
         // Create ground Bodies/Fixtures
-        for (MapObject object : map.getLayers().get("ground").getObjects().getByType(PolygonMapObject.class)) {
-            Polygon polygon = ((PolygonMapObject) object).getPolygon();
-            Rectangle rect = polygon.getBoundingRectangle();
+        for (MapObject object : map.getLayers().get("ground").getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(polygon.getX() + rect.getWidth() / 2, polygon.getY() + rect.getHeight() / 2); // will need adjusting
+            bdef.position.set(PIXEL_TO_METER * (rect.getX() + rect.getWidth() / 2), PIXEL_TO_METER * (rect.getY() + rect.getHeight() / 2)); // will need adjusting
 
             body = world.createBody(bdef);
 
-            shape.set(polygon.getVertices()); // check
+            shape.setAsBox((rect.getWidth() / 2) * PIXEL_TO_METER, (rect.getHeight() / 2) * PIXEL_TO_METER);
             fdef.shape = shape;
             body.createFixture(fdef);
         }

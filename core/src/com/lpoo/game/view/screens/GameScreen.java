@@ -39,7 +39,7 @@ public class GameScreen extends ScreenAdapter {
      * The width of the viewport in meters. The height is
      * automatically calculated using the screen ratio.
      */
-    private static final float VIEWPORT_WIDTH = 35;
+    private static final float VIEWPORT_WIDTH = 35 * 4;
 
     /**
      * The camera used to show the viewport.
@@ -98,6 +98,12 @@ public class GameScreen extends ScreenAdapter {
         //check
         mapRenderer.setView(camera);
         mapRenderer.render();
+
+        if (DEBUG_PHYSICS) {
+            debugCamera = camera.combined.cpy();
+            debugCamera.scl(1 / PIXEL_TO_METER);
+            debugRenderer.render(model.getWorld(), debugCamera);
+        }
 
     }
 

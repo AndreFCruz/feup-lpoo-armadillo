@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Disposable;
 import com.lpoo.game.model.entities.BallModel;
 import com.lpoo.game.model.entities.EntityModel;
 import com.lpoo.game.model.tools.B2DWorldCreator;
@@ -20,10 +21,13 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
  * Created by andre on 04/05/2017.
  */
 
-public class GameModel {
-    private static final GameModel ourInstance = new GameModel();
+public class GameModel implements Disposable {
+    private static GameModel ourInstance = null;
 
     public static GameModel getInstance() {
+        if (GameModel.ourInstance == null)
+            GameModel.ourInstance = new GameModel();
+
         return ourInstance;
     }
 
@@ -59,10 +63,14 @@ public class GameModel {
 
         models = new ArrayList<EntityModel>();
 
-        player = new BallModel(world, new Vector2(270 * PIXEL_TO_METER, 450 * PIXEL_TO_METER));
+        player = new BallModel(world, new Vector2(200 * PIXEL_TO_METER, 475 * PIXEL_TO_METER));
     }
 
     public void update(float delta) {
+        // Upper bound for simulation update
+        if (delta > (1/60f))
+            delta = 1/60f;
+
         world.step(delta, 6, 2);
     }
 
@@ -79,8 +87,15 @@ public class GameModel {
         return player;
     }
 
-    public void moveBall(int screenX, int screenY) {
-        System.out.println("Transform: " + screenX + ", " + screenY);
-        player.setTransform(screenX, screenY, 0);
+    public World getWorld() {
+        return world;
+    }
+
+    @Override
+    public void dispose() {
+        map.dispose();
+        world.dispose();
+
+        GameModel.ourInstance = null;
     }
 }

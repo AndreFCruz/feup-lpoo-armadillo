@@ -25,6 +25,8 @@ public abstract class EntityModel {
 
     final private Body body;
 
+    private float angular_vel = 10f; // radians per second
+
     EntityModel(World world, Vector2 pos, ModelType type) {
         BodyDef bdef = new BodyDef();
         bdef.type = BodyDef.BodyType.DynamicBody;
@@ -142,8 +144,8 @@ public abstract class EntityModel {
         body.applyForceToCenter(forceX, forceY, awake);
     }
 
-    public void rotate(float torque) {
-        body.applyTorque(torque, true);
+    public void rotate(float delta) {
+        body.applyTorque(delta * angular_vel, true);
     }
 
     public float getRotation() {

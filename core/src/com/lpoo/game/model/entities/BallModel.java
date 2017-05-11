@@ -5,15 +5,17 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
+
 /**
  * Created by andre on 05/05/2017.
  */
 
 public class BallModel extends EntityModel {
-    private static int radius = 40;  // the ball's radius in world coordinates
+    private static float radius = 64 * PIXEL_TO_METER;
     private static float density = 1f;
-    private static float friction = 1f;
-    private static float restitution = 1f;
+    private static float friction = 10f;
+    private static float restitution = 10f;
 
     public BallModel(World world, Vector2 pos) {
         super(world, pos, ModelType.BALL);

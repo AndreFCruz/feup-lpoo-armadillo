@@ -3,10 +3,7 @@ package com.lpoo.game.controller;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.lpoo.game.model.GameModel;
 
 /**
@@ -15,14 +12,15 @@ import com.lpoo.game.model.GameModel;
 
 public class GameController implements InputHandler {
 
-    GameModel model;
-    OrthographicCamera camera;
+    private GameModel model;
+    private OrthographicCamera camera;
+    private Boolean accelAvailable;
 
     public GameController(OrthographicCamera camera) {
         model = GameModel.getInstance();
         this.camera = camera;
 
-        if (! Gdx.input.isPeripheralAvailable(Input.Peripheral.Accelerometer))
+        if (! (accelAvailable = Gdx.input.isPeripheralAvailable(Input.Peripheral.Accelerometer)))
             System.err.println("Accelerometer unavailable");
     }
 
@@ -30,7 +28,9 @@ public class GameController implements InputHandler {
     public void handleInput(float delta) {
         pollTouch(delta);
         pollKeys(delta);
-        pollAccelerometer();
+
+        if (accelAvailable)
+            pollAccelerometer();
     }
 
     private void pollTouch(float delta) {
@@ -44,8 +44,13 @@ public class GameController implements InputHandler {
     }
 
     private void pollKeys(float delta) {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
-            System.out.println("KEY UP");
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            System.out.println("LEFT KEY");
+            model.getBall().rotate(delta);
+        } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            System.out.println("RIGHT KEY");
+            model.getBall().rotate(delta * -1);
+        }
     }
 
     private void pollAccelerometer() {
