@@ -14,8 +14,8 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 public class BallModel extends EntityModel {
     private static float radius = 64 * PIXEL_TO_METER;
     private static float density = 1f;
-    private static float friction = 10f;
-    private static float restitution = 10f;
+    private static float friction = 1f;
+    private static float restitution = 0.8f;
 
     public BallModel(World world, Vector2 pos) {
         super(world, pos, ModelType.BALL);
@@ -24,7 +24,7 @@ public class BallModel extends EntityModel {
         Shape circle = new CircleShape();
         circle.setRadius(radius);
 
-        createFixture(circle, density, friction, restitution, BALL_BIT, BALL_BIT);
+        createFixture(circle, density, friction, restitution, BALL_BIT, (short) (BALL_BIT | GROUND_BIT));
 
     }
 

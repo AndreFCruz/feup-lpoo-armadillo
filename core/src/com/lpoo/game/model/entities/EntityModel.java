@@ -18,14 +18,14 @@ public abstract class EntityModel {
     public enum ModelType {BALL};
 
     // Constants for collision mask
-    final static short GROUND_BIT = 0x01;
+    public final static short GROUND_BIT = 0x01;
     final static short BALL_BIT = 0x02;
 
     final private ModelType type;
 
     final private Body body;
 
-    private float angular_vel = 10f; // radians per second
+    private float angular_accel = 10000f;
 
     EntityModel(World world, Vector2 pos, ModelType type) {
         BodyDef bdef = new BodyDef();
@@ -33,6 +33,7 @@ public abstract class EntityModel {
         bdef.position.set(pos);
 
         body = world.createBody(bdef);
+        body.setActive(true);
         // setUserData ?
 
         this.type = type;
@@ -135,7 +136,7 @@ public abstract class EntityModel {
 
     /**
      * Wraps the applyForceToCenter method from the Box2D body class.
-     *
+     *delta * angular_vel
      * @param forceX the x-component of the force to be applied
      * @param forceY the y-component of the force to be applied
      * @param awake should the body be awaken
@@ -145,7 +146,7 @@ public abstract class EntityModel {
     }
 
     public void rotate(float delta) {
-        body.applyTorque(delta * angular_vel, true);
+        body.applyTorque(delta * angular_accel, true);
     }
 
     public float getRotation() {

@@ -18,7 +18,9 @@ public class BallView extends EntityView {
     @Override
     protected Sprite createSprite(Spheral game) {
         Texture tex = game.getAssetManager().get("ball.png");
-        return new Sprite(new TextureRegion(tex, tex.getWidth(), tex.getHeight()));
+        Sprite sp = new Sprite(new TextureRegion(tex, tex.getWidth(), tex.getHeight()));
+        sp.setScale(1/4f);
+        return sp;
     }
 
 }
