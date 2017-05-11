@@ -20,10 +20,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.lpoo.game.Spheral;
 
 /**
- * Created by andre on 04/05/2017.
+ * Created by Edgar on 10/05/2017.
  */
 
-public class MainMenuScreen extends ScreenAdapter {
+public class LevelMenuScreen extends ScreenAdapter {
+
     private final Spheral game;
 
     private Stage stage;
@@ -32,6 +33,20 @@ public class MainMenuScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private Skin skin;
     private TextureAtlas atlas;
+
+    //Layout Macros
+    /**
+     * Since the Level Buttons are square, this Constant represents both their Width and Height.
+     */
+    private static final int BUTTON_SIDE = 80;
+    /**
+     * Constant representing the extra space around the edges of all Buttons.
+     */
+    private static final int BUTTON_EDGE = 30;
+    /**
+     * Constant representing the extra space around the bottom edge of the bottom Button.
+     */
+    private static final int TOP_EDGE = 100;
 
     /**
      * Variable representing the Main Menu's background image.
@@ -42,21 +57,7 @@ public class MainMenuScreen extends ScreenAdapter {
      */
     private Texture title;
 
-    //Layout Macros
-    /**
-     * Constant representing all the Buttons' Width.
-     */
-    private static final int BUTTON_WIDTH = 400;
-    /**
-     * Constant representing the extra space around the edges of all Buttons.
-     */
-    private static final int BUTTON_EDGE = 15;
-    /**
-     * Constant representing the extra space around the bottom edge of the bottom Button.
-     */
-    private static final int BOTTOM_EDGE = 50;
-
-    public MainMenuScreen(final Spheral game) {
+    LevelMenuScreen(final Spheral game) {
         this.game = game;
         this.batch = game.getBatch();
 
@@ -88,39 +89,54 @@ public class MainMenuScreen extends ScreenAdapter {
         Label title = new Label("Spheral", skin);
 
         //Create buttons
-        TextButton playButton = new TextButton("Play", skin);
-        //playButton.getLabel().setFontScale(2, 2);
-        TextButton optionsButton = new TextButton("Options", skin);
-        TextButton exitButton = new TextButton("Exit", skin);
+        TextButton lvlOne = new TextButton("1", skin);
+        TextButton lvlTwo = new TextButton("2", skin);
+        TextButton lvlThree = new TextButton("3", skin);
+        TextButton lvlFour = new TextButton("4", skin);
+        TextButton lvlFive = new TextButton("5", skin);
+        TextButton lvlSix = new TextButton("6", skin);
+        TextButton lvlSeven = new TextButton("7", skin);
+        TextButton lvlEight = new TextButton("8", skin);
+        TextButton lvlNine = new TextButton("9", skin);
+        TextButton lvlTen = new TextButton("10", skin);
+        TextButton lvlEleven = new TextButton("11", skin);
+        TextButton lvlTwelve = new TextButton("12", skin);
 
         //Add listeners to buttons
-        playButton.addListener(new ClickListener(){
+        lvlOne.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new GameScreen(game));
             }
         });
-        optionsButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new LevelMenuScreen(game));
-            }
-        });
-        exitButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.exit();
-            }
-        });
 
         //Add buttons to table
         //table.setDebug(true); //Testing Purposes
-        table.bottom();
-        table.add(playButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
+        table.top();
+
+        //First Line of levels
+        table.padTop(TOP_EDGE);
+        table.add(lvlOne).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
+        table.add(lvlTwo).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
+        table.add(lvlThree).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
+        table.add(lvlFour).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
         table.row();
-        table.add(optionsButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
+
+        //Second Line of levels
+        table.add(lvlFive).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
+        table.add(lvlSix).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
+        table.add(lvlSeven).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
+        table.add(lvlEight).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
         table.row();
-        table.add(exitButton).width(BUTTON_WIDTH).padBottom(BOTTOM_EDGE).padTop(BUTTON_EDGE);
+
+        //Third Line of levels - supposed to be only half visible
+        table.add(lvlNine).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
+        table.add(lvlTen).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
+        table.add(lvlEleven).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
+        table.add(lvlTwelve).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
+        table.row();
+
+
 
         // Add table to stage
         stage.addActor(table);
