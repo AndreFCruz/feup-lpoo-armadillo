@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -34,13 +35,13 @@ public class MainMenuScreen extends ScreenAdapter {
     private TextureAtlas atlas;
 
     /**
-     * Variable representing the Main Menu's background image.
+     * Image representing the Main Menu's background image.
      */
-    private Texture background;
+    private Image backgroundImg;
     /**
-     * Variable representing the Title's image.
+     * Image representing the Title's image.
      */
-    private Texture title;
+    private Image titleImg;
 
     //Layout Macros
     /**
@@ -71,10 +72,8 @@ public class MainMenuScreen extends ScreenAdapter {
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
         camera.update();
 
-        background = new Texture("background.png");
-        title = new Texture("spheral.png");
-
-        Gdx.input.setInputProcessor(stage);
+        backgroundImg = new Image(new Texture("background.png"));
+        titleImg = new Image(new Texture("spheral.png"));
     }
 
     @Override
@@ -82,10 +81,6 @@ public class MainMenuScreen extends ScreenAdapter {
 
         Table table = new Table();
         table.setFillParent(true);
-
-        table.center();
-
-        Label title = new Label("Spheral", skin);
 
         //Create buttons
         TextButton playButton = new TextButton("Play", skin);
@@ -97,13 +92,13 @@ public class MainMenuScreen extends ScreenAdapter {
         playButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new GameScreen(game));
+                game.setScreen(new LevelMenuScreen(game));
             }
         });
         optionsButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new LevelMenuScreen(game));
+                //game.setScreen(new CustomizeMenuScreen(game));
             }
         });
         exitButton.addListener(new ClickListener(){
@@ -123,6 +118,8 @@ public class MainMenuScreen extends ScreenAdapter {
         table.add(exitButton).width(BUTTON_WIDTH).padBottom(BOTTOM_EDGE).padTop(BUTTON_EDGE);
 
         // Add table to stage
+        //stage.addActor(backgroundImg);
+        //stage.addActor(titleImg);
         stage.addActor(table);
     }
 
@@ -131,13 +128,13 @@ public class MainMenuScreen extends ScreenAdapter {
     public void render(float delta) {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        /*batch.begin();
-        batch.draw(background, 0, 0);//, camera.viewportWidth, camera.viewportHeight);
-        batch.draw(title, 0, 0, (camera.viewportWidth / 2) - (title.getWidth() / 2), (camera.viewportHeight /3) - (title.getHeight() / 2));
-        batch.end();*/
+        //batch.begin();
+        //batch.end();
 
-        stage.act();
+        stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
+
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
