@@ -7,8 +7,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.lpoo.game.Spheral;
+import com.lpoo.game.controller.GameController;
+import com.lpoo.game.controller.InputHandler;
 import com.lpoo.game.model.GameModel;
 import com.lpoo.game.model.entities.EntityModel;
 import com.lpoo.game.view.entities.EntityView;
@@ -55,6 +59,8 @@ public class GameScreen extends ScreenAdapter {
 
     private OrthogonalTiledMapRenderer mapRenderer;
 
+    private InputHandler controller;
+
     private GameModel model;
 
     private Spheral game;
@@ -68,11 +74,15 @@ public class GameScreen extends ScreenAdapter {
 
         camera = createCamera();
 
+        controller = new GameController();
+
         mapRenderer = new OrthogonalTiledMapRenderer(model.getMap());
     }
 
     @Override
     public void render(float delta) {
+        controller.handleInput(delta);
+
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
@@ -107,8 +117,11 @@ public class GameScreen extends ScreenAdapter {
     private void updateCamera() {
 
         // Follow player
-        // TODO
-        // camera.pos.set();
+        /*
+        Vector3 vec = new Vector3(model.getBall().getX(), model.getBall().getY(), 0);
+        camera.unproject(vec);
+        camera.position.set(vec);
+        */
 
         camera.update();
     }

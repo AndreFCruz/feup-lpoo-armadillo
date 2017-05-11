@@ -76,4 +76,9 @@ public class GameModel {
     public BallModel getBall() {
         return player;
     }
+
+    public void moveBall(int screenX, int screenY) {
+        System.out.println("Transform: " + screenX + ", " + screenY);
+        player.setTransform(screenX, screenY, 0);
+    }
 }
