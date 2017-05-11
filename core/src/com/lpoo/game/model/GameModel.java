@@ -14,6 +14,8 @@ import com.lpoo.game.model.tools.B2DWorldCreator;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
+
 /**
  * Created by andre on 04/05/2017.
  */
@@ -57,7 +59,7 @@ public class GameModel {
 
         models = new ArrayList<EntityModel>();
 
-        player = new BallModel(world, new Vector2(50, 200));
+        player = new BallModel(world, new Vector2(270 * PIXEL_TO_METER, 450 * PIXEL_TO_METER));
     }
 
     public void update(float delta) {

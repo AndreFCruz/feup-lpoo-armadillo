@@ -74,7 +74,7 @@ public class GameScreen extends ScreenAdapter {
 
         camera = createCamera();
 
-        controller = new GameController();
+        controller = new GameController(camera);
 
         mapRenderer = new OrthogonalTiledMapRenderer(model.getMap());
     }
