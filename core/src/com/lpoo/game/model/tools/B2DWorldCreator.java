@@ -30,7 +30,7 @@ public class B2DWorldCreator {
         // Create ground Bodies/Fixtures
         for (MapObject object : map.getLayers().get("ground").getObjects().getByType(PolygonMapObject.class)) {
             Polygon polygon = ((PolygonMapObject) object).getPolygon();
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            Rectangle rect = polygon.getBoundingRectangle();
 
             bdef.type = BodyDef.BodyType.StaticBody;
             bdef.position.set(polygon.getX() + rect.getWidth() / 2, polygon.getY() + rect.getHeight() / 2); // will need adjusting
