@@ -21,9 +21,9 @@ import com.lpoo.game.view.entities.ViewFactory;
 import java.util.List;
 
 /**
- * Created by andre on 27/04/2017.
+ * A view representing the game screen. Draws all the other views and
+ * controls the camera.
  */
-
 public class GameScreen extends ScreenAdapter {
     /**
      * Used to debug the position of the physics fixtures
@@ -39,7 +39,7 @@ public class GameScreen extends ScreenAdapter {
      * The width of the viewport in meters. The height is
      * automatically calculated using the screen ratio.
      */
-    private static final float VIEWPORT_WIDTH = 35 * 4;
+    private static final float VIEWPORT_WIDTH = 35 * 3.5f;
 
     /**
      * The camera used to show the viewport.
@@ -82,14 +82,15 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         controller.handleInput(delta);
+        model.update(delta);
 
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
-        model.update(delta);
-
-        updateCamera();
+//        updateCamera();
         drawBackground();
+
+        game.getBatch().setProjectionMatrix(camera.combined);
 
         game.getBatch().begin();
         drawEntities();
@@ -123,11 +124,9 @@ public class GameScreen extends ScreenAdapter {
     private void updateCamera() {
 
         // Follow player
-        /*
         Vector3 vec = new Vector3(model.getBall().getX(), model.getBall().getY(), 0);
         camera.unproject(vec);
         camera.position.set(vec);
-        */
 
         camera.update();
     }

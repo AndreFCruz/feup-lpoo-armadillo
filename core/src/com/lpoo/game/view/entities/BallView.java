@@ -8,8 +8,7 @@ import com.lpoo.game.Spheral;
 /**
  * Created by andre on 10/05/2017.
  */
-
-public class BallView extends EntityView {
+class BallView extends EntityView {
 
     BallView(Spheral game) {
         super(game);
@@ -18,9 +17,7 @@ public class BallView extends EntityView {
     @Override
     protected Sprite createSprite(Spheral game) {
         Texture tex = game.getAssetManager().get("ball.png");
-        Sprite sp = new Sprite(new TextureRegion(tex, tex.getWidth(), tex.getHeight()));
-        sp.setScale(1/4f);
-        return sp;
+        return new Sprite(new TextureRegion(tex, tex.getWidth(), tex.getHeight()));
     }
 
 }

@@ -11,11 +11,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 
 /**
- * Created by andre on 05/05/2017.
+ * An abstract model representing an entity belonging to a game model.
  */
-
 public abstract class EntityModel {
-    public enum ModelType {BALL};
+    public enum ModelType {BALL}
 
     // Constants for collision mask
     public final static short GROUND_BIT = 0x01;
@@ -25,13 +24,13 @@ public abstract class EntityModel {
 
     final private Body body;
 
-    private float angular_accel = 40000f;
+    private float angular_accel = 100000f;
 
     EntityModel(World world, Vector2 pos, ModelType type) {
         this(world, pos, type, 0f, 0f);
     }
 
-     EntityModel(World world, Vector2 pos, ModelType type, float angDamp, float linDamp) {
+    EntityModel(World world, Vector2 pos, ModelType type, float angDamp, float linDamp) {
         BodyDef bdef = new BodyDef();
         bdef.type = BodyDef.BodyType.DynamicBody;
         bdef.position.set(pos);
@@ -52,7 +51,7 @@ public abstract class EntityModel {
      * @param height    Height of the bitmap the vertices were extracted from
      * @return      A PolygonShape with the correct vertices
      */
-    final static PolygonShape createPolygonShape(float[] vertices, int width, int height) {
+    static PolygonShape createPolygonShape(float[] vertices, int width, int height) {
         // Transform pixels into meters, center and invert the y-coordinate
         for (int i = 0; i < vertices.length; i++) {
             if (i % 2 == 0) vertices[i] -= width / 2;   // center the vertex x-coordinate
@@ -82,6 +81,10 @@ public abstract class EntityModel {
         body.createFixture(fixtureDef);
 
         shape.dispose();
+    }
+
+    protected Body getBody() {
+        return body;
     }
 
     /**

@@ -8,17 +8,16 @@ import com.badlogic.gdx.physics.box2d.World;
 import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 
 /**
- * Created by andre on 05/05/2017.
+ * A model representing the player's ball.
  */
-
 public class BallModel extends EntityModel {
     private static float radius = 64 * PIXEL_TO_METER;
     private static float density = 1f;
-    private static float friction = 1f;
-    private static float restitution = 0.8f;
+    private static float friction = 30f;
+    private static float restitution = 0.3f;
 
-    private static final float ANGULAR_DAMP = 0.8f;
-    private static final float LINEAR_DAMP = 0.1f;
+    private static final float ANGULAR_DAMP = 2f;
+    private static final float LINEAR_DAMP = 0.5f;
 
     public BallModel(World world, Vector2 pos) {
         super(world, pos, ModelType.BALL, ANGULAR_DAMP, LINEAR_DAMP);

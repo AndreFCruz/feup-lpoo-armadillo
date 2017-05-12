@@ -17,9 +17,8 @@ import static com.lpoo.game.model.entities.EntityModel.GROUND_BIT;
 import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 
 /**
- * Created by andre on 27/04/2017.
+ * A class to load TiledMap layers and correctly create the associated physics world.
  */
-
 public class B2DWorldCreator {
 
     public static void generateWorld(World world, Map map) {
@@ -61,7 +60,6 @@ public class B2DWorldCreator {
                 new_vertices[i] *= PIXEL_TO_METER;
 
             shape.set(new_vertices);
-//            shape.setAsBox((rect.getWidth() / 2) * PIXEL_TO_METER, (rect.getHeight() / 2) * PIXEL_TO_METER);
             fdef.shape = shape;
             fdef.filter.categoryBits = GROUND_BIT;
             body.createFixture(fdef);
