@@ -45,11 +45,11 @@ public class LevelMenuScreen extends ScreenAdapter {
      */
     private static final int BUTTON_EDGE = 30;
     /**
-     * Constant representing the extra space around the bottom edge of the bottom Button.
+     * Constant representing the distance between the first line of Level Buttons and the screen Top.
      */
     private static final int TOP_EDGE = 100;
     /**
-     * Constant representing the distance between the stage elements and the screen limits.
+     * Constant representing the distance between the stage elements and the screen side limits.
      */
     private static final int SIDE_DISTANCE = 40;
 
@@ -109,6 +109,9 @@ public class LevelMenuScreen extends ScreenAdapter {
         TextButton back = new TextButton("Back", skin);
         ScrollPane scroller = new ScrollPane(levels, skin);
         scroller.getStyle().background = null;  //Setting the scroll background invisible
+        /*//INVISIBLE SCROLLER
+        scroller.getStyle().vScroll = null;
+        scroller.getStyle().vScrollKnob = null;*/
 
         //Add listeners to buttons
         lvlOne.addListener(new ClickListener(){

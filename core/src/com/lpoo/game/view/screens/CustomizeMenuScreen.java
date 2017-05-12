@@ -48,7 +48,7 @@ public class CustomizeMenuScreen extends ScreenAdapter {
      */
     private static final int IMAGE_EDGE = 30;
     /**
-     * Constant representing the extra space around the bottom edge of the bottom Button.
+     * Constant representing the distance between the first line of Level Buttons and the screen Top.
      */
     private static final int TOP_EDGE = 100;
     /**
@@ -88,7 +88,6 @@ public class CustomizeMenuScreen extends ScreenAdapter {
     public void show() {
 
         Table skins = new Table();
-        skins.setFillParent(true);
 
         Table fixElements = new Table();
         fixElements.setFillParent(true);
@@ -130,12 +129,15 @@ public class CustomizeMenuScreen extends ScreenAdapter {
         skins.add(labelFour);
         skins.add(labelFive);
         skins.add(labelSix);
-        labelSix.setVisible(false);
+        labelSix.setVisible(false); // -> TODO: Function responsible for setting the current skin and the skin changing
 
         //Create standing Elements
         TextButton back = new TextButton("Back", skin);
-        //ScrollPane scroller = new ScrollPane(skins, skin);
-        //scroller.getStyle().background = null;  //Setting the scroll background invisible
+        ScrollPane scroller = new ScrollPane(skins, skin);
+        scroller.getStyle().background = null;  //Setting the scroll background invisible
+        /*//INVISIBLE SCROLLER
+        scroller.getStyle().hScroll = null;
+        scroller.getStyle().hScrollKnob = null;*/
 
         //Add listeners to buttons
         imageOne.addListener(new ClickListener(){
@@ -161,22 +163,17 @@ public class CustomizeMenuScreen extends ScreenAdapter {
             }
         });
 
-        //Add buttons to table
-        skins.setDebug(true); //Testing Purposes
-        skins.center();
-
-
         //Standing Elements
+        //skins.setDebug(true); //Testing Purposes
         //fixElements.setDebug(true); //Testing Purposes
-        //fixElements.add(back).top().padLeft(SIDE_DISTANCE).padTop(TOP_EDGE / 3);
-        //fixElements.add(scroller).fill().expand().padRight(SIDE_DISTANCE);
+        fixElements.add(back).top().left().padLeft(SIDE_DISTANCE).padTop(TOP_EDGE / 3);
+        fixElements.row();
+        fixElements.add(scroller).fill().expand().padBottom(SIDE_DISTANCE);
 
-
-        // Add table to stage
+        // Add Elements to stage
         //stage.addActor(backgroundImg);
         //stage.addActor(titleImg);
-        stage.addActor(skins);
-        //stage.addActor(fixElements);
+        stage.addActor(fixElements);
 
         Gdx.input.setInputProcessor(stage); //TODO: averiguar o pq de ter de ser aqu (se não não dá)
     }
