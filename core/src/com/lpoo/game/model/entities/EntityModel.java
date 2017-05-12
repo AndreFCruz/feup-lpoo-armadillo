@@ -25,12 +25,18 @@ public abstract class EntityModel {
 
     final private Body body;
 
-    private float angular_accel = 10000f;
+    private float angular_accel = 40000f;
 
     EntityModel(World world, Vector2 pos, ModelType type) {
+        this(world, pos, type, 0f, 0f);
+    }
+
+     EntityModel(World world, Vector2 pos, ModelType type, float angDamp, float linDamp) {
         BodyDef bdef = new BodyDef();
         bdef.type = BodyDef.BodyType.DynamicBody;
         bdef.position.set(pos);
+        bdef.angularDamping = angDamp;
+        bdef.linearDamping = linDamp;
 
         body = world.createBody(bdef);
         body.setActive(true);

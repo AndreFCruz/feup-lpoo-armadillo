@@ -31,7 +31,7 @@ public class B2DWorldCreator {
 
         Body body;
 
-        // Create ground Bodies/Fixtures
+        // Create (Rectangle) Ground Bodies/Fixtures
         for (MapObject object : map.getLayers().get("ground").getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
@@ -41,6 +41,27 @@ public class B2DWorldCreator {
             body = world.createBody(bdef);
 
             shape.setAsBox((rect.getWidth() / 2) * PIXEL_TO_METER, (rect.getHeight() / 2) * PIXEL_TO_METER);
+            fdef.shape = shape;
+            fdef.filter.categoryBits = GROUND_BIT;
+            body.createFixture(fdef);
+        }
+
+        // Create (Polygon) Ground Bodies/Fixtures
+        for (MapObject object : map.getLayers().get("ground").getObjects().getByType(PolygonMapObject.class)) {
+            Polygon polygon = ((PolygonMapObject) object).getPolygon();
+            Rectangle rect = polygon.getBoundingRectangle();
+
+            bdef.type = BodyDef.BodyType.StaticBody;
+            bdef.position.set(PIXEL_TO_METER * polygon.getX(), PIXEL_TO_METER * polygon.getY());
+
+            body = world.createBody(bdef);
+
+            float[] new_vertices = polygon.getVertices().clone();
+            for (int i = 0; i < new_vertices.length; i++)
+                new_vertices[i] *= PIXEL_TO_METER;
+
+            shape.set(new_vertices);
+//            shape.setAsBox((rect.getWidth() / 2) * PIXEL_TO_METER, (rect.getHeight() / 2) * PIXEL_TO_METER);
             fdef.shape = shape;
             fdef.filter.categoryBits = GROUND_BIT;
             body.createFixture(fdef);

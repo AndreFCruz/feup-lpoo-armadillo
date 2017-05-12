@@ -17,8 +17,11 @@ public class BallModel extends EntityModel {
     private static float friction = 1f;
     private static float restitution = 0.8f;
 
+    private static final float ANGULAR_DAMP = 0.8f;
+    private static final float LINEAR_DAMP = 0.1f;
+
     public BallModel(World world, Vector2 pos) {
-        super(world, pos, ModelType.BALL);
+        super(world, pos, ModelType.BALL, ANGULAR_DAMP, LINEAR_DAMP);
 
         // Create Fixture's Shape
         Shape circle = new CircleShape();

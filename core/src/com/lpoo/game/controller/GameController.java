@@ -14,13 +14,13 @@ public class GameController implements InputHandler {
 
     private GameModel model;
     private OrthographicCamera camera;
-    private Boolean accelAvailable;
+    private Boolean accelerometerAvailable;
 
     public GameController(OrthographicCamera camera) {
         model = GameModel.getInstance();
         this.camera = camera;
 
-        if (! (accelAvailable = Gdx.input.isPeripheralAvailable(Input.Peripheral.Accelerometer)))
+        if (! (accelerometerAvailable = Gdx.input.isPeripheralAvailable(Input.Peripheral.Accelerometer)))
             System.err.println("Accelerometer unavailable");
     }
 
@@ -29,7 +29,7 @@ public class GameController implements InputHandler {
         pollTouch(delta);
         pollKeys(delta);
 
-        if (accelAvailable)
+        if (accelerometerAvailable)
             pollAccelerometer();
     }
 
