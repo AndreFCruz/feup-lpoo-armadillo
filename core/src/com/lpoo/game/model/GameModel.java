@@ -55,7 +55,7 @@ public class GameModel implements Disposable {
 
 
         TmxMapLoader mapLoader = new TmxMapLoader();
-        map = mapLoader.load("SampleMap01.tmx");
+        map = mapLoader.load("SampleMap.tmx");
 
         B2DWorldCreator.generateWorld(world, map);
 

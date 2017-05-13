@@ -87,7 +87,7 @@ public class GameScreen extends ScreenAdapter {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
-//        updateCamera();
+        updateCamera();
         drawBackground();
 
         game.getBatch().setProjectionMatrix(camera.combined);
@@ -122,13 +122,14 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void updateCamera() {
-
         // Follow player
-        Vector3 vec = new Vector3(model.getBall().getX(), model.getBall().getY(), 0);
+        camera.position.set(GameModel.getInstance().getBall().getX() / PIXEL_TO_METER, GameModel.getInstance().getBall().getY() / PIXEL_TO_METER, 0);
+        camera.update();
+
+/*        Vector3 vec = new Vector3(model.getBall().getX(), model.getBall().getY(), 0);
         camera.unproject(vec);
         camera.position.set(vec);
-
-        camera.update();
+        camera.update();*/
     }
 
     /**

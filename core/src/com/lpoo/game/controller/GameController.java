@@ -45,11 +45,13 @@ public class GameController implements InputHandler {
 
     private void pollKeys(float delta) {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            System.out.println("LEFT KEY");
             model.getBall().rotate(delta);
         } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            System.out.println("RIGHT KEY");
             model.getBall().rotate(delta * -1);
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+            model.getBall().jump();
         }
     }
 

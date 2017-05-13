@@ -18,13 +18,13 @@ public abstract class EntityModel {
 
     // Constants for collision mask
     public final static short GROUND_BIT = 0x01;
-    final static short BALL_BIT = 0x02;
+    public final static short BALL_BIT = 0x02;
 
     final private ModelType type;
 
-    final private Body body;
+    final protected Body body;
 
-    private float angular_accel = 100000f;
+    private float angular_accel = 200000f;
 
     EntityModel(World world, Vector2 pos, ModelType type) {
         this(world, pos, type, 0f, 0f);
@@ -39,7 +39,7 @@ public abstract class EntityModel {
 
         body = world.createBody(bdef);
         body.setActive(true);
-        // setUserData ?
+        body.setUserData(this);
 
         this.type = type;
     }
