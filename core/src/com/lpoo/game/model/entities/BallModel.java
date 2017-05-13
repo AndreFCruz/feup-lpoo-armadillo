@@ -22,7 +22,7 @@ public class BallModel extends EntityModel {
     private static float restitution = 0.5f;
 
     private State state = State.LANDED;
-    private float jump_force = 1000f;
+    private float jump_force = 500f;
 
     public BallModel(World world, Vector2 pos) {
         super(world, pos, ModelType.BALL, ANGULAR_DAMP, LINEAR_DAMP);
@@ -39,11 +39,11 @@ public class BallModel extends EntityModel {
     public void jump() {
         switch (this.state) {
             case LANDED:
-                this.body.applyLinearImpulse(new Vector2(0, jump_force), new Vector2(radius, radius), true);
+                this.body.applyLinearImpulse(new Vector2(0, jump_force), body.getWorldCenter(), true);
                 this.state = State.FLYING;
                 break;
             case FLYING:
-                this.body.applyLinearImpulse(new Vector2(0, -2 * jump_force), new Vector2(radius, radius), true);
+                this.body.applyLinearImpulse(new Vector2(0, -2 * jump_force), body.getWorldCenter(), true);
                 this.state = State.DUNKING;
                 break;
             case DUNKING:
