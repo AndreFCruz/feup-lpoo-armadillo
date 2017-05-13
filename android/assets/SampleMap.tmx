@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="38">
  <tileset firstgid="1" name="PlatformerSet" tilewidth="64" tileheight="64" tilecount="64" columns="8">
   <image source="Tiles_64x64.png" trans="000000" width="512" height="512"/>
  </tileset>
  <layer name="map" width="60" height="30">
   <data encoding="base64" compression="zlib">
-   eJztlcsKwjAQAKPgwYonFYovaA8+0IIIiif//7PcxQTWkEdjU5viDsylKXHHVCsEwzAMwzAMwzAM0zd24BE8/MnnKqpE5rCBc+0j7lf5b0mOE3iWhp6R6r2By8hzpcJGvPvu4EC6BrfgsMO5YqMasQn7rtIR8dHZdPFQndiDnWNwCpbyWibteyvtVE7Iei7tO6ZOU6+PGO8o/X8CXWnitUWDvU2d3/T6mIvPDqpaKxtq278An+BFShsz4swxf+h5ur7XphY1DDnPGM9qm711ujODMZ/flHrb7LIRMjc9A9861Xamrt9lW9hm1NXf67lBG3Xv+wUvXy0Vag==
+   eJztl9tKAzEQhuOpouKFqLD2IOiFKFoqlRavpO//VM5ghk6HpMk0s90t5oePlj0k828OM3Guqqqqqqqq6j/qpusAEvryv5OCNo4EfdaJW8c5Yhwr3rsDVk7v99wzCdCWnjxj9h+5Srx3CpxFIC2Apdv8dvje3D+3ymjDWs8C7MvKLz4zFm3htcsEtyWGEiKPHEu/bcevlfy2JX4HQJPZ7wvwBrzqQy6S7Pfaba5jDYMd+p9G4iDh3vkADIHZDu3nKLW+LNfdNHGf54G+5Lt34MOjnaPkF/fyoXFcfRHmV8pVNGa4jz+6dN4/JPF8jP7mbp2Lie/OorMT+UQ/6PPC/e2LlAtp/XOvuG55vXcI4j4JnucaF89f+6o/LBTyGfKbkkWOlvuEPCeM/LX7grZjdZfWb0p4TpG5ip9h8FfWy1pi7WO98QN8erjH3LmpHc9t37WUnPpKM54Wc7VNvzm+QzWX5fztk982fcWkiVueibbd58TGtIuckVvXyxqmCRBT7nP70C+HbR7y
   </data>
  </layer>
+ <objectgroup name="end_pos">
+  <object id="25" x="832" y="576" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="start_pos">
+  <object id="24" x="256" y="1408" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="water">
+  <object id="37" x="1280" y="640" width="448" height="320"/>
+ </objectgroup>
  <objectgroup name="ground">
   <object id="2" x="0" y="1536" width="640" height="384"/>
   <object id="3" x="704" y="1472" width="512" height="384"/>
@@ -32,5 +41,25 @@
   <object id="15" x="3008" y="1152">
    <polygon points="0,0 62.8252,-31.7921 128,0"/>
   </object>
+  <object id="16" x="2624" y="704" width="640" height="128"/>
+  <object id="17" x="2816" y="640" width="64" height="64"/>
+  <object id="18" x="2880" y="640" width="64" height="64"/>
+  <object id="19" x="3264" y="1280" width="256" height="128"/>
+  <object id="20" x="3392" y="1024" width="320" height="64"/>
+  <object id="22" x="3392" y="960" width="64" height="64"/>
+  <object id="23" x="3456" y="960">
+   <polygon points="0,0 0,64 128,64"/>
+  </object>
+  <object id="26" x="2304" y="768" width="192" height="128"/>
+  <object id="27" x="2432" y="704" width="64" height="64"/>
+  <object id="28" x="2432" y="704">
+   <polygon points="0,0 -128,64 0,64"/>
+  </object>
+  <object id="29" x="1728" y="640" width="448" height="256"/>
+  <object id="32" x="1728" y="896" width="384" height="64"/>
+  <object id="33" x="1152" y="960" width="960" height="128"/>
+  <object id="34" x="832" y="640" width="448" height="320"/>
+  <object id="35" x="1920" y="576" width="256" height="64"/>
+  <object id="36" x="2112" y="512" width="64" height="64"/>
  </objectgroup>
 </map>
