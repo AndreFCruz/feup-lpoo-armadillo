@@ -16,13 +16,13 @@ public class BallModel extends EntityModel {
     private static final float ANGULAR_DAMP = 2f;
     private static final float LINEAR_DAMP = 0.1f;
 
-    private static float radius = 64 * PIXEL_TO_METER;
+    private static float radius = 32 * PIXEL_TO_METER;
     private static float density = 1f;
     private static float friction = 40f;
     private static float restitution = 0.5f;
 
     private State state = State.LANDED;
-    private float jump_force = 500f;
+    private float jump_force = 60f;
 
     public BallModel(World world, Vector2 pos) {
         super(world, pos, ModelType.BALL, ANGULAR_DAMP, LINEAR_DAMP);
@@ -43,7 +43,7 @@ public class BallModel extends EntityModel {
                 this.state = State.FLYING;
                 break;
             case FLYING:
-                this.body.applyLinearImpulse(new Vector2(0, -2 * jump_force), body.getWorldCenter(), true);
+                this.body.applyLinearImpulse(new Vector2(0, -3 * jump_force), body.getWorldCenter(), true);
                 this.state = State.DUNKING;
                 break;
             case DUNKING:

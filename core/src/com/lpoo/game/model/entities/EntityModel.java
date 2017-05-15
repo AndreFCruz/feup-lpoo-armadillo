@@ -24,7 +24,7 @@ public abstract class EntityModel {
 
     final protected Body body;
 
-    private float angular_accel = 200000f;
+    private float angular_accel = 8000f;
 
     EntityModel(World world, Vector2 pos, ModelType type) {
         this(world, pos, type, 0f, 0f);
