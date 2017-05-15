@@ -94,23 +94,23 @@ public class CustomizeMenuScreen extends ScreenAdapter {
 
 
         Label labelOne = new Label ("Current", skin);
-        Image imageOne = new Image ( new Texture ("ball.png"));
+        Image imageOne = new Image ( new Texture ("skins/skin01.png"));
         //imageOne.setScale(1.4f,1.4f);
 
         Label labelTwo = new Label ("Current", skin);
-        Image imageTwo = new Image ( new Texture ("ball.png"));
+        Image imageTwo = new Image ( new Texture ("skins/skin02.png"));
 
         Label labelThree = new Label ("Current", skin);
-        Image imageThree = new Image ( new Texture ("ball.png"));
+        Image imageThree = new Image ( new Texture ("skins/skin03.png"));
 
         Label labelFour = new Label ("Current", skin);
-        Image imageFour = new Image ( new Texture ("ball.png"));
+        Image imageFour = new Image ( new Texture ("skins/skin04.png"));
 
         final Label labelFive = new Label ("Current", skin);
-        Image imageFive = new Image ( new Texture ("ball.png"));
+        Image imageFive = new Image ( new Texture ("skins/skin05.png"));
 
         final Label labelSix = new Label ("Current", skin);
-        Image imageSix = new Image ( new Texture ("ball.png"));
+        Image imageSix = new Image ( new Texture ("skins/skin06.png"));
 
         //Adding all the Images/Buttons to the same line
         skins.add(imageOne).pad(IMAGE_EDGE);
@@ -140,7 +140,7 @@ public class CustomizeMenuScreen extends ScreenAdapter {
         scroller.getStyle().hScrollKnob = null;*/
 
         //Add listeners to buttons
-        imageOne.addListener(new ClickListener(){
+        back.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new MainMenuScreen(game));
