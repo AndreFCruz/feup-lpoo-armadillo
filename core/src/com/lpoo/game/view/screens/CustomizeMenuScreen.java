@@ -43,7 +43,7 @@ public class CustomizeMenuScreen extends MenuScreen {
 
     @Override
     public void show() {
-        //super.show();
+        super.show();
 
         //Table containing all the possibles Ball appearances
         Table skins = new Table();

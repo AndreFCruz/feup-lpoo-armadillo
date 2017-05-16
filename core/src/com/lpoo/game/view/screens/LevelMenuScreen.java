@@ -38,7 +38,7 @@ public class LevelMenuScreen extends MenuScreen {
 
     @Override
     public void show() {
-        //super.show();
+        super.show();
 
         Table levels = new Table();
         //levels.setFillParent(true);

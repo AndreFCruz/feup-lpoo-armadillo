@@ -39,6 +39,12 @@ public abstract class MenuScreen extends ScreenAdapter {
      */
     private static final float VIEWPORT_WIDTH = 30;
 
+    /**
+     * The height of the viewport in meters. The height is
+     * automatically calculated using the screen ratio.
+     */
+    private static final float VIEWPORT_HEIGHT = VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
+
     //LayOut
     /**
      * Image representing the Menu's background image.
@@ -58,7 +64,7 @@ public abstract class MenuScreen extends ScreenAdapter {
 
         camera = new OrthographicCamera();
 
-        viewport = new FitViewport(VIEWPORT_WIDTH / PIXEL_TO_METER, VIEWPORT_WIDTH / PIXEL_TO_METER * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth()));
+        viewport = new FitViewport(VIEWPORT_WIDTH / PIXEL_TO_METER, VIEWPORT_HEIGHT / PIXEL_TO_METER);
         viewport.apply();
 
         stage = new Stage(viewport, batch);
@@ -67,7 +73,11 @@ public abstract class MenuScreen extends ScreenAdapter {
         camera.update();
 
         backgroundImg = new Image(new Texture("background.png"));
+        backgroundImg.setScale(VIEWPORT_WIDTH / PIXEL_TO_METER  /  backgroundImg.getWidth(), VIEWPORT_HEIGHT / PIXEL_TO_METER  / backgroundImg.getHeight());
+
         titleImg = new Image(new Texture("spheral.png"));
+        titleImg.setSize(0.8f * titleImg.getWidth(), 0.8f * titleImg.getHeight());
+        titleImg.setPosition(VIEWPORT_WIDTH / PIXEL_TO_METER / 2 - titleImg.getWidth() / 2, VIEWPORT_HEIGHT * 0.98f / PIXEL_TO_METER - titleImg.getHeight());
     }
 
     @Override

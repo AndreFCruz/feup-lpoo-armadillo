@@ -34,7 +34,8 @@ public class MainMenuScreen extends MenuScreen {
 
     @Override
     public void show() {
-        //super.show();
+        super.show();
+
         Table table = new Table();
         table.setFillParent(true);
 
