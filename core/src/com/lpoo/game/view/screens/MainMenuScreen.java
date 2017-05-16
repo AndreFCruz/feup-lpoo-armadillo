@@ -1,46 +1,18 @@
 package com.lpoo.game.view.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.lpoo.game.Spheral;
 
 /**
- * Created by andre on 04/05/2017.
+ * A view representing the Main Menu screen. This Menu is presented
+ * to the User when the Application is initialized. In this Menu the
+ * User chooses what he wishes to do.
  */
-
-public class MainMenuScreen extends ScreenAdapter {
-    private final Spheral game;
-
-    private Stage stage;
-    private Viewport viewport;
-    private Camera camera;
-    private SpriteBatch batch;
-    private Skin skin;
-    private TextureAtlas atlas;
-
-    /**
-     * Image representing the Main Menu's background image.
-     */
-    private Image backgroundImg;
-    /**
-     * Image representing the Title's image.
-     */
-    private Image titleImg;
+public class MainMenuScreen extends MenuScreen {
 
     //Layout Macros
     /**
@@ -57,27 +29,12 @@ public class MainMenuScreen extends ScreenAdapter {
     private static final int BOTTOM_EDGE = 50;
 
     public MainMenuScreen(final Spheral game) {
-        this.game = game;
-        this.batch = game.getBatch();
-
-        atlas = new TextureAtlas("uiskin.atlas");
-        skin = new Skin(Gdx.files.internal("uiskin.json"), atlas);
-
-        camera = new OrthographicCamera();
-        viewport = new ScreenViewport();
-        viewport.apply();
-        stage = new Stage(viewport, batch);
-
-        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
-        camera.update();
-
-        backgroundImg = new Image(new Texture("background.png"));
-        titleImg = new Image(new Texture("spheral.png"));
+        super(game);
     }
 
     @Override
     public void show() {
-
+        //super.show();
         Table table = new Table();
         table.setFillParent(true);
 
@@ -88,19 +45,19 @@ public class MainMenuScreen extends ScreenAdapter {
         TextButton exitButton = new TextButton("Exit", skin);
 
         //Add listeners to buttons
-        playButton.addListener(new ClickListener(){
+        playButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new LevelMenuScreen(game));
             }
         });
-        optionsButton.addListener(new ClickListener(){
+        optionsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new CustomizeMenuScreen(game));
             }
         });
-        exitButton.addListener(new ClickListener(){
+        exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.exit();
@@ -117,35 +74,6 @@ public class MainMenuScreen extends ScreenAdapter {
         table.add(exitButton).width(BUTTON_WIDTH).padBottom(BOTTOM_EDGE).padTop(BUTTON_EDGE);
 
         // Add table to stage
-        //stage.addActor(backgroundImg);
-        //stage.addActor(titleImg);
         stage.addActor(table);
     }
-
-
-    @Override
-    public void render(float delta) {
-        Gdx.gl.glClearColor(1,1,1,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        //batch.begin();
-        //batch.end();
-
-        stage.act(Gdx.graphics.getDeltaTime());
-        stage.draw();
-
-        Gdx.input.setInputProcessor(stage);
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        viewport.update(width, height);
-        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
-        camera.update();
-    }
-
-    @Override
-    public void hide() {
-        Gdx.input.setInputProcessor(null);
-    }
-
 }
