@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.lpoo.game.Spheral;
 
@@ -29,6 +29,18 @@ public abstract class MenuScreen extends ScreenAdapter {
     protected TextureAtlas atlas;
 
     /**
+     * How much meters does a pixel represent.
+     */
+    public final static float PIXEL_TO_METER = 0.04f;
+
+    /**
+     * The width of the viewport in meters. The height is
+     * automatically calculated using the screen ratio.
+     */
+    private static final float VIEWPORT_WIDTH = 30;
+
+    //LayOut
+    /**
      * Image representing the Menu's background image.
      */
     protected Image backgroundImg;
@@ -45,11 +57,13 @@ public abstract class MenuScreen extends ScreenAdapter {
         skin = new Skin(Gdx.files.internal("uiskin.json"), atlas);
 
         camera = new OrthographicCamera();
-        viewport = new ScreenViewport();
+
+        viewport = new FitViewport(VIEWPORT_WIDTH / PIXEL_TO_METER, VIEWPORT_WIDTH / PIXEL_TO_METER * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth()));
         viewport.apply();
+
         stage = new Stage(viewport, batch);
 
-        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
+        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
 
         backgroundImg = new Image(new Texture("background.png"));
