@@ -19,6 +19,7 @@ public abstract class EntityModel {
     // Constants for collision mask
     public final static short GROUND_BIT = 0x01;
     public final static short BALL_BIT = 0x02;
+    public final static short FLUID_BIT = 0x04; // TODO
 
     final private ModelType type;
 

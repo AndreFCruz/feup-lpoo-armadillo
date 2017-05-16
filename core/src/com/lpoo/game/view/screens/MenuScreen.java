@@ -55,9 +55,12 @@ public abstract class MenuScreen extends ScreenAdapter {
      */
     protected Image titleImg;
 
+
     protected MenuScreen(final Spheral game) {
         this.game = game;
         this.batch = game.getBatch();
+
+        loadAssets();
 
         atlas = new TextureAtlas("uiskin.atlas");
         skin = new Skin(Gdx.files.internal("uiskin.json"), atlas);
@@ -72,12 +75,20 @@ public abstract class MenuScreen extends ScreenAdapter {
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
 
-        backgroundImg = new Image(new Texture("background.png"));
+        backgroundImg = new Image(game.getAssetManager().get("background.png", Texture.class));
         backgroundImg.setScale(VIEWPORT_WIDTH / PIXEL_TO_METER  /  backgroundImg.getWidth(), VIEWPORT_HEIGHT / PIXEL_TO_METER  / backgroundImg.getHeight());
 
-        titleImg = new Image(new Texture("spheral.png"));
+        titleImg = new Image(game.getAssetManager().get("spheral.png", Texture.class));
         titleImg.setSize(0.8f * titleImg.getWidth(), 0.8f * titleImg.getHeight());
         titleImg.setPosition(VIEWPORT_WIDTH / PIXEL_TO_METER / 2 - titleImg.getWidth() / 2, VIEWPORT_HEIGHT * 0.98f / PIXEL_TO_METER - titleImg.getHeight());
+    }
+
+    protected void loadAssets() {
+
+        game.getAssetManager().load( "spheral.png" , Texture.class);
+        game.getAssetManager().load( "background.png" , Texture.class);
+
+        game.getAssetManager().finishLoading();
     }
 
     @Override

@@ -51,27 +51,32 @@ public class GameModel implements Disposable {
         game = ((Game) Gdx.app.getApplicationListener());
 
         gravity = new Vector2(0, - GRAVITY_CONSTANT);
-        world = new World(gravity, true);
-
 
         TmxMapLoader mapLoader = new TmxMapLoader();
         map = mapLoader.load("SampleMap.tmx");
 
-        B2DWorldCreator.generateWorld(world, map);
+        world = new World(gravity, true);
 
         world.setContactListener(new WorldContactListener());
 
         models = new ArrayList<EntityModel>();
 
-        player = new BallModel(world, new Vector2(200 * PIXEL_TO_METER, 475 * PIXEL_TO_METER));
+        resetModel();
     }
 
-    public void update(float delta) {
+    public boolean update(float delta) {
         // Upper bound for simulation update
         if (delta > (1/60f))
             delta = 1/60f;
 
         world.step(delta, 6, 2);
+
+        return ballInBounds();
+    }
+
+    private boolean ballInBounds() {
+        // TODO abstract class map
+        return player.getY() > 150 * PIXEL_TO_METER;
     }
 
     public TiledMap getMap() {
@@ -79,7 +84,6 @@ public class GameModel implements Disposable {
     }
 
     public List<EntityModel> getModels() {
-        models.add(player);
         return models;
     }
 
@@ -89,6 +93,19 @@ public class GameModel implements Disposable {
 
     public World getWorld() {
         return world;
+    }
+
+    public void resetModel() {
+        if (world != null) {
+            world = new World(gravity, true);
+            world.setContactListener(new WorldContactListener());
+        }
+
+        B2DWorldCreator.generateWorld(world, map);
+        models.clear();
+
+        player = new BallModel(world, new Vector2(200 * PIXEL_TO_METER, 475 * PIXEL_TO_METER));
+        models.add(player);
     }
 
     @Override

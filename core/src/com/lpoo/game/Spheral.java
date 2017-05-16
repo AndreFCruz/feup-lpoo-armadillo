@@ -22,13 +22,11 @@ public class Spheral extends Game {
 
         font = new BitmapFont();
 
-        this.setScreen(new MainMenuScreen(this));
-
         startGame();
     }
 
     private void startGame() {
-        // TODO
+        setScreen(new MainMenuScreen(this));
     }
 
     @Override

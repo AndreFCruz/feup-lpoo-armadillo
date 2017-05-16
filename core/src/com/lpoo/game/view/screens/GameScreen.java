@@ -82,7 +82,11 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         controller.handleInput(delta);
-        model.update(delta);
+
+        if (!model.update(delta)) {
+            model.resetModel();
+            // TODO show death pop-up menu (state in GameScreen?)
+        }
 
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -96,7 +100,6 @@ public class GameScreen extends ScreenAdapter {
         drawEntities();
         game.getBatch().end();
 
-        //check
         mapRenderer.setView(camera);
         mapRenderer.render();
 
@@ -137,8 +140,8 @@ public class GameScreen extends ScreenAdapter {
      */
     private void loadAssets() {
 
-        // Load Assets
-        game.getAssetManager().load( "ball.png" , Texture.class);
+        for (int i = 0; i < 6; i++)
+            game.getAssetManager().load( "skins/skin0" + i + ".png" , Texture.class);
 
         game.getAssetManager().finishLoading();
     }
