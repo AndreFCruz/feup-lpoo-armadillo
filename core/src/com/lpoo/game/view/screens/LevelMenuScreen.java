@@ -41,9 +41,11 @@ public class LevelMenuScreen extends MenuScreen {
         super.show();
 
         Table levels = new Table();
+        levels.debugAll();
         //levels.setFillParent(true);
 
         Table fixElements = new Table();
+        fixElements.debugAll();
         fixElements.setFillParent(true);
 
         //Create buttons - levels Table

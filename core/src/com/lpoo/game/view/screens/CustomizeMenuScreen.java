@@ -47,9 +47,11 @@ public class CustomizeMenuScreen extends MenuScreen {
 
         //Table containing all the possibles Ball appearances
         Table skins = new Table();
+        skins.debugAll();
 
         //Table containing the screen elements that shall not move with the slider
         Table fixElements = new Table();
+        fixElements.debugAll();
         fixElements.setFillParent(true);
 
 

@@ -26,7 +26,7 @@ public class MainMenuScreen extends MenuScreen {
     /**
      * Constant representing the extra space around the bottom edge of the bottom Button.
      */
-    private static final int BOTTOM_EDGE = 50;
+    private static final int BOTTOM_EDGE = 35;
 
     public MainMenuScreen(final Spheral game) {
         super(game);
@@ -37,6 +37,7 @@ public class MainMenuScreen extends MenuScreen {
         super.show();
 
         Table table = new Table();
+        table.debugAll();
         table.setFillParent(true);
 
         //Create buttons
@@ -72,7 +73,9 @@ public class MainMenuScreen extends MenuScreen {
         table.row();
         table.add(optionsButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
         table.row();
-        table.add(exitButton).width(BUTTON_WIDTH).padBottom(BOTTOM_EDGE).padTop(BUTTON_EDGE);
+//        table.add(exitButton).width(BUTTON_WIDTH).padBottom(BOTTOM_EDGE).padTop(BUTTON_EDGE);
+        table.add(exitButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
+        table.padBottom(BOTTOM_EDGE);
 
         // Add table to stage
         stage.addActor(table);
