@@ -10,7 +10,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Disposable;
 import com.lpoo.game.model.entities.BallModel;
 import com.lpoo.game.model.entities.EntityModel;
-import com.lpoo.game.model.tools.B2DWorldCreator;
+import com.lpoo.game.model.utils.B2DWorldCreator;
+import com.lpoo.game.model.controllers.BuoyancyController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class GameModel implements Disposable {
 
     // Box2d variables
     private World world;
+    private BuoyancyController buoyancyController;
 
     private Game game;
 
