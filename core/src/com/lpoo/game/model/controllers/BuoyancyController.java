@@ -1,6 +1,7 @@
 package com.lpoo.game.model.controllers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector;
@@ -21,15 +22,16 @@ import java.util.Set;
 
 public class BuoyancyController {
 
+    private static int CIRCLE_VERTICES = 8;
+
     public boolean isFluidFixed = true;
     public float fluidDrag = 0.25f;
-    public float fluidLift = 100f; // TODO reset 0.4f
+    public float fluidLift = 0.4f;
     public float linearDrag = 0.4f;
     public float maxFluidDrag = 2000;
     public float maxFluidLift = 500;
     private Fixture fluidSensor;
-//    private List<Vector2> fluidVertices;
-    private float[] fluidVertices;
+    private List<Vector2> fluidVertices;
     private Set<Fixture> fixtures;
     private World world;
 
@@ -43,17 +45,13 @@ public class BuoyancyController {
 
     public void step() {
         for (Fixture fixture : fixtures) {
-
             if (fixture.getBody().isAwake()) {
-                System.err.println("water step");
 
 				/* Create clipPolygon */
-//                List<Vector2> clipPolygon = getFixtureVertices(fixture);
-                float[] clipPolygon = getFixtureVertices(fixture);
+                List<Vector2> clipPolygon = getFixtureVertices(fixture);
 
 				/* Create subjectPolygon */
-//                List<Vector2> subjectPolygon;
-                float[] subjectPolygon;
+                List<Vector2> subjectPolygon;
                 if (isFluidFixed) {
                     subjectPolygon = fluidVertices;
                 } else {
@@ -64,26 +62,27 @@ public class BuoyancyController {
 //                List<Vector2> clippedPolygon = PolygonIntersector.clipPolygons(
 //                        subjectPolygon, clipPolygon);
 
-                Polygon clipped = new Polygon();
-                Polygon p1 = new Polygon(subjectPolygon);
-                Polygon p2 = new Polygon(clipPolygon);
-                Intersector.intersectPolygons(p1, p2, clipped);
+                Polygon clippedPolygon = new Polygon();
+                Intersector.intersectPolygons(getFixturePolygon(fluidSensor), getCirclePolygon(fixture), clippedPolygon);
 
-                if (clipped.getVertices().length > 0) {
-//                    applyForces(fixture, clipped.getVertices().toArray(new Vector2[0]));
-                    applyForces(fixture, floatToVectorArray(clipped.getVertices()));
+                System.out.print("Clipped Polygon: ");
+                for (float f : clippedPolygon.getVertices())
+                    System.out.print(f + ",");
+
+                Vector2[] clippedArray = new Vector2[clippedPolygon.getVertices().length / 2];
+                for (int i = 0; i < clippedPolygon.getVertices().length / 2; i++) {
+                    clippedArray[i] = new Vector2(clippedPolygon.getVertices()[i*2],
+                                                    clippedPolygon.getVertices()[i*2 + 1]);
+                }
+
+                if (clippedPolygon.getVertices().length > 0) {
+                    System.out.println("collision");
+
+                    applyForces(fixture, clippedArray);
+//                    applyForces(fixture, clippedPolygon.toArray(new Vector2[0]));
                 }
             }
         }
-    }
-
-    private Vector2[] floatToVectorArray(float[] arr) {
-        Vector2[] ret = new Vector2[arr.length / 2];
-
-        for (int i = 0; i < ret.length; i++)
-            ret[i] = new Vector2(arr[(i * 2)], arr[(i * 2) + 1]);
-
-        return ret;
     }
 
     private void applyForces(Fixture fixture, Vector2[] clippedPolygon) {
@@ -177,23 +176,25 @@ public class BuoyancyController {
         } catch (ClassCastException e) {
             Gdx.app.debug("BuoyancyController",
                     "Fixture shape is not an instance of PolygonShape.");
-            System.err.println("BuoyancyController: fixture not polygon");
+            System.err.println("BuoyancyController: fixture not a polygon");
         }
 
         // CRAPPY CODE INC TODO
         try {
             CircleShape circle = (CircleShape) fixture.getShape();
+
             fixtures.add(fixture);
         } catch (ClassCastException e) {
-            System.err.println("BuoyancyController: fixture not circle");
+            System.err.println("BuoyancyController: fixture not a circle");
         }
+
     }
 
     public void removeBody(Fixture fixture) {
         fixtures.remove(fixture);
     }
 
-    private float[] getFixtureVertices(Fixture fixture) {
+    private List<Vector2> getFixtureVertices(Fixture fixture) {
         if (fixture.getShape() instanceof PolygonShape)
             return getPolygonFixtureVertices(fixture);
         else if (fixture.getShape() instanceof CircleShape)
@@ -202,45 +203,71 @@ public class BuoyancyController {
         return null;
     }
 
-    private float[] getPolygonFixtureVertices(Fixture fixture) {
+    private List<Vector2> getPolygonFixtureVertices(Fixture fixture) {
         PolygonShape polygon = (PolygonShape) fixture.getShape();
         int verticesCount = polygon.getVertexCount();
 
-        float[] vertices = new float[verticesCount * 2];
-//        List<Vector2> vertices = new ArrayList<Vector2>(verticesCount);
+        List<Vector2> vertices = new ArrayList<Vector2>(verticesCount);
         for (int i = 0; i < verticesCount; i++) {
             Vector2 vertex = new Vector2();
             polygon.getVertex(i, vertex);
-//            vertices.add(new Vector2(fixture.getBody().getWorldPoint(vertex)));
-            Vector2 vec = fixture.getBody().getWorldPoint(vertex);
-            vertices[i*2] = vec.x;
-            vertices[(i*2) + 1] = vec.y;
+            vertices.add(new Vector2(fixture.getBody().getWorldPoint(vertex)));
         }
 
         return vertices;
     }
 
-    private float[] getCircleFixtureVertices(Fixture fixture) {
+    private List<Vector2> getCircleFixtureVertices(Fixture fixture) {
         CircleShape circle = (CircleShape) fixture.getShape();
 
-        int verticesCount = 100;
-        float ang_increment = (float) Math.PI * 2 / verticesCount;
+        float ang_increment = (float) Math.PI * 2 / CIRCLE_VERTICES;
 
-        float[] vertices = new float[verticesCount * 2];
+        List<Vector2> vertices = new ArrayList<Vector2>(CIRCLE_VERTICES);
 
-        int i = 0;
-        for (float ang = 0; ang < 2 * Math.PI; ang += ang_increment) {
+        for (int i = 0; i < CIRCLE_VERTICES; i++) {
+            float ang = i * ang_increment - (float) Math.PI / 2f;
             Vector2 vertex = new Vector2((float) (circle.getRadius() * Math.cos(ang)), (float) (circle.getRadius() * Math.sin(ang)));
-
-            vertex = fixture.getBody().getWorldPoint(vertex);
-            vertices[i++] = vertex.x;
-            vertices[i++] = vertex.y;
-
-            if ((i + 1) >= (verticesCount * 2))
-                break;
+            vertices.add(fixture.getBody().getWorldPoint(vertex));
         }
 
         return vertices;
+    }
+
+    private Polygon getCirclePolygon(Fixture fixture) {
+        CircleShape circle = (CircleShape) fixture.getShape();
+
+        float ang_increment = (float) Math.PI * 2 / CIRCLE_VERTICES;
+
+        float[] vertices = new float[CIRCLE_VERTICES * 2 + 2];
+
+        for (int i = 0; i <= CIRCLE_VERTICES; i++) {
+            float ang = i * ang_increment - (float) Math.PI / 2f;
+            vertices[i*2] = (float) (circle.getRadius() * Math.cos(ang));
+            vertices[i*2 + 1] = (float) (circle.getRadius() * Math.sin(ang));
+        }
+
+        Polygon polygon = new Polygon(vertices);
+        polygon.setPosition(fixture.getBody().getPosition().x, fixture.getBody().getPosition().y);
+
+        return polygon;
+    }
+
+    private Polygon getFixturePolygon(Fixture fixture) {
+        PolygonShape poly = (PolygonShape) fixture.getShape();
+
+        float[] vertices = new float[poly.getVertexCount() * 2];
+
+        for (int i = 0; i < poly.getVertexCount(); i++) {
+            Vector2 tmp = new Vector2();
+            poly.getVertex(i, tmp);
+            vertices[i*2] = tmp.x;
+            vertices[i*2 + 1] = tmp.y;
+        }
+
+        Polygon polygon = new Polygon(vertices);
+        polygon.setPosition(fixture.getBody().getPosition().x, fixture.getBody().getPosition().y);
+
+        return polygon;
     }
 
 }
