@@ -2,14 +2,17 @@ package com.lpoo.game.view.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.lpoo.game.Spheral;
 import com.lpoo.game.controller.GameController;
 import com.lpoo.game.controller.InputHandler;
@@ -18,6 +21,7 @@ import com.lpoo.game.model.entities.EntityModel;
 import com.lpoo.game.view.entities.EntityView;
 import com.lpoo.game.view.entities.ViewFactory;
 
+import java.awt.geom.RectangularShape;
 import java.util.List;
 
 /**
@@ -84,7 +88,7 @@ public class GameScreen extends ScreenAdapter {
         controller.handleInput(delta);
 
         if (!model.update(delta)) {
-            model.resetModel();
+            model.initModel();
             // TODO show death pop-up menu (state in GameScreen?)
         }
 
@@ -118,6 +122,7 @@ public class GameScreen extends ScreenAdapter {
             view.update(model);
             view.draw(game.getBatch());
         }
+
     }
 
     private void drawBackground() {

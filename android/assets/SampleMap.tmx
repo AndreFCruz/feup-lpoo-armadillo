@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="38">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="40">
  <tileset firstgid="1" name="PlatformerSet" tilewidth="64" tileheight="64" tilecount="64" columns="8">
   <image source="Tiles_64x64.png" trans="000000" width="512" height="512"/>
  </tileset>
  <layer name="map" width="60" height="30">
   <data encoding="base64" compression="zlib">
-   eJztl9tKAzEQhuOpouKFqLD2IOiFKFoqlRavpO//VM5ghk6HpMk0s90t5oePlj0k828OM3Guqqqqqqqq6j/qpusAEvryv5OCNo4EfdaJW8c5Yhwr3rsDVk7v99wzCdCWnjxj9h+5Srx3CpxFIC2Apdv8dvje3D+3ymjDWs8C7MvKLz4zFm3htcsEtyWGEiKPHEu/bcevlfy2JX4HQJPZ7wvwBrzqQy6S7Pfaba5jDYMd+p9G4iDh3vkADIHZDu3nKLW+LNfdNHGf54G+5Lt34MOjnaPkF/fyoXFcfRHmV8pVNGa4jz+6dN4/JPF8jP7mbp2Lie/OorMT+UQ/6PPC/e2LlAtp/XOvuG55vXcI4j4JnucaF89f+6o/LBTyGfKbkkWOlvuEPCeM/LX7grZjdZfWb0p4TpG5ip9h8FfWy1pi7WO98QN8erjH3LmpHc9t37WUnPpKM54Wc7VNvzm+QzWX5fztk982fcWkiVueibbd58TGtIuckVvXyxqmCRBT7nP70C+HbR7y
+   eJztl9tKAzEQhsdTRcULUWHtQVBEFC2ViuKV9P2fyhmaYadDskm6s90t5oePlj0k828OMwEoKioqKioq+o+66juAiD7d76xFGweKIesI6jgngkPkqQH53g2ygny/p46Zh6704JiK/8QFNPs9Rk4CsL6Qb1h/Oxa9t3TPrRLasNajgvqy8kvPTF1b8tp5hGtzl7XYo8TSb9fx50p/2zZ+R0iV2O8z8oq8GPlIle73EjbXcQ6jLfqfB+Jg0d55h4yRxRbtpyi2vizX3TxyX+aBoeS7N+TdkTtH2S/t5WPjuIYiyq+cq3jMaB+/h83cte+S+Zj8LaHOxcxPb9HZiX2SH/J5But9kXMhr3/pldatrPf2QdInI2uPCsL5a1f1h4V8Pn1+Y7LI0Xqf0OeEibt226LtUN2V6zcmOqfoXCXPMPSr6+VcQu1TvfGLfDikx9S5mTueTd+1LSn1Vc54WszVLv2m+PbVXJbzd0h+u/QVUk7c+kzUdF8SGtM+ckZqXa9rmMpDSKnP7UJ/1dwj3g==
   </data>
  </layer>
  <objectgroup name="end_pos">
@@ -15,7 +15,7 @@
   <object id="24" x="256" y="1408" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="water">
-  <object id="37" x="1280" y="640" width="448" height="320"/>
+  <object id="39" x="1216" y="1216" width="832" height="320"/>
  </objectgroup>
  <objectgroup name="ground">
   <object id="2" x="0" y="1536" width="640" height="384"/>

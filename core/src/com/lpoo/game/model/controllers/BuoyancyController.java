@@ -1,8 +1,12 @@
 package com.lpoo.game.model.controllers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Polygon;
+import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -19,12 +23,13 @@ public class BuoyancyController {
 
     public boolean isFluidFixed = true;
     public float fluidDrag = 0.25f;
-    public float fluidLift = 0.25f;
-    public float linearDrag = 0;
+    public float fluidLift = 100f; // TODO reset 0.4f
+    public float linearDrag = 0.4f;
     public float maxFluidDrag = 2000;
     public float maxFluidLift = 500;
     private Fixture fluidSensor;
-    private List<Vector2> fluidVertices;
+//    private List<Vector2> fluidVertices;
+    private float[] fluidVertices;
     private Set<Fixture> fixtures;
     private World world;
 
@@ -38,13 +43,17 @@ public class BuoyancyController {
 
     public void step() {
         for (Fixture fixture : fixtures) {
+
             if (fixture.getBody().isAwake()) {
+                System.err.println("water step");
 
 				/* Create clipPolygon */
-                List<Vector2> clipPolygon = getFixtureVertices(fixture);
+//                List<Vector2> clipPolygon = getFixtureVertices(fixture);
+                float[] clipPolygon = getFixtureVertices(fixture);
 
 				/* Create subjectPolygon */
-                List<Vector2> subjectPolygon;
+//                List<Vector2> subjectPolygon;
+                float[] subjectPolygon;
                 if (isFluidFixed) {
                     subjectPolygon = fluidVertices;
                 } else {
@@ -52,17 +61,34 @@ public class BuoyancyController {
                 }
 
 				/* Get intersection polygon */
-                List<Vector2> clippedPolygon = PolygonIntersector.clipPolygons(
-                        subjectPolygon, clipPolygon);
+//                List<Vector2> clippedPolygon = PolygonIntersector.clipPolygons(
+//                        subjectPolygon, clipPolygon);
 
-                if (!clippedPolygon.isEmpty()) {
-                    applyForces(fixture, clippedPolygon.toArray(new Vector2[0]));
+                Polygon clipped = new Polygon();
+                Polygon p1 = new Polygon(subjectPolygon);
+                Polygon p2 = new Polygon(clipPolygon);
+                Intersector.intersectPolygons(p1, p2, clipped);
+
+                if (clipped.getVertices().length > 0) {
+//                    applyForces(fixture, clipped.getVertices().toArray(new Vector2[0]));
+                    applyForces(fixture, floatToVectorArray(clipped.getVertices()));
                 }
             }
         }
     }
 
+    private Vector2[] floatToVectorArray(float[] arr) {
+        Vector2[] ret = new Vector2[arr.length / 2];
+
+        for (int i = 0; i < ret.length; i++)
+            ret[i] = new Vector2(arr[(i * 2)], arr[(i * 2) + 1]);
+
+        return ret;
+    }
+
     private void applyForces(Fixture fixture, Vector2[] clippedPolygon) {
+        System.out.println("Applying forces to fixture at " + fixture.getBody().getPosition());
+
         PolygonProperties polygonProperties = PolygonIntersector
                 .computePolygonProperties(clippedPolygon);
 
@@ -151,6 +177,15 @@ public class BuoyancyController {
         } catch (ClassCastException e) {
             Gdx.app.debug("BuoyancyController",
                     "Fixture shape is not an instance of PolygonShape.");
+            System.err.println("BuoyancyController: fixture not polygon");
+        }
+
+        // CRAPPY CODE INC TODO
+        try {
+            CircleShape circle = (CircleShape) fixture.getShape();
+            fixtures.add(fixture);
+        } catch (ClassCastException e) {
+            System.err.println("BuoyancyController: fixture not circle");
         }
     }
 
@@ -158,17 +193,54 @@ public class BuoyancyController {
         fixtures.remove(fixture);
     }
 
-    private List<Vector2> getFixtureVertices(Fixture fixture) {
+    private float[] getFixtureVertices(Fixture fixture) {
+        if (fixture.getShape() instanceof PolygonShape)
+            return getPolygonFixtureVertices(fixture);
+        else if (fixture.getShape() instanceof CircleShape)
+            return getCircleFixtureVertices(fixture);
+
+        return null;
+    }
+
+    private float[] getPolygonFixtureVertices(Fixture fixture) {
         PolygonShape polygon = (PolygonShape) fixture.getShape();
         int verticesCount = polygon.getVertexCount();
 
-        List<Vector2> vertices = new ArrayList<Vector2>(verticesCount);
+        float[] vertices = new float[verticesCount * 2];
+//        List<Vector2> vertices = new ArrayList<Vector2>(verticesCount);
         for (int i = 0; i < verticesCount; i++) {
             Vector2 vertex = new Vector2();
             polygon.getVertex(i, vertex);
-            vertices.add(new Vector2(fixture.getBody().getWorldPoint(vertex)));
+//            vertices.add(new Vector2(fixture.getBody().getWorldPoint(vertex)));
+            Vector2 vec = fixture.getBody().getWorldPoint(vertex);
+            vertices[i*2] = vec.x;
+            vertices[(i*2) + 1] = vec.y;
         }
 
         return vertices;
     }
+
+    private float[] getCircleFixtureVertices(Fixture fixture) {
+        CircleShape circle = (CircleShape) fixture.getShape();
+
+        int verticesCount = 100;
+        float ang_increment = (float) Math.PI * 2 / verticesCount;
+
+        float[] vertices = new float[verticesCount * 2];
+
+        int i = 0;
+        for (float ang = 0; ang < 2 * Math.PI; ang += ang_increment) {
+            Vector2 vertex = new Vector2((float) (circle.getRadius() * Math.cos(ang)), (float) (circle.getRadius() * Math.sin(ang)));
+
+            vertex = fixture.getBody().getWorldPoint(vertex);
+            vertices[i++] = vertex.x;
+            vertices[i++] = vertex.y;
+
+            if ((i + 1) >= (verticesCount * 2))
+                break;
+        }
+
+        return vertices;
+    }
+
 }

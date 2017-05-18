@@ -17,12 +17,12 @@ public class BallModel extends EntityModel {
     private static final float LINEAR_DAMP = 0.1f;
 
     private static float radius = 32 * PIXEL_TO_METER;
-    private static float density = 1f;
+    private static float density = 0.1f; // 1? TODO
     private static float friction = 40f;
     private static float restitution = 0.5f;
 
     private State state = State.LANDED;
-    private float jump_force = 60f;
+    private float jump_force = density * 60f;
 
     public BallModel(World world, Vector2 pos) {
         super(world, pos, ModelType.BALL, ANGULAR_DAMP, LINEAR_DAMP);
@@ -32,7 +32,7 @@ public class BallModel extends EntityModel {
         circle.setRadius(radius);
         this.body.setUserData(this);    // Necessary ? or downcast works with EntityModel's pointer?
 
-        createFixture(circle, density, friction, restitution, BALL_BIT, (short) (BALL_BIT | GROUND_BIT));
+        createFixture(circle, density, friction, restitution, BALL_BIT, (short) (BALL_BIT | GROUND_BIT | FLUID_BIT));
 
     }
 
