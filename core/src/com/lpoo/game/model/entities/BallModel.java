@@ -38,19 +38,6 @@ public class BallModel extends EntityModel {
         circle.setRadius(radius);
 
         createFixture(circle, density, friction, restitution, BALL_BIT, (short) (BALL_BIT | GROUND_BIT | FLUID_BIT));
-
-//        PolygonShape polygon = new PolygonShape();
-//        float ang_increment = (float) Math.PI * 2 / 8;
-//        List<Vector2> vertices = new ArrayList<Vector2>(8);
-//
-//        for (int i = 0; i < 8; i++) {
-//            float ang = i * ang_increment;
-//            vertices.add(new Vector2((float) (radius * Math.cos(ang)), (float) (radius * Math.sin(ang))));
-//        }
-//        Vector2[] vertArray = new Vector2[vertices.size()];
-//        polygon.set(vertices.toArray(vertArray));
-//
-//        createFixture(polygon, density, friction, restitution, BALL_BIT, (short) (BALL_BIT | GROUND_BIT | FLUID_BIT) );
     }
 
     public void jump() {

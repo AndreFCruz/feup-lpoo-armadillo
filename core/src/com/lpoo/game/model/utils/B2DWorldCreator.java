@@ -46,84 +46,25 @@ public class B2DWorldCreator {
 
         Body body;
 
-        // TODO
-        // FUTURE: B2Factory for creating bodies/fixtures
-
         // Create (Rectangle) Ground Bodies/Fixtures
         for (MapObject object : map.getLayers().get("ground").getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(PIXEL_TO_METER * (rect.getX() + rect.getWidth() / 2), PIXEL_TO_METER * (rect.getY() + rect.getHeight() / 2));
-
-            body = world.createBody(bdef);
-
-            shape.setAsBox((rect.getWidth() / 2) * PIXEL_TO_METER, (rect.getHeight() / 2) * PIXEL_TO_METER);
-            fdef.shape = shape;
-            fdef.filter.categoryBits = GROUND_BIT;
-            body.createFixture(fdef);
+            body = B2DFactory.makeRectGround(world, (RectangleMapObject) object);
         }
 
         // Create (Polygon) Ground Bodies/Fixtures
         for (MapObject object : map.getLayers().get("ground").getObjects().getByType(PolygonMapObject.class)) {
-            Polygon polygon = ((PolygonMapObject) object).getPolygon();
-            Rectangle rect = polygon.getBoundingRectangle();
-
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(PIXEL_TO_METER * polygon.getX(), PIXEL_TO_METER * polygon.getY());
-
-            body = world.createBody(bdef);
-
-            float[] new_vertices = polygon.getVertices().clone();
-            for (int i = 0; i < new_vertices.length; i++)
-                new_vertices[i] *= PIXEL_TO_METER;
-
-            shape.set(new_vertices);
-            fdef.shape = shape;
-            fdef.filter.categoryBits = GROUND_BIT;
-            body.createFixture(fdef);
+            body = B2DFactory.makePolygonGround(world, (PolygonMapObject) object);
         }
 
         // Create Water
         for (MapObject object : map.getLayers().get("water").getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(PIXEL_TO_METER * (rect.getX() + rect.getWidth() / 2), PIXEL_TO_METER * (rect.getY() + rect.getHeight() / 2));
-
-            body = world.createBody(bdef);
-
-            shape.setAsBox((rect.getWidth() / 2) * PIXEL_TO_METER, (rect.getHeight() / 2) * PIXEL_TO_METER);
-            fdef.shape = shape;
-            fdef.filter.categoryBits = FLUID_BIT;
-            fdef.isSensor = true;
-            fdef.density = 1f;
-            fdef.friction = 0.1f;
-            fdef.restitution = 0f;
-            body.createFixture(fdef);
-
-            body.setUserData(new BuoyancyController(world, body.getFixtureList().first()));
+            body = B2DFactory.makeWater(world, (RectangleMapObject) object);
             fluids.add(body);
         }
 
         // Create Platforms
         for (MapObject object : map.getLayers().get("platforms").getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            bdef.type = BodyDef.BodyType.DynamicBody;
-            bdef.position.set(PIXEL_TO_METER * (rect.getX() + rect.getWidth() / 2), PIXEL_TO_METER * (rect.getY() + rect.getHeight() / 2));
-
-            body = world.createBody(bdef);
-
-            shape.setAsBox((rect.getWidth() / 2) * PIXEL_TO_METER, (rect.getHeight() / 2) * PIXEL_TO_METER);
-            fdef.shape = shape;
-            fdef.filter.categoryBits = GROUND_BIT;
-            fdef.isSensor = false;
-            fdef.density = 0.5f;
-            fdef.friction = 0.1f;
-            fdef.restitution = 0f;
-            body.createFixture(fdef);
-
+            body = B2DFactory.makePlatform(world, (RectangleMapObject) object);
             platforms.add(body);
         }
 

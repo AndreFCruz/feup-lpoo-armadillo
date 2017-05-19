@@ -22,7 +22,7 @@
  <objectgroup name="platforms">
   <object id="49" x="1354.26" y="1349.78" width="168.909" height="77.728"/>
   <object id="50" x="1617.34" y="1360.24" width="357.25" height="40.3587"/>
-  <object id="55" x="3301.73" y="1220.12" width="199.918" height="32.9761"/>
+  <object id="55" x="3219.29" y="1216" width="199.918" height="32.9761"/>
  </objectgroup>
  <objectgroup name="ground">
   <object id="2" x="0" y="1536" width="640" height="384"/>
