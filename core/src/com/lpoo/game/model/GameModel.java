@@ -106,7 +106,8 @@ public class GameModel implements Disposable {
 
         world.setContactListener(new WorldContactListener(buoyancyController));
 
-        player = new BallModel(world, new Vector2(200 * PIXEL_TO_METER, 475 * PIXEL_TO_METER));
+        player = worldCreator.getBall();
+
         models.add(player);
     }
 

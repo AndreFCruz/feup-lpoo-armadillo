@@ -37,10 +37,10 @@ public class WorldContactListener implements ContactListener {
         // Draft of collision detection with fluid sensor.
         // Assumes only one body of water and that it is the only sensor
         if (fixA.isSensor() && fixA.getFilterData().categoryBits == EntityModel.FLUID_BIT && fixB.getBody().getType() == BodyDef.BodyType.DynamicBody) {
-            System.err.println("begin contact -- ");
+            System.err.println("-- in water --");
             buoyancyController.addBody(fixB);
         } else if (fixB.isSensor() && fixB.getFilterData().categoryBits == EntityModel.FLUID_BIT && fixA.getBody().getType() == BodyDef.BodyType.DynamicBody) {
-            System.err.println("begin contact -- ");
+            System.err.println("-- in water --");
             buoyancyController.addBody(fixA);
         }
     }
@@ -55,13 +55,11 @@ public class WorldContactListener implements ContactListener {
         else if (fixB.getFilterData().categoryBits == EntityModel.BALL_BIT)
             ballEndContact(fixB, fixA);
 
-        // Draft of collision detection with fluid sensor.
-        // Assumes only one body of water and that it is the only sensor
         if (fixA.isSensor() && fixA.getFilterData().categoryBits == EntityModel.FLUID_BIT && fixB.getBody().getType() == BodyDef.BodyType.DynamicBody) {
-            System.err.println("end contact");
+            System.err.println("-- out of water --");
             buoyancyController.removeBody(fixB);
         } else if (fixB.isSensor() && fixB.getFilterData().categoryBits == EntityModel.FLUID_BIT && fixA.getBody().getType() == BodyDef.BodyType.DynamicBody) {
-            System.err.println("end contact");
+            System.err.println("-- out of water --");
             buoyancyController.removeBody(fixA);
         }
     }

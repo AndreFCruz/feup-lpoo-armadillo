@@ -1,13 +1,8 @@
 package com.lpoo.game.model.controllers;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Polygon;
-import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -22,12 +17,10 @@ import java.util.Set;
 
 public class BuoyancyController {
 
-    private static int CIRCLE_VERTICES = 8;
-
     public boolean isFluidFixed = true;
     public float fluidDrag = 0.25f;
-    public float fluidLift = 0.4f;
-    public float linearDrag = 0.4f;
+    public float fluidLift = 0.25f;
+    public float linearDrag = 0.1f;
     public float maxFluidDrag = 2000;
     public float maxFluidLift = 500;
     private Fixture fluidSensor;
@@ -59,35 +52,17 @@ public class BuoyancyController {
                 }
 
 				/* Get intersection polygon */
-//                List<Vector2> clippedPolygon = PolygonIntersector.clipPolygons(
-//                        subjectPolygon, clipPolygon);
+                List<Vector2> clippedPolygon = PolygonIntersector.clipPolygons(
+                        subjectPolygon, clipPolygon);
 
-                Polygon clippedPolygon = new Polygon();
-                Intersector.intersectPolygons(getFixturePolygon(fluidSensor), getCirclePolygon(fixture), clippedPolygon);
-
-                System.out.print("Clipped Polygon: ");
-                for (float f : clippedPolygon.getVertices())
-                    System.out.print(f + ",");
-
-                Vector2[] clippedArray = new Vector2[clippedPolygon.getVertices().length / 2];
-                for (int i = 0; i < clippedPolygon.getVertices().length / 2; i++) {
-                    clippedArray[i] = new Vector2(clippedPolygon.getVertices()[i*2],
-                                                    clippedPolygon.getVertices()[i*2 + 1]);
-                }
-
-                if (clippedPolygon.getVertices().length > 0) {
-                    System.out.println("collision");
-
-                    applyForces(fixture, clippedArray);
-//                    applyForces(fixture, clippedPolygon.toArray(new Vector2[0]));
+                if (!clippedPolygon.isEmpty()) {
+                    applyForces(fixture, clippedPolygon.toArray(new Vector2[0]));
                 }
             }
         }
     }
 
     private void applyForces(Fixture fixture, Vector2[] clippedPolygon) {
-        System.out.println("Applying forces to fixture at " + fixture.getBody().getPosition());
-
         PolygonProperties polygonProperties = PolygonIntersector
                 .computePolygonProperties(clippedPolygon);
 
@@ -176,18 +151,7 @@ public class BuoyancyController {
         } catch (ClassCastException e) {
             Gdx.app.debug("BuoyancyController",
                     "Fixture shape is not an instance of PolygonShape.");
-            System.err.println("BuoyancyController: fixture not a polygon");
         }
-
-        // CRAPPY CODE INC TODO
-        try {
-            CircleShape circle = (CircleShape) fixture.getShape();
-
-            fixtures.add(fixture);
-        } catch (ClassCastException e) {
-            System.err.println("BuoyancyController: fixture not a circle");
-        }
-
     }
 
     public void removeBody(Fixture fixture) {
@@ -195,15 +159,6 @@ public class BuoyancyController {
     }
 
     private List<Vector2> getFixtureVertices(Fixture fixture) {
-        if (fixture.getShape() instanceof PolygonShape)
-            return getPolygonFixtureVertices(fixture);
-        else if (fixture.getShape() instanceof CircleShape)
-            return getCircleFixtureVertices(fixture);
-
-        return null;
-    }
-
-    private List<Vector2> getPolygonFixtureVertices(Fixture fixture) {
         PolygonShape polygon = (PolygonShape) fixture.getShape();
         int verticesCount = polygon.getVertexCount();
 
@@ -216,58 +171,4 @@ public class BuoyancyController {
 
         return vertices;
     }
-
-    private List<Vector2> getCircleFixtureVertices(Fixture fixture) {
-        CircleShape circle = (CircleShape) fixture.getShape();
-
-        float ang_increment = (float) Math.PI * 2 / CIRCLE_VERTICES;
-
-        List<Vector2> vertices = new ArrayList<Vector2>(CIRCLE_VERTICES);
-
-        for (int i = 0; i < CIRCLE_VERTICES; i++) {
-            float ang = i * ang_increment - (float) Math.PI / 2f;
-            Vector2 vertex = new Vector2((float) (circle.getRadius() * Math.cos(ang)), (float) (circle.getRadius() * Math.sin(ang)));
-            vertices.add(fixture.getBody().getWorldPoint(vertex));
-        }
-
-        return vertices;
-    }
-
-    private Polygon getCirclePolygon(Fixture fixture) {
-        CircleShape circle = (CircleShape) fixture.getShape();
-
-        float ang_increment = (float) Math.PI * 2 / CIRCLE_VERTICES;
-
-        float[] vertices = new float[CIRCLE_VERTICES * 2 + 2];
-
-        for (int i = 0; i <= CIRCLE_VERTICES; i++) {
-            float ang = i * ang_increment - (float) Math.PI / 2f;
-            vertices[i*2] = (float) (circle.getRadius() * Math.cos(ang));
-            vertices[i*2 + 1] = (float) (circle.getRadius() * Math.sin(ang));
-        }
-
-        Polygon polygon = new Polygon(vertices);
-        polygon.setPosition(fixture.getBody().getPosition().x, fixture.getBody().getPosition().y);
-
-        return polygon;
-    }
-
-    private Polygon getFixturePolygon(Fixture fixture) {
-        PolygonShape poly = (PolygonShape) fixture.getShape();
-
-        float[] vertices = new float[poly.getVertexCount() * 2];
-
-        for (int i = 0; i < poly.getVertexCount(); i++) {
-            Vector2 tmp = new Vector2();
-            poly.getVertex(i, tmp);
-            vertices[i*2] = tmp.x;
-            vertices[i*2 + 1] = tmp.y;
-        }
-
-        Polygon polygon = new Polygon(vertices);
-        polygon.setPosition(fixture.getBody().getPosition().x, fixture.getBody().getPosition().y);
-
-        return polygon;
-    }
-
 }
