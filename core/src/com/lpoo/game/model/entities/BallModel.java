@@ -2,8 +2,12 @@ package com.lpoo.game.model.entities;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 
@@ -17,23 +21,36 @@ public class BallModel extends EntityModel {
     private static final float LINEAR_DAMP = 0.1f;
 
     private static float radius = 32 * PIXEL_TO_METER;
-    private static float density = 1f;
+    private static float density = .5f;
     private static float friction = 40f;
     private static float restitution = 0.5f;
 
     private State state = State.LANDED;
-    private float jump_force = 60f;
+    private float jump_force = density * 60f;
 
     public BallModel(World world, Vector2 pos) {
         super(world, pos, ModelType.BALL, ANGULAR_DAMP, LINEAR_DAMP);
 
+        this.body.setUserData(this);    // Necessary ? or downcast works with EntityModel's pointer?
+
         // Create Fixture's Shape
         Shape circle = new CircleShape();
         circle.setRadius(radius);
-        this.body.setUserData(this);    // Necessary ? or downcast works with EntityModel's pointer?
 
-        createFixture(circle, density, friction, restitution, BALL_BIT, (short) (BALL_BIT | GROUND_BIT));
+        createFixture(circle, density, friction, restitution, BALL_BIT, (short) (BALL_BIT | GROUND_BIT | FLUID_BIT));
 
+//        PolygonShape polygon = new PolygonShape();
+//        float ang_increment = (float) Math.PI * 2 / 8;
+//        List<Vector2> vertices = new ArrayList<Vector2>(8);
+//
+//        for (int i = 0; i < 8; i++) {
+//            float ang = i * ang_increment;
+//            vertices.add(new Vector2((float) (radius * Math.cos(ang)), (float) (radius * Math.sin(ang))));
+//        }
+//        Vector2[] vertArray = new Vector2[vertices.size()];
+//        polygon.set(vertices.toArray(vertArray));
+//
+//        createFixture(polygon, density, friction, restitution, BALL_BIT, (short) (BALL_BIT | GROUND_BIT | FLUID_BIT) );
     }
 
     public void jump() {

@@ -20,7 +20,7 @@ public class BuoyancyController {
     public boolean isFluidFixed = true;
     public float fluidDrag = 0.25f;
     public float fluidLift = 0.25f;
-    public float linearDrag = 0;
+    public float linearDrag = 0.1f;
     public float maxFluidDrag = 2000;
     public float maxFluidLift = 500;
     private Fixture fluidSensor;

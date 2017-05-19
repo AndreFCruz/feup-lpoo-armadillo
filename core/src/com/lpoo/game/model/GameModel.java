@@ -4,8 +4,9 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Disposable;
 import com.lpoo.game.model.entities.BallModel;
@@ -34,11 +35,11 @@ public class GameModel implements Disposable {
 
     // Tiled Map Variables
     private TiledMap map;
-    private OrthogonalTiledMapRenderer renderer;
 
     // Box2d variables
     private World world;
     private BuoyancyController buoyancyController;
+    private B2DWorldCreator worldCreator;
 
     private Game game;
 
@@ -57,21 +58,15 @@ public class GameModel implements Disposable {
         TmxMapLoader mapLoader = new TmxMapLoader();
         map = mapLoader.load("SampleMap.tmx");
 
-        world = new World(gravity, true);
-
-        world.setContactListener(new WorldContactListener());
-
         models = new ArrayList<EntityModel>();
 
-        resetModel();
+        initModel();
     }
 
     public boolean update(float delta) {
-        // Upper bound for simulation update
-        if (delta > (1/60f))
-            delta = 1/60f;
-
-        world.step(delta, 6, 2);
+        // Step the simulation with a fixed time step of 1/60 of a second
+        world.step(1/60f, 6, 2);
+        buoyancyController.step();
 
         return ballInBounds();
     }
@@ -97,16 +92,22 @@ public class GameModel implements Disposable {
         return world;
     }
 
-    public void resetModel() {
-        if (world != null) {
-            world = new World(gravity, true);
-            world.setContactListener(new WorldContactListener());
-        }
+    public void initModel() {
+        world = new World(gravity, true);
 
-        B2DWorldCreator.generateWorld(world, map);
+        worldCreator = new B2DWorldCreator(world, map);
+
+        worldCreator.generateWorld();
+
         models.clear();
 
-        player = new BallModel(world, new Vector2(200 * PIXEL_TO_METER, 475 * PIXEL_TO_METER));
+        // Create a buoyancy controller using the fluids as sensors
+        buoyancyController = new BuoyancyController(world, worldCreator.getFluids().first().getFixtureList().first());
+
+        world.setContactListener(new WorldContactListener(buoyancyController));
+
+        player = worldCreator.getBall();
+
         models.add(player);
     }
 
@@ -117,4 +118,5 @@ public class GameModel implements Disposable {
 
         GameModel.ourInstance = null;
     }
+
 }
