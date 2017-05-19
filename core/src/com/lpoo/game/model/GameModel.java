@@ -6,8 +6,10 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.lpoo.game.model.entities.BallModel;
 import com.lpoo.game.model.entities.EntityModel;
@@ -38,7 +40,7 @@ public class GameModel implements Disposable {
 
     // Box2d variables
     private World world;
-    private BuoyancyController buoyancyController;
+    private Array<Body> fluids;
     private B2DWorldCreator worldCreator;
 
     private Game game;
@@ -66,7 +68,9 @@ public class GameModel implements Disposable {
     public boolean update(float delta) {
         // Step the simulation with a fixed time step of 1/60 of a second
         world.step(1/60f, 6, 2);
-        buoyancyController.step();
+
+        for (Body b : fluids)
+            ((BuoyancyController) b.getUserData()).step();
 
         return ballInBounds();
     }
@@ -98,13 +102,10 @@ public class GameModel implements Disposable {
         worldCreator = new B2DWorldCreator(world, map);
 
         worldCreator.generateWorld();
-
+        fluids = worldCreator.getFluids();
         models.clear();
 
-        // Create a buoyancy controller using the fluids as sensors
-        buoyancyController = new BuoyancyController(world, worldCreator.getFluids().first().getFixtureList().first());
-
-        world.setContactListener(new WorldContactListener(buoyancyController));
+        world.setContactListener(new WorldContactListener());
 
         player = worldCreator.getBall();
 

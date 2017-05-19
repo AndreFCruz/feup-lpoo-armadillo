@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.lpoo.game.model.controllers.BuoyancyController;
 import com.lpoo.game.model.entities.BallModel;
 import com.lpoo.game.model.entities.EntityModel;
 
@@ -27,6 +28,7 @@ public class B2DWorldCreator {
     private World world;
     private Map map;
     private Array<Body> fluids = new Array<Body>();
+    private Array<Body> platforms = new Array<Body>();
     private BallModel ball;
     private Vector2 endPos;
 
@@ -43,6 +45,9 @@ public class B2DWorldCreator {
         PolygonShape shape = new PolygonShape();
 
         Body body;
+
+        // TODO
+        // FUTURE: B2Factory for creating bodies/fixtures
 
         // Create (Rectangle) Ground Bodies/Fixtures
         for (MapObject object : map.getLayers().get("ground").getObjects().getByType(RectangleMapObject.class)) {
@@ -97,9 +102,29 @@ public class B2DWorldCreator {
             fdef.restitution = 0f;
             body.createFixture(fdef);
 
-            System.err.println("Added body of water at " + body.getPosition());
-
+            body.setUserData(new BuoyancyController(world, body.getFixtureList().first()));
             fluids.add(body);
+        }
+
+        // Create Platforms
+        for (MapObject object : map.getLayers().get("platforms").getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            bdef.type = BodyDef.BodyType.DynamicBody;
+            bdef.position.set(PIXEL_TO_METER * (rect.getX() + rect.getWidth() / 2), PIXEL_TO_METER * (rect.getY() + rect.getHeight() / 2));
+
+            body = world.createBody(bdef);
+
+            shape.setAsBox((rect.getWidth() / 2) * PIXEL_TO_METER, (rect.getHeight() / 2) * PIXEL_TO_METER);
+            fdef.shape = shape;
+            fdef.filter.categoryBits = GROUND_BIT;
+            fdef.isSensor = false;
+            fdef.density = 0.5f;
+            fdef.friction = 0.1f;
+            fdef.restitution = 0f;
+            body.createFixture(fdef);
+
+            platforms.add(body);
         }
 
         // Get Ball start pos

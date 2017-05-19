@@ -18,12 +18,6 @@ public class WorldContactListener implements ContactListener {
     // TODO
     // Map of categoryBits to functions
 
-    private BuoyancyController buoyancyController;
-
-    public WorldContactListener(BuoyancyController buoyancyController) {
-        this.buoyancyController = buoyancyController;
-    }
-
     @Override
     public void beginContact(Contact contact) {
         Fixture fixA = contact.getFixtureA();
@@ -38,10 +32,10 @@ public class WorldContactListener implements ContactListener {
         // Assumes only one body of water and that it is the only sensor
         if (fixA.isSensor() && fixA.getFilterData().categoryBits == EntityModel.FLUID_BIT && fixB.getBody().getType() == BodyDef.BodyType.DynamicBody) {
             System.err.println("-- in water --");
-            buoyancyController.addBody(fixB);
+            ((BuoyancyController) fixA.getBody().getUserData()).addBody(fixB);
         } else if (fixB.isSensor() && fixB.getFilterData().categoryBits == EntityModel.FLUID_BIT && fixA.getBody().getType() == BodyDef.BodyType.DynamicBody) {
             System.err.println("-- in water --");
-            buoyancyController.addBody(fixA);
+            ((BuoyancyController) fixB.getBody().getUserData()).addBody(fixA);
         }
     }
 
@@ -57,10 +51,10 @@ public class WorldContactListener implements ContactListener {
 
         if (fixA.isSensor() && fixA.getFilterData().categoryBits == EntityModel.FLUID_BIT && fixB.getBody().getType() == BodyDef.BodyType.DynamicBody) {
             System.err.println("-- out of water --");
-            buoyancyController.removeBody(fixB);
+            ((BuoyancyController) fixA.getBody().getUserData()).removeBody(fixB);
         } else if (fixB.isSensor() && fixB.getFilterData().categoryBits == EntityModel.FLUID_BIT && fixA.getBody().getType() == BodyDef.BodyType.DynamicBody) {
             System.err.println("-- out of water --");
-            buoyancyController.removeBody(fixA);
+            ((BuoyancyController) fixB.getBody().getUserData()).removeBody(fixA);
         }
     }
 
