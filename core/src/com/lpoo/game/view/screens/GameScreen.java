@@ -13,12 +13,15 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.utils.Array;
 import com.lpoo.game.Spheral;
 import com.lpoo.game.controller.GameController;
 import com.lpoo.game.controller.InputHandler;
 import com.lpoo.game.model.GameModel;
 import com.lpoo.game.model.entities.EntityModel;
+import com.lpoo.game.model.entities.ShapeModel;
 import com.lpoo.game.view.entities.EntityView;
+import com.lpoo.game.view.entities.ShapeView;
 import com.lpoo.game.view.entities.ViewFactory;
 
 import java.awt.geom.RectangularShape;
@@ -98,14 +101,18 @@ public class GameScreen extends ScreenAdapter {
         updateCamera();
         drawBackground();
 
-        game.getBatch().setProjectionMatrix(camera.combined);
+        mapRenderer.setView(camera);
+        mapRenderer.render();
 
+        game.getBatch().setProjectionMatrix(camera.combined);
         game.getBatch().begin();
         drawEntities();
         game.getBatch().end();
 
-        mapRenderer.setView(camera);
-        mapRenderer.render();
+        game.getShapeRenderer().setProjectionMatrix(camera.combined);
+        game.getShapeRenderer().begin(ShapeRenderer.ShapeType.Line); // TODO change to Filled
+        drawShapes();
+        game.getShapeRenderer().end();
 
         if (DEBUG_PHYSICS) {
             debugCamera = camera.combined.cpy();
@@ -116,13 +123,21 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void drawEntities() {
-        List<EntityModel> models = model.getModels();
+        Array<EntityModel> models = model.getEntityModels();
         for (EntityModel model : models) {
             EntityView view = ViewFactory.makeView(game, model);
             view.update(model);
             view.draw(game.getBatch());
         }
+    }
 
+    private void drawShapes() {
+        Array<ShapeModel> models = model.getShapeModels();
+        for (ShapeModel model : models) {
+            ShapeView view = ViewFactory.makeView(model);
+            view.update(model);
+            view.draw(game.getShapeRenderer());
+        }
     }
 
     private void drawBackground() {

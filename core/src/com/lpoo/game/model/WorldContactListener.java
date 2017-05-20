@@ -87,7 +87,7 @@ public class WorldContactListener implements ContactListener {
         handler = endContactFunctions.get(fixB.getFilterData().categoryBits);
         if (handler != null)
             handler.handle(fixB, fixA);
-        
+
     }
 
     private void ballBeginContact(Fixture ball, Fixture other) {

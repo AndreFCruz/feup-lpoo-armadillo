@@ -4,15 +4,15 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.lpoo.game.model.entities.BallModel;
 import com.lpoo.game.model.entities.EntityModel;
+import com.lpoo.game.model.entities.ShapeModel;
+import com.lpoo.game.model.entities.WaterModel;
 import com.lpoo.game.model.utils.B2DWorldCreator;
 import com.lpoo.game.model.controllers.BuoyancyController;
 
@@ -40,15 +40,16 @@ public class GameModel implements Disposable {
 
     // Box2d variables
     private World world;
-    private Array<Body> fluids;
     private B2DWorldCreator worldCreator;
+    private Array<WaterModel> fluids;
 
     private Game game;
 
     private final float GRAVITY_CONSTANT = 9.81f;
     private Vector2 gravity;
 
-    private List<EntityModel> models;
+    private Array<EntityModel> entityModels;
+    private Array<ShapeModel> shapeModels;
 
     private BallModel player;
 
@@ -60,7 +61,8 @@ public class GameModel implements Disposable {
         TmxMapLoader mapLoader = new TmxMapLoader();
         map = mapLoader.load("SampleMap.tmx");
 
-        models = new ArrayList<EntityModel>();
+        entityModels = new Array<EntityModel>();
+        shapeModels = new Array<ShapeModel>();
 
         initModel();
     }
@@ -69,8 +71,8 @@ public class GameModel implements Disposable {
         // Step the simulation with a fixed time step of 1/60 of a second
         world.step(1/60f, 6, 2);
 
-        for (Body b : fluids)
-            ((BuoyancyController) b.getUserData()).step();
+        for (WaterModel model : fluids)
+            model.step();
 
         return ballInBounds();
     }
@@ -84,8 +86,12 @@ public class GameModel implements Disposable {
         return map;
     }
 
-    public List<EntityModel> getModels() {
-        return models;
+    public Array<EntityModel> getEntityModels() {
+        return entityModels;
+    }
+
+    public Array<ShapeModel> getShapeModels() {
+        return shapeModels;
     }
 
     public BallModel getBall() {
@@ -103,13 +109,16 @@ public class GameModel implements Disposable {
 
         worldCreator.generateWorld();
         fluids = worldCreator.getFluids();
-        models.clear();
+        entityModels.clear();
+        shapeModels.clear();
 
         world.setContactListener(new WorldContactListener());
 
         player = worldCreator.getBall();
 
-        models.add(player);
+        entityModels.add(player);
+        shapeModels.addAll(worldCreator.getFluids());
+        shapeModels.addAll(worldCreator.getPlatforms());
     }
 
     @Override
