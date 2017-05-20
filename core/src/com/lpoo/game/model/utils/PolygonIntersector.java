@@ -6,8 +6,7 @@ import java.util.List;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector2;
 
-// FUTURE
-// Substitute with LibGDX's Intersector ?
+
 public class PolygonIntersector {
 
 	/* A close to zero float epsilon value */
@@ -43,7 +42,6 @@ public class PolygonIntersector {
 				* (pointX - startX);
 	}
 
-//	@Deprecated
 	public static boolean isPointInsideEdge(Vector2 point,
 			Vector2 edgeStartPoint, Vector2 edgeEndPoint) {
 		return (edgeEndPoint.x - edgeStartPoint.x)
@@ -51,7 +49,6 @@ public class PolygonIntersector {
 				* (point.x - edgeStartPoint.x);
 	}
 
-//	@Deprecated
 	public static Vector2 getEdgesIntersection(Vector2 firstEdgeStartPoint,
 			Vector2 firstEdgeEndPoint, Vector2 secondEdgeStartPoint,
 			Vector2 secondEdgeEndPoint) {
@@ -77,14 +74,6 @@ public class PolygonIntersector {
 						* secondDirectionPoint.y - crossSecondEdge
 						* firstDirectionPoint.y)
 						* inversedCrossDirection);
-	}
-
-	public static Polygon intersectPolygons(Polygon subjectPolygon, Polygon clipPolygon) {
-		return intersectPolygons(subjectPolygon.getVertices(), clipPolygon.getVertices());
-	}
-	
-	public static Polygon intersectPolygons(float[] subjectVertices, float[] clipVertices) {
-		return null;
 	}
 	
 	public static List<Vector2> clipPolygons(List<Vector2> subjectPolygon,

@@ -39,21 +39,16 @@ public class B2DWorldCreator {
 
     public void generateWorld() {
 
-        // Body and Fixture variables
-        BodyDef bdef = new BodyDef();
-        FixtureDef fdef = new FixtureDef();
-        PolygonShape shape = new PolygonShape();
-
         Body body;
 
         // Create (Rectangle) Ground Bodies/Fixtures
         for (MapObject object : map.getLayers().get("ground").getObjects().getByType(RectangleMapObject.class)) {
-            body = B2DFactory.makeRectGround(world, (RectangleMapObject) object);
+            B2DFactory.makeRectGround(world, (RectangleMapObject) object);
         }
 
         // Create (Polygon) Ground Bodies/Fixtures
         for (MapObject object : map.getLayers().get("ground").getObjects().getByType(PolygonMapObject.class)) {
-            body = B2DFactory.makePolygonGround(world, (PolygonMapObject) object);
+            B2DFactory.makePolygonGround(world, (PolygonMapObject) object);
         }
 
         // Create Water

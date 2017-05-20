@@ -129,15 +129,12 @@ public class GameScreen extends ScreenAdapter {
 
     }
 
+    // TODO add looseness to camera's movement
     private void updateCamera() {
         // Follow player
         camera.position.set(GameModel.getInstance().getBall().getX() / PIXEL_TO_METER, GameModel.getInstance().getBall().getY() / PIXEL_TO_METER, 0);
         camera.update();
 
-/*        Vector3 vec = new Vector3(model.getBall().getX(), model.getBall().getY(), 0);
-        camera.unproject(vec);
-        camera.position.set(vec);
-        camera.update();*/
     }
 
     /**

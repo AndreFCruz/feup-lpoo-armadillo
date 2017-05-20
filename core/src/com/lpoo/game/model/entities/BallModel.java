@@ -26,7 +26,9 @@ public class BallModel extends EntityModel {
     private static float restitution = 0.5f;
 
     private State state = State.LANDED;
-    private float jump_force = density * 60f;
+
+    private float angular_accel = density * 12000f;
+    private float jump_force = density * 50f;
 
     public BallModel(World world, Vector2 pos) {
         super(world, pos, ModelType.BALL, ANGULAR_DAMP, LINEAR_DAMP);
@@ -38,6 +40,10 @@ public class BallModel extends EntityModel {
         circle.setRadius(radius);
 
         createFixture(circle, density, friction, restitution, BALL_BIT, (short) (BALL_BIT | GROUND_BIT | FLUID_BIT));
+    }
+
+    public void rotate(float delta) {
+        body.applyTorque(delta * angular_accel, true);
     }
 
     public void jump() {

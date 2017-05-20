@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="56">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="57">
  <tileset firstgid="1" name="PlatformerSet" tilewidth="64" tileheight="64" tilecount="64" columns="8">
   <image source="Tiles_64x64.png" trans="000000" width="512" height="512"/>
  </tileset>
@@ -23,6 +23,7 @@
   <object id="49" x="1354.26" y="1349.78" width="168.909" height="77.728"/>
   <object id="50" x="1617.34" y="1360.24" width="357.25" height="40.3587"/>
   <object id="55" x="3219.29" y="1216" width="199.918" height="32.9761"/>
+  <object id="56" x="1391" y="609" width="281" height="41"/>
  </objectgroup>
  <objectgroup name="ground">
   <object id="2" x="0" y="1536" width="640" height="384"/>

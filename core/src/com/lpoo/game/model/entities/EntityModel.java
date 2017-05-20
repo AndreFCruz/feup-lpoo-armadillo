@@ -25,8 +25,6 @@ public abstract class EntityModel {
 
     final protected Body body;
 
-    private float angular_accel = 8000f;
-
     EntityModel(World world, Vector2 pos, ModelType type) {
         this(world, pos, type, 0f, 0f);
     }
@@ -48,15 +46,14 @@ public abstract class EntityModel {
     /**
      * Creates a polygon shape from a pixel based list of vertices
      * @param vertices  Vertices defining an image in pixels
-     * @param width     Width of the bitmap the vertices were extracted from
-     * @param height    Height of the bitmap the vertices were extracted from
+     * @param size      Width/Height of the bitmap the vertices were extracted from
      * @return      A PolygonShape with the correct vertices
      */
-    static PolygonShape createPolygonShape(float[] vertices, int width, int height) {
+    static PolygonShape createPolygonShape(float[] vertices, Vector2 size) {
         // Transform pixels into meters, center and invert the y-coordinate
         for (int i = 0; i < vertices.length; i++) {
-            if (i % 2 == 0) vertices[i] -= width / 2;   // center the vertex x-coordinate
-            if (i % 2 != 0) vertices[i] -= height / 2;  // center the vertex y-coordinate
+            if (i % 2 == 0) vertices[i] -= size.x / 2;   // center the vertex x-coordinate
+            if (i % 2 != 0) vertices[i] -= size.y / 2;  // center the vertex y-coordinate
 
             if (i % 2 != 0) vertices[i] *= -1;          // invert the y-coordinate
 
@@ -153,10 +150,6 @@ public abstract class EntityModel {
      */
     public void applyForceToCenter(float forceX, float forceY, boolean awake) {
         body.applyForceToCenter(forceX, forceY, awake);
-    }
-
-    public void rotate(float delta) {
-        body.applyTorque(delta * angular_accel, true);
     }
 
     public float getRotation() {

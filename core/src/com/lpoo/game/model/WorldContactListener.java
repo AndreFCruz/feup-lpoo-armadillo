@@ -10,33 +10,68 @@ import com.lpoo.game.model.controllers.BuoyancyController;
 import com.lpoo.game.model.entities.BallModel;
 import com.lpoo.game.model.entities.EntityModel;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by andre on 04/05/2017.
  */
 
 public class WorldContactListener implements ContactListener {
-    // TODO
+    private interface ContactHandler {
+        void handle(Fixture fixA, Fixture fixB);
+    }
+
     // Map of categoryBits to functions
+    Map<Short, ContactHandler> beginContactFunctions = new HashMap<Short, ContactHandler>();
+    Map<Short, ContactHandler> endContactFunctions = new HashMap<Short, ContactHandler>();
+
+    public WorldContactListener() {
+        beginContactFunctions.put(EntityModel.BALL_BIT, new ContactHandler() {
+            @Override
+            public void handle(Fixture ball, Fixture fixB) {
+                System.err.println("ball BEGIN contact");
+                ballBeginContact(ball, fixB);
+            }
+        });
+        endContactFunctions.put(EntityModel.BALL_BIT, new ContactHandler() {
+            @Override
+            public void handle(Fixture ball, Fixture fixB) {
+                System.err.println("ball END contact");
+                ballEndContact(ball, fixB);
+            }
+        });
+
+        beginContactFunctions.put(EntityModel.FLUID_BIT, new ContactHandler() {
+            @Override
+            public void handle(Fixture fluid, Fixture fixB) {
+                System.err.println("fluid BEGIN contact");
+                ((BuoyancyController) fluid.getBody().getUserData()).addBody(fixB);
+            }
+        });
+        endContactFunctions.put(EntityModel.FLUID_BIT, new ContactHandler() {
+            @Override
+            public void handle(Fixture fluid, Fixture fixB) {
+                System.err.println("fluid END contact");
+                ((BuoyancyController) fluid.getBody().getUserData()).removeBody(fixB);
+            }
+        });
+    }
 
     @Override
     public void beginContact(Contact contact) {
         Fixture fixA = contact.getFixtureA();
         Fixture fixB = contact.getFixtureB();
 
-        if (fixA.getFilterData().categoryBits == EntityModel.BALL_BIT)
-            ballBeginContact(fixA, fixB);
-        else if (fixB.getFilterData().categoryBits == EntityModel.BALL_BIT)
-            ballBeginContact(fixB, fixA);
+        ContactHandler handler;
+        handler = beginContactFunctions.get(fixA.getFilterData().categoryBits);
+        if (handler != null)
+            handler.handle(fixA, fixB);
 
-        // Draft of collision detection with fluid sensor.
-        // Assumes only one body of water and that it is the only sensor
-        if (fixA.isSensor() && fixA.getFilterData().categoryBits == EntityModel.FLUID_BIT && fixB.getBody().getType() == BodyDef.BodyType.DynamicBody) {
-            System.err.println("-- in water --");
-            ((BuoyancyController) fixA.getBody().getUserData()).addBody(fixB);
-        } else if (fixB.isSensor() && fixB.getFilterData().categoryBits == EntityModel.FLUID_BIT && fixA.getBody().getType() == BodyDef.BodyType.DynamicBody) {
-            System.err.println("-- in water --");
-            ((BuoyancyController) fixB.getBody().getUserData()).addBody(fixA);
-        }
+        handler = beginContactFunctions.get(fixB.getFilterData().categoryBits);
+        if (handler != null)
+            handler.handle(fixB, fixA);
+
     }
 
     @Override
@@ -44,18 +79,15 @@ public class WorldContactListener implements ContactListener {
         Fixture fixA = contact.getFixtureA();
         Fixture fixB = contact.getFixtureB();
 
-        if (fixA.getFilterData().categoryBits == EntityModel.BALL_BIT)
-            ballEndContact(fixA, fixB);
-        else if (fixB.getFilterData().categoryBits == EntityModel.BALL_BIT)
-            ballEndContact(fixB, fixA);
+        ContactHandler handler;
+        handler = endContactFunctions.get(fixA.getFilterData().categoryBits);
+        if (handler != null)
+            handler.handle(fixA, fixB);
 
-        if (fixA.isSensor() && fixA.getFilterData().categoryBits == EntityModel.FLUID_BIT && fixB.getBody().getType() == BodyDef.BodyType.DynamicBody) {
-            System.err.println("-- out of water --");
-            ((BuoyancyController) fixA.getBody().getUserData()).removeBody(fixB);
-        } else if (fixB.isSensor() && fixB.getFilterData().categoryBits == EntityModel.FLUID_BIT && fixA.getBody().getType() == BodyDef.BodyType.DynamicBody) {
-            System.err.println("-- out of water --");
-            ((BuoyancyController) fixB.getBody().getUserData()).removeBody(fixA);
-        }
+        handler = endContactFunctions.get(fixB.getFilterData().categoryBits);
+        if (handler != null)
+            handler.handle(fixB, fixA);
+        
     }
 
     private void ballBeginContact(Fixture ball, Fixture other) {
