@@ -12,7 +12,6 @@ import com.lpoo.game.view.screens.MainMenuScreen;
 
 public class Spheral extends Game {
 	private SpriteBatch batch;
-    private ShapeRenderer shapeRenderer;
     private AssetManager assetManager;
 
     public BitmapFont font;
@@ -20,7 +19,6 @@ public class Spheral extends Game {
     @Override
 	public void create () {
 		batch = new SpriteBatch();
-        shapeRenderer = new ShapeRenderer();
         assetManager = new AssetManager();
 
         font = new BitmapFont();
@@ -46,10 +44,6 @@ public class Spheral extends Game {
 
 	public SpriteBatch getBatch() {
         return batch;
-    }
-
-    public ShapeRenderer getShapeRenderer() {
-        return shapeRenderer;
     }
 
     public AssetManager getAssetManager() {

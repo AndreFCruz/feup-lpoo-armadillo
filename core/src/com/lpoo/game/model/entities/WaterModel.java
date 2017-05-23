@@ -16,11 +16,11 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
  * Created by andre on 20/05/2017.
  */
 
-public class WaterModel extends ShapeModel {
+public class WaterModel {
+
+    private Body body;
 
     public WaterModel(World world, Rectangle rect) {
-        super(ModelType.WATER, rect);
-
         // Body and Fixture variables
         BodyDef bdef = new BodyDef();
         FixtureDef fdef = new FixtureDef();

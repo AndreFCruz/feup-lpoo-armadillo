@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public abstract class ShapeModel {
 
-    public enum ModelType {WATER, PLATFORM}
+    public enum ModelType {PLATFORM}
 
     final private ModelType type;
 

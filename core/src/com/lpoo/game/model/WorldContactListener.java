@@ -30,14 +30,12 @@ public class WorldContactListener implements ContactListener {
         beginContactFunctions.put(EntityModel.BALL_BIT, new ContactHandler() {
             @Override
             public void handle(Fixture ball, Fixture fixB) {
-                System.err.println("ball BEGIN contact");
                 ballBeginContact(ball, fixB);
             }
         });
         endContactFunctions.put(EntityModel.BALL_BIT, new ContactHandler() {
             @Override
             public void handle(Fixture ball, Fixture fixB) {
-                System.err.println("ball END contact");
                 ballEndContact(ball, fixB);
             }
         });
@@ -45,14 +43,12 @@ public class WorldContactListener implements ContactListener {
         beginContactFunctions.put(EntityModel.FLUID_BIT, new ContactHandler() {
             @Override
             public void handle(Fixture fluid, Fixture fixB) {
-                System.err.println("fluid BEGIN contact");
                 ((BuoyancyController) fluid.getBody().getUserData()).addBody(fixB);
             }
         });
         endContactFunctions.put(EntityModel.FLUID_BIT, new ContactHandler() {
             @Override
             public void handle(Fixture fluid, Fixture fixB) {
-                System.err.println("fluid END contact");
                 ((BuoyancyController) fluid.getBody().getUserData()).removeBody(fixB);
             }
         });

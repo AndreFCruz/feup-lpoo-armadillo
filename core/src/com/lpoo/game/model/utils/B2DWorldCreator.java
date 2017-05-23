@@ -36,8 +36,9 @@ public class B2DWorldCreator {
     private World world;
     private Map map;
     private Array<WaterModel> fluids = new Array<WaterModel>();
-    private Array<PlatformModel> platforms = new Array<PlatformModel>();
+    private Array<ShapeModel> shapeModels = new Array<ShapeModel>();
     private BallModel ball;
+
     private Vector2 endPos;
 
     public B2DWorldCreator(World world, Map map) {
@@ -64,7 +65,7 @@ public class B2DWorldCreator {
 
         // Create Platforms
         for (MapObject object : map.getLayers().get("platforms").getObjects().getByType(RectangleMapObject.class)) {
-            platforms.add(B2DFactory.makePlatform(world, (RectangleMapObject) object));
+            shapeModels.add(B2DFactory.makePlatform(world, (RectangleMapObject) object));
         }
 
         // Get Ball start pos
@@ -75,8 +76,13 @@ public class B2DWorldCreator {
         // Get Ball end pos
         MapObject endPosObj = map.getLayers().get("end_pos").getObjects().get(0);
         Rectangle endPosRect = ((RectangleMapObject) endPosObj).getRectangle();
-        this.endPos = new Vector2(endPosRect.getX() * PIXEL_TO_METER, endPosRect.getY() * PIXEL_TO_METER);
+        this.endPos = new Vector2(
+                (endPosRect.getX() + endPosRect.getWidth() / 2) * PIXEL_TO_METER,
+                (endPosRect.getY() + endPosRect.getHeight() / 2) * PIXEL_TO_METER);
 
+    }
+    public Vector2 getEndPos() {
+        return endPos;
     }
 
     public BallModel getBall() {
@@ -87,7 +93,7 @@ public class B2DWorldCreator {
         return fluids;
     }
 
-    public Array<PlatformModel> getPlatforms() {
-        return platforms;
+    public Array<ShapeModel> getShapeModels() {
+        return shapeModels;
     }
 }

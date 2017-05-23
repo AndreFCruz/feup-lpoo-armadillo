@@ -2,11 +2,15 @@ package com.lpoo.game.view.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
@@ -72,6 +76,8 @@ public class GameScreen extends ScreenAdapter {
 
     private Spheral game;
 
+    private ShapeRenderer shapeRenderer = new ShapeRenderer();
+
     public GameScreen(Spheral game) {
         this.game = game;
 
@@ -90,10 +96,13 @@ public class GameScreen extends ScreenAdapter {
     public void render(float delta) {
         controller.handleInput(delta);
 
-        if (!model.update(delta)) {
-            model.initModel();
+/*        if (!model.update(delta)) {
+            model.initModel(); // model has state, just read and react here
             // TODO show death pop-up menu (state in GameScreen?)
-        }
+            // -> state in GameModel, paused/dead must be there
+        }*/
+
+        model.update(delta);
 
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -109,10 +118,10 @@ public class GameScreen extends ScreenAdapter {
         drawEntities();
         game.getBatch().end();
 
-        game.getShapeRenderer().setProjectionMatrix(camera.combined);
-        game.getShapeRenderer().begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setProjectionMatrix(camera.combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         drawShapes();
-        game.getShapeRenderer().end();
+        shapeRenderer.end();
 
         if (DEBUG_PHYSICS) {
             debugCamera = camera.combined.cpy();
@@ -136,7 +145,7 @@ public class GameScreen extends ScreenAdapter {
         for (ShapeModel model : models) {
             ShapeView view = ViewFactory.makeView(model);
             view.update(model);
-            view.draw(game.getShapeRenderer());
+            view.draw(shapeRenderer);
         }
     }
 
@@ -157,10 +166,17 @@ public class GameScreen extends ScreenAdapter {
      */
     private void loadAssets() {
 
-        for (int i = 0; i < 6; i++)
-            game.getAssetManager().load( "skins/skin0" + i + ".png" , Texture.class);
+        AssetManager assetManager = game.getAssetManager();
 
-        game.getAssetManager().finishLoading();
+        // Load ball skins
+        for (int i = 0; i < 6; i++)
+            assetManager.load( "skins/skin0" + i + ".png" , Texture.class);
+
+        // Load levels
+        assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+        assetManager.load("SampleMap.tmx", TiledMap.class);
+
+        assetManager.finishLoading();
     }
 
     private OrthographicCamera createCamera() {

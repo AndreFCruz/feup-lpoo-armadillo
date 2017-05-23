@@ -1,25 +1,23 @@
 package com.lpoo.game.model;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
+import com.lpoo.game.Spheral;
 import com.lpoo.game.model.entities.BallModel;
 import com.lpoo.game.model.entities.EntityModel;
 import com.lpoo.game.model.entities.ShapeModel;
-import com.lpoo.game.model.entities.WaterModel;
-import com.lpoo.game.model.utils.B2DWorldCreator;
-import com.lpoo.game.model.controllers.BuoyancyController;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
+import static com.lpoo.game.model.GameModel.ModelState.LIVE;
+import static com.lpoo.game.model.GameModel.ModelState.PAUSED;
+import static com.lpoo.game.model.GameModel.ModelState.START;
+
 
 /**
  * Created by andre on 04/05/2017.
@@ -35,95 +33,88 @@ public class GameModel implements Disposable {
         return ourInstance;
     }
 
-    // Tiled Map Variables
-    private TiledMap map;
+    public enum ModelState {PAUSED, LIVE, START, END}
 
-    // Box2d variables
-    private World world;
-    private B2DWorldCreator worldCreator;
-    private Array<WaterModel> fluids;
+    private ModelState currentState;
 
-    private Game game;
+    private Level level;
 
-    private final float GRAVITY_CONSTANT = 9.81f;
-    private Vector2 gravity;
+    private int currentLevel;
 
-    private Array<EntityModel> entityModels;
-    private Array<ShapeModel> shapeModels;
+    private AssetManager assetManager;
 
-    private BallModel player;
+    private static final Map<Integer, String> levelNames = new HashMap<Integer, String>();
+
+    static {
+        levelNames.put(0, "SampleMap.tmx");
+        /*
+        levelNames.put(1, "level01.tmx");
+        levelNames.put(2, "level02.tmx");
+        */
+    }
 
     private GameModel() {
-        game = ((Game) Gdx.app.getApplicationListener());
+        assetManager = ((Spheral) Gdx.app.getApplicationListener()).getAssetManager();
 
-        gravity = new Vector2(0, - GRAVITY_CONSTANT);
+        currentLevel = 0;
+        currentState = START;
 
-        TmxMapLoader mapLoader = new TmxMapLoader();
-        map = mapLoader.load("SampleMap.tmx");
-
-        entityModels = new Array<EntityModel>();
-        shapeModels = new Array<ShapeModel>();
-
-        initModel();
+        loadNextLevel();
     }
 
-    public boolean update(float delta) {
-        // Step the simulation with a fixed time step of 1/60 of a second
-        world.step(1/60f, 6, 2);
+    private void loadNextLevel() {
+        if (currentLevel == levelNames.size())
+            currentLevel = 0;
 
-        for (WaterModel model : fluids)
-            model.step();
-
-        return ballInBounds();
+        TiledMap map = assetManager.get(levelNames.get(currentLevel++));
+        level = new Level(map);
     }
 
-    private boolean ballInBounds() {
-        // TODO abstract class map
-        return player.getY() > 150 * PIXEL_TO_METER;
-    }
+    public void update(float delta) {
+        if (currentState == PAUSED)
+            return;
 
-    public TiledMap getMap() {
-        return map;
-    }
-
-    public Array<EntityModel> getEntityModels() {
-        return entityModels;
-    }
-
-    public Array<ShapeModel> getShapeModels() {
-        return shapeModels;
-    }
-
-    public BallModel getBall() {
-        return player;
+        // TODO change this to react to losses
+        if (! level.update(delta)) {
+            loadNextLevel();
+        }
     }
 
     public World getWorld() {
-        return world;
+        return level.getWorld();
     }
 
-    public void initModel() {
-        world = new World(gravity, true);
+    public BallModel getBall() {
+        return level.getBall();
+    }
 
-        worldCreator = new B2DWorldCreator(world, map);
+    public Array<ShapeModel> getShapeModels() {
+        return level.getShapeModels();
+    }
 
-        worldCreator.generateWorld();
-        fluids = worldCreator.getFluids();
-        entityModels.clear();
-        shapeModels.clear();
+    public Array<EntityModel> getEntityModels() {
+        return level.getEntityModels();
+    }
 
-        world.setContactListener(new WorldContactListener());
+    public TiledMap getMap() {
+        return level.getMap();
+    }
 
-        player = worldCreator.getBall();
+    public ModelState getCurrentState() {
+        return currentState;
+    }
 
-        entityModels.add(player);
-        shapeModels.addAll(worldCreator.getPlatforms());
+    // TODO Pause mechanism needs improvement
+    public void togglePause() {
+        if (currentState == PAUSED)
+            currentState = LIVE;
+        else
+            currentState = PAUSED;
     }
 
     @Override
     public void dispose() {
-        map.dispose();
-        world.dispose();
+        level.dispose();
 
         GameModel.ourInstance = null;
     }

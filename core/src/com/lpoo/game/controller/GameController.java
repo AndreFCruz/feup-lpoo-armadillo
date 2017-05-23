@@ -52,6 +52,8 @@ public class GameController implements InputHandler {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
             model.getBall().jump();
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
+            model.togglePause();
         }
     }
 

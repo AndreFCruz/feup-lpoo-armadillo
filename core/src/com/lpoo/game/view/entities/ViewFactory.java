@@ -9,7 +9,6 @@ import java.util.Map;
 
 import static com.lpoo.game.model.entities.EntityModel.ModelType.BALL;
 import static com.lpoo.game.model.entities.ShapeModel.ModelType.PLATFORM;
-import static com.lpoo.game.model.entities.ShapeModel.ModelType.WATER;
 
 /**
  * A factory for EntityView objects with cache

@@ -15,12 +15,12 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
  * A model representing the player's ball.
  */
 public class BallModel extends EntityModel {
-    public static enum State {LANDED, FLYING, DUNKING}
+    public enum State {LANDED, FLYING, DUNKING}
 
     private static final float ANGULAR_DAMP = 2f;
     private static final float LINEAR_DAMP = 0.1f;
 
-    private static float radius = 32 * PIXEL_TO_METER;
+    public static float radius = 32 * PIXEL_TO_METER;
     private static float density = .5f;
     private static float friction = 40f;
     private static float restitution = 0.5f;
