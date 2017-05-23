@@ -117,7 +117,6 @@ public class GameModel implements Disposable {
         player = worldCreator.getBall();
 
         entityModels.add(player);
-        shapeModels.addAll(worldCreator.getFluids());
         shapeModels.addAll(worldCreator.getPlatforms());
     }
 

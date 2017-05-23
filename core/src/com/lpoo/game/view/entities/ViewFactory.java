@@ -33,7 +33,6 @@ public class ViewFactory {
 
     public static ShapeView makeView(ShapeModel model) {
         if (!shapesCache.containsKey(model.getType())) {
-            if (model.getType() == WATER) shapesCache.put(model.getType(), new WaterView());
             if (model.getType() == PLATFORM) shapesCache.put(model.getType(), new PlatformView());
         }
 
