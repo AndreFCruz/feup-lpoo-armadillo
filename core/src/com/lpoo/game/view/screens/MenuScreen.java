@@ -16,7 +16,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.lpoo.game.Spheral;
 
 /**
- * Abstract Class used to simbolize all Views that are Menus.
+ * Abstract Class used to represent all Views that are Menus.
  */
 public abstract class MenuScreen extends ScreenAdapter {
     protected final Spheral game;
@@ -55,7 +55,12 @@ public abstract class MenuScreen extends ScreenAdapter {
      */
     protected Image titleImg;
 
-
+    /**
+     * Menu Screen's constructor.
+     *
+     * @param game
+     *
+     */
     protected MenuScreen(final Spheral game) {
         this.game = game;
         this.batch = game.getBatch();
@@ -83,6 +88,9 @@ public abstract class MenuScreen extends ScreenAdapter {
         titleImg.setPosition(VIEWPORT_WIDTH / PIXEL_TO_METER / 2 - titleImg.getWidth() / 2, VIEWPORT_HEIGHT * 0.98f / PIXEL_TO_METER - titleImg.getHeight());
     }
 
+    /**
+     * Function used to load the Assets used in a Menu Screen.
+     */
     protected void loadAssets() {
 
         game.getAssetManager().load( "spheral.png" , Texture.class);
@@ -103,8 +111,6 @@ public abstract class MenuScreen extends ScreenAdapter {
     public void render(float delta) {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        //batch.begin();
-        //batch.end();
 
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();

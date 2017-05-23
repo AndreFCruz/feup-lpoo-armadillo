@@ -28,17 +28,24 @@ public class MainMenuScreen extends MenuScreen {
      */
     private static final int BOTTOM_EDGE = 35;
 
+    /**
+     * Main Menu Screen's Constructor.
+     *
+     * @param game
+     *
+     */
     public MainMenuScreen(final Spheral game) {
         super(game);
     }
 
-    @Override
-    public void show() {
-        super.show();
-
-        Table table = new Table();
-        table.debugAll();
-        table.setFillParent(true);
+    /**
+     * Function responsible for creating and setting the Menu Buttons.
+     * It also sets the buttons Layout in the given table.
+     *
+     * @param table
+     *      Table where the Menu buttons will be organized
+     */
+    private void createMenuButtons(Table table) {
 
         //Create buttons
         TextButton playButton = new TextButton("Play", skin);
@@ -67,15 +74,23 @@ public class MainMenuScreen extends MenuScreen {
         });
 
         //Add buttons to table
-        //table.setDebug(true); //Testing Purposes
         table.bottom();
         table.add(playButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
         table.row();
         table.add(optionsButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
         table.row();
-//        table.add(exitButton).width(BUTTON_WIDTH).padBottom(BOTTOM_EDGE).padTop(BUTTON_EDGE);
         table.add(exitButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
         table.padBottom(BOTTOM_EDGE);
+    }
+
+    @Override
+    public void show() {
+        super.show();
+
+        Table table = new Table();
+        table.setFillParent(true);
+
+        createMenuButtons(table);
 
         // Add table to stage
         stage.addActor(table);
