@@ -1,6 +1,7 @@
 package com.lpoo.game.model.entities;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Shape2D;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -17,7 +18,7 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 public class PlatformModel extends ShapeModel {
 
     public PlatformModel(World world, Rectangle rect) {
-        super(ModelType.PLATFORM);
+        super(ModelType.PLATFORM, rect);
 
         // Body and Fixture variables
         BodyDef bdef = new BodyDef();

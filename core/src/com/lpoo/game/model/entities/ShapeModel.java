@@ -1,5 +1,6 @@
 package com.lpoo.game.model.entities;
 
+import com.badlogic.gdx.math.Shape2D;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Shape;
@@ -10,22 +11,48 @@ import com.badlogic.gdx.physics.box2d.World;
  */
 
 public abstract class ShapeModel {
+
     public enum ModelType {WATER, PLATFORM}
 
     final private ModelType type;
 
     protected Body body;
 
-    public ShapeModel(ModelType type) {
+    final private Shape2D shape;
+
+    public ShapeModel(ModelType type, Shape2D shape) {
         this.type = type;
+        this.shape = shape;
     }
 
     public ShapeModel.ModelType getType() {
         return type;
     }
 
-    public Shape getShape() {
-        return body.getFixtureList().first().getShape();
+    /**
+     * Wraps the getX method from the Box2D body class.
+     *
+     * @return the x-coordinate of this body.
+     */
+    public float getX() {
+        return body.getPosition().x;
+    }
+
+    /**
+     * Wraps the getY method from the Box2D body class.
+     *
+     * @return the y-coordinate of this body.
+     */
+    public float getY() {
+        return body.getPosition().y;
+    }
+
+    public float getRotation() {
+        return body.getAngle();
+    }
+
+    public Shape2D getShape() {
+        return shape;
     }
 
 }

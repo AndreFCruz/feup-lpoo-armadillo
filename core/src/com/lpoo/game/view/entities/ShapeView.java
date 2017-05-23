@@ -2,11 +2,14 @@ package com.lpoo.game.view.entities;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Polygon;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.lpoo.game.model.entities.ShapeModel;
 
 import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
+
 
 /**
  * Created by andre on 20/05/2017.
@@ -14,27 +17,27 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 
 public abstract class ShapeView {
 
-    private float[] vertices;
+    protected Color color;
 
-    private Color color;
+    private Polygon poly = new Polygon();
 
     public void draw(ShapeRenderer renderer) {
+        if (poly == null) return;
+
         renderer.setColor(color);
-        renderer.polygon(vertices);
+        renderer.polygon(poly.getTransformedVertices());
     }
 
     public void update(ShapeModel model) {
-        PolygonShape poly = (PolygonShape) model.getShape();
-        this.vertices = new float[poly.getVertexCount() * 2];
-
-        for (int i = 0; i < poly.getVertexCount(); i++) {
-            Vector2 vert = new Vector2();
-            poly.getVertex(i, vert);
-            vertices[i*2] = vert.x / PIXEL_TO_METER;
-            vertices[i*2 + 1] = vert.y / PIXEL_TO_METER;
-            System.err.print("_" + vertices[i*2] + " . " + vertices[i*2 + 1] + "_");
-        }
-        System.err.println("---");
+        Rectangle rect = (Rectangle) model.getShape();
+        rect.setCenter(model.getX() / PIXEL_TO_METER, model.getY() / PIXEL_TO_METER);
+        poly.setVertices(new float[] {
+                rect.x, rect.y,
+                rect.x, rect.y + rect.height,
+                rect.x + rect.width, rect.y + rect.height,
+                rect.x + rect.width, rect.y
+        });
+        poly.setRotation((float) Math.toDegrees(model.getRotation()));
     }
 
     protected void setColor(Color color) {

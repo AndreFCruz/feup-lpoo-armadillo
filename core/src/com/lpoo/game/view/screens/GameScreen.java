@@ -35,7 +35,7 @@ public class GameScreen extends ScreenAdapter {
     /**
      * Used to debug the position of the physics fixtures
      */
-    private static final boolean DEBUG_PHYSICS = true;
+    private static final boolean DEBUG_PHYSICS = false;
 
     /**
      * How much meters does a pixel represent.
@@ -110,7 +110,7 @@ public class GameScreen extends ScreenAdapter {
         game.getBatch().end();
 
         game.getShapeRenderer().setProjectionMatrix(camera.combined);
-        game.getShapeRenderer().begin(ShapeRenderer.ShapeType.Line); // TODO change to Filled
+        game.getShapeRenderer().begin(ShapeRenderer.ShapeType.Line);
         drawShapes();
         game.getShapeRenderer().end();
 
