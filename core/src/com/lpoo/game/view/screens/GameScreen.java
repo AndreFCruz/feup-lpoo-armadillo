@@ -110,7 +110,7 @@ public class GameScreen extends ScreenAdapter {
         game.getBatch().end();
 
         game.getShapeRenderer().setProjectionMatrix(camera.combined);
-        game.getShapeRenderer().begin(ShapeRenderer.ShapeType.Line);
+        game.getShapeRenderer().begin(ShapeRenderer.ShapeType.Filled);
         drawShapes();
         game.getShapeRenderer().end();
 

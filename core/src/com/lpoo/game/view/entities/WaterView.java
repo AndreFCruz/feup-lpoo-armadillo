@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 
 public class WaterView extends ShapeView {
 
-    private static Color waterColor = new Color(0.2f, 0.2f, 0.8f, 0.2f);
+    private static Color waterColor = new Color(0xAFEEEE0F);
 
     WaterView() {
         setColor(waterColor);

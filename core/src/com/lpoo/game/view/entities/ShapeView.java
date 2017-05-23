@@ -19,18 +19,29 @@ public abstract class ShapeView {
 
     protected Color color;
 
-    private Polygon poly;
+    //private Polygon poly;
+
+    private Rectangle rect;
+
+    private Vector2 center;
+
+    private float rotation;
+
 
     public void draw(ShapeRenderer renderer) {
-        if (poly == null) return;
+        if (rect == null) return;
 
         renderer.setColor(color);
-        renderer.polygon(poly.getTransformedVertices());
+        renderer.rect(center.x - rect.getWidth() / 2, center.y - rect.getHeight() / 2,
+                rect.getWidth() / 2, rect.getHeight() / 2, rect.getWidth(), rect.getHeight(), 1, 1, rotation);
     }
 
     public void update(ShapeModel model) {
-        Rectangle rect = (Rectangle) model.getShape();
-        rect.setCenter(model.getX() / PIXEL_TO_METER, model.getY() / PIXEL_TO_METER);
+        rect = (Rectangle) model.getShape();
+        rotation = (float) Math.toDegrees(model.getRotation());
+        center = new Vector2(model.getX() / PIXEL_TO_METER, model.getY() / PIXEL_TO_METER);
+        //rect.getCenter(center);
+/*        rect.setCenter(model.getX() / PIXEL_TO_METER, model.getY() / PIXEL_TO_METER);
 
         poly = new Polygon(new float[] {
                 rect.x, rect.y,
@@ -39,7 +50,7 @@ public abstract class ShapeView {
                 rect.x + rect.width, rect.y
         });
         poly.setOrigin(model.getX() / PIXEL_TO_METER, model.getY() / PIXEL_TO_METER);
-        poly.rotate((float) Math.toDegrees(model.getRotation()));
+        poly.rotate((float) Math.toDegrees(model.getRotation()));*/
     }
 
     protected void setColor(Color color) {
