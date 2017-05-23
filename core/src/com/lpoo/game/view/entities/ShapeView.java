@@ -19,7 +19,7 @@ public abstract class ShapeView {
 
     protected Color color;
 
-    private Polygon poly = new Polygon();
+    private Polygon poly;
 
     public void draw(ShapeRenderer renderer) {
         if (poly == null) return;
@@ -31,13 +31,15 @@ public abstract class ShapeView {
     public void update(ShapeModel model) {
         Rectangle rect = (Rectangle) model.getShape();
         rect.setCenter(model.getX() / PIXEL_TO_METER, model.getY() / PIXEL_TO_METER);
-        poly.setVertices(new float[] {
+
+        poly = new Polygon(new float[] {
                 rect.x, rect.y,
                 rect.x, rect.y + rect.height,
                 rect.x + rect.width, rect.y + rect.height,
                 rect.x + rect.width, rect.y
         });
-        poly.setRotation((float) Math.toDegrees(model.getRotation()));
+        poly.setOrigin(model.getX() / PIXEL_TO_METER, model.getY() / PIXEL_TO_METER);
+        poly.rotate((float) Math.toDegrees(model.getRotation()));
     }
 
     protected void setColor(Color color) {
