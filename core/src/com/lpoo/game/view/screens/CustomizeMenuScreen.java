@@ -110,8 +110,10 @@ public class CustomizeMenuScreen extends MenuScreen {
         skins.add(imageFour).pad(IMAGE_EDGE);
         skins.add(imageFive).pad(IMAGE_EDGE);
         skins.add(imageSix).pad(IMAGE_EDGE);
+        
+    }
 
-        /**
+     /**
      * Function used to create the Skins' Buttons and Labels and associate them to a given table, organized.
      * It also adds Listeners to the Skins' Buttons.
      *
@@ -141,7 +143,6 @@ public class CustomizeMenuScreen extends MenuScreen {
         for (int i=0; i < NUMBER_OF_SKINS; ++i)
             table.add(skinLabels.get(i)).width(BUTTON_SIZE);
     }
->>>>>>> d7e4f34a3de48f45d266f8d0b7a1371b1672588e
 
     /**
      * Set the current skin to the given Index
