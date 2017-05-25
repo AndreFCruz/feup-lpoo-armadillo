@@ -54,7 +54,6 @@ public class CustomizeMenuScreen extends MenuScreen {
         fixElements.debugAll();
         fixElements.setFillParent(true);
 
-
         Label labelOne = new Label ("Current", skin);
 
         Image imageOne = new Image ( new Texture ("skins/skin01.png"));
