@@ -8,11 +8,23 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.lpoo.game.Spheral;
 
+import java.util.ArrayList;
+
 /**
  * A view representing the Level Menu screen. In this Menu the User
  * is able to chose which level to play, from the available ones.
  */
 public class LevelMenuScreen extends MenuScreen {
+
+    /**
+     * Number of existent Levels.
+     */
+    private static final int NUMBER_OF_LEVELS = 13;
+
+    /**
+     * Array containing all the buttons used to select Levels.
+     */
+    private ArrayList<TextButton> levelButtons = new ArrayList<TextButton>();
 
     //Layout Macros
     /**
@@ -32,52 +44,63 @@ public class LevelMenuScreen extends MenuScreen {
      */
     private static final int SIDE_DISTANCE = 40;
 
+    /**
+     * Number of Buttons per Line of the Table.
+     */
+    private static final int BUTTONS_PER_LINE = 4;
+
+    /**
+     * Level Menu Screen's Constructor.
+     *
+     * @param game
+     *
+     */
     LevelMenuScreen(final Spheral game) {
         super(game);
     }
 
-    @Override
-    public void show() {
-        super.show();
+    /**
+     * Function used to create the Level Buttons and associate them to a given table, organized.
+     * It also adds Listeners to the Level buttons.
+     *
+     * @param table
+     *      Table where the Level Buttons will be organized.
+     */
+    private void createLevelButtons(Table table) {
 
-        Table levels = new Table();
-        levels.debugAll();
-        //levels.setFillParent(true);
+        for (int i = 1 ;  i <= NUMBER_OF_LEVELS; ++i) {
+            levelButtons.add(new TextButton(String.valueOf(i), skin));
 
-        Table fixElements = new Table();
-        fixElements.debugAll();
-        fixElements.setFillParent(true);
+            //Adding to table and setting Layout aspect
+            table.add(levelButtons.get(i-1)).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
 
-        //Create buttons - levels Table
-        TextButton lvlOne = new TextButton("1", skin);
-        TextButton lvlTwo = new TextButton("2", skin);
-        TextButton lvlThree = new TextButton("3", skin);
-        TextButton lvlFour = new TextButton("4", skin);
-        TextButton lvlFive = new TextButton("5", skin);
-        TextButton lvlSix = new TextButton("6", skin);
-        TextButton lvlSeven = new TextButton("7", skin);
-        TextButton lvlEight = new TextButton("8", skin);
-        TextButton lvlNine = new TextButton("9", skin);
-        TextButton lvlTen = new TextButton("10", skin);
-        TextButton lvlEleven = new TextButton("11", skin);
-        TextButton lvlTwelve = new TextButton("12", skin);
-        TextButton lvlThirteen = new TextButton("13", skin);
+            //Adding Listener
+            levelButtons.get(i-1).addListener(new ClickListener(){
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    game.setScreen(new GameScreen(game)); //TODO: Mudar para que cada um leve ao seu level certo
+                }
+            });
 
-        //Create standing Elements
+            if ((i % BUTTONS_PER_LINE) == 0)
+                table.row();
+        }
+    }
+
+    /**
+     * Function used to create the static Elements of the Stage, and organize them.
+     * Also adds Listeners to its Elements.
+     *
+     * @param table
+     *          Table where the static elements will be organized.
+     * @param levelsTable
+     *          Table containing the level buttons, that will be associated to the scroller.
+     */
+    private void createStaticElements (Table table, Table levelsTable) {
+
+        //Creating and adding the Listener to the back button
         TextButton back = new TextButton("Back", skin);
-        ScrollPane scroller = new ScrollPane(levels, skin);
-        scroller.getStyle().background = null;  //Setting the scroll background invisible
-        /*//INVISIBLE SCROLLER
-        scroller.getStyle().vScroll = null;
-        scroller.getStyle().vScrollKnob = null;*/
 
-        //Add listeners to buttons
-        lvlOne.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new GameScreen(game));
-            }
-        });
         back.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -85,42 +108,38 @@ public class LevelMenuScreen extends MenuScreen {
             }
         });
 
-        //Add buttons to table
-        //levels.setDebug(true); //Testing Purposes
+        //Creating and setting the Scroller
+        ScrollPane scroller = new ScrollPane(levelsTable, skin);
+        scroller.getStyle().background = null;  //Setting the scroll background invisible
+        /*//INVISIBLE SCROLLER
+        scroller.getStyle().vScroll = null;
+        scroller.getStyle().vScrollKnob = null;*/
+
+        table.add(back).top().padLeft(SIDE_DISTANCE).padTop(TOP_EDGE / 3);
+        table.add(scroller).fill().expand().padRight(SIDE_DISTANCE);
+    }
+
+    @Override
+    public void show() {
+        super.show();
+
+        // Table containing the Level Buttons
+        Table levels = new Table();
+
+        //Layout Aspect
         levels.top();
-
-        //First Line of levels
         levels.padTop(TOP_EDGE);
-        levels.add(lvlOne).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
-        levels.add(lvlTwo).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
-        levels.add(lvlThree).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
-        levels.add(lvlFour).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
-        levels.row();
 
-        //Second Line of levels
-        levels.add(lvlFive).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
-        levels.add(lvlSix).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
-        levels.add(lvlSeven).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
-        levels.add(lvlEight).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
-        levels.row();
+        createLevelButtons(levels);
 
-        //Third Line of levels - supposed to be only half visible
-        levels.add(lvlNine).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
-        levels.add(lvlTen).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
-        levels.add(lvlEleven).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
-        levels.add(lvlTwelve).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
-        levels.row();
+        //Table containing the Static Elements
+        Table staticElements = new Table();
+        staticElements.setFillParent(true);
 
-        //Forth Line of levels - initially invisible
-        levels.add(lvlThirteen).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
-
-        //Standing Elements
-        //fixElements.setDebug(true); //Testing Purposes
-        fixElements.add(back).top().padLeft(SIDE_DISTANCE).padTop(TOP_EDGE / 3);
-        fixElements.add(scroller).fill().expand().padRight(SIDE_DISTANCE);
+        createStaticElements(staticElements, levels);
 
         // Add table to stage
-        stage.addActor(fixElements);
+        stage.addActor(staticElements);
 
         Gdx.input.setInputProcessor(stage); //TODO: averiguar o pq de ter de ser aqu (se não não dá)
     }
