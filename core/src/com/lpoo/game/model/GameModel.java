@@ -33,8 +33,14 @@ public class GameModel implements Disposable {
         return ourInstance;
     }
 
-    public enum ModelState {PAUSED, LIVE, START, END}
+    /**
+     * Possible Game States the Model may be in.
+     */
+    public enum ModelState {PAUSED, LIVE, START, END};
 
+    /**
+     * Current Model State the game is in.
+     */
     private ModelState currentState;
 
     private Level level;

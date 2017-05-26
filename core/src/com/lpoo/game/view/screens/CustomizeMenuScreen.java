@@ -84,10 +84,11 @@ public class CustomizeMenuScreen extends MenuScreen {
             skinLabels.add(new Label ("Current", skin));
 
             //Adding Listeners to the Buttons
+            current_skin = i;
             skinButtons.get(i).addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    setCurrentSkin(1); //TODO: change
+                    setCurrentLabel(); //TODO: change
                 }
             });
 
@@ -99,18 +100,18 @@ public class CustomizeMenuScreen extends MenuScreen {
         //Adding the Labels to the Table
         for (int i=0; i < NUMBER_OF_SKINS; ++i)
             table.add(skinLabels.get(i)).width(BUTTON_SIZE);
+
+        //addButtonListeners();
+        setCurrentLabel();
     }
 
     /**
-     * Set the current skin to the given Index
-     *
-     * @param idx
-     *          Index to set the current skin to.
+     * Set the current visible Label with the current skin.
      */
-    private void setCurrentSkin(int idx) {
+    private void setCurrentLabel() {
         for (int i=0; i < skinLabels.size(); ++i) {
 
-            if (i == idx)
+            if (i == current_skin)
                 skinLabels.get(i).setVisible(true);
             else
                 skinLabels.get(i).setVisible(false);

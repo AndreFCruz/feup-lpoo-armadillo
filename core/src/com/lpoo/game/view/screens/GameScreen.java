@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -17,7 +18,16 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.lpoo.game.Spheral;
 import com.lpoo.game.controller.GameController;
 import com.lpoo.game.controller.InputHandler;
@@ -53,6 +63,12 @@ public class GameScreen extends ScreenAdapter {
     private static final float VIEWPORT_WIDTH = 40;
 
     /**
+     * The height of the viewport in meters. The height is
+     * automatically calculated using the screen ratio.
+     */
+    private static final float VIEWPORT_HEIGHT = VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
+
+    /**
      * The camera used to show the viewport.
      */
     private final OrthographicCamera camera;
@@ -78,6 +94,20 @@ public class GameScreen extends ScreenAdapter {
 
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
 
+    /**
+     * A Stage used to represent the HUD, containing the score and the pause Button.
+     */
+    private Stage stage;
+
+    /**
+     * Represents the User's score in the current Level.
+     */
+    private static int score;
+
+    private Viewport viewport;  //TODO: Verify if this is neeeded really
+    protected Skin skin;
+    protected TextureAtlas atlas;
+
     public GameScreen(Spheral game) {
         this.game = game;
 
@@ -90,6 +120,49 @@ public class GameScreen extends ScreenAdapter {
         controller = new GameController(camera);
 
         mapRenderer = new OrthogonalTiledMapRenderer(model.getMap());
+
+        viewport = new FitViewport(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+
+        stage = new Stage(viewport, game.getBatch());
+
+        atlas = new TextureAtlas("uiskin.atlas");
+        skin = new Skin(Gdx.files.internal("uiskin.json"), atlas);
+
+        score = 0;
+    }
+
+    /**
+     * Function used to initialize all thhe elements of the HUD and add their Listeners.
+     *
+     * @param table
+     */
+    private void initHUD ( Table table) {
+
+        Button pauseButton = new Button (skin);   //TODO: Change to button with image
+
+        Label points = new Label (Integer.toString(score), skin);
+        points.setSize(10,10);
+
+        pauseButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                //TODO: Do sth;
+            }
+        });
+
+        //table.right();//.top();
+        //table.add(points);
+        table.add(pauseButton).size(VIEWPORT_WIDTH / 10, VIEWPORT_HEIGHT / 15);//.left().top();
+    }
+
+    @Override
+    public void show () {
+
+        Table hud = new Table();
+        hud.debugAll();
+
+        initHUD(hud);
+        stage.addActor(hud);
     }
 
     @Override
@@ -128,6 +201,11 @@ public class GameScreen extends ScreenAdapter {
             debugCamera.scl(1 / PIXEL_TO_METER);
             debugRenderer.render(model.getWorld(), debugCamera);
         }
+
+        stage.act(Gdx.graphics.getDeltaTime());
+        stage.draw();
+
+        Gdx.input.setInputProcessor(stage);
 
     }
 
@@ -180,7 +258,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private OrthographicCamera createCamera() {
-        OrthographicCamera camera = new OrthographicCamera(VIEWPORT_WIDTH / PIXEL_TO_METER, VIEWPORT_WIDTH / PIXEL_TO_METER * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth()));
+        OrthographicCamera camera = new OrthographicCamera(VIEWPORT_WIDTH / PIXEL_TO_METER, VIEWPORT_HEIGHT / PIXEL_TO_METER );
 
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
