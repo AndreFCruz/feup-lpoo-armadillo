@@ -70,7 +70,50 @@ public class CustomizeMenuScreen extends MenuScreen {
         super(game);
     }
 
-    /**
+    @Override
+    public void show() {
+        super.show();
+
+        //Table containing all the possibles Ball appearances
+        Table skins = new Table();
+        skins.debugAll();
+
+        //Table containing the screen elements that shall not move with the slider
+        Table fixElements = new Table();
+        fixElements.debugAll();
+        fixElements.setFillParent(true);
+
+        Label labelOne = new Label ("Current", skin);
+
+        Image imageOne = new Image ( new Texture ("skins/skin01.png"));
+        //imageOne.setScale(1.4f,1.4f);
+
+        Label labelTwo = new Label ("Current", skin);
+        Image imageTwo = new Image ( new Texture ("skins/skin02.png"));
+
+        Label labelThree = new Label ("Current", skin);
+        Image imageThree = new Image ( new Texture ("skins/skin03.png"));
+
+        Label labelFour = new Label ("Current", skin);
+        Image imageFour = new Image ( new Texture ("skins/skin04.png"));
+
+        final Label labelFive = new Label ("Current", skin);
+        Image imageFive = new Image ( new Texture ("skins/skin05.png"));
+
+        final Label labelSix = new Label ("Current", skin);
+        Image imageSix = new Image ( new Texture ("skins/skin06.png"));
+
+        //Adding all the Images/Buttons to the same line
+        skins.add(imageOne).pad(IMAGE_EDGE);
+        skins.add(imageTwo).pad(IMAGE_EDGE);
+        skins.add(imageThree).pad(IMAGE_EDGE);
+        skins.add(imageFour).pad(IMAGE_EDGE);
+        skins.add(imageFive).pad(IMAGE_EDGE);
+        skins.add(imageSix).pad(IMAGE_EDGE);
+        
+    }
+
+     /**
      * Function used to create the Skins' Buttons and Labels and associate them to a given table, organized.
      * It also adds Listeners to the Skins' Buttons.
      *

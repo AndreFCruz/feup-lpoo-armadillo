@@ -6,19 +6,19 @@
  <tileset firstgid="65" name="tilesheet-water" tilewidth="64" tileheight="64" tilecount="9" columns="3">
   <image source="tilesheet-water.png" trans="000000" width="192" height="224"/>
  </tileset>
- <layer name="background" width="60" height="30">
-  <data encoding="base64" compression="zlib">
-   eJzt1bENgDAMRcEMELEEsP+K9FEKZBwpCXfS6/0rlwIAAMAXd1NUzTlnqKtT1Kp7j2Ar7D2Tm11Nbnb22vuHve1PftvsejfuvBeA8R4t4w3m
-  </data>
- </layer>
  <layer name="water_tiles" width="60" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1rsNgDAQREHXhgz9l2TTwIoE+Tcjvfw2u1IAAJhV7V2hZ9xpv3j33iF712bv3nsBYAbpd/7aatK/kQLgbA0yLxQ1
+   eJzt1sENABAQRUG1CfoviQo2DoQwk7z77u2nBADArfJELymjGtTOnbaFf/0LAKw1s59f29fR3ogC4G8dw+gULw==
   </data>
  </layer>
- <layer name="map" width="60" height="30" offsetx="-3.46909" offsety="0">
+ <layer name="background" width="60" height="30">
   <data encoding="base64" compression="zlib">
-   eJztl21LwzAQx28+bKiIiAp1boK+EEWHuqH4Rtn3/1TeYY7dQtPkmqutmD/86B7a5P5pkrsAFBUVFRUVFf1HnfYdQEQrd51ntDHyGLJ2YRPnlWBH8dw5sga934ljXkNXunHMxGfiKPLcHrIfgPWGvMP22NFzS3ffOqENa916UF9WfumemdcW/XYY4SzHUETsUWLpt+v4tfLHNsfvGKkS+71DHpB7fchZ8vs9hu11rGHcov9FIA4W7Z2XyBR5btF+imLry3LdLSL/yzwwlHz3iDw5tHOU/dJePjWOayii/Mq5it8Z7ePXEM/7f0kyH5O/JWxyMfPRW3R2Yp/kh3wewM++yLmQ17/0SutW1nuW6qqekz4ZmecqCOcvq/pDrhseO7n38fcLgz7qapFYXpfKydEcwxfyGoiF5tqJu36C3nOTzzZ+Y6Jzip+r5Blm5Pokv37dnEqofao3aCxfHNJj6tzUvs+mcc0lpb7SvE+LerJLvym+62ouy/k7JL9d+gpJE7d/Jmr6XxJ6p32c+VLrer+GqWoIKfW+39A33cMg5w==
+   eJzt1EEKgCAURVEXIG3C2v8Wo6n8QZhRfs6BNxGCrgNLAQCA3Fq36KzFny4pasvc+7XrLo9uo+qUP3rXHmzUqr3b4Fbovft+ZHln6uT9nV69mXoBgGdOP/gMHQ==
+  </data>
+ </layer>
+ <layer name="map" width="60" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztl9tKAzEQhqceKioiosJaW0EvPIBFrSjeKH3/pzKDGToNm83MZtKtkA9+tofdZP5skpkAVCqVio57pyenZ6eHgWOpVCr9ORs6gATv/jrLaGMUaJvZhVWc10w7iucunJag93vgNWtRKW69puwz6jjx3J7TfkTEh9MnrI8dPrfw9y0FbVhzFwj7svKL90yDtvC3o4TOcwwlII9cln5Lx68lHNscv2OnRtgv1WSP+pBNOYH1dazRuEd/c3+N+ce988pp4vTSo30JqfVlue7mif95HiiZ76TzMhfyi3v5ZEN9bhrMr5Sr6J3hPn4D6bz/n+D5GP0tYJWLSV+DRWcH+UQ/6PMQ/vZFyoW0/rlXXLe83rOkVD3HfZJ4nmsgvk9Y1R983dDY8b2Pvl8a9NFWi6TyOicnR1MMP05vkVhwrp366zfoPXf57OM3BZ5TwlzFzzAj3yf6DetmqWLtY72BY/nqxT1K56b2fXaNa64k9ZXmfVrUkyX9Sny31VyW83eb/Jb0FUMTd3gm6vqfK/ZOhzjzSev6sIZpWhRDet8m+AX61yBW
   </data>
  </layer>
  <objectgroup name="end_pos">
@@ -39,7 +39,7 @@
   <object id="73" x="1698.97" y="1385.62" width="202.862" height="57.9605"/>
   <object id="74" x="2048.54" y="1391.05" width="143.09" height="61.583"/>
  </objectgroup>
- <objectgroup name="ground" offsetx="1.47189" offsety="0">
+ <objectgroup name="ground">
   <object id="2" x="0" y="1536" width="640" height="384"/>
   <object id="4" x="640" y="1536" width="64" height="320"/>
   <object id="6" x="1216" y="1536" width="832" height="320"/>
