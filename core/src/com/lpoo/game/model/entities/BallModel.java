@@ -20,10 +20,11 @@ public class BallModel extends EntityModel {
     private static final float ANGULAR_DAMP = 2f;
     private static final float LINEAR_DAMP = 0.1f;
 
-    public static float radius = 32 * PIXEL_TO_METER;
-    private static float density = .5f;
-    private static float friction = 40f;
-    private static float restitution = 0.5f;
+    private static final float radius = 32 * PIXEL_TO_METER;
+
+    private float density = .5f;
+    private float friction = 40f;
+    private float restitution = 0.5f;
 
     private State state = State.LANDED;
 
@@ -33,7 +34,7 @@ public class BallModel extends EntityModel {
     public BallModel(World world, Vector2 pos) {
         super(world, pos, ModelType.BALL, ANGULAR_DAMP, LINEAR_DAMP);
 
-        this.body.setUserData(this);    // Necessary ? or downcast works with EntityModel's pointer?
+        //this.body.setUserData(this);    // Necessary ? or downcast works with EntityModel's pointer?
 
         // Create Fixture's Shape
         Shape circle = new CircleShape();

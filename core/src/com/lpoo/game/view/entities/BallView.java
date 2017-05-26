@@ -23,7 +23,7 @@ class BallView extends EntityView {
         return createSprite(game, rand.nextInt(6));
     }
 
-    protected Sprite createSprite(Spheral game, int skinID) {
+    private Sprite createSprite(Spheral game, int skinID) {
         Texture tex = game.getAssetManager().get("skins/skin0" + skinID + ".png");
         return new Sprite(new TextureRegion(tex, tex.getWidth(), tex.getHeight()));
     }

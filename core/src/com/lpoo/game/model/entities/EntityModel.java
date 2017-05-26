@@ -1,5 +1,7 @@
 package com.lpoo.game.model.entities;
 
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -14,7 +16,7 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
  * An abstract model representing an entity belonging to a game model.
  */
 public abstract class EntityModel {
-    public enum ModelType {BALL}
+    public enum ModelType {BALL, BOX}
 
     // Constants for collision mask
     public final static short GROUND_BIT = 0x01;

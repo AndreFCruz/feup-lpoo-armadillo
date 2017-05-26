@@ -40,7 +40,9 @@ public class B2DWorldCreator {
 
     private abstract class LayerLoader <T extends MapObject> {
         private String name;
+
         private World world;
+
         private Class<T> type;
 
         LayerLoader(String name, World world, Class<T> type) {
@@ -68,6 +70,7 @@ public class B2DWorldCreator {
     private Map map;
     private Array<WaterModel> fluids = new Array<WaterModel>();
     private Array<ShapeModel> shapeModels = new Array<ShapeModel>();
+    private Array<EntityModel> entityModels = new Array<EntityModel>();
     private BallModel ball;
     private Vector2 endPos;
 
@@ -106,21 +109,23 @@ public class B2DWorldCreator {
                 shapeModels.add(B2DFactory.makePlatform(world, (RectangleMapObject) object));
             }
         });
-    }
-
-    private void loadLayers() {
-        for (LayerLoader loader : layerLoaders)
-            loader.load();
+        layerLoaders.add(new LayerLoader<RectangleMapObject>("boxes", world, RectangleMapObject.class) {
+            @Override
+            protected void loadObject(World world, MapObject object) {
+                entityModels.add(B2DFactory.makeBox(world, (RectangleMapObject) object));
+            }
+        });
     }
 
     public void generateWorld() {
-
-        loadLayers();
+        for (LayerLoader loader : layerLoaders)
+            loader.load();
 
         // Get Ball start pos
         MapObject startPosObj = map.getLayers().get("start_pos").getObjects().get(0);
         Rectangle startPosRect = ((RectangleMapObject) startPosObj).getRectangle();
         this.ball = new BallModel(world, new Vector2(startPosRect.getX() * PIXEL_TO_METER, startPosRect.getY() * PIXEL_TO_METER));
+        // TODO: change Ball creation to factory makeBall
 
         // Get Ball end pos
         MapObject endPosObj = map.getLayers().get("end_pos").getObjects().get(0);
@@ -145,5 +150,9 @@ public class B2DWorldCreator {
 
     public Array<ShapeModel> getShapeModels() {
         return shapeModels;
+    }
+
+    public Array<EntityModel> getEntityModels() {
+        return entityModels;
     }
 }

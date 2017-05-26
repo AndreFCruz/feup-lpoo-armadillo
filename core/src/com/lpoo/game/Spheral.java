@@ -22,8 +22,9 @@ public class Spheral extends Game {
     private static final Map<Integer, String> gameMaps = new HashMap<Integer, String>();
 
     static {
-        gameMaps.put(0, "maps/map1.tmx");
-        gameMaps.put(1, "maps/map2.tmx");
+        gameMaps.put(0, "maps/map0.tmx");
+        gameMaps.put(1, "maps/map1.tmx");
+        gameMaps.put(2, "maps/map2.tmx");
     }
 
     @Override
@@ -45,6 +46,9 @@ public class Spheral extends Game {
      * Loads the assets needed by this all screens.
      */
     private void loadAssets() {
+
+        // Load Box skin
+        assetManager.load("box.png", Texture.class);
 
         // Load ball skins
         for (int i = 0; i < 6; i++)
