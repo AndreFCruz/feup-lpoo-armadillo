@@ -2,9 +2,6 @@ package com.lpoo.game.view.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -102,7 +99,9 @@ public class GameScreen extends ScreenAdapter {
     /**
      * Represents the User's score in the current Level.
      */
-    private static int score;
+    private int score;
+
+    private int currentLevel;
 
     private Viewport viewport;  //TODO: Verify if this is neeeded really
     protected Skin skin;
@@ -111,9 +110,8 @@ public class GameScreen extends ScreenAdapter {
     public GameScreen(Spheral game) {
         this.game = game;
 
-        loadAssets();
-
         model = GameModel.getInstance();
+        loadNextMap();
 
         camera = createCamera();
 
@@ -129,6 +127,16 @@ public class GameScreen extends ScreenAdapter {
         skin = new Skin(Gdx.files.internal("uiskin.json"), atlas);
 
         score = 0;
+    }
+
+    private Boolean loadNextMap() {
+        if (currentLevel == game.getNumMaps())
+            return false;
+
+        TiledMap map = game.getAssetManager().get(game.getMap(currentLevel++), TiledMap.class);
+        model.loadMap(map);
+
+        return true;
     }
 
     /**
@@ -163,6 +171,7 @@ public class GameScreen extends ScreenAdapter {
 
         initHUD(hud);
         stage.addActor(hud);
+
     }
 
     @Override
@@ -237,24 +246,6 @@ public class GameScreen extends ScreenAdapter {
         camera.position.set(GameModel.getInstance().getBall().getX() / PIXEL_TO_METER, GameModel.getInstance().getBall().getY() / PIXEL_TO_METER, 0);
         camera.update();
 
-    }
-
-    /**
-     * Loads the assets needed by this screen.
-     */
-    private void loadAssets() {
-
-        AssetManager assetManager = game.getAssetManager();
-
-        // Load ball skins
-        for (int i = 0; i < 6; i++)
-            assetManager.load( "skins/skin0" + i + ".png" , Texture.class);
-
-        // Load levels
-        assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-        assetManager.load("SampleMap.tmx", TiledMap.class);
-
-        assetManager.finishLoading();
     }
 
     private OrthographicCamera createCamera() {

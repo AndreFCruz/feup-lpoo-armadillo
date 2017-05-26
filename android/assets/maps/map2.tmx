@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="75">
  <tileset firstgid="1" name="PlatformerSet" tilewidth="64" tileheight="64" tilecount="64" columns="8">
-  <image source="Tiles_64x64.png" trans="000000" width="512" height="512"/>
+  <image source="../tilesets/Tiles_64x64.png" trans="000000" width="512" height="512"/>
  </tileset>
  <tileset firstgid="65" name="tilesheet-water" tilewidth="64" tileheight="64" tilecount="9" columns="3">
-  <image source="tilesheet-water.png" trans="000000" width="192" height="224"/>
+  <image source="../tilesets/tilesheet-water.png" trans="000000" width="192" height="224"/>
  </tileset>
  <layer name="water_tiles" width="60" height="30">
   <data encoding="base64" compression="zlib">

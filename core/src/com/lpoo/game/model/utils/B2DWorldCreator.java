@@ -1,6 +1,8 @@
 package com.lpoo.game.model.utils;
 
 import com.badlogic.gdx.maps.Map;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -21,7 +23,9 @@ import com.lpoo.game.model.entities.ShapeModel;
 import com.lpoo.game.model.entities.WaterModel;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import sun.security.provider.SHA;
 
@@ -33,40 +37,85 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
  * A class to load TiledMap layers and correctly create the associated physics world.
  */
 public class B2DWorldCreator {
+
+    private abstract class LayerLoader <T extends MapObject> {
+        private String name;
+        private World world;
+        private Class<T> type;
+
+        LayerLoader(String name, World world, Class<T> type) {
+            this.name = name;
+            this.world = world;
+            this.type = type;
+        }
+
+        Boolean load() {
+            MapLayer layer = map.getLayers().get(name);
+            if (layer == null)
+                return false;
+
+            for (T object : layer.getObjects().getByType(type)) {
+                loadObject(world, object);
+            }
+
+            return true;
+        }
+
+        protected abstract void loadObject(World world, MapObject object);
+    }
+
     private World world;
     private Map map;
     private Array<WaterModel> fluids = new Array<WaterModel>();
     private Array<ShapeModel> shapeModels = new Array<ShapeModel>();
     private BallModel ball;
-
     private Vector2 endPos;
+
+    private Set<LayerLoader> layerLoaders = new HashSet<LayerLoader>();
 
     public B2DWorldCreator(World world, Map map) {
         this.world = world;
         this.map = map;
+
+        addLayerLoaders();
+    }
+
+    private void addLayerLoaders() {
+        layerLoaders.add(new LayerLoader<RectangleMapObject>("ground", world, RectangleMapObject.class) {
+            @Override
+            protected void loadObject(World world, MapObject object) {
+                B2DFactory.makeRectGround(world, (RectangleMapObject) object);
+
+            }
+        });
+        layerLoaders.add(new LayerLoader<PolygonMapObject>("ground", world, PolygonMapObject.class) {
+            @Override
+            protected void loadObject(World world, MapObject object) {
+                B2DFactory.makePolygonGround(world, (PolygonMapObject) object);
+            }
+        });
+        layerLoaders.add(new LayerLoader<RectangleMapObject>("water", world, RectangleMapObject.class) {
+            @Override
+            protected void loadObject(World world, MapObject object) {
+                fluids.add(B2DFactory.makeWater(world, (RectangleMapObject) object));
+            }
+        });
+        layerLoaders.add(new LayerLoader<RectangleMapObject>("platforms", world, RectangleMapObject.class) {
+            @Override
+            protected void loadObject(World world, MapObject object) {
+                shapeModels.add(B2DFactory.makePlatform(world, (RectangleMapObject) object));
+            }
+        });
+    }
+
+    private void loadLayers() {
+        for (LayerLoader loader : layerLoaders)
+            loader.load();
     }
 
     public void generateWorld() {
 
-        // Create (Rectangle) Ground Bodies/Fixtures
-        for (MapObject object : map.getLayers().get("ground").getObjects().getByType(RectangleMapObject.class)) {
-            B2DFactory.makeRectGround(world, (RectangleMapObject) object);
-        }
-
-        // Create (Polygon) Ground Bodies/Fixtures
-        for (MapObject object : map.getLayers().get("ground").getObjects().getByType(PolygonMapObject.class)) {
-            B2DFactory.makePolygonGround(world, (PolygonMapObject) object);
-        }
-
-        // Create Water
-        for (MapObject object : map.getLayers().get("water").getObjects().getByType(RectangleMapObject.class)) {
-            fluids.add(B2DFactory.makeWater(world, (RectangleMapObject) object));
-        }
-
-        // Create Platforms
-        for (MapObject object : map.getLayers().get("platforms").getObjects().getByType(RectangleMapObject.class)) {
-            shapeModels.add(B2DFactory.makePlatform(world, (RectangleMapObject) object));
-        }
+        loadLayers();
 
         // Get Ball start pos
         MapObject startPosObj = map.getLayers().get("start_pos").getObjects().get(0);
@@ -81,6 +130,7 @@ public class B2DWorldCreator {
                 (endPosRect.getY() + endPosRect.getHeight() / 2) * PIXEL_TO_METER);
 
     }
+
     public Vector2 getEndPos() {
         return endPos;
     }

@@ -45,34 +45,11 @@ public class GameModel implements Disposable {
 
     private Level level;
 
-    private int currentLevel;
-
-    private AssetManager assetManager;
-
-    private static final Map<Integer, String> levelNames = new HashMap<Integer, String>();
-
-    static {
-        levelNames.put(0, "SampleMap.tmx");
-        /*
-        levelNames.put(1, "level01.tmx");
-        levelNames.put(2, "level02.tmx");
-        */
-    }
-
     private GameModel() {
-        assetManager = ((Spheral) Gdx.app.getApplicationListener()).getAssetManager();
-
-        currentLevel = 0;
         currentState = START;
-
-        loadNextLevel();
     }
 
-    private void loadNextLevel() {
-        if (currentLevel == levelNames.size())
-            currentLevel = 0;
-
-        TiledMap map = assetManager.get(levelNames.get(currentLevel++));
+    public void loadMap(TiledMap map) {
         level = new Level(map);
     }
 
@@ -80,10 +57,7 @@ public class GameModel implements Disposable {
         if (currentState == PAUSED)
             return;
 
-        // TODO change this to react to losses
-        if (! level.update(delta)) {
-            loadNextLevel();
-        }
+        level.update(delta);
     }
 
     public World getWorld() {

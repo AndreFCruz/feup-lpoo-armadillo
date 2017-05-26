@@ -69,7 +69,7 @@ public class CustomizeMenuScreen extends MenuScreen {
     CustomizeMenuScreen(final Spheral game) {
         super(game);
     }
-
+/*
     @Override
     public void show() {
         super.show();
@@ -112,7 +112,7 @@ public class CustomizeMenuScreen extends MenuScreen {
         skins.add(imageSix).pad(IMAGE_EDGE);
         
     }
-
+*/
      /**
      * Function used to create the Skins' Buttons and Labels and associate them to a given table, organized.
      * It also adds Listeners to the Skins' Buttons.

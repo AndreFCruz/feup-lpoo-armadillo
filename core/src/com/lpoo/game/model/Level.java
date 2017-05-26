@@ -82,7 +82,7 @@ public class Level implements Disposable {
         Vector2 diff = new Vector2(endPos);
         diff.sub(ball.getX(), ball.getY());
 
-        System.err.println("Distance to end: " + diff.len());
+        //System.err.println("Distance to end: " + diff.len());
 
         return diff.len() < BallModel.radius;
     }
