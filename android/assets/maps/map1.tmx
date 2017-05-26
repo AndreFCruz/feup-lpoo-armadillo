@@ -39,13 +39,44 @@
   </object>
  </objectgroup>
  <objectgroup name="boxes">
-  <object id="10" x="1024" y="320" width="64" height="64"/>
-  <object id="11" x="1856" y="448" width="64" height="64"/>
-  <object id="12" x="1920" y="448" width="64" height="64"/>
-  <object id="13" x="1984" y="448" width="64" height="64"/>
-  <object id="14" x="1856" y="384" width="64" height="64"/>
-  <object id="15" x="1920" y="384" width="64" height="64"/>
-  <object id="16" x="1984" y="384" width="64" height="64"/>
+  <properties>
+   <property name="density" type="float" value="0.8"/>
+  </properties>
+  <object id="10" x="1024" y="320" width="64" height="64">
+   <properties>
+    <property name="density" type="float" value="0.8"/>
+   </properties>
+  </object>
+  <object id="11" x="1856" y="448" width="64" height="64">
+   <properties>
+    <property name="density" type="float" value="0.8"/>
+   </properties>
+  </object>
+  <object id="12" x="1920" y="448" width="64" height="64">
+   <properties>
+    <property name="density" type="float" value="0.8"/>
+   </properties>
+  </object>
+  <object id="13" x="1984" y="448" width="64" height="64">
+   <properties>
+    <property name="density" type="float" value="0.8"/>
+   </properties>
+  </object>
+  <object id="14" x="1856" y="384" width="64" height="64">
+   <properties>
+    <property name="density" type="float" value="0.8"/>
+   </properties>
+  </object>
+  <object id="15" x="1920" y="384" width="64" height="64">
+   <properties>
+    <property name="density" type="float" value="0.8"/>
+   </properties>
+  </object>
+  <object id="16" x="1984" y="384" width="64" height="64">
+   <properties>
+    <property name="density" type="float" value="0.8"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="start_pos">
   <object id="19" x="329.716" y="419.449" width="41.7362" height="37.5626"/>

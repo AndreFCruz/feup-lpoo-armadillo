@@ -61,6 +61,7 @@ public class Level implements Disposable {
         ball = worldCreator.getBall();
 
         entityModels.add(ball);
+        entityModels.addAll(worldCreator.getEntityModels());
         shapeModels.addAll(worldCreator.getShapeModels());
     }
 

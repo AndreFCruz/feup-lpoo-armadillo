@@ -20,7 +20,7 @@ public class BallModel extends EntityModel {
     private static final float ANGULAR_DAMP = 2f;
     private static final float LINEAR_DAMP = 0.1f;
 
-    private static final float radius = 32 * PIXEL_TO_METER;
+    public static final float radius = 32 * PIXEL_TO_METER;
 
     private float density = .5f;
     private float friction = 40f;
