@@ -10,11 +10,10 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.lpoo.game.model.controllers.BuoyancyController;
+import com.lpoo.game.model.entities.BoxModel;
 import com.lpoo.game.model.entities.PlatformModel;
 import com.lpoo.game.model.entities.WaterModel;
 
-import static com.lpoo.game.model.entities.EntityModel.FLUID_BIT;
 import static com.lpoo.game.model.entities.EntityModel.GROUND_BIT;
 import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 
@@ -25,7 +24,7 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 public class B2DFactory {
 
     static PlatformModel makePlatform(World world, RectangleMapObject object) {
-        return new PlatformModel(world, object.getRectangle());
+        return new PlatformModel(world, object);
     }
 
     static WaterModel makeWater(World world, RectangleMapObject object) {
@@ -76,5 +75,9 @@ public class B2DFactory {
         body.createFixture(fdef);
 
         return body;
+    }
+
+    static BoxModel makeBox(World world, RectangleMapObject object) {
+        return new BoxModel(world, object);
     }
 }

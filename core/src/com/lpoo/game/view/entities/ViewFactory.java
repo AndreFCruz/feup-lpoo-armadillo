@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.lpoo.game.model.entities.EntityModel.ModelType.BALL;
+import static com.lpoo.game.model.entities.EntityModel.ModelType.BOX;
 import static com.lpoo.game.model.entities.ShapeModel.ModelType.PLATFORM;
 
 /**
@@ -24,7 +25,7 @@ public class ViewFactory {
     public static EntityView makeView(Spheral game, EntityModel model) {
         if (!entitiesCache.containsKey(model.getType())) {
             if (model.getType() == BALL) entitiesCache.put(model.getType(), new BallView(game));
-
+            if (model.getType() == BOX) entitiesCache.put(model.getType(), new BoxView(game));
         }
 
         return entitiesCache.get(model.getType());

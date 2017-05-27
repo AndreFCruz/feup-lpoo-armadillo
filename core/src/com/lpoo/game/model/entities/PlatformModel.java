@@ -1,8 +1,7 @@
 package com.lpoo.game.model.entities;
 
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Shape2D;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -17,8 +16,12 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 
 public class PlatformModel extends ShapeModel {
 
-    public PlatformModel(World world, Rectangle rect) {
-        super(ModelType.PLATFORM, rect);
+    private static final float DEFAULT_DENSITY = 0.6f;
+
+    public PlatformModel(World world, RectangleMapObject object) {
+        super(ModelType.PLATFORM, object.getRectangle());
+
+        Rectangle rect = object.getRectangle();
 
         // Body and Fixture variables
         BodyDef bdef = new BodyDef();
@@ -34,9 +37,16 @@ public class PlatformModel extends ShapeModel {
         fdef.shape = shape;
         fdef.filter.categoryBits = GROUND_BIT;
         fdef.isSensor = false;
-        fdef.density = 0.5f;
         fdef.friction = 0.1f;
         fdef.restitution = 0f;
+
+        // Fetch density from properties
+        Float property = object.getProperties().get("density", float.class);
+        if (property != null)
+            fdef.density = property;
+        else
+            fdef.density = DEFAULT_DENSITY;
+
         body.createFixture(fdef);
     }
 }

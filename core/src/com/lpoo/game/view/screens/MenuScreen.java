@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.lpoo.game.Spheral;
 
+// TODO: APAGAR TODOS OS PIXELS TO METERS -- É PARVO, causa-me comichão
 /**
  * Abstract Class used to represent all Views that are Menus.
  */

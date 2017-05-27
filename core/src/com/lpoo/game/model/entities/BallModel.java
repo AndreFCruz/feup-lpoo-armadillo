@@ -2,12 +2,8 @@ package com.lpoo.game.model.entities;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 
@@ -17,23 +13,22 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 public class BallModel extends EntityModel {
     public enum State {LANDED, FLYING, DUNKING}
 
-    private static final float ANGULAR_DAMP = 2f;
+    private static final float ANGULAR_DAMP = 5f;
     private static final float LINEAR_DAMP = 0.1f;
 
-    public static float radius = 32 * PIXEL_TO_METER;
-    private static float density = .5f;
-    private static float friction = 40f;
-    private static float restitution = 0.5f;
+    public static final float radius = 32 * PIXEL_TO_METER;
+
+    private float density = .5f;
+    private float friction = 40f;
+    private float restitution = 0.5f;
 
     private State state = State.LANDED;
 
-    private float angular_accel = density * 12000f;
-    private float jump_force = density * 50f;
+    private float angular_accel = density * 20000f;
+    private float jump_force = density * 60f;
 
     public BallModel(World world, Vector2 pos) {
         super(world, pos, ModelType.BALL, ANGULAR_DAMP, LINEAR_DAMP);
-
-        this.body.setUserData(this);    // Necessary ? or downcast works with EntityModel's pointer?
 
         // Create Fixture's Shape
         Shape circle = new CircleShape();
@@ -53,7 +48,7 @@ public class BallModel extends EntityModel {
                 this.state = State.FLYING;
                 break;
             case FLYING:
-                this.body.applyLinearImpulse(new Vector2(0, -3 * jump_force), body.getWorldCenter(), true);
+                this.body.applyLinearImpulse(new Vector2(0, -1.5f * jump_force), body.getWorldCenter(), true);
                 this.state = State.DUNKING;
                 break;
             case DUNKING:

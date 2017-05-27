@@ -27,19 +27,16 @@ public class GameController implements InputHandler {
     @Override
     public void handleInput(float delta) {
         pollTouch(delta);
-        pollKeys(delta);
 
         if (accelerometerAvailable)
-            pollAccelerometer();
+            pollAccelerometer(delta);
+        else
+            pollKeys(delta);
     }
 
     private void pollTouch(float delta) {
         if (Gdx.input.justTouched()) {
-            System.out.println("Just touched: " + Gdx.input.getX() + ", " + Gdx.input.getY());
-
-            Vector3 vec = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camera.unproject(vec);
-            System.out.println("World coords: " + vec.x + ", " + vec.y);
+            model.getBall().jump();
         }
     }
 
@@ -57,8 +54,22 @@ public class GameController implements InputHandler {
         }
     }
 
-    private void pollAccelerometer() {
+    int debugCount = 0;
 
+    private void pollAccelerometer(float delta) {
+        float x = Gdx.input.getAccelerometerX();
+        float y = Gdx.input.getAccelerometerY();
+        float z = Gdx.input.getAccelerometerZ();
+
+        float roll = (float) Math.atan2(y, z) * 180 / ((float) Math.PI);
+        //float pitch = (float) Math.atan2(-x, Math.sqrt(y*y + z*z)) * 180 / ((float) Math.PI);
+
+        if (debugCount++ % 100 == 0) {
+            Gdx.app.log("Accelerometer", x + ", " + y + ", " + z);
+            //Gdx.app.log("Roll / Pitch", roll + " / " + pitch);
+        }
+
+        model.getBall().rotate(delta * roll / -45);
     }
 
 }

@@ -14,7 +14,7 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
  * An abstract model representing an entity belonging to a game model.
  */
 public abstract class EntityModel {
-    public enum ModelType {BALL}
+    public enum ModelType {BALL, BOX}
 
     // Constants for collision mask
     public final static short GROUND_BIT = 0x01;

@@ -1,22 +1,17 @@
 package com.lpoo.game.model;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
-import com.lpoo.game.Spheral;
 import com.lpoo.game.model.entities.BallModel;
 import com.lpoo.game.model.entities.EntityModel;
 import com.lpoo.game.model.entities.ShapeModel;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static com.lpoo.game.model.GameModel.ModelState.LIVE;
+import static com.lpoo.game.model.GameModel.ModelState.LOST;
 import static com.lpoo.game.model.GameModel.ModelState.PAUSED;
-import static com.lpoo.game.model.GameModel.ModelState.START;
+import static com.lpoo.game.model.GameModel.ModelState.WON;
 
 
 /**
@@ -36,7 +31,7 @@ public class GameModel implements Disposable {
     /**
      * Possible Game States the Model may be in.
      */
-    public enum ModelState {PAUSED, LIVE, START, END};
+    public enum ModelState {PAUSED, LIVE, WON, LOST};
 
     /**
      * Current Model State the game is in.
@@ -45,45 +40,19 @@ public class GameModel implements Disposable {
 
     private Level level;
 
-    private int currentLevel;
+    private GameModel() {}
 
-    private AssetManager assetManager;
-
-    private static final Map<Integer, String> levelNames = new HashMap<Integer, String>();
-
-    static {
-        levelNames.put(0, "SampleMap.tmx");
-        /*
-        levelNames.put(1, "level01.tmx");
-        levelNames.put(2, "level02.tmx");
-        */
-    }
-
-    private GameModel() {
-        assetManager = ((Spheral) Gdx.app.getApplicationListener()).getAssetManager();
-
-        currentLevel = 0;
-        currentState = START;
-
-        loadNextLevel();
-    }
-
-    private void loadNextLevel() {
-        if (currentLevel == levelNames.size())
-            currentLevel = 0;
-
-        TiledMap map = assetManager.get(levelNames.get(currentLevel++));
+    public void loadMap(TiledMap map) {
         level = new Level(map);
     }
 
-    public void update(float delta) {
+    public ModelState update(float delta) {
         if (currentState == PAUSED)
-            return;
+            return PAUSED;
 
-        // TODO change this to react to losses
-        if (! level.update(delta)) {
-            loadNextLevel();
-        }
+        // TODO
+        // GameScreen must be able to load next level and restart the level.
+        return level.update(delta);
     }
 
     public World getWorld() {
@@ -102,12 +71,18 @@ public class GameModel implements Disposable {
         return level.getEntityModels();
     }
 
+    /**
+     * Wraps the getMap method from the Level class.
+     */
     public TiledMap getMap() {
         return level.getMap();
     }
 
-    public ModelState getCurrentState() {
-        return currentState;
+    /**
+     * Wraps the startLevel method from the Level class.
+     */
+    public void startLevel() {
+        level.startLevel();
     }
 
     // TODO Pause mechanism needs improvement
