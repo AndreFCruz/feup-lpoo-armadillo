@@ -34,8 +34,6 @@ public class BallModel extends EntityModel {
     public BallModel(World world, Vector2 pos) {
         super(world, pos, ModelType.BALL, ANGULAR_DAMP, LINEAR_DAMP);
 
-        //this.body.setUserData(this);    // Necessary ? or downcast works with EntityModel's pointer?
-
         // Create Fixture's Shape
         Shape circle = new CircleShape();
         circle.setRadius(radius);

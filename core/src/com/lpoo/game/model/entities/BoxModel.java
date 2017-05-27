@@ -17,15 +17,15 @@ public class BoxModel extends EntityModel {
     private static final float FRICTION = 0.5f;
     private static final float RESTITUTION = 0.2f;
 
-    private static final float EDGE_SIZE = 64 * PIXEL_TO_METER;
-
-    private float density;
+    private float density = 0.5f;
 
     public BoxModel(World world, RectangleMapObject object) {
-        super(world, object.getRectangle().getPosition(new Vector2()), ModelType.BOX, ANGULAR_DAMP, LINEAR_DAMP);
+        super(world, object.getRectangle().getCenter(new Vector2()).scl(PIXEL_TO_METER), ModelType.BOX, ANGULAR_DAMP, LINEAR_DAMP);
 
         // Fetch density from properties
-        density = object.getProperties().get("density", float.class);
+        Float property = object.getProperties().get("density", float.class);
+        if (property != null)
+            density = property;
 
         // Create Fixture's Shape
         Shape shape = createPolygonShape(new float[] {
