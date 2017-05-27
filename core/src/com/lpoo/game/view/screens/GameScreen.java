@@ -101,8 +101,16 @@ public class GameScreen extends ScreenAdapter {
     /**
      * Represents the User's score in the current Level.
      */
-    private int score;
+    private float score;
 
+    /**
+     * Represents the last displayed score's value. Used for performance efficiency reasons.
+     */
+    private int lastScore;
+
+    /**
+     * Integer that saves the value of the current Level (Level 0, Level 1, ...).
+     */
     private int currentLevel;
 
     /**
@@ -121,6 +129,8 @@ public class GameScreen extends ScreenAdapter {
 
     protected Skin skin;
     protected TextureAtlas atlas;
+
+    private Label scoreText;
 
     public GameScreen(Spheral game) {
         this.game = game;
@@ -143,7 +153,7 @@ public class GameScreen extends ScreenAdapter {
         atlas = new TextureAtlas("uiskin.atlas");
         skin = new Skin(Gdx.files.internal("uiskin.json"), atlas);
 
-        score = 150;
+        score = 0;
     }
 
     private Boolean loadNextMap() {
@@ -169,8 +179,8 @@ public class GameScreen extends ScreenAdapter {
 
         Button pauseButton = new Button (new TextureRegionDrawable(new TextureRegion(new Texture("pause.png"))));
 
-        Label points = new Label (Integer.toString(score), skin);
-        points.setFontScale(HUD_VIEWPORT_WIDTH / 250,HUD_VIEWPORT_WIDTH / 250); //TODO: Hardcoded, need to change
+        scoreText = new Label ("0:00", skin);
+        scoreText.setFontScale(HUD_VIEWPORT_WIDTH / 250,HUD_VIEWPORT_WIDTH / 250); //TODO: Hardcoded, need to change
 
         pauseButton.addListener(new ClickListener() {
             @Override
@@ -180,7 +190,7 @@ public class GameScreen extends ScreenAdapter {
         });
             //TODO: Hardcoded values, need to create macros for this. Hardcoded till perfection
         table.top();
-        table.add(points).size(HUD_VIEWPORT_WIDTH /15, HUD_VIEWPORT_WIDTH / 15).expandX().left().fill().padLeft(HUD_VIEWPORT_WIDTH / 20).padTop(HUD_VIEWPORT_HEIGHT/ 25);
+        table.add(scoreText).size(HUD_VIEWPORT_WIDTH /15, HUD_VIEWPORT_WIDTH / 15).expandX().left().fill().padLeft(HUD_VIEWPORT_WIDTH / 20).padTop(HUD_VIEWPORT_HEIGHT/ 25);
         table.add(pauseButton).size(HUD_VIEWPORT_WIDTH / 15, HUD_VIEWPORT_WIDTH /15).fill().padRight(HUD_VIEWPORT_WIDTH / 20).padTop(HUD_VIEWPORT_HEIGHT/ 25);
     }
 
@@ -243,11 +253,27 @@ public class GameScreen extends ScreenAdapter {
         pauseMenu.addActor(pauseTable);
     }
 
+    /**
+     * Function responsible for updating the current score
+     *
+     * @param delta
+     *          Time elapsed since last update.
+     */
+    private void updateScore(float delta) {
+        score += delta;
+
+        int new_score = (int) score / 1;
+
+        //String formation for Label
+        if (new_score > lastScore)
+            scoreText.setText(Integer.toString(new_score / 60) + ":" + ((new_score % 60) > 9 ? "" : "0") + Integer.toString(new_score % 60));
+    }
+
     @Override
     public void render(float delta) {
         controller.handleInput(delta);
 
-        //scoreUpdate(delta);
+        updateScore(delta);
 
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -278,9 +304,11 @@ public class GameScreen extends ScreenAdapter {
         switch (model.update(delta)) {
             case LOST:
                 //Game Over Animation or sth
+                score = 0;
                 model.startLevel();
                 break;
             case WON:
+                score = 0;
                 loadNextMap();
                 break;
             case PAUSED:
