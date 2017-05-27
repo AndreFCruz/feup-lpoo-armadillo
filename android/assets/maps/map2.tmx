@@ -38,32 +38,32 @@
  <objectgroup name="platforms">
   <object id="66" x="1619.27" y="628.509" width="92.3746" height="41.6591">
    <properties>
-    <property name="density" type="float" value="1.5"/>
+    <property name="density" type="float" value="0.4"/>
    </properties>
   </object>
   <object id="67" x="1427.28" y="619.453" width="123.166" height="39.8479">
    <properties>
-    <property name="density" type="float" value="1.5"/>
+    <property name="density" type="float" value="0.4"/>
    </properties>
   </object>
   <object id="68" x="1329.47" y="626.698" width="38.0366" height="43.4704">
    <properties>
-    <property name="density" type="float" value="1.5"/>
+    <property name="density" type="float" value="0.4"/>
    </properties>
   </object>
   <object id="70" x="1305.92" y="1378.37" width="208.296" height="63.3943">
    <properties>
-    <property name="density" type="float" value="1.1"/>
+    <property name="density" type="float" value="0.8"/>
    </properties>
   </object>
   <object id="73" x="1698.97" y="1385.62" width="202.862" height="57.9605">
    <properties>
-    <property name="density" type="float" value="1.1"/>
+    <property name="density" type="float" value="0.5"/>
    </properties>
   </object>
   <object id="74" x="2048.54" y="1391.05" width="143.09" height="61.583">
    <properties>
-    <property name="density" type="float" value="1.1"/>
+    <property name="density" type="float" value="0.8"/>
    </properties>
   </object>
  </objectgroup>
