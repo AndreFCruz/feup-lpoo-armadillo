@@ -196,8 +196,28 @@ public class GameScreen extends ScreenAdapter {
         TextButton restartButton = new TextButton("Restart", skin);
         TextButton exitButton = new TextButton("Exit", skin);
 
-        //table.setSize(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
-        //table.center().pad(HUD_VIEWPORT_WIDTH / 5);
+        //Installing Listeners
+        resumeButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                model.togglePause();
+            }
+        });
+        restartButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                model.togglePause();
+                model.startLevel();
+            }
+        });
+        exitButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                model.togglePause();
+                game.setScreen(new LevelMenuScreen(game));
+            }
+        });
+
         table.add(resumeButton).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8).padBottom(HUD_VIEWPORT_HEIGHT/ 14).row();
         table.add(restartButton).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8).padBottom(HUD_VIEWPORT_HEIGHT/ 14).row();
         table.add(exitButton).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8);
@@ -227,18 +247,6 @@ public class GameScreen extends ScreenAdapter {
     public void render(float delta) {
         controller.handleInput(delta);
 
-        // TODO pause/death pop-up menu
-        switch (model.update(delta)) {
-            case LOST:
-                model.startLevel();
-                break;
-            case WON:
-                loadNextMap();
-                break;
-            default:
-                break;
-        }
-
         //scoreUpdate(delta);
 
         Gdx.gl.glClearColor(1,1,1,1);
@@ -266,13 +274,26 @@ public class GameScreen extends ScreenAdapter {
             debugRenderer.render(model.getWorld(), debugCamera);
         }
 
-        hud.act(Gdx.graphics.getDeltaTime());
-        hud.draw();
-        Gdx.input.setInputProcessor(hud);
-
-        /*pauseMenu.act(Gdx.graphics.getDeltaTime());
-        pauseMenu.draw();
-        Gdx.input.setInputProcessor(pauseMenu);*/
+        // TODO pause/death pop-up menu
+        switch (model.update(delta)) {
+            case LOST:
+                //Game Over Animation or sth
+                model.startLevel();
+                break;
+            case WON:
+                loadNextMap();
+                break;
+            case PAUSED:
+                pauseMenu.act(Gdx.graphics.getDeltaTime());
+                pauseMenu.draw();
+                Gdx.input.setInputProcessor(pauseMenu);
+                break;
+            default:
+                hud.act(Gdx.graphics.getDeltaTime());
+                hud.draw();
+                Gdx.input.setInputProcessor(hud);
+                break;
+        }
     }
 
     private void drawEntities() {

@@ -91,8 +91,6 @@ public class GameModel implements Disposable {
             currentState = LIVE;
         else
             currentState = PAUSED;
-
-        System.out.print("Im being paused.\n");
     }
 
     @Override
