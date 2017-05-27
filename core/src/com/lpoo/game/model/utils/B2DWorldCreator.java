@@ -2,35 +2,21 @@ package com.lpoo.game.model.utils;
 
 import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import com.lpoo.game.model.controllers.BuoyancyController;
 import com.lpoo.game.model.entities.BallModel;
 import com.lpoo.game.model.entities.EntityModel;
-import com.lpoo.game.model.entities.PlatformModel;
 import com.lpoo.game.model.entities.ShapeModel;
 import com.lpoo.game.model.entities.WaterModel;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import sun.security.provider.SHA;
-
-import static com.lpoo.game.model.entities.EntityModel.FLUID_BIT;
-import static com.lpoo.game.model.entities.EntityModel.GROUND_BIT;
 import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 
 /**

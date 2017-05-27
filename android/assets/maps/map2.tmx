@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="75">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="77">
  <tileset firstgid="1" name="PlatformerSet" tilewidth="64" tileheight="64" tilecount="64" columns="8">
   <image source="../tilesets/Tiles_64x64.png" trans="000000" width="512" height="512"/>
  </tileset>
@@ -18,9 +18,13 @@
  </layer>
  <layer name="map" width="60" height="30">
   <data encoding="base64" compression="zlib">
-   eJztl9tKAzEQhqceKioiosJaW0EvPIBFrSjeKH3/pzKDGToNm83MZtKtkA9+tofdZP5skpkAVCqVio57pyenZ6eHgWOpVCr9ORs6gATv/jrLaGMUaJvZhVWc10w7iucunJag93vgNWtRKW69puwz6jjx3J7TfkTEh9MnrI8dPrfw9y0FbVhzFwj7svKL90yDtvC3o4TOcwwlII9cln5Lx68lHNscv2OnRtgv1WSP+pBNOYH1dazRuEd/c3+N+ce988pp4vTSo30JqfVlue7mif95HiiZ76TzMhfyi3v5ZEN9bhrMr5Sr6J3hPn4D6bz/n+D5GP0tYJWLSV+DRWcH+UQ/6PMQ/vZFyoW0/rlXXLe83rOkVD3HfZJ4nmsgvk9Y1R983dDY8b2Pvl8a9NFWi6TyOicnR1MMP05vkVhwrp366zfoPXf57OM3BZ5TwlzFzzAj3yf6DetmqWLtY72BY/nqxT1K56b2fXaNa64k9ZXmfVrUkyX9Sny31VyW83eb/Jb0FUMTd3gm6vqfK/ZOhzjzSev6sIZpWhRDet8m+AX61yBW
+   eJztl9tKAzEQhqceCioiosJaW0EvPICl2lLxRun7P5UZzNBp2GwmyWS3Qj742R52k/mzSWYCUKlUKnE8Gb0avRk9DxxLpVJJ53LoAAKs7HWW0cbI0T5zCNs475gOIp67NtpAut9Zi0rxYDVln1FngeeOjI49ItZGn7A7dvjc0t63EbShzaMj7EvLL94zddrC304DusoxFIA8cmn6LR1/LO7Y5vgdGzXCfqkme4kPWZVz2F3HMRon9De3V59/3DtvjSZGi4T2JYTWl+a6mwf+53mgZL6TzstcyC/u5ZOe+uwbzK+Uq+id4T5+D+G8/5/g+Rj9LWGbi0lfg0WnB/lEP+jzBP72RcqFtP65V1y3vN7TpFQ9x32SeJ5rwL9PaNUffN3Q2PG9j77fKPTRVouE8jonJ0dTDD9GH55YcK5d2Os3xHvu8pniNwSeU9xcxc8wI9sn+nXrZql87WO9gWP5bsU9Sudm7PvsGtdcSeqrmPepUU+W9Cvx3VZzac7fffJb0pePmLjdM1HX/1y+dzrEmU9a17s1TNMiH9L7+uAX/gQgSA==
   </data>
  </layer>
+ <objectgroup name="boxes">
+  <object id="75" x="3136" y="640" width="64" height="64"/>
+  <object id="76" x="3072" y="640" width="64" height="64"/>
+ </objectgroup>
  <objectgroup name="end_pos">
   <object id="25" x="832" y="576" width="64" height="64"/>
  </objectgroup>
@@ -32,12 +36,36 @@
   <object id="64" x="1216" y="1408" width="1088" height="128"/>
  </objectgroup>
  <objectgroup name="platforms">
-  <object id="66" x="1619.27" y="628.509" width="92.3746" height="41.6591"/>
-  <object id="67" x="1427.28" y="619.453" width="123.166" height="39.8479"/>
-  <object id="68" x="1329.47" y="626.698" width="38.0366" height="43.4704"/>
-  <object id="70" x="1305.92" y="1378.37" width="208.296" height="63.3943"/>
-  <object id="73" x="1698.97" y="1385.62" width="202.862" height="57.9605"/>
-  <object id="74" x="2048.54" y="1391.05" width="143.09" height="61.583"/>
+  <object id="66" x="1619.27" y="628.509" width="92.3746" height="41.6591">
+   <properties>
+    <property name="density" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="67" x="1427.28" y="619.453" width="123.166" height="39.8479">
+   <properties>
+    <property name="density" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="68" x="1329.47" y="626.698" width="38.0366" height="43.4704">
+   <properties>
+    <property name="density" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="70" x="1305.92" y="1378.37" width="208.296" height="63.3943">
+   <properties>
+    <property name="density" type="float" value="1.1"/>
+   </properties>
+  </object>
+  <object id="73" x="1698.97" y="1385.62" width="202.862" height="57.9605">
+   <properties>
+    <property name="density" type="float" value="1.1"/>
+   </properties>
+  </object>
+  <object id="74" x="2048.54" y="1391.05" width="143.09" height="61.583">
+   <properties>
+    <property name="density" type="float" value="1.1"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="ground">
   <object id="2" x="0" y="1536" width="640" height="384"/>
@@ -57,8 +85,6 @@
    <polygon points="0,0 62.8252,-31.7921 128,0"/>
   </object>
   <object id="16" x="2624" y="704" width="640" height="128"/>
-  <object id="17" x="2816" y="640" width="64" height="64"/>
-  <object id="18" x="2880" y="640" width="64" height="64"/>
   <object id="19" x="3264" y="1280" width="256" height="128"/>
   <object id="20" x="3392" y="1024" width="320" height="64"/>
   <object id="22" x="3392" y="960" width="64" height="64"/>

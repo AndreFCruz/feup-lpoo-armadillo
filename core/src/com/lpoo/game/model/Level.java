@@ -10,8 +10,11 @@ import com.lpoo.game.model.entities.EntityModel;
 import com.lpoo.game.model.entities.ShapeModel;
 import com.lpoo.game.model.entities.WaterModel;
 import com.lpoo.game.model.utils.B2DWorldCreator;
+import com.lpoo.game.model.GameModel.ModelState;
 
-import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
+import static com.lpoo.game.model.GameModel.ModelState.LIVE;
+import static com.lpoo.game.model.GameModel.ModelState.LOST;
+import static com.lpoo.game.model.GameModel.ModelState.WON;
 
 /**
  * Created by andre on 23/05/2017.
@@ -65,18 +68,23 @@ public class Level implements Disposable {
         shapeModels.addAll(worldCreator.getShapeModels());
     }
 
-    public boolean update(float delta) {
+    public ModelState update(float delta) {
         // Step the simulation with a fixed time step of 1/60 of a second
         world.step(1/60f, 6, 2);
 
         for (WaterModel model : fluids)
             model.step();
 
-        return ballInBounds() && !ballReachedEnd();
+        if (! ballInBounds())
+            return LOST;
+        if (ballReachedEnd())
+            return WON;
+
+        return LIVE;
     }
 
     private boolean ballInBounds() {
-        return ball.getY() > 150 * PIXEL_TO_METER;
+        return ball.getY() > 1;
     }
 
     private boolean ballReachedEnd() {

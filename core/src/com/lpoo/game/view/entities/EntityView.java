@@ -2,9 +2,7 @@ package com.lpoo.game.view.entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.lpoo.game.Spheral;
-import com.lpoo.game.model.GameModel;
 import com.lpoo.game.model.entities.EntityModel;
 
 import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;

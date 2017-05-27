@@ -1,10 +1,9 @@
 package com.lpoo.game.model.utils;
 
+import com.badlogic.gdx.math.Vector2;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.badlogic.gdx.math.Polygon;
-import com.badlogic.gdx.math.Vector2;
 
 
 public class PolygonIntersector {

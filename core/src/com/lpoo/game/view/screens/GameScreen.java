@@ -4,17 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -29,14 +24,12 @@ import com.lpoo.game.Spheral;
 import com.lpoo.game.controller.GameController;
 import com.lpoo.game.controller.InputHandler;
 import com.lpoo.game.model.GameModel;
+import com.lpoo.game.model.GameModel.ModelState;
 import com.lpoo.game.model.entities.EntityModel;
 import com.lpoo.game.model.entities.ShapeModel;
 import com.lpoo.game.view.entities.EntityView;
 import com.lpoo.game.view.entities.ShapeView;
 import com.lpoo.game.view.entities.ViewFactory;
-
-import java.awt.geom.RectangularShape;
-import java.util.List;
 
 /**
  * A view representing the game screen. Draws all the other views and
@@ -103,7 +96,7 @@ public class GameScreen extends ScreenAdapter {
 
     private int currentLevel;
 
-    private Viewport viewport;  //TODO: Verify if this is neeeded really
+    private Viewport viewport;  //TODO: Verify if this is really necessary
     protected Skin skin;
     protected TextureAtlas atlas;
 
@@ -117,7 +110,7 @@ public class GameScreen extends ScreenAdapter {
 
         controller = new GameController(camera);
 
-        mapRenderer = new OrthogonalTiledMapRenderer(model.getMap());
+        mapRenderer = new OrthogonalTiledMapRenderer(model.getMap(), game.getBatch());
 
         viewport = new FitViewport(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 
@@ -135,6 +128,9 @@ public class GameScreen extends ScreenAdapter {
 
         TiledMap map = game.getAssetManager().get(game.getMap(currentLevel++), TiledMap.class);
         model.loadMap(map);
+
+        if (mapRenderer != null)
+            mapRenderer.setMap(map);
 
         return true;
     }
@@ -178,13 +174,17 @@ public class GameScreen extends ScreenAdapter {
     public void render(float delta) {
         controller.handleInput(delta);
 
-/*        if (!model.update(delta)) {
-            model.initModel(); // model has state, just read and react here
-            // TODO show death pop-up menu (state in GameScreen?)
-            // -> state in GameModel, paused/dead must be there
-        }*/
-
-        model.update(delta);
+        // TODO pause/death pop-up menu
+        switch (model.update(delta)) {
+            case LOST:
+                model.startLevel();
+                break;
+            case WON:
+                loadNextMap();
+                break;
+            default:
+                break;
+        }
 
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
