@@ -75,10 +75,8 @@ public class MainMenuScreen extends MenuScreen {
 
         //Add buttons to table
         table.bottom();
-        table.add(playButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
-        table.row();
-        table.add(optionsButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
-        table.row();
+        table.add(playButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
+        table.add(optionsButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
         table.add(exitButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
         table.padBottom(BOTTOM_EDGE);
     }

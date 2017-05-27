@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -24,7 +25,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -97,14 +100,32 @@ public class GameScreen extends ScreenAdapter {
     /**
      * A Stage used to represent the HUD, containing the score and the pause Button.
      */
-    private Stage stage;
+    private Stage hud;
+
+    /**
+     * A Stage used to represent the Pause Menu.
+     */
+    private Stage pauseMenu;
 
     /**
      * Represents the User's score in the current Level.
      */
     private static int score;
 
+    /**
+     * The width of the HUD viewport in pixels. The height is
+     * automatically calculated using the screen ratio.
+     */
+    private static final float HUD_VIEWPORT_WIDTH = VIEWPORT_WIDTH / PIXEL_TO_METER;
+
+    /**
+     * The height of the viewport in meters. The height is
+     * automatically calculated using the screen ratio.
+     */
+    private static final float HUD_VIEWPORT_HEIGHT = VIEWPORT_HEIGHT / PIXEL_TO_METER;
+
     private Viewport viewport;  //TODO: Verify if this is neeeded really
+
     protected Skin skin;
     protected TextureAtlas atlas;
 
@@ -121,48 +142,80 @@ public class GameScreen extends ScreenAdapter {
 
         mapRenderer = new OrthogonalTiledMapRenderer(model.getMap());
 
-        viewport = new FitViewport(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+        viewport = new FitViewport(HUD_VIEWPORT_WIDTH, HUD_VIEWPORT_HEIGHT);
 
-        stage = new Stage(viewport, game.getBatch());
+        hud = new Stage(viewport, game.getBatch());
+
+        pauseMenu = new Stage (viewport, game.getBatch());
 
         atlas = new TextureAtlas("uiskin.atlas");
         skin = new Skin(Gdx.files.internal("uiskin.json"), atlas);
 
-        score = 0;
+        score = 150;
     }
 
     /**
-     * Function used to initialize all thhe elements of the HUD and add their Listeners.
+     * Function used to initialize all the elements of the HUD and add their Listeners.
      *
      * @param table
+     *          Table contatining the HUD elements.
      */
     private void initHUD ( Table table) {
 
-        Button pauseButton = new Button (skin);   //TODO: Change to button with image
+        Button pauseButton = new Button (new TextureRegionDrawable(new TextureRegion(new Texture ( "pause.png"))));
 
         Label points = new Label (Integer.toString(score), skin);
-        points.setSize(10,10);
+        points.setFontScale(HUD_VIEWPORT_WIDTH / 250,HUD_VIEWPORT_WIDTH / 250); //TODO: Hardcoded, need to change
 
         pauseButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //TODO: Do sth;
+                model.togglePause();
             }
         });
+            //TODO: Hardcoded values, need to create macros for this. Hardcoded till perfection
+        table.top();
+        table.add(points).size(HUD_VIEWPORT_WIDTH /15, HUD_VIEWPORT_WIDTH / 15).expandX().left().fill().padLeft(HUD_VIEWPORT_WIDTH / 20).padTop(HUD_VIEWPORT_HEIGHT/ 25);
+        table.add(pauseButton).size(HUD_VIEWPORT_WIDTH / 15, HUD_VIEWPORT_WIDTH /15).fill().padRight(HUD_VIEWPORT_WIDTH / 20).padTop(HUD_VIEWPORT_HEIGHT/ 25);
+    }
 
-        //table.right();//.top();
-        //table.add(points);
-        table.add(pauseButton).size(VIEWPORT_WIDTH / 10, VIEWPORT_HEIGHT / 15);//.left().top();
+    /**
+     * Function used to initialize all the elements of the pause Menu  and their Listeners.
+     *
+     * @param table
+     *          Table that contains the Pause Menu elements.
+     */
+    private void initPauseMenu(Table table) {
+        TextButton resumeButton = new TextButton("Resume", skin);
+        //resumeButton.setSize(HUD_VIEWPORT_WIDTH /4, HUD_VIEWPORT_WIDTH / 4);
+        TextButton restartButton = new TextButton("Restart", skin);
+        TextButton exitButton = new TextButton("Exit", skin);
+
+        //table.setSize(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+        //table.center().pad(HUD_VIEWPORT_WIDTH / 5);
+        table.add(resumeButton).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8).padBottom(HUD_VIEWPORT_HEIGHT/ 14).row();
+        table.add(restartButton).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8).padBottom(HUD_VIEWPORT_HEIGHT/ 14).row();
+        table.add(exitButton).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8);
     }
 
     @Override
     public void show () {
 
-        Table hud = new Table();
-        hud.debugAll();
+        //----------HUD-------------
+        Table hudTable = new Table();
+        hudTable.setFillParent(true);
+        hudTable.debugAll();    //TODO: delete
 
-        initHUD(hud);
-        stage.addActor(hud);
+        initHUD(hudTable);
+        hud.addActor(hudTable);
+
+        //-------PAUSE MENU---------
+        Table pauseTable = new Table();
+        pauseTable.setFillParent(true);
+        pauseTable.debugAll();
+
+        initPauseMenu(pauseTable);
+        pauseMenu.addActor(pauseTable);
     }
 
     @Override
@@ -176,6 +229,8 @@ public class GameScreen extends ScreenAdapter {
         }*/
 
         model.update(delta);
+
+        //scoreUpdate(delta);
 
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -202,11 +257,13 @@ public class GameScreen extends ScreenAdapter {
             debugRenderer.render(model.getWorld(), debugCamera);
         }
 
-        stage.act(Gdx.graphics.getDeltaTime());
-        stage.draw();
+        hud.act(Gdx.graphics.getDeltaTime());
+        hud.draw();
+        Gdx.input.setInputProcessor(hud);
 
-        Gdx.input.setInputProcessor(stage);
-
+        pauseMenu.act(Gdx.graphics.getDeltaTime());
+        pauseMenu.draw();
+        //Gdx.input.setInputProcessor(pauseMenu);
     }
 
     private void drawEntities() {
