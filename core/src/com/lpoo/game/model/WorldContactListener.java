@@ -12,6 +12,10 @@ import com.lpoo.game.model.entities.EntityModel;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.lpoo.game.model.entities.EntityModel.BALL_BIT;
+import static com.lpoo.game.model.entities.EntityModel.FLUID_BIT;
+import static com.lpoo.game.model.entities.EntityModel.GROUND_BIT;
+
 /**
  * Created by andre on 04/05/2017.
  */
@@ -26,26 +30,29 @@ public class WorldContactListener implements ContactListener {
     Map<Short, ContactHandler> endContactFunctions = new HashMap<Short, ContactHandler>();
 
     public WorldContactListener() {
-        beginContactFunctions.put(EntityModel.BALL_BIT, new ContactHandler() {
+        beginContactFunctions.put(BALL_BIT, new ContactHandler() {
             @Override
             public void handle(Fixture ball, Fixture fixB) {
                 ballBeginContact(ball, fixB);
             }
         });
-        endContactFunctions.put(EntityModel.BALL_BIT, new ContactHandler() {
+        endContactFunctions.put(BALL_BIT, new ContactHandler() {
             @Override
             public void handle(Fixture ball, Fixture fixB) {
                 ballEndContact(ball, fixB);
             }
         });
 
-        beginContactFunctions.put(EntityModel.FLUID_BIT, new ContactHandler() {
+        beginContactFunctions.put(FLUID_BIT, new ContactHandler() {
             @Override
             public void handle(Fixture fluid, Fixture fixB) {
-                ((BuoyancyController) fluid.getBody().getUserData()).addBody(fixB);
+                if (fixB.getFilterData().categoryBits == BALL_BIT)
+                    GameModel.getInstance().startLevel();
+                else
+                    ((BuoyancyController) fluid.getBody().getUserData()).addBody(fixB);
             }
         });
-        endContactFunctions.put(EntityModel.FLUID_BIT, new ContactHandler() {
+        endContactFunctions.put(FLUID_BIT, new ContactHandler() {
             @Override
             public void handle(Fixture fluid, Fixture fixB) {
                 ((BuoyancyController) fluid.getBody().getUserData()).removeBody(fixB);
@@ -87,7 +94,7 @@ public class WorldContactListener implements ContactListener {
 
     private void ballBeginContact(Fixture ball, Fixture other) {
         switch (other.getFilterData().categoryBits) {
-            case EntityModel.GROUND_BIT:
+            case GROUND_BIT:
 //                ((BallModel) ball.getUserData()).setState(BallModel.State.LANDED);
                 GameModel.getInstance().getBall().setState(BallModel.State.LANDED);
                 break;
@@ -96,7 +103,7 @@ public class WorldContactListener implements ContactListener {
 
     private void ballEndContact(Fixture ball, Fixture other) {
         switch (other.getFilterData().categoryBits) {
-            case EntityModel.GROUND_BIT:
+            case GROUND_BIT:
 //                ((BallModel) ball.getUserData()).setState(BallModel.State.FLYING);
                 GameModel.getInstance().getBall().setState(BallModel.State.FLYING);
                 break;

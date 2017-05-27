@@ -57,19 +57,19 @@ public class GameController implements InputHandler {
     int debugCount = 0;
 
     private void pollAccelerometer(float delta) {
-        float x = Gdx.input.getAccelerometerX();
+//        float x = Gdx.input.getAccelerometerX();
         float y = Gdx.input.getAccelerometerY();
         float z = Gdx.input.getAccelerometerZ();
 
         float roll = (float) Math.atan2(y, z) * 180 / ((float) Math.PI);
         //float pitch = (float) Math.atan2(-x, Math.sqrt(y*y + z*z)) * 180 / ((float) Math.PI);
 
-        if (debugCount++ % 100 == 0) {
-            Gdx.app.log("Accelerometer", x + ", " + y + ", " + z);
-            //Gdx.app.log("Roll / Pitch", roll + " / " + pitch);
-        }
+        if (roll > 45)
+            roll = 45;
+        else if (roll < -45)
+            roll = -45;
 
-        model.getBall().rotate(delta * roll / -45);
+        model.getBall().rotate(delta * (roll / -45));
     }
 
 }

@@ -17,11 +17,6 @@ import java.util.ArrayList;
 public class LevelMenuScreen extends MenuScreen {
 
     /**
-     * Number of existent Levels.
-     */
-    private static final int NUMBER_OF_LEVELS = 13;
-
-    /**
      * Array containing all the buttons used to select Levels.
      */
     private ArrayList<TextButton> levelButtons = new ArrayList<TextButton>();
@@ -47,7 +42,7 @@ public class LevelMenuScreen extends MenuScreen {
     /**
      * Number of Buttons per Line of the Table.
      */
-    private static final int BUTTONS_PER_LINE = 4;
+    private static final int BUTTONS_PER_LINE = 3;
 
     /**
      * Level Menu Screen's Constructor.
@@ -68,7 +63,7 @@ public class LevelMenuScreen extends MenuScreen {
      */
     private void createLevelButtons(Table table) {
 
-        for (int i = 1 ;  i <= NUMBER_OF_LEVELS; ++i) {
+        for (int i = 1 ;  i <= game.getNumMaps()    ; ++i) {
             levelButtons.add(new TextButton(String.valueOf(i), skin));
 
             //Adding to table and setting Layout aspect

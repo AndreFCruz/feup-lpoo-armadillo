@@ -20,11 +20,11 @@ public class BallModel extends EntityModel {
 
     private float density = .5f;
     private float friction = 40f;
-    private float restitution = 0.5f;
+    private float restitution = 0.6f;
 
     private State state = State.LANDED;
 
-    private float angular_accel = density * 20000f;
+    private float angular_accel = density * 22000f;
     private float jump_force = density * 60f;
 
     public BallModel(World world, Vector2 pos) {
