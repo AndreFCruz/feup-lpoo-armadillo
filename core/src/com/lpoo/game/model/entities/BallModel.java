@@ -13,7 +13,7 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 public class BallModel extends EntityModel {
     public enum State {LANDED, FLYING, DUNKING}
 
-    private static final float ANGULAR_DAMP = 2f;
+    private static final float ANGULAR_DAMP = 5f;
     private static final float LINEAR_DAMP = 0.1f;
 
     public static final float radius = 32 * PIXEL_TO_METER;
@@ -24,8 +24,8 @@ public class BallModel extends EntityModel {
 
     private State state = State.LANDED;
 
-    private float angular_accel = density * 12000f;
-    private float jump_force = density * 50f;
+    private float angular_accel = density * 20000f;
+    private float jump_force = density * 60f;
 
     public BallModel(World world, Vector2 pos) {
         super(world, pos, ModelType.BALL, ANGULAR_DAMP, LINEAR_DAMP);
@@ -48,7 +48,7 @@ public class BallModel extends EntityModel {
                 this.state = State.FLYING;
                 break;
             case FLYING:
-                this.body.applyLinearImpulse(new Vector2(0, -3 * jump_force), body.getWorldCenter(), true);
+                this.body.applyLinearImpulse(new Vector2(0, -1.5f * jump_force), body.getWorldCenter(), true);
                 this.state = State.DUNKING;
                 break;
             case DUNKING:
