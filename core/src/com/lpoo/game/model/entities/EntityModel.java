@@ -23,7 +23,7 @@ public abstract class EntityModel {
 
     final private ModelType type;
 
-    final protected Body body;
+    final private Body body;
 
     EntityModel(World world, Vector2 pos, ModelType type) {
         this(world, pos, type, 0f, 0f);

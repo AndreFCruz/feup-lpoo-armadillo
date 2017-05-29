@@ -11,6 +11,8 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.joints.RevoluteJoint;
+import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
 import com.lpoo.game.model.entities.BallModel;
 import com.lpoo.game.model.entities.BoxModel;
 import com.lpoo.game.model.entities.PlatformModel;
@@ -26,7 +28,22 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 public class B2DFactory {
 
     static PlatformModel makePlatform(World world, RectangleMapObject object) {
-        return new PlatformModel(world, object);
+        PlatformModel platform = new PlatformModel(world, object);
+
+        Boolean pivoted = object.getProperties().get("pivoted", boolean.class);
+        if (pivoted != null && pivoted == true) {
+            Rectangle rect = object.getRectangle();
+            RectangleMapObject anchorRect = new RectangleMapObject(
+                    rect.getX(), rect.getY(), 1, 1
+            );
+            Body anchor = makeRectGround(world, anchorRect);
+
+            RevoluteJointDef jointDef = new RevoluteJointDef();
+            jointDef.initialize(anchor, platform.getBody(), platform.getBody().getWorldCenter());
+            world.createJoint(jointDef);
+        }
+
+        return platform;
     }
 
     static WaterModel makeWater(World world, RectangleMapObject object) {

@@ -1,6 +1,7 @@
 package com.lpoo.game.model.entities;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -19,7 +20,7 @@ public class BallModel extends EntityModel {
     public static final float radius = 32 * PIXEL_TO_METER;
 
     private float density = .5f;
-    private float friction = 40f;
+    private float friction = 10f;
     private float restitution = 0.6f;
 
     private State state = State.LANDED;
@@ -38,17 +39,18 @@ public class BallModel extends EntityModel {
     }
 
     public void rotate(float delta) {
-        body.applyTorque(delta * angular_accel, true);
+        getBody().applyTorque(delta * angular_accel, true);
     }
 
     public void jump() {
+        Body body = getBody();
         switch (this.state) {
             case LANDED:
-                this.body.applyLinearImpulse(new Vector2(0, jump_force), body.getWorldCenter(), true);
+                body.applyLinearImpulse(new Vector2(0, jump_force), body.getWorldCenter(), true);
                 this.state = State.FLYING;
                 break;
             case FLYING:
-                this.body.applyLinearImpulse(new Vector2(0, -1.5f * jump_force), body.getWorldCenter(), true);
+                body.applyLinearImpulse(new Vector2(0, -1.5f * jump_force), body.getWorldCenter(), true);
                 this.state = State.DUNKING;
                 break;
             case DUNKING:

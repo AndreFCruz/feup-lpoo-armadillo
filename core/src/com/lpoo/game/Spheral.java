@@ -22,9 +22,9 @@ public class Spheral extends Game {
     private static final Map<Integer, String> gameMaps = new HashMap<Integer, String>();
 
     static {
-        gameMaps.put(0, "maps/map0.tmx");
+        gameMaps.put(0, "maps/map2.tmx");
         gameMaps.put(1, "maps/map1.tmx");
-        gameMaps.put(2, "maps/map2.tmx");
+        gameMaps.put(2, "maps/map0.tmx");
     }
 
     @Override

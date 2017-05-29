@@ -17,9 +17,13 @@ public abstract class ShapeModel {
 
     final private Shape2D shape;
 
-    public ShapeModel(ModelType type, Shape2D shape) {
+    ShapeModel(ModelType type, Shape2D shape) {
         this.type = type;
         this.shape = shape;
+    }
+
+    public Body getBody() {
+        return body;
     }
 
     public ShapeModel.ModelType getType() {
