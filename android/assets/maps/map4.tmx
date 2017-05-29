@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="60" tilewidth="64" tileheight="64" nextobjectid="136">
+ <tileset firstgid="1" name="Tiles_64x64" tilewidth="64" tileheight="64" tilecount="64" columns="8">
+  <image source="../tilesets/Tiles_64x64.png" width="512" height="512"/>
+ </tileset>
+ <objectgroup name="positions">
+  <object id="106" name="start" x="327.617" y="3560.01" width="41.7362" height="37.5626"/>
+  <object id="107" name="end" x="704.364" y="319.515" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="objects">
+  <object id="108" type="box" x="1152" y="3264" width="64" height="64"/>
+  <object id="109" type="box" x="1152" y="3328" width="64" height="64"/>
+  <object id="110" type="box" x="64" y="2496" width="64" height="64"/>
+  <object id="111" type="box" x="64" y="2560" width="64" height="64"/>
+  <object id="112" type="box" x="1152" y="1280" width="64" height="64"/>
+  <object id="113" type="box" x="1152" y="1344" width="64" height="64"/>
+  <object id="114" type="box" x="0" y="1408" width="64" height="64"/>
+  <object id="115" type="box" x="0" y="1472" width="64" height="64"/>
+  <object id="116" type="box" x="1152" y="640" width="64" height="64"/>
+  <object id="117" type="box" x="1152" y="704" width="64" height="64"/>
+  <object id="118" type="box" x="256" y="384" width="64" height="64"/>
+  <object id="119" type="box" x="256" y="448" width="64" height="64"/>
+  <object id="121" type="platform" x="128" y="3136" width="576" height="64">
+   <properties>
+    <property name="density" type="float" value="0.8"/>
+    <property name="pivoted" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="123" type="platform" x="832" y="2944" width="320" height="64">
+   <properties>
+    <property name="density" type="float" value="1.5"/>
+    <property name="pivoted" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="128" type="platform" x="384" y="2752" width="320" height="64">
+   <properties>
+    <property name="density" type="float" value="1.5"/>
+    <property name="pivoted" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="129" type="platform" x="320" y="2432" width="576" height="64">
+   <properties>
+    <property name="density" type="float" value="0.8"/>
+    <property name="pivoted" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="130" type="platform" x="896" y="2176" width="320" height="64">
+   <properties>
+    <property name="density" type="float" value="0.8"/>
+    <property name="pivoted" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="131" type="platform" x="384" y="1024" width="576" height="64">
+   <properties>
+    <property name="density" type="float" value="0.8"/>
+    <property name="pivoted" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="132" type="platform" x="256" y="1792" width="192" height="64">
+   <properties>
+    <property name="density" type="float" value="2"/>
+    <property name="pivoted" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="133" type="platform" x="512" y="1920" width="320" height="64">
+   <properties>
+    <property name="density" type="float" value="1.5"/>
+    <property name="pivoted" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="135" type="platform" x="896" y="2176" width="320" height="64">
+   <properties>
+    <property name="density" type="float" value="1.5"/>
+    <property name="pivoted" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="ground">
+  <object id="19" x="192" y="3648" width="448" height="128"/>
+  <object id="20" x="640" y="3648" width="64" height="64"/>
+  <object id="21" x="128" y="3584" width="64" height="128"/>
+  <object id="25" x="256" y="3648">
+   <polygon points="0,0 -64,0 -64,-64"/>
+  </object>
+  <object id="26" x="832" y="3392" width="384" height="64"/>
+  <object id="28" x="1024" y="3456" width="192" height="64"/>
+  <object id="29" x="1024" y="3520">
+   <polygon points="0,0 0,-64 -64,-64"/>
+  </object>
+  <object id="33" x="64" y="2624" width="192" height="64"/>
+  <object id="38" x="64" y="1728" width="128" height="64"/>
+  <object id="39" x="0" y="1536" width="64" height="192"/>
+  <object id="40" x="448" y="1536" width="320" height="64"/>
+  <object id="41" x="640" y="1600" width="64" height="64"/>
+  <object id="42" x="704" y="1472" width="128" height="64"/>
+  <object id="43" x="960" y="1408" width="128" height="128"/>
+  <object id="44" x="1088" y="1408" width="64" height="64"/>
+  <object id="45" x="1073.33" y="1593.33"/>
+  <object id="48" x="1088" y="1408" width="128" height="64"/>
+  <object id="49" x="192" y="1728">
+   <polygon points="0,0 -128,-64 -128,0"/>
+  </object>
+  <object id="50" x="320" y="1600">
+   <polygon points="0,0 128,-64 128,0"/>
+  </object>
+  <object id="51" x="576" y="1536">
+   <polygon points="0,0 128,-64 128,0"/>
+  </object>
+  <object id="52" x="832" y="1472">
+   <polygon points="0,0 128,-64 128,0"/>
+  </object>
+  <object id="53" x="576" y="1600">
+   <polygon points="0,0 64,64 64,0"/>
+  </object>
+  <object id="54" x="768" y="1600">
+   <polygon points="0,0 0,-64 64,-64"/>
+  </object>
+  <object id="55" x="832" y="1536">
+   <polygon points="0,0 0,-64 64,-64"/>
+  </object>
+  <object id="56" x="896" y="1472">
+   <polygon points="0,0 64,0 64,64"/>
+  </object>
+  <object id="57" x="960" y="1536">
+   <polygon points="0,0 64,0 64,64"/>
+  </object>
+  <object id="58" x="1088" y="1536">
+   <polygon points="0,0 0,-64 64,-64"/>
+  </object>
+  <object id="59" x="1024" y="1536" width="64" height="64"/>
+  <object id="65" x="1024" y="768" width="192" height="64"/>
+  <object id="66" x="640" y="640" width="192" height="64"/>
+  <object id="67" x="320" y="512" width="192" height="64"/>
+  <object id="68" x="640" y="384" width="192" height="64"/>
+  <object id="69" x="320" y="576">
+   <polygon points="0,0 0,-64 -64,-64"/>
+  </object>
+  <object id="70" x="768" y="1344">
+   <polygon points="0,0 -128,0 -128,-64"/>
+  </object>
+  <object id="71" x="576" y="1280">
+   <polygon points="0,0 -128,0 -128,-64"/>
+  </object>
+  <object id="72" x="384" y="1216">
+   <polygon points="0,0 -128,0 -128,-64"/>
+  </object>
+  <object id="73" x="320" y="1280">
+   <polygon points="0,0 -64,-64 0,-64"/>
+  </object>
+  <object id="74" x="448" y="1344">
+   <polygon points="0,0 -64,-64 0,-64"/>
+  </object>
+  <object id="75" x="192" y="1344">
+   <polygon points="0,0 0,-64 64,-64"/>
+  </object>
+  <object id="76" x="128" y="1344">
+   <polygon points="0,0 0,-64 -64,-64"/>
+  </object>
+  <object id="77" x="64" y="1152" width="192" height="128"/>
+  <object id="78" x="128" y="1280" width="64" height="64"/>
+  <object id="79" x="320" y="1216" width="128" height="64"/>
+  <object id="80" x="448" y="1280" width="192" height="64"/>
+ </objectgroup>
+ <layer name="map" width="20" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztVssKwjAQXNGKD3pRhPq6eJdaRQUP4v9/lTs2gSWmj7SpEHVg2CLdYZykyxL9ESJS5klVHxgwM+asoRdZgUTQBTHz0MKLDTYvKfnLDtD5TT3pleXn03dGn/P9K9gKFsElnz5zzbwxl8xVc2sv4K4eKT9zfG8T5khol/m2IVZ6Y+M36G5UdfVdlE8iqvlOVeZV0P1n5oXyvOEf2Y9L+mQ/WfrRizwies9pYNEx+3eKtoznRq9Nz/wm9XnVuYPQq3N2de+znO++0PW8CXGWheg5BPxzrUaTjNrObgnMLJ8zJuSdJkTPXeGbsgj9v1TtyC6zAPtxT/FO+c40NN7ZO/pDvlfKd7bIg57Utc0S7JgLes+k6UzEDMROr3NZi+eHqi5IlCayjQzqHdcVOge9G2sdl7v9BCctEaA=
+  </data>
+ </layer>
+ <layer name="background" width="20" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztltsKwCAIhnuaHVrv/3zTi0BGBZluE/3Am+ig9mulJM8GtnfGT2KtOUgGK2DHwvllsH/rvJE/mjxzNet7IMOV3tVAr0b+StXl19pc7Q1eoPdlNVcYg1XfNcFe5SEvGKclDVutOat+S0Bj58SfGWu8E284j6pVi3mLOvFL/OMCLW4E7gsy
+  </data>
+ </layer>
+</map>
