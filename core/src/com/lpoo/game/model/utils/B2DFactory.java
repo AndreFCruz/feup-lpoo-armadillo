@@ -5,11 +5,13 @@ import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.lpoo.game.model.entities.BallModel;
 import com.lpoo.game.model.entities.BoxModel;
 import com.lpoo.game.model.entities.PlatformModel;
 import com.lpoo.game.model.entities.WaterModel;
@@ -79,5 +81,10 @@ public class B2DFactory {
 
     static BoxModel makeBox(World world, RectangleMapObject object) {
         return new BoxModel(world, object);
+    }
+
+    static BallModel makeBall(World world, RectangleMapObject rectObj) {
+        Rectangle rect = rectObj.getRectangle();
+        return new BallModel(world, new Vector2(rect.getX() * PIXEL_TO_METER, rect.getY() * PIXEL_TO_METER));
     }
 }

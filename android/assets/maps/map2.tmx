@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="77">
+<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="103">
  <tileset firstgid="1" name="PlatformerSet" tilewidth="64" tileheight="64" tilecount="64" columns="8">
   <image source="../tilesets/Tiles_64x64.png" trans="000000" width="512" height="512"/>
  </tileset>
@@ -13,59 +13,38 @@
  </layer>
  <layer name="background" width="60" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1EEKgCAURVEXIG3C2v8Wo6n8QZhRfs6BNxGCrgNLAQCA3Fq36KzFny4pasvc+7XrLo9uo+qUP3rXHmzUqr3b4Fbovft+ZHln6uT9nV69mXoBgGdOP/gMHQ==
+   eJztz8EJwCAQRFELkDRh7L/F5BxyWldQeQ/+faYUAAAAotpb/xRVUxbNdf8UtevfK9gOf1tyq6vJrc5ff0/6CwCMeQAZTwmE
   </data>
  </layer>
  <layer name="map" width="60" height="30">
   <data encoding="base64" compression="zlib">
-   eJztl9tKAzEQhqceCioiosJaW0EvPICl2lLxRun7P5UZzNBp2GwmyWS3Qj742R52k/mzSWYCUKlUKnE8Gb0avRk9DxxLpVJJ53LoAAKs7HWW0cbI0T5zCNs475gOIp67NtpAut9Zi0rxYDVln1FngeeOjI49ItZGn7A7dvjc0t63EbShzaMj7EvLL94zddrC304DusoxFIA8cmn6LR1/LO7Y5vgdGzXCfqkme4kPWZVz2F3HMRon9De3V59/3DtvjSZGi4T2JYTWl+a6mwf+53mgZL6TzstcyC/u5ZOe+uwbzK+Uq+id4T5+D+G8/5/g+Rj9LWGbi0lfg0WnB/lEP+jzBP72RcqFtP65V1y3vN7TpFQ9x32SeJ5rwL9PaNUffN3Q2PG9j77fKPTRVouE8jonJ0dTDD9GH55YcK5d2Os3xHvu8pniNwSeU9xcxc8wI9sn+nXrZql87WO9gWP5bsU9Sudm7PvsGtdcSeqrmPepUU+W9Cvx3VZzac7fffJb0pePmLjdM1HX/1y+dzrEmU9a17s1TNMiH9L7+uAX/gQgSA==
+   eJztV9tKAzEQnXopqIgPKqy1FfTBC1isihcExf//KmfYDI4x2STNJK2SA4dt95Y5yWTmLEBDQ0NDGi6RN8hb5NWKY2loaPi/eDTHWcY7RhbXGZvwHeep4EbCc0fIT/gbes8Np+I3cS/w3BZy20PGE/IZ3HN3J1gTFxYpXi29dM/UehflBeXDG/S5cA+/90Mot3LAGiU19e4iD8W5F3NuiPJ+bdhj5egdI7vIcdmTXaeHrIp9+LmPUzheYry5Ofr0U+08QU6g3F4P5ZtmHs4D12UfKFn/Y/MyF6yXavmk0pi1Qd6GexWvGdXxMyhbm2tD9mPS92Aoa97ryqLTA+skPaRzB/q6yL2Q97/USvtW+j1NzBzUgNTJlH2uA3+d0OrHct/w3Mnax/+PFcZweZFQX5fI6dEcwwf0Hs4VC+XagTm+Q7rmIZ3L6A2BfKndq+Q3zMiMSXpt3xxL3/vJb9BcLgylxtjcTF3PoXnNZYy/SllPDT9ZUm+Mbpfn0szfddJbUpcPKXHb30RD1yV9a1ryG86HWF9ve5jOQR9i76uBL/4tIFY=
   </data>
  </layer>
- <objectgroup name="boxes">
-  <object id="75" x="3136" y="640" width="64" height="64"/>
-  <object id="76" x="3072" y="640" width="64" height="64"/>
- </objectgroup>
- <objectgroup name="end_pos">
-  <object id="25" x="832" y="576" width="64" height="64"/>
- </objectgroup>
- <objectgroup name="start_pos">
-  <object id="24" x="256" y="1408" width="64" height="64"/>
+ <objectgroup name="positions">
+  <object id="79" name="start" x="256" y="1408" width="64" height="64"/>
+  <object id="80" name="end" x="832" y="576" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="water" offsetx="1.47189" offsety="0">
   <object id="52" x="1280" y="640" width="448" height="320"/>
   <object id="64" x="1216" y="1408" width="1088" height="128"/>
  </objectgroup>
- <objectgroup name="platforms">
-  <object id="66" x="1619.27" y="628.509" width="92.3746" height="41.6591">
-   <properties>
-    <property name="density" type="float" value="0.3"/>
-   </properties>
-  </object>
-  <object id="67" x="1427.28" y="619.453" width="123.166" height="39.8479">
-   <properties>
-    <property name="density" type="float" value="0.3"/>
-   </properties>
-  </object>
-  <object id="68" x="1329.47" y="626.698" width="38.0366" height="43.4704">
-   <properties>
-    <property name="density" type="float" value="0.3"/>
-   </properties>
-  </object>
-  <object id="70" x="1305.92" y="1378.37" width="208.296" height="63.3943">
+ <objectgroup name="objects">
+  <object id="89" type="box" x="1728" y="576" width="64" height="64"/>
+  <object id="90" type="box" x="1728" y="512" width="64" height="64"/>
+  <object id="91" type="platform" x="1664" y="448" width="192" height="64">
    <properties>
     <property name="density" type="float" value="0.5"/>
    </properties>
   </object>
-  <object id="73" x="1698.97" y="1385.62" width="202.862" height="57.9605">
-   <properties>
-    <property name="density" type="float" value="0.5"/>
-   </properties>
+  <object id="94" type="platform" x="1318.22" y="1385.39" width="232.997" height="23.0898"/>
+  <object id="95" type="platform" x="1656.17" y="1389.59" width="201.511" height="62.9723"/>
+  <object id="96" type="platform" x="1985.73" y="1391.69" width="149.034" height="56.6751"/>
+  <object id="99" x="900" y="1150" width="400" height="30">
+   <text fontfamily="Lucida Grande" wrap="1" color="#8b0000" halign="center" valign="center">do not touch the water.</text>
   </object>
-  <object id="74" x="2048.54" y="1391.05" width="143.09" height="61.583">
-   <properties>
-    <property name="density" type="float" value="0.5"/>
-   </properties>
-  </object>
+  <object id="101" type="box" x="3136" y="704" width="64" height="64"/>
+  <object id="102" type="box" x="3136" y="640" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="ground">
   <object id="2" x="0" y="1536" width="640" height="384"/>
@@ -84,7 +63,6 @@
   <object id="15" x="3008" y="1152">
    <polygon points="0,0 62.8252,-31.7921 128,0"/>
   </object>
-  <object id="16" x="2624" y="704" width="640" height="128"/>
   <object id="19" x="3264" y="1280" width="256" height="128"/>
   <object id="20" x="3392" y="1024" width="320" height="64"/>
   <object id="22" x="3392" y="960" width="64" height="64"/>
@@ -101,13 +79,16 @@
   <object id="33" x="1152" y="960" width="960" height="128"/>
   <object id="34" x="832" y="640" width="448" height="320"/>
   <object id="35" x="1920" y="576" width="256" height="64"/>
-  <object id="36" x="2112" y="512" width="64" height="64"/>
   <object id="57" x="704" y="1408" width="512" height="448"/>
   <object id="58" x="448" y="1536">
    <polygon points="0,0 256,-128 256,0"/>
   </object>
   <object id="60" x="1216" y="1408">
    <polygon points="0,0 128,128 0,128"/>
+  </object>
+  <object id="82" x="2688" y="768" width="576" height="128"/>
+  <object id="83" x="2624" y="768">
+   <polygon points="0,0 64,0 64,128 0,64"/>
   </object>
  </objectgroup>
 </map>

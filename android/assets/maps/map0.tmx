@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="8" tilewidth="64" tileheight="64" nextobjectid="9">
+<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="20" height="8" tilewidth="64" tileheight="64" nextobjectid="17">
  <tileset firstgid="1" name="Tiles_64x64" tilewidth="64" tileheight="64" tilecount="64" columns="8">
   <image source="../tilesets/Tiles_64x64.png" trans="000000" width="512" height="512"/>
  </tileset>
  <layer name="map" width="20" height="8">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFpAJjMvWZArEUEtsMiB2A2J5EM0D6pIHYDog5oGYwAjErEHPi0SsGxOJYMBcOLEyCu8gFAMsSA2A=
+   eJxjYBgFpAJjMvWZArEUEtsMiB2A2J6APj00M0D6pIHYDog5oGYwAjErEHPiMUcMiMWxYC4cWJgYT1EIAPKaA44=
   </data>
  </layer>
  <objectgroup name="ground">
@@ -22,10 +22,8 @@
    <polygon points="0,0 64.0198,-33.275 128,0"/>
   </object>
  </objectgroup>
- <objectgroup name="start_pos">
-  <object id="7" x="351.473" y="298.247"/>
- </objectgroup>
- <objectgroup name="end_pos">
-  <object id="8" x="1088" y="192" width="64" height="64"/>
+ <objectgroup name="positions">
+  <object id="11" name="start" x="320" y="320" width="64" height="64"/>
+  <object id="12" name="end" x="1088" y="192" width="64" height="64"/>
  </objectgroup>
 </map>

@@ -89,16 +89,40 @@ public class B2DWorldCreator {
                 fluids.add(B2DFactory.makeWater(world, (RectangleMapObject) object));
             }
         });
-        layerLoaders.add(new LayerLoader<RectangleMapObject>("platforms", world, RectangleMapObject.class) {
+        layerLoaders.add(new LayerLoader<RectangleMapObject>("objects", world, RectangleMapObject.class) {
             @Override
             protected void loadObject(World world, MapObject object) {
-                shapeModels.add(B2DFactory.makePlatform(world, (RectangleMapObject) object));
+                String property = object.getProperties().get("type", String.class);
+                if (property == null)
+                    return;
+
+                switch (property) {
+                    case "box":
+                        entityModels.add(B2DFactory.makeBox(world, (RectangleMapObject) object));
+                        break;
+                    case "platform":
+                        shapeModels.add(B2DFactory.makePlatform(world, (RectangleMapObject) object));
+                        break;
+                    default:
+                        System.err.println("Invalid MapObject name in objects' layer");
+                }
             }
         });
-        layerLoaders.add(new LayerLoader<RectangleMapObject>("boxes", world, RectangleMapObject.class) {
+        layerLoaders.add(new LayerLoader<RectangleMapObject>("positions", world, RectangleMapObject.class) {
             @Override
             protected void loadObject(World world, MapObject object) {
-                entityModels.add(B2DFactory.makeBox(world, (RectangleMapObject) object));
+                RectangleMapObject rectObj = (RectangleMapObject) object;
+
+                switch (object.getName()) {
+                    case "start":
+                        ball = B2DFactory.makeBall(world, rectObj);
+                        break;
+                    case "end":
+                        endPos = rectObj.getRectangle().getCenter(new Vector2()).scl(PIXEL_TO_METER);
+                        break;
+                    default:
+                        System.err.println("Invalid object name in layer 'positions'");
+                }
             }
         });
     }
@@ -106,20 +130,6 @@ public class B2DWorldCreator {
     public void generateWorld() {
         for (LayerLoader loader : layerLoaders)
             loader.load();
-
-        // Get Ball start pos
-        MapObject startPosObj = map.getLayers().get("start_pos").getObjects().get(0);
-        Rectangle startPosRect = ((RectangleMapObject) startPosObj).getRectangle();
-        this.ball = new BallModel(world, new Vector2(startPosRect.getX() * PIXEL_TO_METER, startPosRect.getY() * PIXEL_TO_METER));
-        // TODO: change Ball creation to factory makeBall
-
-        // Get Ball end pos
-        MapObject endPosObj = map.getLayers().get("end_pos").getObjects().get(0);
-        Rectangle endPosRect = ((RectangleMapObject) endPosObj).getRectangle();
-        this.endPos = new Vector2(
-                (endPosRect.getX() + endPosRect.getWidth() / 2) * PIXEL_TO_METER,
-                (endPosRect.getY() + endPosRect.getHeight() / 2) * PIXEL_TO_METER);
-
     }
 
     public Vector2 getEndPos() {
