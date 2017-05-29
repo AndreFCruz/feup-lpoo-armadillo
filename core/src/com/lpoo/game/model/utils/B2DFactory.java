@@ -34,7 +34,7 @@ public class B2DFactory {
         if (pivoted != null && pivoted == true) {
             Rectangle rect = object.getRectangle();
             RectangleMapObject anchorRect = new RectangleMapObject(
-                    rect.getX(), rect.getY(), 1, 1
+                    rect.getX() + rect.getWidth() / 2, rect.getY() + rect.getHeight() / 2, 1, 1
             );
             Body anchor = makeRectGround(world, anchorRect);
 
