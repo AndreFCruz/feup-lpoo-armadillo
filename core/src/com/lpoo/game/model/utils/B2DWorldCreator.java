@@ -93,8 +93,10 @@ public class B2DWorldCreator {
             @Override
             protected void loadObject(World world, MapObject object) {
                 String property = object.getProperties().get("type", String.class);
-                if (property == null)
+                if (property == null) {
+                    System.err.println("MapObject in objects' layer has no type property");
                     return;
+                }
 
                 switch (property) {
                     case "box":
@@ -104,7 +106,7 @@ public class B2DWorldCreator {
                         shapeModels.add(B2DFactory.makePlatform(world, (RectangleMapObject) object));
                         break;
                     default:
-                        System.err.println("Invalid MapObject name in objects' layer");
+                        System.err.println("Invalid MapObject type in objects' layer");
                 }
             }
         });

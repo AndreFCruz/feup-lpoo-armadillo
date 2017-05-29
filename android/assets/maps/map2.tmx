@@ -40,9 +40,6 @@
   <object id="94" type="platform" x="1318.22" y="1385.39" width="232.997" height="23.0898"/>
   <object id="95" type="platform" x="1656.17" y="1389.59" width="201.511" height="62.9723"/>
   <object id="96" type="platform" x="1985.73" y="1391.69" width="149.034" height="56.6751"/>
-  <object id="99" x="900" y="1150" width="400" height="30">
-   <text fontfamily="Lucida Grande" wrap="1" color="#8b0000" halign="center" valign="center">do not touch the water.</text>
-  </object>
   <object id="101" type="box" x="3136" y="704" width="64" height="64"/>
   <object id="102" type="box" x="3136" y="640" width="64" height="64"/>
  </objectgroup>

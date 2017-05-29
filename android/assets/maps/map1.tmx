@@ -50,9 +50,6 @@
   <object id="46" type="box" x="2048" y="384" width="64" height="64"/>
   <object id="47" type="box" x="2048" y="320" width="64" height="64"/>
   <object id="48" type="box" x="2048" y="256" width="64" height="64"/>
-  <object id="49" x="1345.66" y="101.509" width="500" height="50">
-   <text fontfamily="Lucida Grande" wrap="1" color="#a6c512" halign="center" valign="center">Boxes have lower density than you</text>
-  </object>
  </objectgroup>
  <objectgroup name="positions">
   <object id="33" name="start" x="342.512" y="432.505" width="25.5205" height="25.5205"/>
