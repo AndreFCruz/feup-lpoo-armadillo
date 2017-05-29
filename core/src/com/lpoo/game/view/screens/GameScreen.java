@@ -125,7 +125,7 @@ public class GameScreen extends ScreenAdapter {
      */
     private static final float HUD_VIEWPORT_HEIGHT = VIEWPORT_HEIGHT / PIXEL_TO_METER;
 
-    private Viewport viewport;  //TODO: Verify if this is neeeded really
+    private Viewport viewport;  //TODO: Verify if this is needed really
 
     protected Skin skin;
     protected TextureAtlas atlas;
