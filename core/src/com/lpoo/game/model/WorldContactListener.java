@@ -26,10 +26,14 @@ public class WorldContactListener implements ContactListener {
     }
 
     // Map of categoryBits to functions
-    Map<Short, ContactHandler> beginContactFunctions = new HashMap<Short, ContactHandler>();
-    Map<Short, ContactHandler> endContactFunctions = new HashMap<Short, ContactHandler>();
+    private Map<Short, ContactHandler> beginContactFunctions = new HashMap<Short, ContactHandler>();
+    private Map<Short, ContactHandler> endContactFunctions = new HashMap<Short, ContactHandler>();
 
-    public WorldContactListener() {
+    private final GameModel model;
+
+    public WorldContactListener(final GameModel model) {
+        this.model = model;
+
         beginContactFunctions.put(BALL_BIT, new ContactHandler() {
             @Override
             public void handle(Fixture ball, Fixture fixB) {
@@ -47,7 +51,7 @@ public class WorldContactListener implements ContactListener {
             @Override
             public void handle(Fixture fluid, Fixture fixB) {
                 if (fixB.getFilterData().categoryBits == BALL_BIT)
-                    GameModel.getInstance().startLevel();
+                    model.startLevel();
                 else
                     ((BuoyancyController) fluid.getBody().getUserData()).addBody(fixB);
             }
@@ -96,7 +100,7 @@ public class WorldContactListener implements ContactListener {
         switch (other.getFilterData().categoryBits) {
             case GROUND_BIT:
 //                ((BallModel) ball.getUserData()).setState(BallModel.State.LANDED);
-                GameModel.getInstance().getBall().setState(BallModel.State.LANDED);
+                model.getBallModel().setState(BallModel.State.LANDED);
                 break;
         }
     }
@@ -105,7 +109,7 @@ public class WorldContactListener implements ContactListener {
         switch (other.getFilterData().categoryBits) {
             case GROUND_BIT:
 //                ((BallModel) ball.getUserData()).setState(BallModel.State.FLYING);
-                GameModel.getInstance().getBall().setState(BallModel.State.FLYING);
+                model.getBallModel().setState(BallModel.State.FLYING);
                 break;
         }
     }

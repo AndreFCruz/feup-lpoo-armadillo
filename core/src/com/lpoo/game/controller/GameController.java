@@ -16,8 +16,8 @@ public class GameController implements InputHandler {
     private OrthographicCamera camera;
     private Boolean accelerometerAvailable;
 
-    public GameController(OrthographicCamera camera) {
-        model = GameModel.getInstance();
+    public GameController(OrthographicCamera camera, GameModel model) {
+        this.model = model;
         this.camera = camera;
 
         if (! (accelerometerAvailable = Gdx.input.isPeripheralAvailable(Input.Peripheral.Accelerometer)))
@@ -36,19 +36,19 @@ public class GameController implements InputHandler {
 
     private void pollTouch(float delta) {
         if (Gdx.input.justTouched()) {
-            model.getBall().jump();
+            model.getBallModel().jump();
         }
     }
 
     private void pollKeys(float delta) {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            model.getBall().rotate(delta);
+            model.getBallModel().rotate(delta);
         } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            model.getBall().rotate(delta * -1);
+            model.getBallModel().rotate(delta * -1);
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-            model.getBall().jump();
+            model.getBallModel().jump();
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
             model.togglePause();
         }
@@ -69,7 +69,7 @@ public class GameController implements InputHandler {
         else if (roll < -45)
             roll = -45;
 
-        model.getBall().rotate(delta * (roll / -45));
+        model.getBallModel().rotate(delta * (roll / -45));
     }
 
 }

@@ -135,12 +135,12 @@ public class GameScreen extends ScreenAdapter {
     public GameScreen(Spheral game) {
         this.game = game;
 
-        model = GameModel.getInstance();
+        model = new GameModel();
         loadNextMap();
 
         camera = createCamera();
 
-        controller = new GameController(camera);
+        controller = new GameController(camera, model);
 
         mapRenderer = new OrthogonalTiledMapRenderer(model.getMap(), game.getBatch());
 
@@ -349,7 +349,7 @@ public class GameScreen extends ScreenAdapter {
     // TODO add looseness to camera's movement
     private void updateCamera() {
         // Follow player
-        camera.position.set(GameModel.getInstance().getBall().getX() / PIXEL_TO_METER, GameModel.getInstance().getBall().getY() / PIXEL_TO_METER, 0);
+        camera.position.set(model.getBallModel().getX() / PIXEL_TO_METER, model.getBallModel().getY() / PIXEL_TO_METER, 0);
         camera.update();
 
     }
