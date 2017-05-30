@@ -55,7 +55,7 @@ public class Spheral extends Game {
         assetManager.load("box.png", Texture.class);
 
         // Load ball skins
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < NUMBER_OF_SKINS; i++)
             assetManager.load( "skins/skin0" + i + ".png" , Texture.class);
 
         // Load levels

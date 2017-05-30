@@ -20,4 +20,10 @@ public class FirstTest {
     public void thisIsIgnored()
     {
     }
+
+    @Test
+    public void loadMap()
+    {
+        //TODO: Ver a cena de algúem para ver como estão a fazer isto
+    }
 }
