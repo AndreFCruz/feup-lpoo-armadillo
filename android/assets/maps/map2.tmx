@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="115">
+<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="117">
  <tileset firstgid="1" name="PlatformerSet" tilewidth="64" tileheight="64" tilecount="64" columns="8">
   <image source="../tilesets/Tiles_64x64.png" trans="000000" width="512" height="512"/>
  </tileset>
@@ -8,7 +8,7 @@
  </tileset>
  <layer name="water_tiles" width="60" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1sENABAQRUG1CfoviQo2DoQwk7z77u2nBADArfJELymjGtTOnbaFf/0LAKw1s59f29fR3ogC4G8dw+gULw==
+   eJzt1rEJwDAQBEHVJpBw/xXZBSi4QEbmPQOb/2XfGgAAXzSeelAVI2geu24/e+2ttPcKA4C3Jf9ztf86+TtWAfBvN/SjGFw=
   </data>
  </layer>
  <layer name="background" width="60" height="30">
@@ -18,7 +18,7 @@
  </layer>
  <layer name="map" width="60" height="30">
   <data encoding="base64" compression="zlib">
-   eJztV9tKAzEQnVotqIgPKqzaCvrgBSxWxQuFFv//q5xhMzgNySZpJt1WcuCw7d4yJ5nMnAWoqKioSMM98gn5jHzoOZaKior/i3dznGS8Y2BxmzGEvzivBfcSnjtH/sBu6L01HIvfxOPAc/vIAw8ZH8hPcM/di+AmcWeR4tXSS/eMrXdRXlA+zKHNhVdY3QuXyKscQQGwRklNvUfIM3Huy5zrorxfG/ZYOXpHyCZyXPZkj+khq+IEVvdxCkdrjDc1R59+qp2c46X2eijfNPNwGrgu+0DJ+h+bl7lgvVTLS9apPkHehnsVrxnV8RsI9/1dguzHpO/NUNa8796i0wPrJD2k8xDausi9kPe/1Er7Vvo9TUwc1IDUyZR9rgF/ndDqx3Lf8NzJ2sf/LxTGcHmRUF+XyOnRHMMSWg/nioVy7dQcF5CuuUvnOnpDIF9q9yr5DTMwY5Je2zfH0vd+8hs0lzNDqTE2N1PXs2tecxnjr1LWU8NPltQbo9vluTTzd5v0ltTlQ0rc9jdR13VJ35qW/IbzIdbX2x6mcdCH2Ps2gV8DSSCG
+   eJztV21LAzEMzpwONhE/qHBzm6AffAGHb6hjoPj/f5UN17BY2rv0mu426QMP3e56bZ42TVKAgoKCgjjcGj4YPhre9WxLQUHB/8WbbRcJYwwc7jKGsLFzZnkQ+d254Q/sh95ryzn7fSz47tDwKEDCu+EH+NfviXGbuHGI9mrpxT5zZzz0C/SHNdS+8AJ/z8LU8LKzmnaQRk5NvRPDM/bs0z5rIu+vDXeuFL0jw0o4L9Vk95H2auMENuc4lqMO8y1tG9KP8ZN8PNdZb/M3TT9ctrzneSBn/Jf6ZSpIL8bynHGqT2BtQ7mK9gzj+BXIcv++gOdj1PdqyWPeqjfr9EA6UQ/qHEMdFykX0vnnWvHczhg1sfBQA1ynL7dXEI4TWvmYnxtaOx776P+Fwhy+WkSS2wkpOZps+Ia6hvPZgr52atsviNfcpLOL3jZgXermKn6HGdg5Ua9bN0sZGh/rDVzLZ0uuUeqbsfvZtK6plNRXMfupUU/m1CvR7au5NP13l/Tm1BVCjN3unajpPWdoT3Pe4UKQ1vVuDVN5GIK03zbwC8A0H+c=
   </data>
  </layer>
  <objectgroup name="positions">
@@ -26,8 +26,8 @@
   <object id="80" name="end" x="832" y="576" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="water" offsetx="1.47189" offsety="0">
-  <object id="52" x="1280" y="640" width="448" height="320"/>
   <object id="64" x="1216" y="1408" width="1088" height="128"/>
+  <object id="115" x="1216" y="640" width="512" height="320"/>
  </objectgroup>
  <objectgroup name="objects">
   <object id="89" type="box" x="1728" y="576" width="64" height="64"/>
@@ -40,15 +40,23 @@
   <object id="94" type="platform" x="1318.22" y="1385.39" width="232.997" height="23.0898"/>
   <object id="95" type="platform" x="1656.17" y="1389.59" width="201.511" height="62.9723"/>
   <object id="96" type="platform" x="1985.73" y="1391.69" width="149.034" height="56.6751"/>
-  <object id="107" type="box" x="3058" y="640" width="64" height="64"/>
-  <object id="108" type="box" x="3048" y="704" width="64" height="64"/>
+  <object id="107" type="box" x="3058" y="640" width="64" height="64">
+   <properties>
+    <property name="density" type="float" value="0.3"/>
+   </properties>
+  </object>
+  <object id="108" type="box" x="3048" y="704" width="64" height="64">
+   <properties>
+    <property name="density" type="float" value="0.3"/>
+   </properties>
+  </object>
   <object id="112" type="platform" x="3289.94" y="1166.15" width="145.631" height="30.8914">
    <properties>
     <property name="density" type="float" value="2"/>
     <property name="pivoted" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="114" type="platform" x="1408" y="674.095" width="192.838" height="29.9047">
+  <object id="114" type="platform" x="1370" y="674.095" width="192.838" height="29.9047">
    <properties>
     <property name="pivoted" type="bool" value="true"/>
    </properties>
@@ -85,7 +93,6 @@
   <object id="29" x="1728" y="640" width="448" height="256"/>
   <object id="32" x="1728" y="896" width="384" height="64"/>
   <object id="33" x="1152" y="960" width="960" height="128"/>
-  <object id="34" x="832" y="640" width="448" height="320"/>
   <object id="35" x="1920" y="576" width="256" height="64"/>
   <object id="57" x="704" y="1408" width="512" height="448"/>
   <object id="58" x="448" y="1536">
@@ -101,5 +108,6 @@
   <object id="106" x="3136" y="768">
    <polygon points="0,0 128,64 128,128 0,128"/>
   </object>
+  <object id="116" x="832" y="640" width="384" height="320"/>
  </objectgroup>
 </map>
