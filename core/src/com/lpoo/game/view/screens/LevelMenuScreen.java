@@ -42,7 +42,7 @@ public class LevelMenuScreen extends MenuScreen {
     /**
      * Number of Buttons per Line of the Table.
      */
-    private static final int BUTTONS_PER_LINE = 3;
+    private static final int BUTTONS_PER_LINE = 4;
 
     /**
      * Level Menu Screen's Constructor.
@@ -63,7 +63,7 @@ public class LevelMenuScreen extends MenuScreen {
      */
     private void createLevelButtons(Table table) {
 
-        for (int i = 1 ;  i <= game.getNumMaps()    ; ++i) {
+        for (int i = 1 ;  i <= game.getNumMaps(); ++i) {
             levelButtons.add(new TextButton(String.valueOf(i), skin));
 
             //Adding to table and setting Layout aspect
@@ -136,6 +136,6 @@ public class LevelMenuScreen extends MenuScreen {
         // Add table to stage
         stage.addActor(staticElements);
 
-        Gdx.input.setInputProcessor(stage); //TODO: averiguar o pq de ter de ser aqu (se não não dá)
+        Gdx.input.setInputProcessor(stage);
     }
 }

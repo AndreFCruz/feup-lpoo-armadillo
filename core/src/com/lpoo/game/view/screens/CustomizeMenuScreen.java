@@ -36,10 +36,6 @@ public class CustomizeMenuScreen extends MenuScreen {
      */
     private int current_skin = 0;
 
-    //private
-
-    private static final int NUMBER_OF_SKINS = 6;
-
     //Layout Macros
 
     /**
@@ -78,7 +74,7 @@ public class CustomizeMenuScreen extends MenuScreen {
      *      Table where the Skins' Labels and Buttons will be organized.
      */
     private void createSkins (Table table) {
-        for (int i=0; i < NUMBER_OF_SKINS; ++i) {
+        for (int i=0; i < game.getNumSkins(); ++i) {
             //Adding Buttons and Labels to the Arrays
             skinButtons.add( new Button( new TextureRegionDrawable (new TextureRegion (new Texture ( "skins/skin" + (i < 10 ? "0" : "") + i + ".png")))));
             skinLabels.add(new Label ("Current", skin));
@@ -98,7 +94,7 @@ public class CustomizeMenuScreen extends MenuScreen {
         table.row();
 
         //Adding the Labels to the Table
-        for (int i=0; i < NUMBER_OF_SKINS; ++i)
+        for (int i=0; i < game.getNumSkins(); ++i)
             table.add(skinLabels.get(i)).width(BUTTON_SIZE).center();
 
         //addButtonListeners();

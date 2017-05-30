@@ -19,13 +19,16 @@ public class Spheral extends Game {
 
     public BitmapFont font;
 
+    private static final int NUMBER_OF_SKINS = 6;
+
     private static final Map<Integer, String> gameMaps = new HashMap<Integer, String>();
 
     static { // Order is reversed for testing
         gameMaps.put(0, "maps/map3.tmx");
         gameMaps.put(1, "maps/map2.tmx");
         gameMaps.put(2, "maps/map1.tmx");
-        gameMaps.put(2, "maps/map0.tmx");
+        gameMaps.put(3, "maps/map0.tmx");
+        gameMaps.put(4, "maps/map4.tmx");
     }
 
     @Override
@@ -69,6 +72,10 @@ public class Spheral extends Game {
 
     public int getNumMaps() {
         return gameMaps.size();
+    }
+
+    public int getNumSkins() {
+        return NUMBER_OF_SKINS;
     }
 
     @Override

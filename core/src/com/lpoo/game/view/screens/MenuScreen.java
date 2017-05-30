@@ -130,5 +130,4 @@ public abstract class MenuScreen extends ScreenAdapter {
     public void hide() {
         Gdx.input.setInputProcessor(null);
     }
-
 }
