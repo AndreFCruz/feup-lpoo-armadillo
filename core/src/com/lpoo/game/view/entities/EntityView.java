@@ -56,6 +56,6 @@ public abstract class EntityView {
      */
     public void update(EntityModel model) {
         sprite.setCenter(model.getX() / PIXEL_TO_METER, model.getY() / PIXEL_TO_METER);
-        sprite.setRotation((float) Math.toDegrees(model.getRotation()));
+        sprite.setRotation((float) Math.toDegrees(model.getAngle()));
     }
 }

@@ -1,6 +1,5 @@
 package com.lpoo.game.model;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
@@ -113,7 +112,7 @@ public class GameModel implements Disposable {
         Vector2 diff = new Vector2(endPos);
         diff.sub(ballModel.getX(), ballModel.getY());
 
-        return diff.len() < BallModel.radius;
+        return diff.len() < BallModel.RADIUS;
     }
 
     public World getWorld() {

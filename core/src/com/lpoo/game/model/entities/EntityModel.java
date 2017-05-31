@@ -14,7 +14,7 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
  * An abstract model representing an entity belonging to a game model.
  */
 public abstract class EntityModel {
-    public enum ModelType {BALL, BOX}
+    public enum ModelType {BALL, BOX, POWERUP_JUMP}
 
     // Constants for collision mask
     public final static short GROUND_BIT = 0x01;
@@ -109,50 +109,6 @@ public abstract class EntityModel {
      * @return the angle of rotation of this body.
      */
     public float getAngle() {
-        return body.getAngle();
-    }
-
-    /**
-     * Wraps the setTransform method from the Box2D body class.
-     *
-     * @param x the new x-coordinate for this body
-     * @param y the new y-coordinate for this body
-     * @param angle the new rotation angle for this body
-     */
-    public void setTransform(float x, float y, float angle) {
-        body.setTransform(x, y, angle);
-    }
-
-    /**
-     * Sets the angular velocity of this object in the direction it is rotated.
-     *
-     * @param velocity the new linear velocity angle for this body
-     */
-    public void setLinearVelocity(float velocity) {
-        body.setLinearVelocity((float)(velocity * -Math.sin(getAngle())), (float) (velocity * Math.cos(getAngle())));
-    }
-
-    /**
-     * Wraps the setAngularVelocity method from the Box2D body class.
-     *
-     * @param omega the new angular velocity angle for this body
-     */
-    public void setAngularVelocity(float omega) {
-        body.setAngularVelocity(omega);
-    }
-
-    /**
-     * Wraps the applyForceToCenter method from the Box2D body class.
-     *delta * angular_vel
-     * @param forceX the x-component of the force to be applied
-     * @param forceY the y-component of the force to be applied
-     * @param awake should the body be awaken
-     */
-    public void applyForceToCenter(float forceX, float forceY, boolean awake) {
-        body.applyForceToCenter(forceX, forceY, awake);
-    }
-
-    public float getRotation() {
         return body.getAngle();
     }
 

@@ -12,12 +12,14 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
  * A model representing the player's ball.
  */
 public class BallModel extends EntityModel {
+    private static final float POWERUP_RATIO = 1.5f;
+
     public enum State {LANDED, FLYING, DUNKING}
 
     private static final float ANGULAR_DAMP = 5f;
     private static final float LINEAR_DAMP = 0.1f;
 
-    public static final float radius = 32 * PIXEL_TO_METER;
+    public static final float RADIUS = 32 * PIXEL_TO_METER;
 
     private float density = .5f;
     private float friction = 10f;
@@ -33,7 +35,7 @@ public class BallModel extends EntityModel {
 
         // Create Fixture's Shape
         Shape circle = new CircleShape();
-        circle.setRadius(radius);
+        circle.setRadius(RADIUS);
 
         createFixture(circle, density, friction, restitution, BALL_BIT, (short) (BALL_BIT | GROUND_BIT | FLUID_BIT));
     }
@@ -63,6 +65,24 @@ public class BallModel extends EntityModel {
 
     public void setState(State st) {
         this.state = st;
+    }
+
+    public void increaseDensity() {
+        density *= POWERUP_RATIO;
+        getBody().getFixtureList().first().setDensity(density);
+    }
+
+    public void decreaseDensity() {
+        density *= 1 / POWERUP_RATIO;
+        getBody().getFixtureList().first().setDensity(density);
+    }
+
+    public void increaseVelocity() {
+        angular_accel *= POWERUP_RATIO;
+    }
+
+    public void decreaseVelocity() {
+        angular_accel *= 1 / POWERUP_RATIO;
     }
 
 }

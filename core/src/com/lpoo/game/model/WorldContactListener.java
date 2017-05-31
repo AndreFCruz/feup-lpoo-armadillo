@@ -99,6 +99,7 @@ public class WorldContactListener implements ContactListener {
     private void ballBeginContact(Fixture ball, Fixture other) {
         switch (other.getFilterData().categoryBits) {
             case GROUND_BIT:
+//                ((BallModel) ball.getBody().getUserData()).setState(BallModel.State.LANDED);
 //                ((BallModel) ball.getUserData()).setState(BallModel.State.LANDED);
                 model.getBallModel().setState(BallModel.State.LANDED);
                 break;
@@ -108,6 +109,7 @@ public class WorldContactListener implements ContactListener {
     private void ballEndContact(Fixture ball, Fixture other) {
         switch (other.getFilterData().categoryBits) {
             case GROUND_BIT:
+//                ((BallModel) ball.getBody().getUserData()).setState(BallModel.State.FLYING);
 //                ((BallModel) ball.getUserData()).setState(BallModel.State.FLYING);
                 model.getBallModel().setState(BallModel.State.FLYING);
                 break;
