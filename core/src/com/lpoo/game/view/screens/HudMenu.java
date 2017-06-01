@@ -143,6 +143,7 @@ public class HudMenu {
      *          Table that contains the Options Menu elements.
      */
     private void initOptionsMenu(Table table) {
+        Label message = new Label("GAME PAUSED", skin);
         TextButton resumeButton = new TextButton("Resume", skin);
         TextButton restartButton = new TextButton("Restart", skin);
         TextButton exitButton = new TextButton("Exit", skin);
@@ -165,11 +166,12 @@ public class HudMenu {
         exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                model.togglePause();
                 game.setScreen(new LevelMenuScreen(game));
             }
         });
 
+        table.add(message).padBottom(HUD_VIEWPORT_HEIGHT/ 14).row();
+        message.setFontScale(HUD_VIEWPORT_WIDTH / 250,HUD_VIEWPORT_WIDTH / 250);
         table.add(resumeButton).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8).padBottom(HUD_VIEWPORT_HEIGHT/ 14).row();
         table.add(restartButton).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8).padBottom(HUD_VIEWPORT_HEIGHT/ 14).row();
         table.add(exitButton).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8);
@@ -188,9 +190,13 @@ public class HudMenu {
 
         //String formation for Label
         if (new_score > lastScore) {
-            scoreText.setText(Integer.toString(new_score / 60) + ":" + ((new_score % 60) > 9 ? "" : "0") + Integer.toString(new_score % 60));
+            scoreText.setText(getScoreString());
             lastScore = new_score;
         }
+    }
+
+    public String getScoreString() {
+        return (Integer.toString((int) score / 60) + ":" + (((int) score % 60) > 9 ? "" : "0") + Integer.toString((int) score % 60));
     }
 
     public void update (float delta, GameModel.ModelState state) {
@@ -223,6 +229,7 @@ public class HudMenu {
     public void draw () {
 
         if (options_flag) {
+            //TODO:
             optionsMenu.act(Gdx.graphics.getDeltaTime());
             optionsMenu.draw();
             Gdx.input.setInputProcessor(optionsMenu);
