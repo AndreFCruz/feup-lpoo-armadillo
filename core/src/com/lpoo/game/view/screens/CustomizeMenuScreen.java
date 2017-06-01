@@ -138,9 +138,6 @@ public class CustomizeMenuScreen extends MenuScreen {
         //Creating and setting the Scroller
         ScrollPane scroller = new ScrollPane(skinsTable, skin);
         scroller.getStyle().background = null;  //Setting the scroll background invisible
-        /*//INVISIBLE SCROLLER
-        scroller.getStyle().vScroll = null;
-        scroller.getStyle().vScrollKnob = null;*/
 
         table.add(back).top().left().padLeft(SIDE_DISTANCE).padTop(TOP_EDGE / 3);
         table.row();
@@ -164,9 +161,8 @@ public class CustomizeMenuScreen extends MenuScreen {
 
         createStaticElements(staticElements, skins);
 
-        // Add Elements to stage
         stage.addActor(staticElements);
 
-        Gdx.input.setInputProcessor(stage); //TODO: averiguar o pq de ter de ser aqu (se não não dá)
+        Gdx.input.setInputProcessor(stage);
     }
 }

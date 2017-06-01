@@ -65,8 +65,6 @@ public abstract class MenuScreen extends ScreenAdapter {
         this.batch = game.getBatch();
         skin = game.getSkin();
 
-        loadAssets();
-
         camera = new OrthographicCamera();
 
         viewport = new FitViewport(VIEWPORT_WIDTH / PIXEL_TO_METER, VIEWPORT_HEIGHT / PIXEL_TO_METER);
@@ -83,17 +81,6 @@ public abstract class MenuScreen extends ScreenAdapter {
         titleImg = new Image(game.getAssetManager().get("spheral.png", Texture.class));
         titleImg.setSize(0.8f * titleImg.getWidth(), 0.8f * titleImg.getHeight());
         titleImg.setPosition(VIEWPORT_WIDTH / PIXEL_TO_METER / 2 - titleImg.getWidth() / 2, VIEWPORT_HEIGHT * 0.98f / PIXEL_TO_METER - titleImg.getHeight());
-    }
-
-    /**
-     * Function used to load the Assets used in a Menu Screen.
-     */
-    protected void loadAssets() {
-
-        game.getAssetManager().load( "spheral.png" , Texture.class);
-        game.getAssetManager().load( "background.png" , Texture.class);
-
-        game.getAssetManager().finishLoading();
     }
 
     @Override

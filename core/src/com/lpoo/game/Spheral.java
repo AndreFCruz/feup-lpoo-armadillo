@@ -59,12 +59,16 @@ public class Spheral extends Game {
      */
     private void loadAssets() {
 
+        //Load Background and Title
+        assetManager.load( "spheral.png" , Texture.class);
+        assetManager.load( "background.png" , Texture.class);
+
         // Load Box skin
         assetManager.load("box.png", Texture.class);
 
         // Load ball skins
         for (int i = 0; i < NUMBER_OF_SKINS; i++)
-            assetManager.load( "skins/skin0" + i + ".png" , Texture.class);
+            assetManager.load( ("skins/skin" + (i < 10 ? "0" : "") + i + ".png") , Texture.class);
 
         // Load levels
         assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));

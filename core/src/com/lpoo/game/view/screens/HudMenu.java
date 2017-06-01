@@ -95,20 +95,7 @@ public class HudMenu {
 
         skin = game.getSkin();
 
-        initTables();
-    }
-
-    /**
-     * Function responsible for initializing all the Elements from both the HUD and the Options Menu.
-     */
-    private void initTables() {
-        //----------HUD-------------
-        Table hudTable = new Table();
-        hudTable.setFillParent(true);
-        hudTable.debugAll();    //TODO: Delete
-
-        initHUD(hudTable);
-        hud.addActor(hudTable);
+        initHUD();
     }
 
     /**
@@ -117,7 +104,9 @@ public class HudMenu {
      * @param table
      *          Table contatining the HUD elements.
      */
-    private void initHUD (Table table) {
+    private void initHUD () {
+        Table hudTable = new Table();
+        hudTable.setFillParent(true);
 
         Button pauseButton = new Button (new TextureRegionDrawable(new TextureRegion(new Texture("pause.png"))));
 
@@ -131,9 +120,11 @@ public class HudMenu {
             }
         });
         //TODO: Hardcoded values, need to create macros for this. Hardcoded till perfection
-        table.top();
-        table.add(scoreText).size(HUD_VIEWPORT_WIDTH /15, HUD_VIEWPORT_WIDTH / 15).expandX().left().fill().padLeft(HUD_VIEWPORT_WIDTH / 20).padTop(HUD_VIEWPORT_HEIGHT/ 25);
-        table.add(pauseButton).size(HUD_VIEWPORT_WIDTH / 15, HUD_VIEWPORT_WIDTH /15).fill().padRight(HUD_VIEWPORT_WIDTH / 20).padTop(HUD_VIEWPORT_HEIGHT/ 25);
+        hudTable.top();
+        hudTable.add(scoreText).size(HUD_VIEWPORT_WIDTH /15, HUD_VIEWPORT_WIDTH / 15).expandX().left().fill().padLeft(HUD_VIEWPORT_WIDTH / 20).padTop(HUD_VIEWPORT_HEIGHT/ 25);
+        hudTable.add(pauseButton).size(HUD_VIEWPORT_WIDTH / 15, HUD_VIEWPORT_WIDTH /15).fill().padRight(HUD_VIEWPORT_WIDTH / 20).padTop(HUD_VIEWPORT_HEIGHT/ 25);
+
+        hud.addActor(hudTable);
     }
 
     /**
@@ -166,6 +157,8 @@ public class HudMenu {
     public HudMenu.Request update (float delta, GameModel.ModelState state) {
 
         if (state != lastState) {
+            lastState = state;
+
             switch (state) {
                 case LOST:
                     optionsMenu = new LostMenu(viewport, game, this);
@@ -192,7 +185,6 @@ public class HudMenu {
     }
 
     public void draw () {
-
         if (options_flag) {
             optionsMenu.draw();
         } else {
@@ -202,7 +194,7 @@ public class HudMenu {
         }
     }
 
-    public void resetScore() {
+    private void resetScore() {
         score = 0;
         lastScore = 0;
         scoreText.setText("0:00");

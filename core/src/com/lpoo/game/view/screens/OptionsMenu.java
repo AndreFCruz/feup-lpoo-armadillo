@@ -27,6 +27,8 @@ public abstract class OptionsMenu {
      */
     protected Stage menu;
 
+    protected Table table;
+
     protected Label message;
 
     protected Skin skin;
@@ -43,19 +45,17 @@ public abstract class OptionsMenu {
      */
     protected static final float HUD_VIEWPORT_HEIGHT = HUD_VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());;
 
-    /**
-     * Default Constructor.
-     */
-    public OptionsMenu () {}
-
     public OptionsMenu (Viewport viewport, Spheral game, HudMenu hud) {
         this.game = game;
         this.hud = hud;
 
         menu = new Stage (viewport, game.getBatch());
+        table = new Table();
         this.skin = game.getSkin();
 
         message = new Label("", this.skin);
+
+        confStage();
     }
 
     public void draw() {
@@ -64,16 +64,7 @@ public abstract class OptionsMenu {
         Gdx.input.setInputProcessor(menu);
     }
 
-    protected void addHeader(Table table) {
-        table.add(message).padBottom(HUD_VIEWPORT_HEIGHT/ 18).row();
-        message.setFontScale(HUD_VIEWPORT_WIDTH / 250,HUD_VIEWPORT_WIDTH / 250);
-
-        Label score = new Label(hud.getScoreString(), skin);
-        table.add(score).padBottom(HUD_VIEWPORT_HEIGHT/ 14).row();
-        score.setFontScale(HUD_VIEWPORT_WIDTH / 400,HUD_VIEWPORT_WIDTH / 400);
-    }
-
-    protected void addExitBtn(Table table) {
+    protected void addExitBtn() {
         TextButton exitBtn = new TextButton("Exit", this.skin);
 
         exitBtn.addListener(new ClickListener() {
@@ -86,13 +77,12 @@ public abstract class OptionsMenu {
         table.add(exitBtn).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8);
     }
 
-    protected void addRestartBtn(Table table) {
+    protected void addRestartBtn() {
         TextButton restartBtn = new TextButton("Restart", skin);
 
         restartBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //togglePause();
                 startLevel();
             }
         });
@@ -100,7 +90,7 @@ public abstract class OptionsMenu {
         table.add(restartBtn).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8).padBottom(HUD_VIEWPORT_HEIGHT / 14).row();
     }
 
-    protected void addResumeBtn(Table table) {
+    protected void addResumeBtn() {
         TextButton resumeBtn = new TextButton("Resume", skin);
 
         resumeBtn.addListener(new ClickListener() {
@@ -113,7 +103,7 @@ public abstract class OptionsMenu {
         table.add(resumeBtn).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8).padBottom(HUD_VIEWPORT_HEIGHT / 14).row();
     }
 
-    protected void addNextLvlBtn(Table table) {
+    protected void addNextLvlBtn() {
         TextButton nextLvlBtn = new TextButton("Next Level", skin);
 
         nextLvlBtn.addListener(new ClickListener() {
@@ -131,6 +121,25 @@ public abstract class OptionsMenu {
     private void startLevel() { hud.startLevel(); }
 
     private void loadLevel() { hud.loadNextLevel(); }
+
+    protected void initStage() {
+        table.setFillParent(true);
+        table.debugAll();
+
+        table.add(message).padBottom(HUD_VIEWPORT_HEIGHT/ 18).row();
+        message.setFontScale(HUD_VIEWPORT_WIDTH / 250,HUD_VIEWPORT_WIDTH / 250);
+
+        Label score = new Label(hud.getScoreString(), skin);
+        table.add(score).padBottom(HUD_VIEWPORT_HEIGHT/ 14).row();
+        score.setFontScale(HUD_VIEWPORT_WIDTH / 400,HUD_VIEWPORT_WIDTH / 400);
+    }
+
+    protected void finishStage() {
+        addExitBtn();
+
+        setMessage();
+        menu.addActor(table);
+    }
 
     protected abstract void confStage();
 
