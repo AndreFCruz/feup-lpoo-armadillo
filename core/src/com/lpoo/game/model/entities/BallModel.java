@@ -12,7 +12,7 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
  * A model representing the player's ball.
  */
 public class BallModel extends EntityModel {
-    private static final float POWERUP_RATIO = 1.5f;
+    private static final float POWERUP_RATIO = 2f;
 
     public enum State {LANDED, FLYING, DUNKING}
 
@@ -23,7 +23,7 @@ public class BallModel extends EntityModel {
 
     private float density = .5f;
     private float friction = 10f;
-    private float restitution = 0.6f;
+    private float restitution = 0.5f;
 
     private State state = State.LANDED;
 
@@ -67,25 +67,37 @@ public class BallModel extends EntityModel {
         this.state = st;
     }
 
-    public void increaseDensity() {
+    void increaseDensity() {
         density *= POWERUP_RATIO;
         getBody().getFixtureList().first().setDensity(density);
     }
 
-    public void decreaseDensity() {
+    void decreaseDensity() {
         density *= 1 / POWERUP_RATIO;
         getBody().getFixtureList().first().setDensity(density);
     }
 
-    public void increaseVelocity() {
+    void increaseVelocity() {
         angular_accel *= POWERUP_RATIO;
+        friction *= POWERUP_RATIO;
+        getBody().getFixtureList().first().setFriction(friction);
     }
 
-    public void decreaseVelocity() {
+    void decreaseVelocity() {
         angular_accel *= 1 / POWERUP_RATIO;
+        friction *= 1 / POWERUP_RATIO;
+        getBody().getFixtureList().first().setFriction(friction);
     }
 
-    public void flipGravity() {
+    void increaseJumpForce() {
+        jump_force *= 1.2f;
+    }
+
+    void decreaseJumpForce() {
+        jump_force /= 1.2f;
+    }
+
+    void flipGravity() {
         getBody().setGravityScale(-1);
         jump_force *= -1;
     }

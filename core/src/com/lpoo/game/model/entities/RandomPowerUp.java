@@ -22,18 +22,24 @@ public class RandomPowerUp extends PowerUp {
 
         Random rand = new Random();
 
-        switch (rand.nextInt(4)) {
+        switch (rand.nextInt(6)) {
             case 0:
-                model.decreaseDensity();
-                break;
-            case 1:
-                model.decreaseVelocity();
-                break;
-            case 2:
                 model.increaseDensity();
                 break;
-            case 3:
+            case 1:
+                model.decreaseDensity();
+                break;
+            case 2:
                 model.increaseVelocity();
+                break;
+            case 3:
+                model.decreaseVelocity();
+                break;
+            case 4:
+                model.increaseJumpForce();
+                break;
+            case 5:
+                model.decreaseJumpForce();
                 break;
         }
     }

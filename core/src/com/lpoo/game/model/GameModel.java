@@ -110,10 +110,13 @@ public class GameModel implements Disposable {
         return LIVE;
     }
 
+    // TODO eventually world.destroy(body) of flagged?
     private void removeFlagged() {
-        for (int i = 0; i < entityModels.size; i++)
-            if (entityModels.get(i).isFlaggedForRemoval())
+        for (int i = 0; i < entityModels.size; i++) {
+            if (entityModels.get(i).isFlaggedForRemoval()) {
                 entityModels.removeIndex(i);
+            }
+        }
     }
 
     private boolean ballInBounds() {

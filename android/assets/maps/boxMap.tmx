@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="32" height="12" tilewidth="64" tileheight="64" nextobjectid="26">
+<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="32" height="12" tilewidth="64" tileheight="64" nextobjectid="28">
  <tileset firstgid="1" source="../tilesets/MyTiles_64x64.tsx"/>
  <layer name="map" width="32" height="12">
   <data encoding="base64" compression="zlib">
-   eJwzYmBg4BoAzA/FbAwDA1gG2H5zOtpvCsRSQGyMJs5CJ/utgdgWiO0HyH5cYNR+6tkPSmNmQCxKZ/th9toBsQEDJJ0R6wZ0+/XItBdWlhlAaWQ36BOwn4kK2AhqtwEZegFmfQeN
+   eJwzYmBg4BoAzA/FbAwDA1gG2H5zOtpvCsRSQGyMJs5CJ/utgdgWiO0HyH5cgNr2w8KZ3vaD7DUDYjsGSDiL0sl+ZHtZkTCxbiDXfmR7ZaBYCYgNoHYT6wZ0+/VIsFcJCRtB7QZhfqj9/ES4gQWqhpFCjGw/KfocgBgAo/gK6g==
   </data>
  </layer>
  <objectgroup name="ground">
@@ -15,13 +15,13 @@
   <object id="8" x="1920" y="128">
    <polygon points="0,0 64,0 64,64 47.1392,18.5211"/>
   </object>
-  <object id="11" x="896" y="704">
-   <polygon points="0,0 384,-192 576,0"/>
-  </object>
   <object id="18" x="1600" y="256">
    <polygon points="0,0 128,0 64.0701,-33.5284"/>
   </object>
   <object id="19" x="1600" y="256" width="192" height="64"/>
+  <object id="26" x="704" y="704">
+   <polygon points="0,0 576.06,-288.675 640,-256 896,0"/>
+  </object>
  </objectgroup>
  <objectgroup name="objects">
   <object id="12" type="box" x="1600" y="640" width="64" height="64"/>
@@ -50,6 +50,12 @@
   <object id="25" type="powerup" x="64" y="64" width="64" height="64">
    <properties>
     <property name="class" value="velocity"/>
+   </properties>
+  </object>
+  <object id="27" type="platform" x="685.726" y="403.925" width="250" height="35">
+   <properties>
+    <property name="density" type="float" value="2"/>
+    <property name="pivoted" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

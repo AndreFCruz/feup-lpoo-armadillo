@@ -29,7 +29,8 @@ public class Spheral extends Game {
     private static final Map<Integer, String> gameMaps = new HashMap<Integer, String>();
 
     static { // Order is reversed for testing
-        gameMaps.put(0, "maps/mapGravity.tmx");
+        gameMaps.put(0, "maps/boxMap.tmx");
+        gameMaps.put(6, "maps/mapGravity.tmx");
         gameMaps.put(1, "maps/map3.tmx");
         gameMaps.put(2, "maps/map2.tmx");
         gameMaps.put(3, "maps/map1.tmx");

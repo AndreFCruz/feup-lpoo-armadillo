@@ -16,6 +16,6 @@ public class JumpPowerUp extends PowerUp {
     @Override
     public void onHit(BallModel model) {
         flagForRemoval();
-        model.decreaseDensity();
+        model.increaseJumpForce();
     }
 }
