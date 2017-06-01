@@ -14,10 +14,24 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
  * This view is able to update its data based on a entity model.
  */
 public abstract class EntityView {
+
+    private final EntityModel.ModelType type;
+
     /**
      * The sprite representing this entity view.
      */
-    private Sprite sprite;
+    protected Sprite sprite;
+
+    /**
+     * Creates a view belonging to a game.
+     *
+     * @param game the game this view belongs to. Needed to access the
+     *             asset manager to get textures.
+     */
+    EntityView(Spheral game, EntityModel.ModelType type) {
+        this.type = type;
+        sprite = createSprite(game);
+    }
 
     /**
      * Creates a view belonging to a game.
@@ -26,7 +40,7 @@ public abstract class EntityView {
      *             asset manager to get textures.
      */
     EntityView(Spheral game) {
-        sprite = createSprite(game);
+        this(game, null);
     }
 
     /**
@@ -57,5 +71,9 @@ public abstract class EntityView {
     public void update(EntityModel model) {
         sprite.setCenter(model.getX() / PIXEL_TO_METER, model.getY() / PIXEL_TO_METER);
         sprite.setRotation((float) Math.toDegrees(model.getAngle()));
+    }
+
+    protected EntityModel.ModelType getType() {
+        return type;
     }
 }
