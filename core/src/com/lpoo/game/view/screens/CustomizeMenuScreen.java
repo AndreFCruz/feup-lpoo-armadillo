@@ -27,7 +27,7 @@ public class CustomizeMenuScreen extends MenuScreen {
     ArrayList<Button> skinButtons = new ArrayList<Button>();
 
     /**
-     * Array containing the the Labels associated to a skin
+     * Array containing the Labels associated to a skin
      */
     ArrayList<Label> skinLabels = new ArrayList<Label>();
 
@@ -79,12 +79,13 @@ public class CustomizeMenuScreen extends MenuScreen {
             skinButtons.add( new Button( new TextureRegionDrawable (new TextureRegion (new Texture ( "skins/skin" + (i < 10 ? "0" : "") + i + ".png")))));
             skinLabels.add(new Label ("Current", skin));
 
+            final int j = i; //Needed for Listener initialization
+
             //Adding Listeners to the Buttons
-            current_skin = i;
             skinButtons.get(i).addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    setCurrentLabel(); //TODO: change
+                    setCurrentLabel(j);
                 }
             });
 
@@ -97,21 +98,29 @@ public class CustomizeMenuScreen extends MenuScreen {
         for (int i=0; i < game.getNumSkins(); ++i)
             table.add(skinLabels.get(i)).width(BUTTON_SIZE).center();
 
-        //addButtonListeners();
-        setCurrentLabel();
+        current_skin = 1; //TODO: FAZER LOAD DOS FICHEIROS DA LAST CHOSEN SKINS
+        initializeCurrentSkin();
+    }
+
+    /**
+     * Initialize the current_skin.
+     */
+    private void initializeCurrentSkin() {
+        for (int i = 0; i < skinLabels.size(); ++i) {
+            if (i == current_skin)
+                skinLabels.get(current_skin).setVisible(true);
+            else
+                skinLabels.get(i).setVisible(false);
+        }
     }
 
     /**
      * Set the current visible Label with the current skin.
      */
-    private void setCurrentLabel() {
-        for (int i=0; i < skinLabels.size(); ++i) {
-
-            if (i == current_skin)
-                skinLabels.get(i).setVisible(true);
-            else
-                skinLabels.get(i).setVisible(false);
-        }
+    private void setCurrentLabel(final int j) {
+        skinLabels.get(current_skin).setVisible(false);
+        skinLabels.get(j).setVisible(true);
+        current_skin = j;
     }
 
     /**

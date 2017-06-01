@@ -69,11 +69,13 @@ public class LevelMenuScreen extends MenuScreen {
             //Adding to table and setting Layout aspect
             table.add(levelButtons.get(i-1)).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
 
+            final int j = (i-1); //Needed for Listener initialization
+
             //Adding Listener
             levelButtons.get(i-1).addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    game.setScreen(new GameScreen(game)); //TODO: Mudar para que cada um leve ao seu level certo
+                    game.setScreen(new GameScreen(game, j)); //TODO: Mudar para que cada um leve ao seu level certo
                 }
             });
 
@@ -106,9 +108,6 @@ public class LevelMenuScreen extends MenuScreen {
         //Creating and setting the Scroller
         ScrollPane scroller = new ScrollPane(levelsTable, skin);
         scroller.getStyle().background = null;  //Setting the scroll background invisible
-        /*//INVISIBLE SCROLLER
-        scroller.getStyle().vScroll = null;
-        scroller.getStyle().vScrollKnob = null;*/
 
         table.add(back).top().padLeft(SIDE_DISTANCE).padTop(TOP_EDGE / 3);
         table.add(scroller).fill().expand().padRight(SIDE_DISTANCE);
