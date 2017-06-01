@@ -83,10 +83,26 @@ public class GameScreen extends ScreenAdapter {
      */
     private HudMenu hud;
 
-    public GameScreen(Spheral game) {
+    /*public GameScreen(Spheral game) {
         this.game = game;
 
         model = new GameModel();
+        loadNextMap();
+
+        camera = createCamera();
+
+        controller = new GameController(camera, model);
+
+        mapRenderer = new OrthogonalTiledMapRenderer(model.getMap(), game.getBatch());
+
+        hud = new HudMenu(game, model);
+    }*/
+
+    public GameScreen (Spheral game, int i) {
+        this.game = game;
+
+        model = new GameModel();
+        currentLevel = i;
         loadNextMap();
 
         camera = createCamera();
