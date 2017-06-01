@@ -3,6 +3,7 @@ package com.lpoo.game.model.entities;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
@@ -14,16 +15,20 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
  * An abstract model representing an entity belonging to a game model.
  */
 public abstract class EntityModel {
-    public enum ModelType {BALL, BOX, POWERUP_JUMP}
+
+    public enum ModelType {BALL, BOX, POWERUP_JUMP, POWERUP_VELOCITY, POWERUP_RANDOM, POWERUP_GRAVITY}
 
     // Constants for collision mask
     public final static short GROUND_BIT = 0x01;
     public final static short BALL_BIT = 0x02;
     public final static short FLUID_BIT = 0x04;
+    public final static short HITTABLE_BIT = 0x08;
 
     final private ModelType type;
 
     final private Body body;
+
+    private boolean flaggedForRemoval = false;
 
     EntityModel(World world, Vector2 pos, ModelType type) {
         this(world, pos, type, 0f, 0f);
@@ -114,6 +119,14 @@ public abstract class EntityModel {
 
     public ModelType getType() {
         return type;
+    }
+
+    public boolean isFlaggedForRemoval() {
+        return flaggedForRemoval;
+    }
+
+    void flagForRemoval() {
+        flaggedForRemoval = true;
     }
 
 }
