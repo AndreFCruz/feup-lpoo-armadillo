@@ -27,7 +27,6 @@ public abstract class MenuScreen extends ScreenAdapter {
     protected Camera camera;
     protected SpriteBatch batch;
     protected Skin skin;
-    protected TextureAtlas atlas;
 
     /**
      * How much meters does a pixel represent.
@@ -65,11 +64,9 @@ public abstract class MenuScreen extends ScreenAdapter {
     protected MenuScreen(final Spheral game) {
         this.game = game;
         this.batch = game.getBatch();
+        skin = game.getSkin();
 
         loadAssets();
-
-        atlas = new TextureAtlas("uiskin.atlas");
-        skin = new Skin(Gdx.files.internal("uiskin.json"), atlas);
 
         camera = new OrthographicCamera();
 

@@ -1,13 +1,16 @@
 package com.lpoo.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.lpoo.game.view.screens.MainMenuScreen;
 
 import java.util.HashMap;
@@ -18,6 +21,8 @@ public class Spheral extends Game {
     private AssetManager assetManager;
 
     public BitmapFont font;
+
+    private Skin skin;
 
     private static final int NUMBER_OF_SKINS = 6;
 
@@ -37,6 +42,8 @@ public class Spheral extends Game {
         assetManager = new AssetManager();
 
         font = new BitmapFont();
+
+        skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas("uiskin.atlas"));
 
         loadAssets();
         startGame();
@@ -97,4 +104,6 @@ public class Spheral extends Game {
     public AssetManager getAssetManager() {
         return assetManager;
     }
+
+    public Skin getSkin() { return skin; }
 }

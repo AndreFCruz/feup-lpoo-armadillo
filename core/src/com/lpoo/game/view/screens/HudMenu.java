@@ -85,8 +85,7 @@ public class HudMenu {
 
         optionsMenu = new Stage (viewport, game.getBatch());
 
-        atlas = new TextureAtlas("uiskin.atlas");
-        skin = new Skin(Gdx.files.internal("uiskin.json"), atlas);
+        skin = game.getSkin();
 
         initTables();
     }
@@ -94,7 +93,7 @@ public class HudMenu {
     /**
      * Function responsible for initializing all the Elements from both the HUD and the Options Menu.
      */
-    public void initTables() {
+    private void initTables() {
         //----------HUD-------------
         Table hudTable = new Table();
         hudTable.setFillParent(true);
