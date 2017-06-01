@@ -14,13 +14,17 @@ import com.lpoo.game.model.GameModel;
 
 public class PauseMenu extends OptionsMenu {
 
-    PauseMenu (Viewport viewport, Spheral game, GameModel model, HudMenu hud) {
-        super(viewport, game, model, hud);
+    PauseMenu (Viewport viewport, Spheral game, HudMenu hud) {
+        super(viewport, game, hud);
+
+        confStage();
     }
 
     @Override
     protected void confStage() {
         Table table = new Table();
+        table.setFillParent(true);
+        table.debugAll();
 
         addHeader(table);
         addResumeBtn(table);
@@ -28,6 +32,7 @@ public class PauseMenu extends OptionsMenu {
         addExitBtn(table);
 
         setMessage();
+        menu.addActor(table);
     }
 
     @Override

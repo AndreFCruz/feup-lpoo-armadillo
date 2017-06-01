@@ -14,19 +14,23 @@ import com.lpoo.game.model.GameModel;
 
 public class LostMenu extends OptionsMenu {
 
-    LostMenu (Viewport viewport, Spheral game, GameModel model, HudMenu hud) {
-        super(viewport, game, model, hud);
+    LostMenu (Viewport viewport, Spheral game, HudMenu hud) {
+        super(viewport, game, hud);
+
+        confStage();
     }
 
     @Override
     protected void confStage() {
         Table table = new Table();
+        table.setFillParent(true);
 
         addHeader(table);
         addRestartBtn(table);
         addExitBtn(table);
 
         setMessage();
+        menu.addActor(table);
     }
 
     @Override

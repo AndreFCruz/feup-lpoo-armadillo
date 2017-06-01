@@ -140,22 +140,24 @@ public class GameScreen extends ScreenAdapter {
             debugRenderer.render(model.getWorld(), debugCamera);
         }
 
-        GameModel.ModelState modelCurrentState;
-        switch (modelCurrentState = model.update(delta)) {
-            case LOST:
-                model.startLevel();
-                break;
-            case WON:
+        switch(hud.update(delta, model.update(delta))) {
+            case LOAD:
                 loadNextMap();
+                resetRequest();
                 break;
-            case PAUSED:
+            case START:
+                model.startLevel();
+                resetRequest();
                 break;
             default:
                 break;
         }
 
-        hud.update(delta, modelCurrentState);
         hud.draw();
+    }
+
+    private void resetRequest() {
+        hud.resetRequest();
     }
 
     private void drawEntities() {
@@ -185,7 +187,6 @@ public class GameScreen extends ScreenAdapter {
         // Follow player
         camera.position.set(model.getBallModel().getX() / PIXEL_TO_METER, model.getBallModel().getY() / PIXEL_TO_METER, 0);
         camera.update();
-
     }
 
     private OrthographicCamera createCamera() {

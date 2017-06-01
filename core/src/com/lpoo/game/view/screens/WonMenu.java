@@ -11,13 +11,16 @@ import com.lpoo.game.model.GameModel;
 
 public class WonMenu extends OptionsMenu {
 
-    WonMenu (Viewport viewport, Spheral game, GameModel model, HudMenu hud) {
-        super(viewport, game, model, hud);
+    WonMenu (Viewport viewport, Spheral game, HudMenu hud) {
+        super(viewport, game, hud);
+
+        confStage();
     }
 
     @Override
     protected void confStage() {
         Table table = new Table();
+        table.setFillParent(true);
 
         addHeader(table);
         addNextLvlBtn(table);
@@ -25,6 +28,7 @@ public class WonMenu extends OptionsMenu {
         addExitBtn(table);
 
         setMessage();
+        menu.addActor(table);
     }
 
     @Override

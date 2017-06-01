@@ -65,6 +65,8 @@ public class GameModel implements Disposable {
         if (map == null)
             return;
 
+        currentState = LIVE;
+
         gravity = new Vector2(0, - GRAVITY_CONSTANT);
         world = new World(gravity, true);
 
@@ -87,8 +89,9 @@ public class GameModel implements Disposable {
     }
 
     public ModelState update(float delta) {
-        if (currentState == PAUSED)
-            return PAUSED;
+
+        if (currentState != LIVE)
+            return currentState;
 
         // Step the simulation with a fixed time step of 1/60 of a second
         world.step(1/60f, 6, 2);
@@ -99,9 +102,10 @@ public class GameModel implements Disposable {
         removeFlagged();
 
         if (! ballInBounds())
-            return LOST;
+            return (currentState = LOST);
+
         if (ballReachedEnd())
-            return WON;
+            return (currentState = WON);
 
         return LIVE;
     }
