@@ -105,6 +105,9 @@ public class B2DWorldCreator {
                     case "platform":
                         shapeModels.add(B2DFactory.makePlatform(world, (RectangleMapObject) object));
                         break;
+                    case "powerup":
+                        entityModels.add(B2DFactory.makePowerUp(world, (RectangleMapObject) object));
+                        break;
                     default:
                         System.err.println("Invalid MapObject type in objects' layer");
                 }

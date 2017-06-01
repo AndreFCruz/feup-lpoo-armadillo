@@ -15,7 +15,12 @@ import com.badlogic.gdx.physics.box2d.joints.RevoluteJoint;
 import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
 import com.lpoo.game.model.entities.BallModel;
 import com.lpoo.game.model.entities.BoxModel;
+import com.lpoo.game.model.entities.GravityPowerUp;
+import com.lpoo.game.model.entities.JumpPowerUp;
 import com.lpoo.game.model.entities.PlatformModel;
+import com.lpoo.game.model.entities.PowerUp;
+import com.lpoo.game.model.entities.RandomPowerUp;
+import com.lpoo.game.model.entities.VelocityPowerUp;
 import com.lpoo.game.model.entities.WaterModel;
 
 import static com.lpoo.game.model.entities.EntityModel.GROUND_BIT;
@@ -103,5 +108,24 @@ public class B2DFactory {
     static BallModel makeBall(World world, RectangleMapObject rectObj) {
         Rectangle rect = rectObj.getRectangle();
         return new BallModel(world, new Vector2(rect.getX() * PIXEL_TO_METER, rect.getY() * PIXEL_TO_METER));
+    }
+
+    static PowerUp makePowerUp(World world, RectangleMapObject object) {
+        String classProperty = object.getProperties().get("class", String.class);
+        if (classProperty == null) {
+            System.err.println("PowerUp has no class set!");
+            return null;
+        }
+
+        switch (classProperty) {
+            case "gravity":
+                return new GravityPowerUp(world, object);
+            case "velocity":
+                return new VelocityPowerUp(world, object);
+            case "jump":
+                return new JumpPowerUp(world, object);
+            default:
+                return new RandomPowerUp(world, object);
+        }
     }
 }

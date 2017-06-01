@@ -29,11 +29,12 @@ public class Spheral extends Game {
     private static final Map<Integer, String> gameMaps = new HashMap<Integer, String>();
 
     static { // Order is reversed for testing
-        gameMaps.put(0, "maps/map3.tmx");
-        gameMaps.put(1, "maps/map2.tmx");
-        gameMaps.put(2, "maps/map1.tmx");
-        gameMaps.put(3, "maps/map0.tmx");
-        gameMaps.put(4, "maps/map4.tmx");
+        gameMaps.put(0, "maps/mapGravity.tmx");
+        gameMaps.put(1, "maps/map3.tmx");
+        gameMaps.put(2, "maps/map2.tmx");
+        gameMaps.put(3, "maps/map1.tmx");
+        gameMaps.put(4, "maps/map0.tmx");
+        gameMaps.put(5, "maps/map4.tmx");
     }
 
     @Override

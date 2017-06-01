@@ -1,5 +1,6 @@
 package com.lpoo.game.model;
 
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -7,7 +8,9 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.lpoo.game.model.controllers.BuoyancyController;
 import com.lpoo.game.model.entities.BallModel;
+import com.lpoo.game.model.entities.BoxModel;
 import com.lpoo.game.model.entities.EntityModel;
+import com.lpoo.game.model.entities.Hittable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +18,7 @@ import java.util.Map;
 import static com.lpoo.game.model.entities.EntityModel.BALL_BIT;
 import static com.lpoo.game.model.entities.EntityModel.FLUID_BIT;
 import static com.lpoo.game.model.entities.EntityModel.GROUND_BIT;
+import static com.lpoo.game.model.entities.EntityModel.HITTABLE_BIT;
 
 /**
  * Created by andre on 04/05/2017.
@@ -31,22 +35,16 @@ public class WorldContactListener implements ContactListener {
 
     private final GameModel model;
 
-    public WorldContactListener(final GameModel model) {
+    WorldContactListener(final GameModel model) {
         this.model = model;
 
-        beginContactFunctions.put(BALL_BIT, new ContactHandler() {
-            @Override
-            public void handle(Fixture ball, Fixture fixB) {
-                ballBeginContact(ball, fixB);
-            }
-        });
-        endContactFunctions.put(BALL_BIT, new ContactHandler() {
-            @Override
-            public void handle(Fixture ball, Fixture fixB) {
-                ballEndContact(ball, fixB);
-            }
-        });
+        addBallContactHandlers();
+        addFluidContactHandlers();
+        addHittableContactHandlers();
 
+    }
+
+    private void addFluidContactHandlers() {
         beginContactFunctions.put(FLUID_BIT, new ContactHandler() {
             @Override
             public void handle(Fixture fluid, Fixture fixB) {
@@ -60,6 +58,33 @@ public class WorldContactListener implements ContactListener {
             @Override
             public void handle(Fixture fluid, Fixture fixB) {
                 ((BuoyancyController) fluid.getBody().getUserData()).removeBody(fixB);
+            }
+        });
+    }
+
+    private void addBallContactHandlers() {
+        beginContactFunctions.put(BALL_BIT, new ContactHandler() {
+            @Override
+            public void handle(Fixture ball, Fixture fixB) {
+                ballBeginContact(ball, fixB);
+            }
+        });
+        endContactFunctions.put(BALL_BIT, new ContactHandler() {
+            @Override
+            public void handle(Fixture ball, Fixture fixB) {
+                ballEndContact(ball, fixB);
+            }
+        });
+    }
+
+    private void addHittableContactHandlers() {
+        beginContactFunctions.put(HITTABLE_BIT, new ContactHandler() {
+            @Override
+            public void handle(Fixture fixA, Fixture fixB) {
+                if (! (fixB.getBody().getUserData() instanceof EntityModel))
+                    return;
+
+                ((Hittable) fixA.getBody().getUserData()).onHit((BallModel) fixB.getBody().getUserData());
             }
         });
     }
@@ -99,9 +124,7 @@ public class WorldContactListener implements ContactListener {
     private void ballBeginContact(Fixture ball, Fixture other) {
         switch (other.getFilterData().categoryBits) {
             case GROUND_BIT:
-//                ((BallModel) ball.getBody().getUserData()).setState(BallModel.State.LANDED);
-//                ((BallModel) ball.getUserData()).setState(BallModel.State.LANDED);
-                model.getBallModel().setState(BallModel.State.LANDED);
+                ((BallModel) ball.getBody().getUserData()).setState(BallModel.State.LANDED);
                 break;
         }
     }
@@ -109,9 +132,7 @@ public class WorldContactListener implements ContactListener {
     private void ballEndContact(Fixture ball, Fixture other) {
         switch (other.getFilterData().categoryBits) {
             case GROUND_BIT:
-//                ((BallModel) ball.getBody().getUserData()).setState(BallModel.State.FLYING);
-//                ((BallModel) ball.getUserData()).setState(BallModel.State.FLYING);
-                model.getBallModel().setState(BallModel.State.FLYING);
+                ((BallModel) ball.getBody().getUserData()).setState(BallModel.State.FLYING);
                 break;
         }
     }

@@ -96,12 +96,20 @@ public class GameModel implements Disposable {
         for (WaterModel model : fluids)
             model.step();
 
+        removeFlagged();
+
         if (! ballInBounds())
             return LOST;
         if (ballReachedEnd())
             return WON;
 
         return LIVE;
+    }
+
+    private void removeFlagged() {
+        for (int i = 0; i < entityModels.size; i++)
+            if (entityModels.get(i).isFlaggedForRemoval())
+                entityModels.removeIndex(i);
     }
 
     private boolean ballInBounds() {
