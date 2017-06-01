@@ -59,19 +59,35 @@ public class Spheral extends Game {
      */
     private void loadAssets() {
 
-        // Load Box skin
+        loadEntitySkins();
+        loadLevels();
+        loadAnimations();
+
+        assetManager.finishLoading();
+    }
+
+    private void loadEntitySkins() {
+        // Box Skin
         assetManager.load("box.png", Texture.class);
 
-        // Load ball skins
+        // Ball Skins
         for (int i = 0; i < NUMBER_OF_SKINS; i++)
             assetManager.load( "skins/skin0" + i + ".png" , Texture.class);
+    }
 
-        // Load levels
+    private void loadLevels() {
         assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
         for (String entry : gameMaps.values())
             assetManager.load(entry, TiledMap.class);
+    }
 
-        assetManager.finishLoading();
+    private void loadAnimations() {
+        assetManager.load("animations/crystal-32-blue.png", Texture.class );
+        assetManager.load("animations/crystal-32-green.png", Texture.class );
+        assetManager.load("animations/crystal-32-grey.png", Texture.class );
+        assetManager.load("animations/crystal-32-orange.png", Texture.class );
+        assetManager.load("animations/crystal-32-pink.png", Texture.class );
+        assetManager.load("animations/crystal-32-yellow.png", Texture.class );
     }
 
     public String getMap(int i) {

@@ -9,6 +9,7 @@ import java.util.Map;
 
 import static com.lpoo.game.model.entities.EntityModel.ModelType.BALL;
 import static com.lpoo.game.model.entities.EntityModel.ModelType.BOX;
+import static com.lpoo.game.model.entities.EntityModel.ModelType.POWERUP_GRAVITY;
 import static com.lpoo.game.model.entities.ShapeModel.ModelType.PLATFORM;
 
 /**
@@ -24,8 +25,23 @@ public class ViewFactory {
 
     public static EntityView makeView(Spheral game, EntityModel model) {
         if (!entitiesCache.containsKey(model.getType())) {
-            if (model.getType() == BALL) entitiesCache.put(model.getType(), new BallView(game));
-            if (model.getType() == BOX) entitiesCache.put(model.getType(), new BoxView(game));
+            switch (model.getType()) {
+                case BALL:
+                    entitiesCache.put(model.getType(), new BallView(game));
+                    break;
+
+                case BOX:
+                    entitiesCache.put(model.getType(), new BoxView(game));
+                    break;
+
+                case POWERUP_GRAVITY:
+                case POWERUP_JUMP:
+                case POWERUP_VELOCITY:
+                case POWERUP_RANDOM:
+                    entitiesCache.put(model.getType(), new PowerUpView(game, model.getType()));
+                    break;
+
+            }
         }
 
         return entitiesCache.get(model.getType());

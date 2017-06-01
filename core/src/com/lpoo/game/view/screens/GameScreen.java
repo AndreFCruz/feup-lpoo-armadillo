@@ -126,7 +126,7 @@ public class GameScreen extends ScreenAdapter {
 
         game.getBatch().setProjectionMatrix(camera.combined);
         game.getBatch().begin();
-        //drawEntities();
+        drawEntities();
         game.getBatch().end();
 
         shapeRenderer.setProjectionMatrix(camera.combined);
