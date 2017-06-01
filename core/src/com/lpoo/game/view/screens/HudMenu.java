@@ -2,7 +2,6 @@ package com.lpoo.game.view.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -10,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -26,15 +24,18 @@ import com.lpoo.game.model.GameModel;
  * Class responsible for the HUD during the Game.
  */
 public class HudMenu {
+
+    public enum Request {LOAD, START, NONE};
+
     /**
      * A Stage used to represent the HUD, containing the score and the pause Button.
      */
     private Stage hud;
 
     /**
-     * A Stage used to represent the Menu that appears when the game is paused / over / won.
+     * A Stage used to represent the Menu that appears when the game is paused / over / won. TODO: CHANGE
      */
-    private Stage optionsMenu;
+    private OptionsMenu optionsMenu;
 
     /**
      * Represents the User's score in the current Level.
@@ -52,6 +53,16 @@ public class HudMenu {
     private int lastScore;
 
     /**
+     * Represents the last game's state. Used for performance efficiency reasons.
+     */
+    private GameModel.ModelState lastState;
+
+    /**
+     * TODO
+     */
+    private HudMenu.Request currentRequest = Request.NONE;
+
+    /**
      * The width of the HUD viewport in pixels. The height is
      * automatically calculated using the screen ratio.
      */
@@ -65,8 +76,7 @@ public class HudMenu {
 
     private Viewport viewport;
 
-    protected Skin skin;
-    protected TextureAtlas atlas;
+    private Skin skin;
 
     private Label scoreText;
 
@@ -82,8 +92,6 @@ public class HudMenu {
         viewport = new FitViewport(HUD_VIEWPORT_WIDTH, HUD_VIEWPORT_HEIGHT);
 
         hud = new Stage(viewport, game.getBatch());
-
-        optionsMenu = new Stage (viewport, game.getBatch());
 
         skin = game.getSkin();
 
@@ -101,14 +109,6 @@ public class HudMenu {
 
         initHUD(hudTable);
         hud.addActor(hudTable);
-
-        //-------OPTIONS MENU-------
-        Table optionsTable = new Table();
-        optionsTable.setFillParent(true);
-        optionsTable.debugAll();  //TODO: Delete
-
-        initOptionsMenu(optionsTable);
-        optionsMenu.addActor(optionsTable);
     }
 
     /**
@@ -137,47 +137,6 @@ public class HudMenu {
     }
 
     /**
-     * Function used to initialize all the elements of the Options' Menu  and their Listeners.
-     *
-     * @param table
-     *          Table that contains the Options Menu elements.
-     */
-    private void initOptionsMenu(Table table) {
-        Label message = new Label("GAME PAUSED", skin);
-        TextButton resumeButton = new TextButton("Resume", skin);
-        TextButton restartButton = new TextButton("Restart", skin);
-        TextButton exitButton = new TextButton("Exit", skin);
-
-        //Installing Listeners
-        resumeButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                model.togglePause();
-            }
-        });
-        restartButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                model.togglePause();
-                resetScore();
-                model.startLevel();
-            }
-        });
-        exitButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new LevelMenuScreen(game));
-            }
-        });
-
-        table.add(message).padBottom(HUD_VIEWPORT_HEIGHT/ 14).row();
-        message.setFontScale(HUD_VIEWPORT_WIDTH / 250,HUD_VIEWPORT_WIDTH / 250);
-        table.add(resumeButton).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8).padBottom(HUD_VIEWPORT_HEIGHT/ 14).row();
-        table.add(restartButton).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8).padBottom(HUD_VIEWPORT_HEIGHT/ 14).row();
-        table.add(exitButton).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8);
-    }
-
-    /**
      * Function responsible for updating the current score
      *
      * @param delta
@@ -195,44 +154,47 @@ public class HudMenu {
         }
     }
 
+    /**
+     * Function that returns the current score, in a String format.
+     *
+     * @return Score's string representation.
+     */
     public String getScoreString() {
         return (Integer.toString((int) score / 60) + ":" + (((int) score % 60) > 9 ? "" : "0") + Integer.toString((int) score % 60));
     }
 
-    public void update (float delta, GameModel.ModelState state) {
-        switch (state) {
-            case LOST:
-                //set Label to "GAME OVER!" ->Show Score ALWAYS -> Restart and Exit Only
-                //Change second table ->
-                resetScore();
-                options_flag = true;
-                break;
-            case WON:
-                //set Label to "YOU WON!" -> Next Level, Restart and Exit
-                //Change second table
-                options_flag = true;
-                resetScore();
-                break;
-            case PAUSED:
-                //Show Score, e botões normais -> Esta cena em baixo terá de passar para LOST E WON TB
-                options_flag = true;
-                break;
-            default:
-                options_flag = false;
-                break;
+    public HudMenu.Request update (float delta, GameModel.ModelState state) {
+
+        if (state != lastState) {
+            switch (state) {
+                case LOST:
+                    optionsMenu = new LostMenu(viewport, game, this);
+                    options_flag = true;
+                    break;
+                case WON:
+                    optionsMenu = new WonMenu(viewport, game, this);
+                    options_flag = true;
+                    break;
+                case PAUSED:
+                    optionsMenu = new PauseMenu(viewport, game, this);
+                    options_flag = true;
+                    break;
+                default:
+                    options_flag = false;
+                    break;
+            }
         }
 
         if (!options_flag)
             updateScore(delta);
+
+        return currentRequest;
     }
 
     public void draw () {
 
         if (options_flag) {
-            //TODO:
-            optionsMenu.act(Gdx.graphics.getDeltaTime());
             optionsMenu.draw();
-            Gdx.input.setInputProcessor(optionsMenu);
         } else {
             hud.act(Gdx.graphics.getDeltaTime());
             hud.draw();
@@ -244,5 +206,24 @@ public class HudMenu {
         score = 0;
         lastScore = 0;
         scoreText.setText("0:00");
+    }
+
+    public void togglePause() {
+        currentRequest = Request.NONE;
+        model.togglePause();
+    }
+
+    public void loadNextLevel() {
+        resetScore();
+        currentRequest = Request.LOAD;
+    }
+
+    public void startLevel() {
+        resetScore();
+        currentRequest = Request.START;
+    }
+
+    public void resetRequest() {
+        currentRequest = Request.NONE;
     }
 }

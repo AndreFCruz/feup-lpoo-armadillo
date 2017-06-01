@@ -20,8 +20,6 @@ public abstract class OptionsMenu {
 
     protected Spheral game;
 
-    protected GameModel model;
-
     protected HudMenu hud;
 
     /**
@@ -30,8 +28,6 @@ public abstract class OptionsMenu {
     protected Stage menu;
 
     protected Label message;
-
-    protected int score;
 
     protected Skin skin;
 
@@ -52,16 +48,14 @@ public abstract class OptionsMenu {
      */
     public OptionsMenu () {}
 
-    public OptionsMenu (Viewport viewport, Spheral game, GameModel model, HudMenu hud) {
+    public OptionsMenu (Viewport viewport, Spheral game, HudMenu hud) {
         this.game = game;
-        this.model = model;
         this.hud = hud;
 
         menu = new Stage (viewport, game.getBatch());
         this.skin = game.getSkin();
 
         message = new Label("", this.skin);
-
     }
 
     public void draw() {
@@ -98,7 +92,7 @@ public abstract class OptionsMenu {
         restartBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                togglePause();
+                //togglePause();
                 startLevel();
             }
         });
@@ -125,16 +119,18 @@ public abstract class OptionsMenu {
         nextLvlBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                togglePause();
+                loadLevel();
             }
         });
 
         table.add(nextLvlBtn).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8).padBottom(HUD_VIEWPORT_HEIGHT / 14).row();
     }
 
-    protected void togglePause() { model.togglePause(); }
+    private void togglePause() { hud.togglePause(); }
 
-    protected void startLevel() { model.startLevel(); }
+    private void startLevel() { hud.startLevel(); }
+
+    private void loadLevel() { hud.loadNextLevel(); }
 
     protected abstract void confStage();
 
