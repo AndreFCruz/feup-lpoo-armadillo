@@ -1,5 +1,6 @@
 package com.lpoo.game.model;
 
+import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
@@ -50,6 +51,8 @@ public class GameModel implements Disposable {
 
     private Vector2 endPos;
 
+    private float currentRunTime;
+
     public GameModel() {}
 
     public GameModel(TiledMap map) {
@@ -65,6 +68,7 @@ public class GameModel implements Disposable {
         if (map == null)
             return;
 
+        currentRunTime = 0;
         currentState = LIVE;
 
         gravity = new Vector2(0, - GRAVITY_CONSTANT);
@@ -92,6 +96,8 @@ public class GameModel implements Disposable {
 
         if (currentState != LIVE)
             return currentState;
+
+        currentRunTime += delta;
 
         // Step the simulation with a fixed time step of 1/60 of a second
         world.step(1/60f, 6, 2);
@@ -150,6 +156,17 @@ public class GameModel implements Disposable {
         return map;
     }
 
+    public ModelState getState() {
+        return currentState;
+    }
+
+    public void setState(ModelState state) {
+        currentState = state;
+    }
+
+    public float getCurrentRunTime() {
+        return currentRunTime;
+    }
 
     // TODO Pause mechanism needs improvement ?
     public void togglePause() {

@@ -49,7 +49,7 @@ public class WorldContactListener implements ContactListener {
             @Override
             public void handle(Fixture fluid, Fixture fixB) {
                 if (fixB.getFilterData().categoryBits == BALL_BIT)
-                    model.startLevel();
+                    model.setState(GameModel.ModelState.LOST);
                 else
                     ((BuoyancyController) fluid.getBody().getUserData()).addBody(fixB);
             }

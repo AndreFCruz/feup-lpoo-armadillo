@@ -38,19 +38,14 @@ public class HudMenu {
     private OptionsMenu optionsMenu;
 
     /**
-     * Represents the User's score in the current Level.
-     */
-    private float score = 0;
-
-    /**
      * Flag responsible for indicating whether the HUD or the Options Menu should be drawn.
      */
     private boolean options_flag = false;
 
     /**
-     * Represents the last displayed score's value. Used for performance efficiency reasons.
+     * Represents the current session's score.
      */
-    private int lastScore;
+    private float score;
 
     /**
      * Represents the last game's state. Used for performance efficiency reasons.
@@ -126,20 +121,11 @@ public class HudMenu {
 
     /**
      * Function responsible for updating the current score
-     *
-     * @param delta
-     *          Time elapsed since last update.
      */
-    private void updateScore(float delta) {
-        score += delta;
+    private void updateScore() {
+        score = model.getCurrentRunTime();
 
-        int new_score = (int) score;
-
-        //String formation for Label
-        if (new_score > lastScore) {
-            scoreText.setText(getScoreString());
-            lastScore = new_score;
-        }
+        scoreText.setText(getScoreString());
     }
 
     /**
@@ -161,7 +147,8 @@ public class HudMenu {
                     optionsMenu = new LostMenu(viewport, game, this);
                     options_flag = true;
                     break;
-                case WON:
+                case WON: // TODO Static class with helper functions to log achievements and scores
+                    game.getGameServices().submitScore((int) (score * 1000));
                     optionsMenu = new WonMenu(viewport, game, this);
                     options_flag = true;
                     break;
@@ -176,7 +163,7 @@ public class HudMenu {
         }
 
         if (!options_flag)
-            updateScore(delta);
+            updateScore();
 
         return currentRequest;
     }
@@ -191,25 +178,16 @@ public class HudMenu {
         }
     }
 
-    private void resetScore() {
-        score = 0;
-        lastScore = 0;
-        scoreText.setText("0:00");
-    }
-
     public void togglePause() {
         currentRequest = Request.NONE;
         model.togglePause();
     }
 
     public void loadNextLevel() {
-        game.getGameServices().submitScore((int) (score * 1000));
-        resetScore();
         currentRequest = Request.LOAD;
     }
 
     public void startLevel() {
-        resetScore();
         currentRequest = Request.START;
     }
 
