@@ -52,6 +52,7 @@ public class MainMenuScreen extends MenuScreen {
         //playButton.getLabel().setFontScale(2, 2);
         TextButton optionsButton = new TextButton("Options", skin);
         TextButton exitButton = new TextButton("Exit", skin);
+        TextButton signInButton = new TextButton("Sign In!", skin);
 
         //Add listeners to buttons
         playButton.addListener(new ClickListener() {
@@ -72,12 +73,20 @@ public class MainMenuScreen extends MenuScreen {
                 Gdx.app.exit();
             }
         });
+        signInButton.addListener(new ClickListener() {
+
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.getGameServices().signIn();
+            }
+        });
 
         //Add buttons to table
         table.bottom();
         table.add(playButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
         table.add(optionsButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
-        table.add(exitButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
+        table.add(exitButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
+        table.add(signInButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
         table.padBottom(BOTTOM_EDGE);
     }
 

@@ -28,6 +28,8 @@ public class Spheral extends Game {
 
     private static final Map<Integer, String> gameMaps = new HashMap<Integer, String>();
 
+    private final GameServices gameServices;
+
     static { // Order is reversed for testing
         gameMaps.put(0, "maps/boxMap.tmx");
         gameMaps.put(6, "maps/mapGravity.tmx");
@@ -36,6 +38,10 @@ public class Spheral extends Game {
         gameMaps.put(3, "maps/map1.tmx");
         gameMaps.put(4, "maps/map0.tmx");
         gameMaps.put(5, "maps/map4.tmx");
+    }
+
+    public Spheral(GameServices gameServices) {
+        this.gameServices = gameServices;
     }
 
     @Override
@@ -129,4 +135,8 @@ public class Spheral extends Game {
     }
 
     public Skin getSkin() { return skin; }
+
+    public GameServices getGameServices() {
+        return gameServices;
+    }
 }

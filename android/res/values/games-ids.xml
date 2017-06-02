@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Google Play game services IDs.
+Save this file as res/values/games-ids.xml in your project.
+-->
+<resources>
+    <string name="app_id">300015519520</string>
+    <string name="package_name">com.lpoo.game</string>
+    <string name="achievement_so_it_begins">CgkIoI7G0t0IEAIQBw</string>
+    <string name="achievement_up_up_and_away">CgkIoI7G0t0IEAIQAQ</string>
+    <string name="achievement_reach_for_the_clouds">CgkIoI7G0t0IEAIQAg</string>
+    <string name="achievement_speeeed">CgkIoI7G0t0IEAIQAw</string>
+    <string name="achievement_dont_touch_the_water">CgkIoI7G0t0IEAIQBA</string>
+    <string name="achievement_youre_in_the_clouds_">CgkIoI7G0t0IEAIQBQ</string>
+    <string name="achievement_really_bored...">CgkIoI7G0t0IEAIQBg</string>
+    <string name="leaderboard_fastest_levels">CgkIoI7G0t0IEAIQCA</string>
+</resources>
