@@ -14,4 +14,8 @@ public interface GameServices {
 	//gets the scores/achievements and displays them through google's default widget
 	void showScores();
 	void showAchievements();
+
+    String getGravityAchievementID();
+
+    String getSpeedAchievementID();
 }

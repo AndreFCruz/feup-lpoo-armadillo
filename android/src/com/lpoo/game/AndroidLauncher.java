@@ -123,4 +123,14 @@ public class AndroidLauncher extends AndroidApplication implements GameServices,
     public void onSignInSucceeded() {
         System.out.println("Sign in succeeded");
     }
+
+    @Override
+    public String getGravityAchievementID() {
+        return getString(R.string.achievement_dont_touch_the_water);
+    }
+
+    @Override
+    public String getSpeedAchievementID() {
+        return getString(R.string.achievement_speeeed);
+    }
 }

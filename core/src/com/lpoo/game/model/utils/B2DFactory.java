@@ -11,7 +11,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.physics.box2d.joints.RevoluteJoint;
 import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
 import com.lpoo.game.model.entities.BallModel;
 import com.lpoo.game.model.entities.BoxModel;
@@ -20,7 +19,7 @@ import com.lpoo.game.model.entities.JumpPowerUp;
 import com.lpoo.game.model.entities.PlatformModel;
 import com.lpoo.game.model.entities.PowerUp;
 import com.lpoo.game.model.entities.RandomPowerUp;
-import com.lpoo.game.model.entities.VelocityPowerUp;
+import com.lpoo.game.model.entities.SpeedPowerUp;
 import com.lpoo.game.model.entities.WaterModel;
 
 import static com.lpoo.game.model.entities.EntityModel.GROUND_BIT;
@@ -121,7 +120,7 @@ public class B2DFactory {
             case "gravity":
                 return new GravityPowerUp(world, object);
             case "velocity":
-                return new VelocityPowerUp(world, object);
+                return new SpeedPowerUp(world, object);
             case "jump":
                 return new JumpPowerUp(world, object);
             default:

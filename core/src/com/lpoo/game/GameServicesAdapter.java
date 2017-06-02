@@ -45,4 +45,14 @@ public class GameServicesAdapter implements GameServices {
     public void showAchievements() {
 
     }
+
+    @Override
+    public String getGravityAchievementID() {
+        return null;
+    }
+
+    @Override
+    public String getSpeedAchievementID() {
+        return null;
+    }
 }
