@@ -24,12 +24,8 @@ public class TestClass {
     }
 
     public TestClass(String map_name) {
-        assetManager = new AssetManager();
-        assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-        assetManager.load(map_name, TiledMap.class);
-        assetManager.finishLoading();   
-
-        model = new GameModel(assetManager.get(map_name, TiledMap.class));
+        TiledMap testmap = new TmxMapLoader(/*new InternalFileHandleResolver()*/).load(map_name);
+        model = new GameModel(testmap);
     }
 
     // @param time - Time the update will last, in seconds.
