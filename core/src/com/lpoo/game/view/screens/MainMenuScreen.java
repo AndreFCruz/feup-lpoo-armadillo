@@ -52,7 +52,8 @@ public class MainMenuScreen extends MenuScreen {
         //playButton.getLabel().setFontScale(2, 2);
         TextButton optionsButton = new TextButton("Options", skin);
         TextButton exitButton = new TextButton("Exit", skin);
-        TextButton signInButton = new TextButton("Sign In!", skin);
+        final TextButton signInButton = new TextButton(
+                game.getGameServices().isSignedIn() ? "Sign Out" : "Sign In!", skin);
 
         //Add listeners to buttons
         playButton.addListener(new ClickListener() {
@@ -74,10 +75,15 @@ public class MainMenuScreen extends MenuScreen {
             }
         });
         signInButton.addListener(new ClickListener() {
-
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.getGameServices().signIn();
+                if (game.getGameServices().isSignedIn()) {
+                    game.getGameServices().signOut();
+                    signInButton.setText("Sign In!");
+                } else {
+                    game.getGameServices().signIn();
+                    signInButton.setText("Sign Out");
+                }
             }
         });
 

@@ -3,6 +3,7 @@ package com.lpoo.game;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 
@@ -46,14 +47,18 @@ public class AndroidLauncher extends AndroidApplication implements GameServices,
     public void signIn() {
         try {
             runOnUiThread( () -> gameHelper.beginUserInitiatedSignIn() );
-        } catch (final Exception ex) { }
+        } catch (final Exception e) {
+            Gdx.app.log("MainActivity", "Log in failed: " + e.getMessage() + ".");
+        }
     }
 
     @Override
     public void signOut() {
         try {
             runOnUiThread( () -> gameHelper.signOut() );
-        } catch (final Exception ex) { }
+        } catch (final Exception e) {
+            Gdx.app.log("MainActivity", "Log out failed: " + e.getMessage() + ".");
+        }
     }
 
     @Override
