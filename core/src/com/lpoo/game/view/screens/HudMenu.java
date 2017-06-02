@@ -100,9 +100,6 @@ public class HudMenu {
 
     /**
      * Function used to initialize all the elements of the HUD and add their Listeners.
-     *
-     * @param table
-     *          Table contatining the HUD elements.
      */
     private void initHUD () {
         Table hudTable = new Table();
@@ -206,6 +203,7 @@ public class HudMenu {
     }
 
     public void loadNextLevel() {
+        game.getGameServices().submitScore((int) (score * 1000));
         resetScore();
         currentRequest = Request.LOAD;
     }

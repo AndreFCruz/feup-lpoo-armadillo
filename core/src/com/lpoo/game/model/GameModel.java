@@ -151,7 +151,7 @@ public class GameModel implements Disposable {
     }
 
 
-    // TODO Pause mechanism needs improvement
+    // TODO Pause mechanism needs improvement ?
     public void togglePause() {
         if (currentState == PAUSED)
             currentState = LIVE;

@@ -2,15 +2,16 @@ package com.lpoo.game;
 
 public interface GameServices {
 
-	public void signIn();
-	public void signOut();
+	void signIn();
+	void signOut();
 
-	public boolean isSignedIn();
+	boolean isSignedIn();
+    void rateGame();
 
-	public void submitScore(int score);
-	public void unlockAchievements(String achievementID);
+	void submitScore(int score);
+	void unlockAchievement(String achievementID);
 
 	//gets the scores/achievements and displays them through google's default widget
-	public void showScores();
-	public void showAchievements();	
+	void showScores();
+	void showAchievements();
 }

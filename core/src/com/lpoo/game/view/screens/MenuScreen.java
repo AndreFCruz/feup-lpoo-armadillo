@@ -14,7 +14,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.lpoo.game.Spheral;
 
-// TODO: APAGAR TODOS OS PIXELS TO METERS -- É PARVO, causa-me comichão
+// TODO porquê tantos pixels_to_meter ? isso é só para as entities e o modelo
+
 /**
  * Abstract Class used to represent all Views that are Menus.
  */

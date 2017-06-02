@@ -5,6 +5,7 @@ package com.lpoo.game;
  */
 
 public class GameServicesAdapter implements GameServices {
+
     @Override
     public void signIn() {
 
@@ -21,12 +22,17 @@ public class GameServicesAdapter implements GameServices {
     }
 
     @Override
+    public void rateGame() {
+
+    }
+
+    @Override
     public void submitScore(int score) {
 
     }
 
     @Override
-    public void unlockAchievements(String achievementID) {
+    public void unlockAchievement(String achievementID) {
 
     }
 
