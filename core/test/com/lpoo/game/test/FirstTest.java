@@ -1,5 +1,6 @@
 package com.lpoo.game.test;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.loaders.resolvers.ExternalFileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -14,20 +15,14 @@ import static org.junit.Assert.*;
 /**
  * Created by Edgar on 30/05/2017.
  */
-public class FirstTest {
+public class FirstTest extends GameTest {
 
-    //TiledMap map = new TmxMapLoader(/*new InternalFileHandleResolver()*/).load("maps/map1.tmx");
     TestClass useful = new TestClass("maps/testMap.tmx");
-
-    @Test
-    public void thisAlwaysPasses()
-    {
-        assertTrue(true);
-    }
 
     @Test
     public void basicTest()
     {
+
         assertEquals(GameModel.ModelState.LIVE, useful.updateDuringTime(2));
         //useful.updateDuringTime(2);
     }

@@ -15,10 +15,14 @@
   <object id="4" x="512" y="256" width="192" height="64"/>
  </objectgroup>
  <objectgroup name="objects">
-  <object id="6" type="box" x="128" y="192" width="64" height="64"/>
+  <object id="6" type="box" x="128" y="192" width="64" height="64">
+   <properties>
+    <property name="density" type="float" value="0.3"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="positions">
-  <object id="7" name="start_pos" x="274.667" y="192" width="64" height="64"/>
-  <object id="9" name="end_pos" x="640" y="192" width="64" height="64"/>
+  <object id="7" name="start" x="274.667" y="192" width="64" height="64"/>
+  <object id="9" name="end" x="640" y="192" width="64" height="64"/>
  </objectgroup>
 </map>

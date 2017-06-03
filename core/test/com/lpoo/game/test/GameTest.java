@@ -3,6 +3,7 @@ package com.lpoo.game.test;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.graphics.GL20;
 
 import org.junit.AfterClass;
@@ -13,10 +14,8 @@ import org.mockito.Mockito;
  * Created by Edgar on 30/05/2017.
  */
 
-//http://manabreak.eu/java/2016/10/21/unittesting-libgdx.html -> Check by doing some tests if this class is really needed
-
 public class GameTest {
-    /*// This is our "test" application
+    // This is our "test" application
     private static Application application;
 
     // Before running any tests, initialize the application with the headless backend
@@ -43,5 +42,5 @@ public class GameTest {
         // Exit the application first
         application.exit();
         application = null;
-    }*/
+    }
 }
