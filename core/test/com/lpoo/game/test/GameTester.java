@@ -25,6 +25,9 @@ public class GameTester {
     public GameTester(String map_name) {
         TiledMap testmap = new TmxMapLoader().load(map_name);
         model = new GameModel(testmap);
+
+        //For positions and other stuff initialization
+        noMotionDuringTime(0);
     }
 
     // In all the functions, param time is in seconds
