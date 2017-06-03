@@ -18,7 +18,7 @@ public class motionTest extends GameTest {
     @Test
     public void noMotionTest()
     {
-        /*//Initial Ball position
+        //Initial Ball position
         float[] init_pos = {tester.ballXPosition(), tester.ballYPosition()};
 
         //Position did not move
@@ -48,7 +48,7 @@ public class motionTest extends GameTest {
         //RotatedRight
         assertEquals(GameModel.ModelState.LIVE, tester.rotateRightDuringTime(1));
         assertTrue(init_pos[0] < tester.ballXPosition());
-        assertTrue(init_pos[0] + 3 < tester.ballXPosition());*/
+        assertTrue(init_pos[0] + 3 < tester.ballXPosition());
     }
 
     @Test
@@ -127,7 +127,7 @@ public class motionTest extends GameTest {
     }
 
     @Test
-    public void jumpDiagonalTest()
+    public void diagonalJumpTest()
     {
         assertEquals(GameModel.ModelState.LIVE, tester.rotateRightDuringTime(0.5f));
 

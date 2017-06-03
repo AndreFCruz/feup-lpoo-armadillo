@@ -38,7 +38,7 @@ public class GameTester {
 
         //World has update ratio of 60 frames per second.
         while (timer++ <= (time * 60)) {
-            state = model.update(1);
+            state = model.update((float)(0.0166666666)); // 0.016666666 ~~ 1/60
             model.getBallModel().rotate(direction);
         }
         return state;
@@ -56,4 +56,6 @@ public class GameTester {
     public float ballXPosition() { return model.getBallModel().getX(); }
 
     public float ballYPosition() { return model.getBallModel().getY(); }
+
+    public float runTime() { return model.getCurrentRunTime(); }
 }
