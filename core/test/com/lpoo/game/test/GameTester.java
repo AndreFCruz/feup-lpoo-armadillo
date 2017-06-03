@@ -58,4 +58,10 @@ public class GameTester {
     public float ballYPosition() { return model.getBallModel().getY(); }
 
     public float runTime() { return model.getCurrentRunTime(); }
+
+    public float ballJumpPower() { return model.getBallModel().getJumpForce(); }
+
+    public float ballAcceleration() { return model.getBallModel().getAcceleration(); }
+
+    public float ballDensity() { return model.getBallModel().getDensity(); }
 }

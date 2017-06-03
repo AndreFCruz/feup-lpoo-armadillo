@@ -19,7 +19,14 @@ public class gameLogicTest extends GameTest{
     @Test
     public void loadMapTest()
     {
+        GameTester loadMap1 = new GameTester("maps/testmap3.tmx");
+        GameTester loadMap2 = new GameTester("maps/map2.tmx");
 
+        //No errors in both maps loading
+        assertEquals(GameModel.ModelState.LIVE, loadMap1.noMotionDuringTime(2));
+        assertEquals(GameModel.ModelState.LIVE, loadMap2.noMotionDuringTime(2));
+
+        //TODO: Teste com mapa mau  a provar que da erro (?)
     }
 
     @Test

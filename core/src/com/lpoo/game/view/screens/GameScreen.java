@@ -4,11 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 import com.lpoo.game.Spheral;
 import com.lpoo.game.controller.GameController;
@@ -83,6 +85,11 @@ public class GameScreen extends ScreenAdapter {
      */
     private HudMenu hud;
 
+    /**
+     * The Game's background Image.
+     */
+    private Texture gameBackground;
+
     public GameScreen (Spheral game, int i) {
         this.game = game;
 
@@ -97,6 +104,7 @@ public class GameScreen extends ScreenAdapter {
         mapRenderer = new OrthogonalTiledMapRenderer(model.getMap(), game.getBatch());
 
         hud = new HudMenu(game, model);
+        gameBackground = game.getAssetManager().get("gamebackground.png", Texture.class);
     }
 
     private Boolean loadNextMap() {
@@ -180,7 +188,9 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void drawBackground() {
-
+        game.getBatch().begin();
+        game.getBatch().draw(gameBackground, 0, 0);
+        game.getBatch().end();
     }
 
     // TODO add looseness to camera's movement

@@ -102,4 +102,17 @@ public class BallModel extends EntityModel {
         jump_force *= -1;
     }
 
+    //Getters for Tests
+    public float getJumpForce() {
+        return jump_force;
+    }
+
+    public float getAcceleration() {
+        return angular_accel;
+    }
+
+    public float getDensity() {
+        return density;
+    }
+
 }
