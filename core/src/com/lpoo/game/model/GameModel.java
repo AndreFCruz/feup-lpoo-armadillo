@@ -126,7 +126,7 @@ public class GameModel implements Disposable {
     }
 
     private boolean ballInBounds() {
-        return ballModel.getY() > 1;
+        return ballModel.getY() > 1 && ballModel.getY() < 1000;
     }
 
     private boolean ballReachedEnd() {
