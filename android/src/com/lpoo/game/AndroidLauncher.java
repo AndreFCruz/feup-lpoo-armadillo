@@ -3,6 +3,7 @@ package com.lpoo.game;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
@@ -26,8 +27,26 @@ public class AndroidLauncher extends AndroidApplication implements GameServices,
 
         gameHelper.setup(this);
 
+        hideSystemUI();
+
 		initialize(new Spheral(this), config);
 	}
+
+    // This snippet hides the system bars.
+    private void hideSystemUI() {
+        View mDecorView = getWindow().getDecorView();
+
+        // Set the IMMERSIVE flag.
+        // Set the content to appear under the system bars so that the content
+        // doesn't resize when the system bars hide and show.
+        mDecorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE);
+    }
 
     @Override
     protected void onStart() {
@@ -126,7 +145,7 @@ public class AndroidLauncher extends AndroidApplication implements GameServices,
 
     @Override
     public String getGravityAchievementID() {
-        return getString(R.string.achievement_dont_touch_the_water);
+        return getString(R.string.achievement_up_up_and_away);
     }
 
     @Override
