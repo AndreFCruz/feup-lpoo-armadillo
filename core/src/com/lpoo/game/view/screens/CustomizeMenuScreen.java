@@ -134,15 +134,7 @@ public class CustomizeMenuScreen extends MenuScreen {
      */
     private void createStaticElements (Table table, Table skinsTable) {
 
-        //Creating and adding the Listener to the back button
-        TextButton back = new TextButton("Back", skin);
-
-        back.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new MainMenuScreen(game));
-            }
-        });
+        TextButton back = addBackBtn();
 
         //Creating and setting the Scroller
         ScrollPane scroller = new ScrollPane(skinsTable, skin);

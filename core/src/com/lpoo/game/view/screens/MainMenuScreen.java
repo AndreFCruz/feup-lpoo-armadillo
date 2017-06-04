@@ -18,15 +18,15 @@ public class MainMenuScreen extends MenuScreen {
     /**
      * Constant representing all the Buttons' Width.
      */
-    private static final int BUTTON_WIDTH = 350;
+    protected static final int BUTTON_WIDTH = 350;
     /**
      * Constant representing the extra space around the edges of all Buttons.
      */
-    private static final int BUTTON_EDGE = 10;
+    protected static final int BUTTON_EDGE = 10;
     /**
      * Constant representing the extra space around the bottom edge of the bottom Button.
      */
-    private static final int BOTTOM_EDGE = 10;
+    protected static final int BOTTOM_EDGE = 10;
 
     /**
      * Main Menu Screen's Constructor.
@@ -45,7 +45,7 @@ public class MainMenuScreen extends MenuScreen {
      * @param table
      *      Table where the Menu buttons will be organized
      */
-    private void createMenuButtons(Table table) {
+    protected void createMenuButtons(Table table) {
 
         //Create buttons
         TextButton playButton = new TextButton("Play", skin);
@@ -64,6 +64,14 @@ public class MainMenuScreen extends MenuScreen {
             }
         });
 
+        TextButton networkingButton = new TextButton("Networking", skin);
+        networkingButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new NetworkingMenuScreen(game));
+            }
+        });
+
         TextButton exitButton = new TextButton("Exit", skin);
         exitButton.addListener(new ClickListener() {
             @Override
@@ -72,45 +80,12 @@ public class MainMenuScreen extends MenuScreen {
             }
         });
 
-        final TextButton signInButton = new TextButton(
-                game.getGameServices().isSignedIn() ? "Sign Out" : "Sign In!", skin);
-        signInButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if (game.getGameServices().isSignedIn()) {
-                    game.getGameServices().signOut();
-                    signInButton.setText("Sign In!");
-                } else {
-                    game.getGameServices().signIn();
-                    signInButton.setText("Sign Out");
-                }
-            }
-        });
-
-        TextButton achievementsButton = new TextButton("Achievements", skin);
-        achievementsButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.getGameServices().showAchievements();
-            }
-        });
-
-        TextButton leaderboardButton = new TextButton("Leaderbord", skin);
-        leaderboardButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.getGameServices().showScores();
-            }
-        });
-
         //Add buttons to table
         table.bottom();
         table.add(playButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
         table.add(optionsButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
+        table.add(networkingButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
         table.add(exitButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
-        table.add(signInButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
-        table.add(achievementsButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
-        table.add(leaderboardButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
         table.padBottom(BOTTOM_EDGE);
     }
 

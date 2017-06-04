@@ -7,9 +7,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.lpoo.game.Spheral;
@@ -82,6 +85,19 @@ public abstract class MenuScreen extends ScreenAdapter {
         titleImg = new Image(game.getAssetManager().get("spheral.png", Texture.class));
         titleImg.setSize(0.8f * titleImg.getWidth(), 0.8f * titleImg.getHeight());
         titleImg.setPosition(VIEWPORT_WIDTH / PIXEL_TO_METER / 2 - titleImg.getWidth() / 2, VIEWPORT_HEIGHT * 0.98f / PIXEL_TO_METER - titleImg.getHeight());
+    }
+
+    protected TextButton addBackBtn() {
+        TextButton back = new TextButton("Back", skin);
+
+        back.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new MainMenuScreen(game));
+            }
+        });
+
+        return back;
     }
 
     @Override
