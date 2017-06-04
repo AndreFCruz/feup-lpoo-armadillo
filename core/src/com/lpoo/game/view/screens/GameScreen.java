@@ -102,7 +102,7 @@ public class GameScreen extends ScreenAdapter {
         mapRenderer = new OrthogonalTiledMapRenderer(model.getMap(), game.getBatch());
 
         hud = new HudMenu(game, model);
-        gameBackground = game.getAssetManager().get("gamebackground.png", Texture.class);
+        gameBackground = game.getAssetManager().get("background.png", Texture.class);
     }
 
     private Boolean loadNextMap() {

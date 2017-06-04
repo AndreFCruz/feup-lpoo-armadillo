@@ -83,7 +83,7 @@ public abstract class MenuScreen extends ScreenAdapter {
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
 
-        backgroundImg = new Image(game.getAssetManager().get("gamebackground.png", Texture.class));
+        backgroundImg = new Image(game.getAssetManager().get("background.png", Texture.class));
         backgroundImg.setScale(VIEWPORT_WIDTH / backgroundImg.getWidth(), VIEWPORT_HEIGHT / backgroundImg.getHeight());
 
         titleImg = new Image(game.getAssetManager().get("armadillo_title.png", Texture.class));

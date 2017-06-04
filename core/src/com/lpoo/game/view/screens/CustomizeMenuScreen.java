@@ -80,7 +80,7 @@ public class CustomizeMenuScreen extends MenuScreen {
     private void createSkins (Table table) {
         for (int i=0; i < game.getNumSkins(); ++i) {
             //Adding Buttons and Labels to the Arrays
-            skinButtons.add( new Button( new TextureRegionDrawable (new TextureRegion (game.getAssetManager().get( "skins/skin" + (i < 10 ? "0" : "") + i + ".png", Texture.class)))));
+            skinButtons.add( new Button( new TextureRegionDrawable (new TextureRegion (game.getAssetManager().get( "big_skins/skin" + (i < 10 ? "0" : "") + i + ".png", Texture.class)))));
             skinLabels.add(new Label ("Current", skin1));
 
             final int j = i; //Needed for Listener initialization
@@ -144,9 +144,8 @@ public class CustomizeMenuScreen extends MenuScreen {
         ScrollPane scroller = new ScrollPane(skinsTable, skin1);
         scroller.getStyle().background = null;  //Setting the scroll background invisible
 
-        table.add(back).size(DEFAULT_BUTTON_SIZE, DEFAULT_BUTTON_SIZE).top().left().padLeft(SIDE_DISTANCE).padTop(TOP_EDGE / 3);
-        table.row();
-        table.add(scroller).padBottom(SCROLLER_DISTANCE);
+        table.add(back).size(DEFAULT_BUTTON_SIZE, DEFAULT_BUTTON_SIZE).top().left().padLeft(SIDE_DISTANCE).padTop(TOP_EDGE / 3).row();
+        table.add(scroller).fill().expand().padBottom(SCROLLER_DISTANCE);
     }
 
     @Override
@@ -155,11 +154,9 @@ public class CustomizeMenuScreen extends MenuScreen {
 
         //Table containing all the possibles Ball appearances
         Table skins = new Table();
-        skins.debugAll();
 
         //Table containing the screen elements that shall not move with the slider
         Table staticElements = new Table();
-        staticElements.debugAll();
         staticElements.setFillParent(true);
 
         createSkins(skins);

@@ -72,7 +72,6 @@ public class Spheral extends Game {
         assetManager.load( "background.png" , Texture.class);
 
         //Load Game's Virtual Components
-        assetManager.load( "gamebackground.png" , Texture.class);
         assetManager.load( "pause.png" , Texture.class);
 
         loadEntitySkins();
@@ -87,9 +86,10 @@ public class Spheral extends Game {
         assetManager.load("box.png", Texture.class);
 
         // Ball Skins
-        for (int i = 0; i < NUMBER_OF_SKINS; i++)
-            assetManager.load( ("skins/skin" + (i < 10 ? "0" : "") + i + ".png") , Texture.class);
-
+        for (int i = 0; i < NUMBER_OF_SKINS; i++) {
+            assetManager.load(("skins/skin" + (i < 10 ? "0" : "") + i + ".png"), Texture.class);
+            assetManager.load(("big_skins/skin" + (i < 10 ? "0" : "") + i + ".png"), Texture.class);
+        }
     }
 
     private void loadLevels() {
