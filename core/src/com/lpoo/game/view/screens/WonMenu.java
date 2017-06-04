@@ -28,6 +28,6 @@ public class WonMenu extends OptionsMenu {
 
     @Override
     protected void setMessage() {
-        message.setText("GAME COMPLETED");
+        message.setText("LEVEL FINISHED");
     }
 }
