@@ -120,31 +120,37 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
-        controller.handleInput(delta);
+        if (model.getState() == GameModel.ModelState.LIVE)
+            controller.handleInput(delta);
 
         updateCamera();
         drawBackground();
 
+        renderMap();
+
+        drawEntityViews();
+        drawShapeViews();
+        drawDebugLines();
+
+        GameModel.ModelState state = model.update(delta);
+        updateHUD(state);
+    }
+
+    private void renderMap() {
         mapRenderer.setView(camera);
         mapRenderer.render();
+    }
 
-        game.getBatch().setProjectionMatrix(camera.combined);
-        game.getBatch().begin();
-        drawEntities();
-        game.getBatch().end();
-
-        shapeRenderer.setProjectionMatrix(camera.combined);
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        drawShapes();
-        shapeRenderer.end();
-
+    private void drawDebugLines() {
         if (DEBUG_PHYSICS) {
             debugCamera = camera.combined.cpy();
             debugCamera.scl(1 / PIXEL_TO_METER);
             debugRenderer.render(model.getWorld(), debugCamera);
         }
+    }
 
-        switch(hud.update(model.update(delta))) {
+    private void updateHUD(GameModel.ModelState state) {
+        switch(hud.update(state)) {
             case LOAD:
                 loadNextMap();
                 resetRequest();
@@ -155,6 +161,20 @@ public class GameScreen extends ScreenAdapter {
                 break;
         }
         hud.draw();
+    }
+
+    private void drawShapeViews() {
+        shapeRenderer.setProjectionMatrix(camera.combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        drawShapes();
+        shapeRenderer.end();
+    }
+
+    private void drawEntityViews() {
+        game.getBatch().setProjectionMatrix(camera.combined);
+        game.getBatch().begin();
+        drawEntities();
+        game.getBatch().end();
     }
 
     private void resetRequest() {

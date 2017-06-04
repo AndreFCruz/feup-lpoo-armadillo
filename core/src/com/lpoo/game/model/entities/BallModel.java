@@ -37,7 +37,7 @@ public class BallModel extends EntityModel {
         Shape circle = new CircleShape();
         circle.setRadius(RADIUS);
 
-        createFixture(circle, density, friction, restitution, BALL_BIT, (short) (BALL_BIT | GROUND_BIT | FLUID_BIT | HITTABLE_BIT));
+        createFixture(new FixtureProperties(circle, density, friction, restitution, BALL_BIT, (short) (BALL_BIT | GROUND_BIT | FLUID_BIT | HITTABLE_BIT)));
     }
 
     public void rotate(float delta) {

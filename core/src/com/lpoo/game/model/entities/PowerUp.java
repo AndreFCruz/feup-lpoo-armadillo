@@ -26,19 +26,9 @@ public abstract class PowerUp extends EntityModel implements Hittable {
                 14f, 1f, 18f, 1f, 25f, 7f, 25f, 23f, 18f, 31f, 14f, 31f, 7f, 23f, 7f, 7f
         }, new Vector2(32, 32));
 
-        createSensorFixture(shape, HITTABLE_BIT, BALL_BIT);
-    }
-
-    private void createSensorFixture(Shape shape, short category, short mask) {
-        FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.shape = shape;
-        fixtureDef.isSensor = true;
-        fixtureDef.filter.maskBits = mask;
-        fixtureDef.filter.categoryBits = category;
-
-        getBody().createFixture(fixtureDef);
-
-        shape.dispose();
+        FixtureProperties fixtureProperties = new FixtureProperties(shape, HITTABLE_BIT, BALL_BIT);
+        fixtureProperties.setSensor();
+        createFixture(fixtureProperties);
     }
 
 }

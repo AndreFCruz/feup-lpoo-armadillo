@@ -23,6 +23,10 @@ import static com.lpoo.game.model.GameModel.ModelState.WON;
  */
 
 public class GameModel implements Disposable {
+
+    public static final int MAX_HEIGHT = 400;
+    public static final int MIN_HEIGHT = 1;
+
     /**
      * Possible Game States the Model may be in.
      */
@@ -74,17 +78,24 @@ public class GameModel implements Disposable {
         gravity = new Vector2(0, - GRAVITY_CONSTANT);
         world = new World(gravity, true);
 
+        entityModels = new Array<>();
+        shapeModels = new Array<>();
+
+        createWorld();
+        addModels();
+    }
+
+    private void createWorld() {
         worldCreator = new B2DWorldCreator(world, map);
 
         worldCreator.generateWorld();
         endPos = worldCreator.getEndPos();
         fluids = worldCreator.getFluids();
 
-        entityModels = new Array<>();
-        shapeModels = new Array<>();
-
         world.setContactListener(new WorldContactListener(this));
+    }
 
+    private void addModels() {
         ballModel = worldCreator.getBall();
 
         entityModels.add(ballModel);
@@ -126,7 +137,7 @@ public class GameModel implements Disposable {
     }
 
     private boolean ballInBounds() {
-        return ballModel.getY() > 1 && ballModel.getY() < 1000;
+        return ballModel.getY() > MIN_HEIGHT && ballModel.getY() < MAX_HEIGHT;
     }
 
     private boolean ballReachedEnd() {

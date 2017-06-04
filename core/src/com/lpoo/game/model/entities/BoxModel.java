@@ -32,6 +32,6 @@ public class BoxModel extends EntityModel {
            0, 0, 64, 0, 64, 64, 0, 64
         }, new Vector2(64, 64));
 
-        createFixture(shape, density, FRICTION, RESTITUTION, GROUND_BIT, (short) (BALL_BIT | GROUND_BIT | FLUID_BIT));
+        createFixture(new FixtureProperties(shape, density, FRICTION, RESTITUTION, GROUND_BIT, (short) (BALL_BIT | GROUND_BIT | FLUID_BIT)));
     }
 }

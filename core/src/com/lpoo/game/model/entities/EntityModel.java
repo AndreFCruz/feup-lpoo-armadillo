@@ -3,7 +3,6 @@ package com.lpoo.game.model.entities;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
@@ -15,6 +14,62 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
  * An abstract model representing an entity belonging to a game model.
  */
 public abstract class EntityModel {
+
+    static class FixtureProperties {
+        private final Shape shape;
+        private final float density;
+        private final float friction;
+        private final float restitution;
+        private final short category;
+        private final short mask;
+        private boolean isSensor;
+
+        FixtureProperties(Shape shape, short category, short mask) {
+            this(shape, 1, 1, 1, category, mask);
+        }
+
+        FixtureProperties(Shape shape, float density, float friction, float restitution, short category, short mask) {
+            this.shape = shape;
+            this.density = density;
+            this.friction = friction;
+            this.restitution = restitution;
+            this.category = category;
+            this.mask = mask;
+            this.isSensor = false;
+        }
+
+        void setSensor() {
+            isSensor = true;
+        }
+
+        boolean isSensor() {
+            return isSensor;
+        }
+
+        Shape getShape() {
+            return shape;
+        }
+
+        float getDensity() {
+            return density;
+        }
+
+        float getFriction() {
+            return friction;
+        }
+
+        float getRestitution() {
+            return restitution;
+        }
+
+        short getCategory() {
+            return category;
+        }
+
+        short getMask() {
+            return mask;
+        }
+    }
 
     public enum ModelType {BALL, BOX, POWERUP_JUMP, POWERUP_VELOCITY, POWERUP_RANDOM, POWERUP_GRAVITY}
 
@@ -71,19 +126,20 @@ public abstract class EntityModel {
         return polygon;
     }
 
-    final void createFixture(Shape shape, float density, float friction, float restitution, short category, short mask) {
+    final void createFixture(FixtureProperties fixtureProperties) {
         FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.shape = shape;
+        fixtureDef.shape = fixtureProperties.getShape();
 
-        fixtureDef.density = density;
-        fixtureDef.friction = friction;
-        fixtureDef.restitution = restitution;
-        fixtureDef.filter.categoryBits = category;
-        fixtureDef.filter.maskBits = mask;
+        fixtureDef.density = fixtureProperties.getDensity();
+        fixtureDef.friction = fixtureProperties.getFriction();
+        fixtureDef.restitution = fixtureProperties.getRestitution();
+        fixtureDef.filter.categoryBits = fixtureProperties.getCategory();
+        fixtureDef.filter.maskBits = fixtureProperties.getMask();
+        fixtureDef.isSensor = fixtureProperties.isSensor();
 
         body.createFixture(fixtureDef);
 
-        shape.dispose();
+        fixtureProperties.getShape().dispose();
     }
 
     protected Body getBody() {
