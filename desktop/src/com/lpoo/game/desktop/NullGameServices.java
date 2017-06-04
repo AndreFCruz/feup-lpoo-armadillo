@@ -1,4 +1,6 @@
-package com.lpoo.game;
+package com.lpoo.game.desktop;
+
+import com.lpoo.game.GameServices;
 
 /**
  * Created by andre on 02/06/2017.
