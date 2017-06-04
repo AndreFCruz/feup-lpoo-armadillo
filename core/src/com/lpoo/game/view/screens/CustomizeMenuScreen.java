@@ -41,20 +41,24 @@ public class CustomizeMenuScreen extends MenuScreen {
     /**
      * Constant representing the size of the Buttons
      */
-    private static final int BUTTON_SIZE = 120;
+    private static final float BUTTON_SIZE = VIEWPORT_WIDTH / 6;
 
     /**
      * Constant representing the extra space around the edges of all Images.
      */
-    private static final int IMAGE_EDGE = 30;
+    private static final float IMAGE_EDGE = VIEWPORT_WIDTH / 15;
     /**
      * Constant representing the distance between the first line of Level Buttons and the screen Top.
      */
-    private static final int TOP_EDGE = 100;
+    private static final float TOP_EDGE = VIEWPORT_WIDTH / 7;
     /**
      * Constant representing the distance between the stage elements and the screen limits.
      */
-    private static final int SIDE_DISTANCE = 40;
+    private static final float SIDE_DISTANCE = VIEWPORT_WIDTH / 18;
+    /**
+     * Constant representing the distance between the scroller and the screen bottom limit.
+     */
+    private static final float SCROLLER_DISTANCE = VIEWPORT_WIDTH / 35;
 
     /**
      * Customize Menu Screen's Constructor.
@@ -76,7 +80,7 @@ public class CustomizeMenuScreen extends MenuScreen {
     private void createSkins (Table table) {
         for (int i=0; i < game.getNumSkins(); ++i) {
             //Adding Buttons and Labels to the Arrays
-            skinButtons.add( new Button( new TextureRegionDrawable (new TextureRegion (new Texture ( "skins/skin" + (i < 10 ? "0" : "") + i + ".png")))));
+            skinButtons.add( new Button( new TextureRegionDrawable (new TextureRegion (game.getAssetManager().get( "skins/skin" + (i < 10 ? "0" : "") + i + ".png", Texture.class)))));
             skinLabels.add(new Label ("Current", skin));
 
             final int j = i; //Needed for Listener initialization
@@ -142,7 +146,7 @@ public class CustomizeMenuScreen extends MenuScreen {
 
         table.add(back).top().left().padLeft(SIDE_DISTANCE).padTop(TOP_EDGE / 3);
         table.row();
-        table.add(scroller).fill().expand().padBottom(SIDE_DISTANCE);
+        table.add(scroller).fill().expand().padBottom(SCROLLER_DISTANCE);
     }
 
     @Override

@@ -35,15 +35,15 @@ public class NetworkingMenuScreen extends MainMenuScreen {
 
         //Create buttons
         final TextButton signInButton = new TextButton(
-                game.getGameServices().isSignedIn() ? "Sign Out" : "Sign In!", skin);
+                gameServices.isSignedIn() ? "Sign Out" : "Sign In!", skin);
         signInButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (game.getGameServices().isSignedIn()) {
-                    game.getGameServices().signOut();
+                if (gameServices.isSignedIn()) {
+                    gameServices.signOut();
                     signInButton.setText("Sign In!");
                 } else {
-                    game.getGameServices().signIn();
+                    gameServices.signIn();
                     signInButton.setText("Sign Out");
                 }
             }
@@ -53,7 +53,7 @@ public class NetworkingMenuScreen extends MainMenuScreen {
         achievementsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.getGameServices().showAchievements();
+                gameServices.showAchievements();
             }
         });
 
@@ -61,7 +61,7 @@ public class NetworkingMenuScreen extends MainMenuScreen {
         leaderboardButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.getGameServices().showScores();
+                gameServices.showScores();
             }
         });
 

@@ -99,7 +99,6 @@ public class GameModel implements Disposable {
 
         currentRunTime += delta;
 
-
         // Step the simulation with a fixed time step of 1/60 of a second
         world.step(1/60f, 6, 2);
 

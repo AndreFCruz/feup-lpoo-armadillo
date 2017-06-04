@@ -65,13 +65,13 @@ public class Spheral extends Game {
      * Loads the assets needed by this all screens.
      */
     private void loadAssets() {
-
         //Load Main Menu Background and Title
         assetManager.load( "spheral.png" , Texture.class);
         assetManager.load( "background.png" , Texture.class);
 
-        //Load Game's Background
+        //Load Game's Virtual Components
         assetManager.load( "gamebackground.png" , Texture.class);
+        assetManager.load( "pause.png" , Texture.class);
 
         loadEntitySkins();
         loadLevels();

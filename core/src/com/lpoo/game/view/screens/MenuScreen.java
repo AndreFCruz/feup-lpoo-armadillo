@@ -15,9 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.lpoo.game.GameServices;
 import com.lpoo.game.Spheral;
-
-// TODO porquê tantos pixels_to_meter ? isso é só para as entities e o modelo
 
 /**
  * Abstract Class used to represent all Views that are Menus.
@@ -31,22 +30,19 @@ public abstract class MenuScreen extends ScreenAdapter {
     protected SpriteBatch batch;
     protected Skin skin;
 
-    /**
-     * How much meters does a pixel represent.
-     */
-    public final static float PIXEL_TO_METER = 0.04f;
+    GameServices gameServices;
 
     /**
-     * The width of the viewport in meters. The height is
+     * The width of the viewport in pixels. The height is
      * automatically calculated using the screen ratio.
      */
-    private static final float VIEWPORT_WIDTH = 30;
+    protected static final float VIEWPORT_WIDTH = 750;
 
     /**
      * The height of the viewport in meters. The height is
      * automatically calculated using the screen ratio.
      */
-    private static final float VIEWPORT_HEIGHT = VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
+    protected static final float VIEWPORT_HEIGHT = VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
 
     //LayOut
     /**
@@ -66,12 +62,13 @@ public abstract class MenuScreen extends ScreenAdapter {
      */
     protected MenuScreen(final Spheral game) {
         this.game = game;
-        this.batch = game.getBatch();
+        batch = game.getBatch();
+        gameServices = game.getGameServices();
         skin = game.getSkin();
 
         camera = new OrthographicCamera();
 
-        viewport = new FitViewport(VIEWPORT_WIDTH / PIXEL_TO_METER, VIEWPORT_HEIGHT / PIXEL_TO_METER);
+        viewport = new FitViewport(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
         viewport.apply();
 
         stage = new Stage(viewport, batch);
@@ -80,11 +77,11 @@ public abstract class MenuScreen extends ScreenAdapter {
         camera.update();
 
         backgroundImg = new Image(game.getAssetManager().get("background.png", Texture.class));
-        backgroundImg.setScale(VIEWPORT_WIDTH / PIXEL_TO_METER  /  backgroundImg.getWidth(), VIEWPORT_HEIGHT / PIXEL_TO_METER  / backgroundImg.getHeight());
+        backgroundImg.setScale(VIEWPORT_WIDTH / backgroundImg.getWidth(), VIEWPORT_HEIGHT / backgroundImg.getHeight());
 
         titleImg = new Image(game.getAssetManager().get("spheral.png", Texture.class));
         titleImg.setSize(0.8f * titleImg.getWidth(), 0.8f * titleImg.getHeight());
-        titleImg.setPosition(VIEWPORT_WIDTH / PIXEL_TO_METER / 2 - titleImg.getWidth() / 2, VIEWPORT_HEIGHT * 0.98f / PIXEL_TO_METER - titleImg.getHeight());
+        titleImg.setPosition(VIEWPORT_WIDTH / 2 - titleImg.getWidth() / 2, VIEWPORT_HEIGHT * 0.98f - titleImg.getHeight());
     }
 
     protected TextButton addBackBtn() {
@@ -106,7 +103,6 @@ public abstract class MenuScreen extends ScreenAdapter {
         stage.addActor(backgroundImg);
         stage.addActor(titleImg);
     }
-
 
     @Override
     public void render(float delta) {

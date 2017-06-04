@@ -33,7 +33,7 @@ public class HudMenu {
     private Stage hud;
 
     /**
-     * A Stage used to represent the Menu that appears when the game is paused / over / won. TODO: CHANGE
+     * A Class used to represent the Menu that appears when the game is paused / over / won.
      */
     private OptionsMenu optionsMenu;
 
@@ -69,6 +69,24 @@ public class HudMenu {
      */
     private static final float HUD_VIEWPORT_HEIGHT = HUD_VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());;
 
+    //Layout Macros
+    /**
+     * The Font rescaling factor, for the score representation.
+     */
+    private static final float FONT_SCALE = HUD_VIEWPORT_WIDTH / 250;
+    /**
+     * The Side Size of the HUD elements.
+     */
+    private static final float HUD_ELEMENTS_SIZE = HUD_VIEWPORT_WIDTH /15;
+    /**
+     * The HUD elements pad, in relation to the vertical limits.
+     */
+    private static final float HORIZONTAL_PAD = HUD_VIEWPORT_WIDTH / 20;
+    /**
+     * The HUD elements pad, in relation to the horizontal limits.
+     */
+    private static final float VERTICAL_PAD = HUD_VIEWPORT_HEIGHT / 25;
+
     private Viewport viewport;
 
     private Skin skin;
@@ -100,10 +118,10 @@ public class HudMenu {
         Table hudTable = new Table();
         hudTable.setFillParent(true);
 
-        Button pauseButton = new Button (new TextureRegionDrawable(new TextureRegion(new Texture("pause.png"))));
+        Button pauseButton = new Button(new TextureRegionDrawable(new TextureRegion(game.getAssetManager().get("pause.png", Texture.class))));
 
         scoreText = new Label ("0:00", skin);
-        scoreText.setFontScale(HUD_VIEWPORT_WIDTH / 250,HUD_VIEWPORT_WIDTH / 250); //TODO: Hardcoded, need to change
+        scoreText.setFontScale(FONT_SCALE,FONT_SCALE);
 
         pauseButton.addListener(new ClickListener() {
             @Override
@@ -111,10 +129,10 @@ public class HudMenu {
                 model.togglePause();
             }
         });
-        //TODO: Hardcoded values, need to create macros for this. Hardcoded till perfection
+
         hudTable.top();
-        hudTable.add(scoreText).size(HUD_VIEWPORT_WIDTH /15, HUD_VIEWPORT_WIDTH / 15).expandX().left().fill().padLeft(HUD_VIEWPORT_WIDTH / 20).padTop(HUD_VIEWPORT_HEIGHT/ 25);
-        hudTable.add(pauseButton).size(HUD_VIEWPORT_WIDTH / 15, HUD_VIEWPORT_WIDTH /15).fill().padRight(HUD_VIEWPORT_WIDTH / 20).padTop(HUD_VIEWPORT_HEIGHT/ 25);
+        hudTable.add(scoreText).size(HUD_ELEMENTS_SIZE, HUD_ELEMENTS_SIZE).expandX().left().fill().padLeft(HORIZONTAL_PAD).padTop(VERTICAL_PAD);
+        hudTable.add(pauseButton).size(HUD_ELEMENTS_SIZE, HUD_ELEMENTS_SIZE).fill().padRight(HORIZONTAL_PAD).padTop(VERTICAL_PAD);
 
         hud.addActor(hudTable);
     }
@@ -137,7 +155,7 @@ public class HudMenu {
         return (Integer.toString((int) score / 60) + ":" + (((int) score % 60) > 9 ? "" : "0") + Integer.toString((int) score % 60));
     }
 
-    public HudMenu.Request update (float delta, GameModel.ModelState state) {
+    public HudMenu.Request update (GameModel.ModelState state) {
 
         if (state != lastState) {
             lastState = state;

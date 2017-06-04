@@ -18,15 +18,15 @@ public class MainMenuScreen extends MenuScreen {
     /**
      * Constant representing all the Buttons' Width.
      */
-    protected static final int BUTTON_WIDTH = 350;
+    protected static final float BUTTON_WIDTH = VIEWPORT_WIDTH / 2;
     /**
      * Constant representing the extra space around the edges of all Buttons.
      */
-    protected static final int BUTTON_EDGE = 10;
+    protected static final float BUTTON_EDGE = VIEWPORT_WIDTH / 75;
     /**
      * Constant representing the extra space around the bottom edge of the bottom Button.
      */
-    protected static final int BOTTOM_EDGE = 10;
+    protected static final float BOTTOM_EDGE = VIEWPORT_WIDTH / 75;
 
     /**
      * Main Menu Screen's Constructor.

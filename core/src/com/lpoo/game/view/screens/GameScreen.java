@@ -149,7 +149,7 @@ public class GameScreen extends ScreenAdapter {
             debugRenderer.render(model.getWorld(), debugCamera);
         }
 
-        switch(hud.update(delta, model.update(delta))) {
+        switch(hud.update(model.update(delta))) {
             case LOAD:
                 loadNextMap();
                 resetRequest();

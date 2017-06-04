@@ -25,24 +25,24 @@ public class LevelMenuScreen extends MenuScreen {
     /**
      * Since the Level Buttons are square, this Constant represents both their Width and Height.
      */
-    private static final int BUTTON_SIDE = 80;
+    private static final float BUTTON_SIDE = VIEWPORT_WIDTH/ 9;
     /**
      * Constant representing the extra space around the edges of all Buttons.
      */
-    private static final int BUTTON_EDGE = 30;
+    private static final float BUTTON_EDGE = VIEWPORT_WIDTH / 25;
     /**
      * Constant representing the distance between the first line of Level Buttons and the screen Top.
      */
-    private static final int TOP_EDGE = 100;
+    private static final float TOP_EDGE = VIEWPORT_WIDTH / 7;
     /**
      * Constant representing the distance between the stage elements and the screen side limits.
      */
-    private static final int SIDE_DISTANCE = 40;
+    private static final float SIDE_DISTANCE = VIEWPORT_WIDTH/ 18;
 
     /**
      * Number of Buttons per Line of the Table.
      */
-    private static final int BUTTONS_PER_LINE = 4;
+    private static final float BUTTONS_PER_LINE = 4;
 
     /**
      * Level Menu Screen's Constructor.
