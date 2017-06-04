@@ -58,7 +58,8 @@ public class PlayServices implements GameServices {
     public void showScores(){
         if (gameHelper.isSignedIn()) {
             activity.startActivityForResult(Games.Leaderboards.getLeaderboardIntent(gameHelper.getApiClient(),
-                    activity.getString(R.string.leaderboard_fastest_levels)), UNUSED_REQUEST_CODE);
+                    activity.getString(R.string.leaderboard_level_one)), UNUSED_REQUEST_CODE);
+            // TODO change level_one to abstract score board
         }
         else if (!gameHelper.isConnecting()) {
             signIn();
@@ -71,16 +72,15 @@ public class PlayServices implements GameServices {
             activity.startActivityForResult(Games.Achievements.getAchievementsIntent(
                     gameHelper.getApiClient()), UNUSED_REQUEST_CODE);
         }
-        else if (!gameHelper.isConnecting()) {
-//            signIn();
-        }
+        else if (!gameHelper.isConnecting()) { }
     }
 
     @Override
     public void submitScore(int score) {
         if (isSignedIn()) {
             Games.Leaderboards.submitScore(gameHelper.getApiClient(),
-                    activity.getString(R.string.leaderboard_fastest_levels), score);
+                    activity.getString(R.string.leaderboard_level_one), score);
+            // TODO change level_one to abstract score board
 
             // Incremental achievement -> number of times played
             unlockAchievement(activity.getString(R.string.achievement_really_bored___));

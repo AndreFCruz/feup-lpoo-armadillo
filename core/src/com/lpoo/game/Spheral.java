@@ -52,7 +52,7 @@ public class Spheral extends Game {
 
         font = new BitmapFont();
 
-        skin1 = new Skin(Gdx.files.internal("armadillo.json"), new TextureAtlas("armadillo.atlas"));
+        skin1 = new Skin(Gdx.files.internal("Armadillo.json"), new TextureAtlas("Armadillo.atlas"));
         skin2 = new Skin(Gdx.files.internal("smallBtn.json"), new TextureAtlas("smallBtn.atlas"));
 
         loadAssets();
@@ -64,7 +64,7 @@ public class Spheral extends Game {
     }
 
     /**
-     * Loads the assets needed by this all screens.
+     * Loads the assets needed by all screens.
      */
     private void loadAssets() {
         //Load Main Menu Background and Title
