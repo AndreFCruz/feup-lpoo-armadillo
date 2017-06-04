@@ -162,14 +162,13 @@ public abstract class OptionsMenu {
      */
     protected void initStage() {
         table.setFillParent(true);
-        table.debugAll();
 
         table.add(message).padBottom(HUD_VIEWPORT_HEIGHT/ 18).row();
-        message.setFontScale(HUD_VIEWPORT_WIDTH / 250,HUD_VIEWPORT_WIDTH / 250);
+        message.setFontScale(HUD_VIEWPORT_WIDTH / 400,HUD_VIEWPORT_WIDTH / 400);
 
         Label score = new Label(hud.getScoreString(), skin);
-        table.add(score).padBottom(HUD_VIEWPORT_HEIGHT/ 14).row();
-        score.setFontScale(HUD_VIEWPORT_WIDTH / 400,HUD_VIEWPORT_WIDTH / 400);
+        table.add(score).padBottom(HUD_VIEWPORT_HEIGHT/ 18).row();
+        score.setFontScale(HUD_VIEWPORT_WIDTH / 600,HUD_VIEWPORT_WIDTH / 600);
     }
 
     /**

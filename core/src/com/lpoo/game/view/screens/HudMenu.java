@@ -73,7 +73,7 @@ public class HudMenu {
     /**
      * The Font rescaling factor, for the score representation.
      */
-    private static final float FONT_SCALE = HUD_VIEWPORT_WIDTH / 250;
+    private static final float FONT_SCALE = HUD_VIEWPORT_WIDTH / 400;
     /**
      * The Side Size of the HUD elements.
      */

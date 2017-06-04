@@ -68,7 +68,7 @@ public class Spheral extends Game {
      */
     private void loadAssets() {
         //Load Main Menu Background and Title
-        assetManager.load( "spheral.png" , Texture.class);
+        assetManager.load( "armadillo_title.png" , Texture.class);
         assetManager.load( "background.png" , Texture.class);
 
         //Load Game's Virtual Components
