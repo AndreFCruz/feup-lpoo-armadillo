@@ -4,7 +4,7 @@ package com.lpoo.game;
  * Created by andre on 02/06/2017.
  */
 
-public class GameServicesAdapter implements GameServices {
+public class NullGameServices implements GameServices {
 
     @Override
     public void signIn() {

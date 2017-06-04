@@ -2,8 +2,7 @@ package com.lpoo.game.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.lpoo.game.GameServices;
-import com.lpoo.game.GameServicesAdapter;
+import com.lpoo.game.NullGameServices;
 import com.lpoo.game.Spheral;
 
 public class DesktopLauncher {
@@ -13,7 +12,7 @@ public class DesktopLauncher {
         config.height = 450;
         config.width = 800;
 
-        new LwjglApplication(new Spheral(new GameServicesAdapter()), config);
+        new LwjglApplication(new Spheral(new NullGameServices()), config);
 	}
 
 }

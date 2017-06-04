@@ -13,5 +13,14 @@ Save this file as res/values/games-ids.xml in your project.
     <string name="achievement_dont_touch_the_water">CgkIoI7G0t0IEAIQBA</string>
     <string name="achievement_youre_in_the_clouds_">CgkIoI7G0t0IEAIQBQ</string>
     <string name="achievement_really_bored...">CgkIoI7G0t0IEAIQBg</string>
-    <string name="leaderboard_fastest_levels">CgkIoI7G0t0IEAIQCA</string>
+    <string name="leaderboard_level_one">CgkIoI7G0t0IEAIQCA</string>
+    <string name="leaderboard_level_two">CgkIoI7G0t0IEAIQCQ</string>
+    <string name="leaderboard_level_three">CgkIoI7G0t0IEAIQCg</string>
+    <string name="leaderboard_level_four">CgkIoI7G0t0IEAIQCw</string>
+    <string name="leaderboard_level_five">CgkIoI7G0t0IEAIQDA</string>
+    <string name="leaderboard_level_six">CgkIoI7G0t0IEAIQDQ</string>
+    <string name="leaderboard_level_seven">CgkIoI7G0t0IEAIQDg</string>
+    <string name="leaderboard_level_eight">CgkIoI7G0t0IEAIQDw</string>
+    <string name="leaderboard_level_nine">CgkIoI7G0t0IEAIQEA</string>
+    <string name="leaderboard_level_ten">CgkIoI7G0t0IEAIQEQ</string>
 </resources>
