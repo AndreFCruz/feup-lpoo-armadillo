@@ -47,31 +47,17 @@ public class MainMenuScreen extends MenuScreen {
      */
     protected void createMenuButtons(Table table) {
 
-        //Create buttons
-        TextButton playButton = new TextButton("Play", skin);
-        playButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new LevelMenuScreen(game));
-            }
-        });
+        table.bottom();
 
-        TextButton optionsButton = new TextButton("Options", skin);
-        optionsButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new CustomizeMenuScreen(game));
-            }
-        });
+        addPlayButton(table);
+        addOptionsButton(table);
+        addNetworkingButton(table);
+        addExitButton(table);
 
-        TextButton networkingButton = new TextButton("Networking", skin);
-        networkingButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new NetworkingMenuScreen(game));
-            }
-        });
+        table.padBottom(BOTTOM_EDGE);
+    }
 
+    private void addExitButton(Table table) {
         TextButton exitButton = new TextButton("Exit", skin);
         exitButton.addListener(new ClickListener() {
             @Override
@@ -79,14 +65,40 @@ public class MainMenuScreen extends MenuScreen {
                 Gdx.app.exit();
             }
         });
-
-        //Add buttons to table
-        table.bottom();
-        table.add(playButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
-        table.add(optionsButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
-        table.add(networkingButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
         table.add(exitButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
-        table.padBottom(BOTTOM_EDGE);
+    }
+
+    private void addNetworkingButton(Table table) {
+        TextButton networkingButton = new TextButton("Networking", skin);
+        networkingButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new NetworkingMenuScreen(game));
+            }
+        });
+        table.add(networkingButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
+    }
+
+    private void addOptionsButton(Table table) {
+        TextButton optionsButton = new TextButton("Options", skin);
+        optionsButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new CustomizeMenuScreen(game));
+            }
+        });
+        table.add(optionsButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
+    }
+
+    private void addPlayButton(Table table) {
+        TextButton playButton = new TextButton("Play", skin);
+        playButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new LevelMenuScreen(game));
+            }
+        });
+        table.add(playButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
     }
 
     @Override

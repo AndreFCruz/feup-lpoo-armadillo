@@ -5,7 +5,6 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
@@ -70,6 +69,14 @@ public class B2DWorldCreator {
     }
 
     private void addLayerLoaders() {
+        addRectGroundLayerLoader();
+        addPolyGroundLayerLoader();
+        addWaterLayerLoader();
+        addObjectsLayerLoader();
+        addPositionsLayerLoader();
+    }
+
+    private void addRectGroundLayerLoader() {
         layerLoaders.add(new LayerLoader<RectangleMapObject>("ground", world, RectangleMapObject.class) {
             @Override
             protected void loadObject(World world, MapObject object) {
@@ -77,18 +84,27 @@ public class B2DWorldCreator {
 
             }
         });
+    }
+
+    private void addPolyGroundLayerLoader() {
         layerLoaders.add(new LayerLoader<PolygonMapObject>("ground", world, PolygonMapObject.class) {
             @Override
             protected void loadObject(World world, MapObject object) {
                 B2DFactory.makePolygonGround(world, (PolygonMapObject) object);
             }
         });
+    }
+
+    private void addWaterLayerLoader() {
         layerLoaders.add(new LayerLoader<RectangleMapObject>("water", world, RectangleMapObject.class) {
             @Override
             protected void loadObject(World world, MapObject object) {
                 fluids.add(B2DFactory.makeWater(world, (RectangleMapObject) object));
             }
         });
+    }
+
+    private void addObjectsLayerLoader() {
         layerLoaders.add(new LayerLoader<RectangleMapObject>("objects", world, RectangleMapObject.class) {
             @Override
             protected void loadObject(World world, MapObject object) {
@@ -113,6 +129,9 @@ public class B2DWorldCreator {
                 }
             }
         });
+    }
+
+    private void addPositionsLayerLoader() {
         layerLoaders.add(new LayerLoader<RectangleMapObject>("positions", world, RectangleMapObject.class) {
             @Override
             protected void loadObject(World world, MapObject object) {
