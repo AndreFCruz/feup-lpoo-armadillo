@@ -3,12 +3,20 @@ package com.lpoo.game.view.screens;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.lpoo.game.Spheral;
 
-/**
- * Created by Edgar on 01/06/2017.
- */
 
+/**
+ * Class used to represent the pop up Menu that shows up when the User loses the game.
+ */
 public class LostMenu extends OptionsMenu {
 
+    /**
+     * Lost Menu Constructor.
+     * Takes as parameters a viewport, a game and a HUD Menu to call its superclass constructor.
+     *
+     * @param viewport
+     * @param game
+     * @param hud
+     */
     LostMenu (Viewport viewport, Spheral game, HudMenu hud) { super(viewport, game, hud); }
 
     @Override

@@ -4,11 +4,18 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.lpoo.game.Spheral;
 
 /**
- * Created by Edgar on 01/06/2017.
+ * Class used to represent the pop up Menu that shows up when the User pauses the game.
  */
-
 public class PauseMenu extends OptionsMenu {
 
+    /**
+     * Pause Menu Constructor.
+     * Takes as parameters a viewport, a game and a HUD Menu to call its superclass constructor.
+     *
+     * @param viewport
+     * @param game
+     * @param hud
+     */
     PauseMenu (Viewport viewport, Spheral game, HudMenu hud) { super(viewport, game, hud); }
 
     @Override

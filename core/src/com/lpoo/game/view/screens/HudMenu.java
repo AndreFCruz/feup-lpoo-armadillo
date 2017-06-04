@@ -163,25 +163,22 @@ public class HudMenu {
             switch (state) {
                 case LOST:
                     optionsMenu = new LostMenu(viewport, game, this);
-                    options_flag = true;
                     break;
                 case WON: // TODO Static class with helper functions to log achievements and scores
                     game.getGameServices().submitScore((int) (score * 1000));
                     optionsMenu = new WonMenu(viewport, game, this);
-                    options_flag = true;
                     break;
                 case PAUSED:
                     optionsMenu = new PauseMenu(viewport, game, this);
-                    options_flag = true;
-                    break;
-                default:
-                    options_flag = false;
                     break;
             }
         }
 
-        if (!options_flag)
+        if (state == GameModel.ModelState.LIVE) {
+            options_flag = false;
             updateScore();
+        } else
+            options_flag = true;
 
         return currentRequest;
     }

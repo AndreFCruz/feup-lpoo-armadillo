@@ -2,7 +2,6 @@ package com.lpoo.game.view.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -10,7 +9,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 import com.lpoo.game.Spheral;
 import com.lpoo.game.controller.GameController;
@@ -124,9 +122,6 @@ public class GameScreen extends ScreenAdapter {
     public void render(float delta) {
         controller.handleInput(delta);
 
-        Gdx.gl.glClearColor(1,1,1,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-
         updateCamera();
         drawBackground();
 
@@ -158,10 +153,7 @@ public class GameScreen extends ScreenAdapter {
                 model.startLevel();
                 resetRequest();
                 break;
-            default:
-                break;
         }
-
         hud.draw();
     }
 

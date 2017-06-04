@@ -32,22 +32,8 @@ public class NetworkingMenuScreen extends MainMenuScreen {
      */
     @Override
     protected void createMenuButtons(Table table) {
-
         //Create buttons
-        final TextButton signInButton = new TextButton(
-                gameServices.isSignedIn() ? "Sign Out" : "Sign In!", skin);
-        signInButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if (gameServices.isSignedIn()) {
-                    gameServices.signOut();
-                    signInButton.setText("Sign In!");
-                } else {
-                    gameServices.signIn();
-                    signInButton.setText("Sign Out");
-                }
-            }
-        });
+        TextButton signInButton = createSignInBtn();
 
         TextButton achievementsButton = new TextButton("Achievements", skin);
         achievementsButton.addListener(new ClickListener() {
@@ -74,5 +60,30 @@ public class NetworkingMenuScreen extends MainMenuScreen {
         table.add(leaderboardButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
         table.add(back).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
         table.padBottom(BOTTOM_EDGE);
+    }
+
+    /**
+     * Function to create and initialize the Listener of a SignIn / SignOut Button.
+     *
+     * @return The Text Button responsible for SignIn / SignOut.
+     */
+    private TextButton createSignInBtn() {
+        final TextButton signInButton = new TextButton(
+                gameServices.isSignedIn() ? "Sign Out" : "Sign In!", skin);
+
+        signInButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (gameServices.isSignedIn()) {
+                    gameServices.signOut();
+                    signInButton.setText("Sign In!");
+                } else {
+                    gameServices.signIn();
+                    signInButton.setText("Sign Out");
+                }
+            }
+        });
+
+        return signInButton;
     }
 }
