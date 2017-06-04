@@ -62,7 +62,7 @@ public abstract class OptionsMenu {
 
         menu = new Stage (viewport, game.getBatch());
         table = new Table();
-        this.skin = game.getSkin();
+        skin = game.getSkinOne();
 
         message = new Label("", this.skin);
 

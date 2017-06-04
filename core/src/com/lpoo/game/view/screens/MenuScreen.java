@@ -28,7 +28,8 @@ public abstract class MenuScreen extends ScreenAdapter {
     protected Viewport viewport;
     protected Camera camera;
     protected SpriteBatch batch;
-    protected Skin skin;
+    protected Skin skin1;
+    protected Skin skin2;
 
     GameServices gameServices;
 
@@ -53,6 +54,11 @@ public abstract class MenuScreen extends ScreenAdapter {
      * Image representing the Menu's Title image.
      */
     protected Image titleImg;
+    /**
+     * Default's Button Side Size
+     */
+    protected static final float DEFAULT_BUTTON_SIZE = VIEWPORT_WIDTH / 15;
+
 
     /**
      * Menu Screen's constructor.
@@ -64,7 +70,8 @@ public abstract class MenuScreen extends ScreenAdapter {
         this.game = game;
         batch = game.getBatch();
         gameServices = game.getGameServices();
-        skin = game.getSkin();
+        skin1 = game.getSkinOne();
+        skin2 = game.getSkinTwo();
 
         camera = new OrthographicCamera();
 
@@ -84,8 +91,8 @@ public abstract class MenuScreen extends ScreenAdapter {
         titleImg.setPosition(VIEWPORT_WIDTH / 2 - titleImg.getWidth() / 2, VIEWPORT_HEIGHT * 0.98f - titleImg.getHeight());
     }
 
-    protected TextButton addBackBtn() {
-        TextButton back = new TextButton("Back", skin);
+    protected TextButton addBackBtn(boolean style) {
+        TextButton back = new TextButton("Back", (style ? skin2 : skin1));
 
         back.addListener(new ClickListener() {
             @Override

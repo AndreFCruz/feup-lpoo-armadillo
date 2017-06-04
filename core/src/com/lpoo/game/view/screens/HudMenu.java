@@ -106,7 +106,7 @@ public class HudMenu {
 
         hud = new Stage(viewport, game.getBatch());
 
-        skin = game.getSkin();
+        skin = game.getSkinOne();
 
         initHUD();
     }

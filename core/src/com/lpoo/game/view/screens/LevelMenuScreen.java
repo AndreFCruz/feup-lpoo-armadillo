@@ -64,10 +64,10 @@ public class LevelMenuScreen extends MenuScreen {
     private void createLevelButtons(Table table) {
 
         for (int i = 1 ;  i <= game.getNumMaps(); ++i) {
-            levelButtons.add(new TextButton(String.valueOf(i), skin));
+            levelButtons.add(new TextButton(String.valueOf(i), skin2));
 
             //Adding to table and setting Layout aspect
-            table.add(levelButtons.get(i-1)).width(BUTTON_SIDE).height(BUTTON_SIDE).pad(BUTTON_EDGE);
+            table.add(levelButtons.get(i-1)).size(BUTTON_SIDE, BUTTON_SIDE).pad(BUTTON_EDGE);
 
             final int j = (i-1); //Needed for Listener initialization
 
@@ -95,13 +95,13 @@ public class LevelMenuScreen extends MenuScreen {
      */
     private void createStaticElements (Table table, Table levelsTable) {
 
-        TextButton back = addBackBtn();
+        TextButton back = addBackBtn(true);
 
         //Creating and setting the Scroller
-        ScrollPane scroller = new ScrollPane(levelsTable, skin);
+        ScrollPane scroller = new ScrollPane(levelsTable, skin1);
         scroller.getStyle().background = null;  //Setting the scroll background invisible
 
-        table.add(back).top().padLeft(SIDE_DISTANCE).padTop(TOP_EDGE / 3);
+        table.add(back).top().size(DEFAULT_BUTTON_SIZE, DEFAULT_BUTTON_SIZE).padLeft(SIDE_DISTANCE).padTop(TOP_EDGE / 3);
         table.add(scroller).fill().expand().padRight(SIDE_DISTANCE);
     }
 

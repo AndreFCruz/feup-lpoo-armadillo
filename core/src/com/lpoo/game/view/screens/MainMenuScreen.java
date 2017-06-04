@@ -58,47 +58,47 @@ public class MainMenuScreen extends MenuScreen {
     }
 
     private void addExitButton(Table table) {
-        TextButton exitButton = new TextButton("Exit", skin);
+        TextButton exitButton = new TextButton("Exit", skin1);
         exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.exit();
             }
         });
-        table.add(exitButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
+        table.add(exitButton).size(BUTTON_WIDTH, DEFAULT_BUTTON_SIZE).pad(BUTTON_EDGE).row();
     }
 
     private void addNetworkingButton(Table table) {
-        TextButton networkingButton = new TextButton("Networking", skin);
+        TextButton networkingButton = new TextButton("Networking", skin1);
         networkingButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new NetworkingMenuScreen(game));
             }
         });
-        table.add(networkingButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
+        table.add(networkingButton).size(BUTTON_WIDTH, DEFAULT_BUTTON_SIZE).pad(BUTTON_EDGE).row();
     }
 
     private void addOptionsButton(Table table) {
-        TextButton optionsButton = new TextButton("Options", skin);
+        TextButton optionsButton = new TextButton("Options", skin1);
         optionsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new CustomizeMenuScreen(game));
             }
         });
-        table.add(optionsButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
+        table.add(optionsButton).size(BUTTON_WIDTH, DEFAULT_BUTTON_SIZE).pad(BUTTON_EDGE).row();
     }
 
     private void addPlayButton(Table table) {
-        TextButton playButton = new TextButton("Play", skin);
+        TextButton playButton = new TextButton("Play", skin1);
         playButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new LevelMenuScreen(game));
             }
         });
-        table.add(playButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
+        table.add(playButton).size(BUTTON_WIDTH, DEFAULT_BUTTON_SIZE).pad(BUTTON_EDGE).row();
     }
 
     @Override

@@ -1,0 +1,27 @@
+
+smallBtn.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+font-export
+  rotate: false
+  xy: 1, 51
+  size: 107, 108
+  orig: 107, 108
+  offset: 0, 0
+  index: -1
+green_button07
+  rotate: false
+  xy: 110, 110
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+green_button08
+  rotate: false
+  xy: 1, 4
+  size: 49, 45
+  orig: 49, 45
+  offset: 0, 0
+  index: -1

@@ -35,7 +35,7 @@ public class NetworkingMenuScreen extends MainMenuScreen {
         //Create buttons
         TextButton signInButton = createSignInBtn();
 
-        TextButton achievementsButton = new TextButton("Achievements", skin);
+        TextButton achievementsButton = new TextButton("Achievements", skin1);
         achievementsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -43,7 +43,7 @@ public class NetworkingMenuScreen extends MainMenuScreen {
             }
         });
 
-        TextButton leaderboardButton = new TextButton("Leaderbord", skin);
+        TextButton leaderboardButton = new TextButton("Leaderbord", skin1);
         leaderboardButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -51,14 +51,14 @@ public class NetworkingMenuScreen extends MainMenuScreen {
             }
         });
 
-        TextButton back = addBackBtn();
+        TextButton back = addBackBtn(false);
 
         //Add buttons to table
         table.bottom();
-        table.add(signInButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
-        table.add(achievementsButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
-        table.add(leaderboardButton).width(BUTTON_WIDTH).pad(BUTTON_EDGE).row();
-        table.add(back).width(BUTTON_WIDTH).pad(BUTTON_EDGE);
+        table.add(signInButton).size(BUTTON_WIDTH, DEFAULT_BUTTON_SIZE).pad(BUTTON_EDGE).row();
+        table.add(achievementsButton).size(BUTTON_WIDTH, DEFAULT_BUTTON_SIZE).pad(BUTTON_EDGE).row();
+        table.add(leaderboardButton).size(BUTTON_WIDTH, DEFAULT_BUTTON_SIZE).pad(BUTTON_EDGE).row();
+        table.add(back).size(BUTTON_WIDTH, DEFAULT_BUTTON_SIZE).pad(BUTTON_EDGE);
         table.padBottom(BOTTOM_EDGE);
     }
 
@@ -69,7 +69,7 @@ public class NetworkingMenuScreen extends MainMenuScreen {
      */
     private TextButton createSignInBtn() {
         final TextButton signInButton = new TextButton(
-                gameServices.isSignedIn() ? "Sign Out" : "Sign In!", skin);
+                gameServices.isSignedIn() ? "Sign Out" : "Sign In!", skin1);
 
         signInButton.addListener(new ClickListener() {
             @Override

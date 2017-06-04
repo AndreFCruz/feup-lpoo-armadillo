@@ -22,7 +22,8 @@ public class Spheral extends Game {
 
     public BitmapFont font;
 
-    private Skin skin;
+    private Skin skin1;
+    private Skin skin2;
 
     private static final int NUMBER_OF_SKINS = 6;
 
@@ -51,7 +52,8 @@ public class Spheral extends Game {
 
         font = new BitmapFont();
 
-        skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas("uiskin.atlas"));
+        skin1 = new Skin(Gdx.files.internal("armadillo.json"), new TextureAtlas("armadillo.atlas"));
+        skin2 = new Skin(Gdx.files.internal("smallBtn.json"), new TextureAtlas("smallBtn.atlas"));
 
         loadAssets();
         startGame();
@@ -137,7 +139,9 @@ public class Spheral extends Game {
         return assetManager;
     }
 
-    public Skin getSkin() { return skin; }
+    public Skin getSkinOne() { return skin1; }
+
+    public Skin getSkinTwo() { return skin2; }
 
     public GameServices getGameServices() {
         return gameServices;

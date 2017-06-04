@@ -1,0 +1,80 @@
+{
+com.badlogic.gdx.graphics.g2d.BitmapFont: {
+	font-export: {
+		file: font-export.fnt
+	}
+	font-title: {
+		file: font-title.fnt
+	}
+}
+com.badlogic.gdx.graphics.Color: {
+	RGBA_117_75_2_255: {
+		r: 0.46
+		g: 0.2969106
+		b: 0.009199977
+		a: 1
+	}
+	RGBA_159_95_21_255: {
+		r: 0.62666667
+		g: 0.3760209
+		b: 0.08355558
+		a: 1
+	}
+	RGBA_200_115_16_255: {
+		r: 0.7866667
+		g: 0.45266375
+		b: 0.062933326
+		a: 1
+	}
+	RGBA_251_248_248_255: {
+		r: 0.98666674
+		g: 0.97351116
+		b: 0.97351116
+		a: 1
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable: {
+	hor-knob1: {
+		name: scrollbar-android-knob
+		color: RGBA_159_95_21_255
+	}
+	vertical-knob: {
+		name: scrollbar-android-vertical-knob
+		color: RGBA_159_95_21_255
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
+	default: {
+		up: green_button07
+		down: green_button08
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+	default: {
+		font: font-title
+		fontColor: RGBA_200_115_16_255
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
+	default: {
+		hScroll: grey_sliderHorizontal
+		hScrollKnob: hor-knob1
+		vScroll: grey_sliderVertical
+		vScrollKnob: vertical-knob
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+	default: {
+		font: font-export
+		fontColor: RGBA_251_248_248_255
+		downFontColor: RGBA_117_75_2_255
+		up: green_button00
+		down: green_button01
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {
+	default: {
+		label: default
+	}
+}
+}
