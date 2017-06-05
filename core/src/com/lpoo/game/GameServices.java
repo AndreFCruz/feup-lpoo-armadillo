@@ -6,16 +6,17 @@ public interface GameServices {
 	void signOut();
 
 	boolean isSignedIn();
-    void rateGame();
 
-	void submitScore(int score);
+	void submitScore(int level, int score);
 	void unlockAchievement(String achievementID);
 
 	//gets the scores/achievements and displays them through google's default widget
-	void showScores();
+	void showScores(int level);
 	void showAchievements();
 
     String getGravityAchievementID();
 
     String getSpeedAchievementID();
+
+    String getWaterAchievementID();
 }

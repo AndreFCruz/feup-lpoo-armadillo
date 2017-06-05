@@ -142,7 +142,7 @@ public abstract class EntityModel {
         fixtureProperties.getShape().dispose();
     }
 
-    protected Body getBody() {
+    public Body getBody() {
         return body;
     }
 

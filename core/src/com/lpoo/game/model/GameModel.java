@@ -104,7 +104,6 @@ public class GameModel implements Disposable {
     }
 
     public ModelState update(float delta) {
-
         if (currentState != LIVE)
             return currentState;
 
@@ -116,21 +115,18 @@ public class GameModel implements Disposable {
         for (WaterModel model : fluids)
             model.step();
 
-        removeFlagged();
-
         if (! ballInBounds())
             return (currentState = LOST);
-
         if (ballReachedEnd())
             return (currentState = WON);
 
         return LIVE;
     }
 
-    // TODO eventually world.destroy(body) of flagged?
-    private void removeFlagged() {
+    public void removeFlagged() {
         for (int i = 0; i < entityModels.size; i++) {
             if (entityModels.get(i).isFlaggedForRemoval()) {
+                world.destroyBody(entityModels.get(i).getBody());
                 entityModels.removeIndex(i);
             }
         }

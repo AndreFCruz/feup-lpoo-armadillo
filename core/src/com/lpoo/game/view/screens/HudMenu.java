@@ -67,7 +67,8 @@ public class HudMenu {
      * The height of the viewport in pixels. The height is
      * automatically calculated using the screen ratio.
      */
-    private static final float HUD_VIEWPORT_HEIGHT = HUD_VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());;
+    private static final float HUD_VIEWPORT_HEIGHT = HUD_VIEWPORT_WIDTH *
+            ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());;
 
     //Layout Macros
     /**
@@ -118,7 +119,8 @@ public class HudMenu {
         Table hudTable = new Table();
         hudTable.setFillParent(true);
 
-        Button pauseButton = new Button(new TextureRegionDrawable(new TextureRegion(game.getAssetManager().get("pause.png", Texture.class))));
+        Button pauseButton = new Button(new TextureRegionDrawable(
+                new TextureRegion(game.getAssetManager().get("pause.png", Texture.class))));
 
         scoreText = new Label ("0:00", skin);
         scoreText.setFontScale(FONT_SCALE,FONT_SCALE);
@@ -131,8 +133,10 @@ public class HudMenu {
         });
 
         hudTable.top();
-        hudTable.add(scoreText).size(HUD_ELEMENTS_SIZE, HUD_ELEMENTS_SIZE).expandX().left().fill().padLeft(HORIZONTAL_PAD).padTop(VERTICAL_PAD);
-        hudTable.add(pauseButton).size(HUD_ELEMENTS_SIZE, HUD_ELEMENTS_SIZE).fill().padRight(HORIZONTAL_PAD).padTop(VERTICAL_PAD);
+        hudTable.add(scoreText).size(HUD_ELEMENTS_SIZE, HUD_ELEMENTS_SIZE).expandX()
+                .left().fill().padLeft(HORIZONTAL_PAD).padTop(VERTICAL_PAD);
+        hudTable.add(pauseButton).size(HUD_ELEMENTS_SIZE, HUD_ELEMENTS_SIZE).fill()
+                .padRight(HORIZONTAL_PAD).padTop(VERTICAL_PAD);
 
         hud.addActor(hudTable);
     }
@@ -152,10 +156,11 @@ public class HudMenu {
      * @return Score's string representation.
      */
     String getScoreString() {
-        return (Integer.toString((int) score / 60) + ":" + (((int) score % 60) > 9 ? "" : "0") + Integer.toString((int) score % 60));
+        return (Integer.toString((int) score / 60) + ":" +
+                (((int) score % 60) > 9 ? "" : "0") + Integer.toString((int) score % 60));
     }
 
-    HudMenu.Request update (GameModel.ModelState state) {
+    HudMenu.Request update (GameModel.ModelState state, int level) {
 
         if (state != lastState) {
             lastState = state;
@@ -164,8 +169,8 @@ public class HudMenu {
                 case LOST:
                     optionsMenu = new LostMenu(viewport, game, this);
                     break;
-                case WON: // TODO Static class with helper functions to log achievements and scores
-                    game.getGameServices().submitScore((int) (score * 1000));
+                case WON:
+                    game.getGameServices().submitScore(level, (int) (score * 1000));
                     optionsMenu = new WonMenu(viewport, game, this);
                     break;
                 case PAUSED:

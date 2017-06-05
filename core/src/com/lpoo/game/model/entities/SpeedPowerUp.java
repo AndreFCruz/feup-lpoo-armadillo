@@ -27,7 +27,7 @@ public class SpeedPowerUp extends PowerUp {
             gameServices.unlockAchievement(gameServices.getSpeedAchievementID());
         }
         catch (java.lang.ClassCastException e) {
-            System.out.println("Tests are being done to Speed Power Up.");
+            System.err.println("Activity class not of type Spheral. Tests running.");
         }
     }
 }

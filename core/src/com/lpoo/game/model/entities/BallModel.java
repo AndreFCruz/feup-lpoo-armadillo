@@ -13,6 +13,7 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
  */
 public class BallModel extends EntityModel {
     private static final float POWERUP_RATIO = 2f;
+    public static final double VEL_POWERUP_RATIO = 1.6;
 
     public enum State {LANDED, FLYING, DUNKING}
 
@@ -37,7 +38,8 @@ public class BallModel extends EntityModel {
         Shape circle = new CircleShape();
         circle.setRadius(RADIUS);
 
-        createFixture(new FixtureProperties(circle, density, friction, restitution, BALL_BIT, (short) (BALL_BIT | GROUND_BIT | FLUID_BIT | HITTABLE_BIT)));
+        createFixture(new FixtureProperties(circle, density, friction, restitution, BALL_BIT,
+                (short) (BALL_BIT | GROUND_BIT | FLUID_BIT | HITTABLE_BIT)));
     }
 
     public void rotate(float delta) {
@@ -78,14 +80,14 @@ public class BallModel extends EntityModel {
     }
 
     void increaseVelocity() {
-        angular_accel *= POWERUP_RATIO;
-        friction *= POWERUP_RATIO;
+        angular_accel *= VEL_POWERUP_RATIO;
+        friction *= VEL_POWERUP_RATIO;
         getBody().getFixtureList().first().setFriction(friction);
     }
 
     void decreaseVelocity() {
-        angular_accel *= 1 / POWERUP_RATIO;
-        friction *= 1 / POWERUP_RATIO;
+        angular_accel *= 1 / VEL_POWERUP_RATIO;
+        friction *= 1 / VEL_POWERUP_RATIO;
         getBody().getFixtureList().first().setFriction(friction);
     }
 

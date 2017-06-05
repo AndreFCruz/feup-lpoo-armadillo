@@ -22,12 +22,11 @@ public class LeaderboardMenuScreen extends LevelMenuScreen {
     }
 
     @Override
-    protected void addLevelListener(final int idx) {
-        levelButtons.get(idx).addListener(new ClickListener(){
+    protected void addLevelListener(final int level) {
+        levelButtons.get(level).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //TODO: mostrar a leaderborad do level idx
-                //gameServices.showScores();
+                gameServices.showScores(level);
             }
         });
     }

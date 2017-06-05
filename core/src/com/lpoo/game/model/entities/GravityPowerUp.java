@@ -27,7 +27,7 @@ public class GravityPowerUp extends PowerUp {
             gameServices.unlockAchievement(gameServices.getGravityAchievementID());
         }
         catch (java.lang.ClassCastException e) {
-            System.out.println("Tests are being done to Gravity Power Up.");
+            System.err.println("Activity class not of type Spheral. Tests running.");
         }
     }
 }

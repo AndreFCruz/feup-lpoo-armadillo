@@ -19,9 +19,8 @@ public class LevelMenuScreen extends MenuScreen {
     /**
      * Array containing all the buttons used to select Levels.
      */
-    protected ArrayList<TextButton> levelButtons = new ArrayList<TextButton>();
+    protected ArrayList<TextButton> levelButtons = new ArrayList<>();
 
-    //Layout Macros
     /**
      * Since the Level Buttons are square, this Constant represents both their Width and Height.
      */
@@ -66,11 +65,11 @@ public class LevelMenuScreen extends MenuScreen {
         for (int i = 1 ;  i <= game.getNumMaps(); ++i) {
             levelButtons.add(new TextButton(String.valueOf(i), skin2));
 
-            //Adding to table and setting Layout aspect
+            // Adding to table and setting Layout aspect
             table.add(levelButtons.get(i-1)).size(BUTTON_SIDE, BUTTON_SIDE).pad(BUTTON_EDGE);
 
             // Adding Listener
-            final int j = (i-1); //Needed for Listener initialization
+            final int j = (i-1);
             addLevelListener(j);
 
             if ((i % BUTTONS_PER_LINE) == 0)
@@ -115,13 +114,13 @@ public class LevelMenuScreen extends MenuScreen {
         // Table containing the Level Buttons
         Table levels = new Table();
 
-        //Layout Aspect
+        // Layout Aspect
         levels.top();
         levels.padTop(TOP_EDGE);
 
         createLevelButtons(levels);
 
-        //Table containing the Static Elements
+        // Table containing the Static Elements
         Table staticElements = new Table();
         staticElements.setFillParent(true);
 

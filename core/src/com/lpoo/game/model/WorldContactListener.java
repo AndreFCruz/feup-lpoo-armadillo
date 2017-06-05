@@ -1,11 +1,14 @@
 package com.lpoo.game.model;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.lpoo.game.GameServices;
+import com.lpoo.game.Spheral;
 import com.lpoo.game.model.controllers.BuoyancyController;
 import com.lpoo.game.model.entities.BallModel;
 import com.lpoo.game.model.entities.BoxModel;
@@ -48,8 +51,10 @@ public class WorldContactListener implements ContactListener {
         beginContactFunctions.put(FLUID_BIT, new ContactHandler() {
             @Override
             public void handle(Fixture fluid, Fixture fixB) {
-                if (fixB.getFilterData().categoryBits == BALL_BIT)
+                if (fixB.getFilterData().categoryBits == BALL_BIT) {
                     model.setState(GameModel.ModelState.LOST);
+                    logWaterAchievement();
+                }
                 else
                     ((BuoyancyController) fluid.getBody().getUserData()).addBody(fixB);
             }
@@ -60,6 +65,14 @@ public class WorldContactListener implements ContactListener {
                 ((BuoyancyController) fluid.getBody().getUserData()).removeBody(fixB);
             }
         });
+    }
+
+    private void logWaterAchievement() {
+        try {
+            GameServices gameServices = ((Spheral) (Gdx.app.getApplicationListener())).getGameServices();
+            gameServices.unlockAchievement(gameServices.getWaterAchievementID());
+        }
+        catch (java.lang.ClassCastException e) {}
     }
 
     private void addBallContactHandlers() {

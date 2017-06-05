@@ -8,6 +8,8 @@ import com.badlogic.gdx.Gdx;
 import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.GameHelper;
 
+import java.util.HashMap;
+
 /**
  * Created by andre on 04/06/2017.
  */
@@ -44,22 +46,19 @@ public class PlayServices implements GameServices {
     }
 
     @Override
-    public void rateGame() {
-        String str = "Your PlayStore Link"; // TODO
-        activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(str)));
-    }
-
-    @Override
     public void unlockAchievement(String achievementID) {
         Games.Achievements.unlock(gameHelper.getApiClient(), achievementID);
     }
 
     @Override
-    public void showScores(){
+    public void showScores(int level) {
+
+    }
+
+    private void showScores(String leaderboardID) {
         if (gameHelper.isSignedIn()) {
             activity.startActivityForResult(Games.Leaderboards.getLeaderboardIntent(gameHelper.getApiClient(),
-                    activity.getString(R.string.leaderboard_level_one)), UNUSED_REQUEST_CODE);
-            // TODO change level_one to abstract score board
+                    leaderboardID), UNUSED_REQUEST_CODE);
         }
         else if (!gameHelper.isConnecting()) {
             signIn();
@@ -76,15 +75,60 @@ public class PlayServices implements GameServices {
     }
 
     @Override
-    public void submitScore(int score) {
+    public void submitScore(int level, int score) {
+        String leaderboardID = getLeaderboardID(level);
+        String achievementID = getAchievementID(level, score);
+
+        if (leaderboardID != null)
+            submitScore(leaderboardID, score);
+
+        if (achievementID != null)
+            unlockAchievement(achievementID);
+    }
+
+    private String getAchievementID(int level, int score) {
+        switch (level) {
+            case 0:
+                return activity.getString(R.string.achievement_so_it_begins);
+            case 8:
+                if (score < 60)
+                    return activity.getString(R.string.achievement_impressive_timing_);
+            case 9:
+                return activity.getString(R.string.achievement_reach_for_the_clouds);
+            default:
+                System.err.println("Invalid level ID. Was " + level);
+        }
+
+        return null;
+    }
+
+    private void submitScore(String leaderboardID, int score) {
         if (isSignedIn()) {
             Games.Leaderboards.submitScore(gameHelper.getApiClient(),
-                    activity.getString(R.string.leaderboard_level_one), score);
-            // TODO change level_one to abstract score board
+                    leaderboardID, score);
 
             // Incremental achievement -> number of times played
             unlockAchievement(activity.getString(R.string.achievement_really_bored___));
         }
+    }
+
+    private String getLeaderboardID(int level) {
+        switch (level) {
+            case 0: return activity.getString(R.string.leaderboard_level_one);
+            case 1: return activity.getString(R.string.leaderboard_level_two);
+            case 2: return activity.getString(R.string.leaderboard_level_three);
+            case 3: return activity.getString(R.string.leaderboard_level_four);
+            case 4: return activity.getString(R.string.leaderboard_level_five);
+            case 5: return activity.getString(R.string.leaderboard_level_six);
+            case 6: return activity.getString(R.string.leaderboard_level_seven);
+            case 7: return activity.getString(R.string.leaderboard_level_eight);
+            case 8: return activity.getString(R.string.leaderboard_level_nine);
+            case 9: return activity.getString(R.string.leaderboard_level_ten);
+            default:
+                System.err.println("Invalid level ID. Was " + level);
+        }
+
+        return null;
     }
 
     @Override
@@ -100,5 +144,10 @@ public class PlayServices implements GameServices {
     @Override
     public String getSpeedAchievementID() {
         return activity.getString(R.string.achievement_speeeed);
+    }
+
+    @Override
+    public String getWaterAchievementID() {
+        return activity.getString(R.string.achievement_careful_);
     }
 }

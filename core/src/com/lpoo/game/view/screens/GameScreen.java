@@ -122,6 +122,7 @@ public class GameScreen extends ScreenAdapter {
     public void render(float delta) {
         if (model.getState() == GameModel.ModelState.LIVE)
             controller.handleInput(delta);
+        model.removeFlagged();
 
         updateCamera();
         drawBackground();
@@ -150,7 +151,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void updateHUD(GameModel.ModelState state) {
-        switch(hud.update(state)) {
+        switch(hud.update(state, currentLevel)) {
             case LOAD:
                 loadNextMap();
                 resetRequest();

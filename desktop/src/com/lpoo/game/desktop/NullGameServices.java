@@ -6,7 +6,7 @@ import com.lpoo.game.GameServices;
  * Created by andre on 02/06/2017.
  */
 
-public class NullGameServices implements GameServices {
+class NullGameServices implements GameServices {
 
     @Override
     public void signIn() {
@@ -24,12 +24,7 @@ public class NullGameServices implements GameServices {
     }
 
     @Override
-    public void rateGame() {
-
-    }
-
-    @Override
-    public void submitScore(int score) {
+    public void submitScore(int level, int score) {
 
     }
 
@@ -39,7 +34,7 @@ public class NullGameServices implements GameServices {
     }
 
     @Override
-    public void showScores() {
+    public void showScores(int level) {
 
     }
 
@@ -55,6 +50,11 @@ public class NullGameServices implements GameServices {
 
     @Override
     public String getSpeedAchievementID() {
+        return null;
+    }
+
+    @Override
+    public String getWaterAchievementID() {
         return null;
     }
 }
