@@ -19,7 +19,7 @@ public class LevelMenuScreen extends MenuScreen {
     /**
      * Array containing all the buttons used to select Levels.
      */
-    private ArrayList<TextButton> levelButtons = new ArrayList<TextButton>();
+    protected ArrayList<TextButton> levelButtons = new ArrayList<TextButton>();
 
     //Layout Macros
     /**
@@ -69,19 +69,22 @@ public class LevelMenuScreen extends MenuScreen {
             //Adding to table and setting Layout aspect
             table.add(levelButtons.get(i-1)).size(BUTTON_SIDE, BUTTON_SIDE).pad(BUTTON_EDGE);
 
+            // Adding Listener
             final int j = (i-1); //Needed for Listener initialization
-
-            //Adding Listener
-            levelButtons.get(i-1).addListener(new ClickListener(){
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    game.setScreen(new GameScreen(game, j)); //TODO: Mudar para que cada um leve ao seu level certo
-                }
-            });
+            addLevelListener(j);
 
             if ((i % BUTTONS_PER_LINE) == 0)
                 table.row();
         }
+    }
+
+    protected void addLevelListener(final int idx) {
+        levelButtons.get(idx).addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new GameScreen(game, idx));
+            }
+        });
     }
 
     /**

@@ -57,9 +57,9 @@ public abstract class OptionsMenu {
      */
     private static final float SCORE_FONT_SCALE = HUD_VIEWPORT_WIDTH / 600;
     /**
-     * Distance between the  Tables and the other stage elements
+     * Distance between the Lables and the other stage elements
      */
-    private static final float LABEL_DISTANCE = HUD_VIEWPORT_HEIGHT/ 18;
+    private static final float LABEL_DISTANCE = HUD_VIEWPORT_HEIGHT/ 40;
     /**
      * Width of the Options Menu's Buttons.
      */
@@ -71,7 +71,7 @@ public abstract class OptionsMenu {
     /**
      * Distance between and other stage elements.
      */
-    private static final float BUTTON_DISTANCE = HUD_VIEWPORT_HEIGHT / 14;
+    private static final float BUTTON_DISTANCE = HUD_VIEWPORT_HEIGHT / 18;
 
     /**
      * Options Menu Constructor
@@ -133,6 +133,22 @@ public abstract class OptionsMenu {
         });
 
         table.add(restartBtn).size(BUTTON_WIDTH, BUTTON_HEIGHT).padBottom(BUTTON_DISTANCE).row();
+    }
+
+    /**
+     * Function that adds a Button responsible for showing the Leaderboard of the current Level.
+     */
+    protected void addLeaderboardBtn() {
+        TextButton leaderboardBtn = new TextButton("Leaderboard", skin);
+
+        leaderboardBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                //TODO: Show score deste nivel
+            }
+        });
+
+        table.add(leaderboardBtn).size(BUTTON_WIDTH, BUTTON_HEIGHT).padBottom(BUTTON_DISTANCE).row();
     }
 
     /**

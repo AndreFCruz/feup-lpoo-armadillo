@@ -47,7 +47,7 @@ public class NetworkingMenuScreen extends MainMenuScreen {
         leaderboardButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                gameServices.showScores();
+                game.setScreen(new LeaderboardMenuScreen(game));
             }
         });
 
