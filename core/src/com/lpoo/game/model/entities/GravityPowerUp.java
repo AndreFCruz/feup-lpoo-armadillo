@@ -21,7 +21,13 @@ public class GravityPowerUp extends PowerUp {
     public void onHit(BallModel model) {
         flagForRemoval();
         model.flipGravity();
-        GameServices gameServices = ((Spheral) (Gdx.app.getApplicationListener())).getGameServices();
-        gameServices.unlockAchievement(gameServices.getGravityAchievementID());
+
+        try {
+            GameServices gameServices = ((Spheral) (Gdx.app.getApplicationListener())).getGameServices();
+            gameServices.unlockAchievement(gameServices.getGravityAchievementID());
+        }
+        catch (java.lang.ClassCastException e) {
+            System.out.println("Tests are being done to Gravity Power Up.");
+        }
     }
 }

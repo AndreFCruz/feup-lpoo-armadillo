@@ -98,7 +98,11 @@ public class BallModel extends EntityModel {
     }
 
     void flipGravity() {
-        getBody().setGravityScale(-1);
+        if (getBody().getGravityScale() == 1)
+            getBody().setGravityScale(-1);
+        else
+            getBody().setGravityScale(1);
+
         jump_force *= -1;
     }
 
@@ -115,4 +119,5 @@ public class BallModel extends EntityModel {
         return density;
     }
 
+    public float getPowerUpRatio() { return POWERUP_RATIO; }
 }

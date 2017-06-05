@@ -22,7 +22,12 @@ public class SpeedPowerUp extends PowerUp {
         flagForRemoval();
         model.increaseVelocity();
 
-        GameServices gameServices = ((Spheral) (Gdx.app.getApplicationListener())).getGameServices();
-        gameServices.unlockAchievement(gameServices.getSpeedAchievementID());
+        try {
+            GameServices gameServices = ((Spheral) (Gdx.app.getApplicationListener())).getGameServices();
+            gameServices.unlockAchievement(gameServices.getSpeedAchievementID());
+        }
+        catch (java.lang.ClassCastException e) {
+            System.out.println("Tests are being done to Speed Power Up.");
+        }
     }
 }

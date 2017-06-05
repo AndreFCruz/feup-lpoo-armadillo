@@ -13,13 +13,7 @@
   <object id="11" x="64" y="256" width="704" height="64"/>
   <object id="12" x="704" y="0" width="64" height="256"/>
  </objectgroup>
- <objectgroup name="objects">
-  <object id="6" type="box" x="128" y="192" width="64" height="64">
-   <properties>
-    <property name="density" type="float" value="0.3"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="objects"/>
  <objectgroup name="positions">
   <object id="7" name="start" x="383.667" y="191" width="64" height="64"/>
   <object id="9" name="end" x="640" y="192" width="64" height="64"/>

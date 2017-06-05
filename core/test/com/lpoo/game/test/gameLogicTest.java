@@ -32,14 +32,14 @@ public class gameLogicTest extends GameTest{
     @Test
     public void scoreUpdateTest()
     {
-        assertEquals(0f, tester.runTime(), deltaError);
+        assertEquals(0f, tester.getRunTime(), deltaError);
         tester.noMotionDuringTime(5);
 
-        assertEquals(5f, tester.runTime(), deltaError);
+        assertEquals(5f, tester.getRunTime(), deltaError);
         tester.rotateLeftDuringTime(2);
         tester.noMotionDuringTime(4);
 
-        assertEquals(11f, tester.runTime(), deltaError);
+        assertEquals(11f, tester.getRunTime(), deltaError);
     }
 
     @Test
@@ -48,14 +48,14 @@ public class gameLogicTest extends GameTest{
         assertEquals(GameModel.ModelState.LIVE, tester.noMotionDuringTime(1));
         assertEquals(GameModel.ModelState.WON, tester.rotateRightDuringTime(2));
 
-        float[] final_pos = { tester.ballXPosition(), tester.ballYPosition() };
+        float[] final_pos = { tester.getBallXPosition(), tester.getBallYPosition() };
 
         //After WON Position ball doesn't move
         assertEquals(GameModel.ModelState.WON, tester.rotateLeftDuringTime(3));
         tester.ballJump();
         assertEquals(GameModel.ModelState.WON, tester.rotateLeftDuringTime(2));
-        assertEquals(final_pos[0], tester.ballXPosition(), deltaError);
-        assertEquals(final_pos[1], tester.ballYPosition(), deltaError);
+        assertEquals(final_pos[0], tester.getBallXPosition(), deltaError);
+        assertEquals(final_pos[1], tester.getBallYPosition(), deltaError);
     }
 
     GameTester otherTester = new GameTester("maps/testmap2.tmx");
@@ -64,21 +64,21 @@ public class gameLogicTest extends GameTest{
     public void loseGameByFallTest()
     {
         assertEquals(GameModel.ModelState.LIVE, otherTester.noMotionDuringTime(1));
-        float[] init_pos = { otherTester.ballXPosition(), otherTester.ballYPosition() };
+        float[] init_pos = { otherTester.getBallXPosition(), otherTester.getBallYPosition() };
 
         //Ball will fall and game is lost
         assertEquals(GameModel.ModelState.LIVE, otherTester.rotateRightDuringTime(8));
         assertEquals(GameModel.ModelState.LOST, otherTester.noMotionDuringTime(3)); //Ball falling
-        assertTrue(init_pos[1] - 5 > otherTester.ballYPosition());
+        assertTrue(init_pos[1] - 5 > otherTester.getBallYPosition());
 
-        float[] final_pos = { otherTester.ballXPosition(), otherTester.ballYPosition() };
+        float[] final_pos = { otherTester.getBallXPosition(), otherTester.getBallYPosition() };
 
         //After LOST Position ball doesn't move
         assertEquals(GameModel.ModelState.LOST, otherTester.rotateRightDuringTime(3));
         otherTester.ballJump();
         assertEquals(GameModel.ModelState.LOST, otherTester.rotateRightDuringTime(2));
-        assertEquals(final_pos[0], otherTester.ballXPosition(), deltaError);
-        assertEquals(final_pos[1], otherTester.ballYPosition(), deltaError);
+        assertEquals(final_pos[0], otherTester.getBallXPosition(), deltaError);
+        assertEquals(final_pos[1], otherTester.getBallYPosition(), deltaError);
     }
 
     @Test
@@ -89,13 +89,33 @@ public class gameLogicTest extends GameTest{
         //Ball will touch Water and game is lost
         assertEquals(GameModel.ModelState.LOST, otherTester.rotateLeftDuringTime(5));
 
-        float[] final_pos = { otherTester.ballXPosition(), otherTester.ballYPosition() };
+        float[] final_pos = { otherTester.getBallXPosition(), otherTester.getBallYPosition() };
 
         //After LOST Position ball doesn't move
         assertEquals(GameModel.ModelState.LOST, otherTester.rotateRightDuringTime(3));
         tester.ballJump();
         assertEquals(GameModel.ModelState.LOST, otherTester.rotateRightDuringTime(2));
-        assertEquals(final_pos[0], otherTester.ballXPosition(), deltaError);
-        assertEquals(final_pos[1], otherTester.ballYPosition(), deltaError);
+        assertEquals(final_pos[0], otherTester.getBallXPosition(), deltaError);
+        assertEquals(final_pos[1], otherTester.getBallYPosition(), deltaError);
+    }
+
+    @Test
+    public void pauseGameTest()
+    {
+        //Starting ball motion
+        tester.rotateRightDuringTime(1);
+        float xPositon = tester.getBallXPosition();
+
+        //Pause Game, even if called, ball wont move
+        tester.pauseGame();
+
+        tester.noMotionDuringTime(3);
+        assertEquals(xPositon, tester.getBallXPosition(), deltaError);
+
+        //Game unpaused, ball will move
+        tester.pauseGame();
+        tester.noMotionDuringTime(3);
+
+        assertNotEquals(xPositon, tester.getBallXPosition(), deltaError);
     }
 }

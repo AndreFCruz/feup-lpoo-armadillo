@@ -52,16 +52,20 @@ public class GameTester {
 
     public void ballJump() { model.getBallModel().jump(); }
 
+    public void pauseGame() { model.togglePause(); }
+
     //GETTERS
-    public float ballXPosition() { return model.getBallModel().getX(); }
+    public float getBallXPosition() { return model.getBallModel().getX(); }
 
-    public float ballYPosition() { return model.getBallModel().getY(); }
+    public float getBallYPosition() { return model.getBallModel().getY(); }
 
-    public float runTime() { return model.getCurrentRunTime(); }
+    public float getRunTime() { return model.getCurrentRunTime(); }
 
-    public float ballJumpPower() { return model.getBallModel().getJumpForce(); }
+    public float getBallJumpPower() { return model.getBallModel().getJumpForce(); }
 
-    public float ballAcceleration() { return model.getBallModel().getAcceleration(); }
+    public float getBallAcceleration() { return model.getBallModel().getAcceleration(); }
 
-    public float ballDensity() { return model.getBallModel().getDensity(); }
+    public float getBallDensity() { return model.getBallModel().getDensity(); }
+
+    public float getPowerUpRatio() { return model.getBallModel().getPowerUpRatio(); }
 }
