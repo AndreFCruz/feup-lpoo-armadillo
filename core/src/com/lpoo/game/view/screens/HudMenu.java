@@ -151,11 +151,11 @@ public class HudMenu {
      *
      * @return Score's string representation.
      */
-    public String getScoreString() {
+    String getScoreString() {
         return (Integer.toString((int) score / 60) + ":" + (((int) score % 60) > 9 ? "" : "0") + Integer.toString((int) score % 60));
     }
 
-    public HudMenu.Request update (GameModel.ModelState state) {
+    HudMenu.Request update (GameModel.ModelState state) {
 
         if (state != lastState) {
             lastState = state;
@@ -183,7 +183,7 @@ public class HudMenu {
         return currentRequest;
     }
 
-    public void draw () {
+    void draw () {
         if (options_flag) {
             optionsMenu.draw();
         } else {
@@ -193,20 +193,20 @@ public class HudMenu {
         }
     }
 
-    public void togglePause() {
+    void togglePause() {
         currentRequest = Request.NONE;
         model.togglePause();
     }
 
-    public void loadNextLevel() {
+    void loadNextLevel() {
         currentRequest = Request.LOAD;
     }
 
-    public void startLevel() {
+    void startLevel() {
         currentRequest = Request.START;
     }
 
-    public void resetRequest() {
+    void resetRequest() {
         currentRequest = Request.NONE;
     }
 }

@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.lpoo.game.Spheral;
 import com.lpoo.game.view.entities.BallView;
+import com.lpoo.game.view.entities.ViewFactory;
 
 import java.util.ArrayList;
 
@@ -35,7 +36,7 @@ public class CustomizeMenuScreen extends MenuScreen {
     /**
      * Index on the array of Skins of the currently active skin1.
      */
-    private static int current_skin = 0;
+    private static int currentSkin = 0;
 
     //Layout Macros
 
@@ -107,12 +108,12 @@ public class CustomizeMenuScreen extends MenuScreen {
     }
 
     /**
-     * Initialize the current_skin.
+     * Initialize the currentSkin.
      */
     private void initializeCurrentSkin() {
         for (int i = 0; i < skinLabels.size(); ++i) {
-            if (i == current_skin)
-                skinLabels.get(current_skin).setVisible(true);
+            if (i == currentSkin)
+                skinLabels.get(currentSkin).setVisible(true);
             else
                 skinLabels.get(i).setVisible(false);
         }
@@ -122,12 +123,12 @@ public class CustomizeMenuScreen extends MenuScreen {
      * Set the current visible Label with the current skin.
      */
     private void setCurrentLabel(final int j) {
-        skinLabels.get(current_skin).setVisible(false);
+        skinLabels.get(currentSkin).setVisible(false);
         skinLabels.get(j).setVisible(true);
-        current_skin = j;
+        currentSkin = j;
 
-        BallView ball_appearance = null;
-        ball_appearance.setCurrentSkin(current_skin);
+        BallView.setCurrentSkin(currentSkin);
+        ViewFactory.resetBallView();
     }
 
     /**
@@ -140,7 +141,6 @@ public class CustomizeMenuScreen extends MenuScreen {
      *          Table containing the level buttons, that will be associated to the scroller.
      */
     private void createStaticElements (Table table, Table skinsTable) {
-
         TextButton back = addBackBtn(true);
 
         //Creating and setting the Scroller

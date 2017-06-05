@@ -54,4 +54,8 @@ public class ViewFactory {
 
         return shapesCache.get(model.getType());
     }
+
+    public static void resetBallView() {
+        entitiesCache.remove(BALL);
+    }
 }
