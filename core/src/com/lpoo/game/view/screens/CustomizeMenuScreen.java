@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.lpoo.game.Spheral;
+import com.lpoo.game.view.entities.BallView;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ public class CustomizeMenuScreen extends MenuScreen {
     /**
      * Index on the array of Skins of the currently active skin1.
      */
-    private int current_skin = 0;
+    private static int current_skin = 0;
 
     //Layout Macros
 
@@ -102,7 +103,6 @@ public class CustomizeMenuScreen extends MenuScreen {
         for (int i=0; i < game.getNumSkins(); ++i)
             table.add(skinLabels.get(i)).fill().width(BUTTON_SIZE).center();
 
-        current_skin = game.getCurrentSkin();
         initializeCurrentSkin();
     }
 
@@ -125,7 +125,9 @@ public class CustomizeMenuScreen extends MenuScreen {
         skinLabels.get(current_skin).setVisible(false);
         skinLabels.get(j).setVisible(true);
         current_skin = j;
-        game.setCurrentSkin(current_skin);
+
+        BallView ball_appearance = null;
+        ball_appearance.setCurrentSkin(current_skin);
     }
 
     /**

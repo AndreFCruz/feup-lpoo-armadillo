@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="5" tilewidth="64" tileheight="64" nextobjectid="41">
+ <tileset firstgid="1" name="MyTiles_64x64" tilewidth="64" tileheight="64" tilecount="64" columns="8">
+  <image source="../tilesets/MyTiles_64x64.png" width="512" height="512"/>
+ </tileset>
+ <layer name="map" width="12" height="5">
+  <data encoding="base64" compression="zlib">
+   eJxTYmBg4CISKwExNxAbMxAHWKDqiQUsUFqWCAxTD3ITI5HYCogBHmsCaQ==
+  </data>
+ </layer>
+ <objectgroup name="ground">
+  <object id="14" x="0" y="256" width="768" height="64"/>
+  <object id="31" x="0" y="64" width="64" height="192"/>
+  <object id="34" x="704" y="0" width="64" height="256"/>
+ </objectgroup>
+ <objectgroup name="objects">
+  <object id="29" type="platform" x="450" y="104" width="196" height="30">
+   <properties>
+    <property name="density" type="float" value="1.5"/>
+    <property name="pivoted" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="30" type="platform" x="451" y="186" width="196" height="30">
+   <properties>
+    <property name="density" type="float" value="1.5"/>
+    <property name="pivoted" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="36" type="box" x="192" y="64" width="64" height="64"/>
+  <object id="38" type="box" x="191" y="129" width="64" height="64"/>
+  <object id="39" type="box" x="191" y="193" width="64" height="64"/>
+  <object id="40" type="box" x="193" y="0" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="positions">
+  <object id="7" name="start" x="319.667" y="190" width="64" height="64"/>
+  <object id="9" name="end" x="65" y="64" width="64" height="64"/>
+ </objectgroup>
+</map>

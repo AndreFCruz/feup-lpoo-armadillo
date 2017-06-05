@@ -27,8 +27,6 @@ public class Spheral extends Game {
 
     private static final int NUMBER_OF_SKINS = 6;
 
-    private int currentSkin_ID = 0;
-
     private static final Map<Integer, String> gameMaps = new HashMap<Integer, String>();
 
     private final GameServices gameServices;
@@ -120,10 +118,6 @@ public class Spheral extends Game {
     public int getNumSkins() {
         return NUMBER_OF_SKINS;
     }
-
-    public int getCurrentSkin() { return currentSkin_ID; }
-
-    public void setCurrentSkin(int skin_id) { currentSkin_ID = skin_id; }
 
     @Override
     public void resize(int width, int height) {

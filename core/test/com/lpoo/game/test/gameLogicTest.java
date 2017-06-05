@@ -104,18 +104,18 @@ public class gameLogicTest extends GameTest{
     {
         //Starting ball motion
         tester.rotateRightDuringTime(1);
-        float xPositon = tester.getBallXPosition();
+        float xPosition = tester.getBallXPosition();
 
         //Pause Game, even if called, ball wont move
         tester.pauseGame();
 
         tester.noMotionDuringTime(3);
-        assertEquals(xPositon, tester.getBallXPosition(), deltaError);
+        assertEquals(xPosition, tester.getBallXPosition(), deltaError);
 
         //Game unpaused, ball will move
         tester.pauseGame();
         tester.noMotionDuringTime(3);
 
-        assertNotEquals(xPositon, tester.getBallXPosition(), deltaError);
+        assertNotEquals(xPosition, tester.getBallXPosition(), deltaError);
     }
 }
