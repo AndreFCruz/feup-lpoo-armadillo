@@ -1,9 +1,11 @@
 package com.lpoo.game.test;
 
 import com.lpoo.game.model.GameModel;
+import com.lpoo.game.model.entities.ShapeModel;
 
 import org.junit.Test;
 
+import static com.lpoo.game.model.GameModel.ModelState.LIVE;
 import static org.junit.Assert.*;
 
 /**
@@ -23,10 +25,29 @@ public class gameLogicTest extends GameTest{
         GameTester loadMap2 = new GameTester("maps/map2.tmx");
 
         //No errors in both maps loading
-        assertEquals(GameModel.ModelState.LIVE, loadMap1.noMotionDuringTime(2));
-        assertEquals(GameModel.ModelState.LIVE, loadMap2.noMotionDuringTime(2));
+        assertEquals(LIVE, loadMap1.noMotionDuringTime(2));
+        assertEquals(LIVE, loadMap2.noMotionDuringTime(2));
 
-        //TODO: Teste com mapa mau  a provar que da erro (?)
+        //Testing several Model Components
+        assertNotNull(loadMap1.model.getBallModel());
+        assertNotNull(loadMap1.model.getWorld());
+        assertNotNull(loadMap1.model.getMap());
+        assertNotNull(loadMap1.model.getEntityModels());
+
+        System.out.println(tester.model.getShapeModels().size);
+        for (int i = 0; i < loadMap2.model.getShapeModels().size; ++i) {
+            ShapeModel shape = loadMap2.model.getShapeModels().get(i);
+            assertNotNull(shape.getType());
+            assertNotNull(shape.getShape());
+            assertNotNull(shape.getX());
+            assertNotNull(shape.getY());
+            assertNotNull(shape.getRotation());
+        }
+
+        assertEquals(LIVE, loadMap1.model.getState());
+        assertEquals(LIVE, loadMap2.model.getState());
+
+        tester.model.dispose();
     }
 
     @Test
@@ -45,7 +66,7 @@ public class gameLogicTest extends GameTest{
     @Test
     public void winGameTest()
     {
-        assertEquals(GameModel.ModelState.LIVE, tester.noMotionDuringTime(1));
+        assertEquals(LIVE, tester.noMotionDuringTime(1));
         assertEquals(GameModel.ModelState.WON, tester.rotateRightDuringTime(2));
 
         float[] final_pos = { tester.getBallXPosition(), tester.getBallYPosition() };
@@ -63,11 +84,11 @@ public class gameLogicTest extends GameTest{
     @Test
     public void loseGameByFallTest()
     {
-        assertEquals(GameModel.ModelState.LIVE, otherTester.noMotionDuringTime(1));
+        assertEquals(LIVE, otherTester.noMotionDuringTime(1));
         float[] init_pos = { otherTester.getBallXPosition(), otherTester.getBallYPosition() };
 
         //Ball will fall and game is lost
-        assertEquals(GameModel.ModelState.LIVE, otherTester.rotateRightDuringTime(8));
+        assertEquals(LIVE, otherTester.rotateRightDuringTime(8));
         assertEquals(GameModel.ModelState.LOST, otherTester.noMotionDuringTime(3)); //Ball falling
         assertTrue(init_pos[1] - 5 > otherTester.getBallYPosition());
 
@@ -84,7 +105,7 @@ public class gameLogicTest extends GameTest{
     @Test
     public void loseGameByWaterTest()
     {
-        assertEquals(GameModel.ModelState.LIVE, otherTester.noMotionDuringTime(1));
+        assertEquals(LIVE, otherTester.noMotionDuringTime(1));
 
         //Ball will touch Water and game is lost
         assertEquals(GameModel.ModelState.LOST, otherTester.rotateLeftDuringTime(5));
