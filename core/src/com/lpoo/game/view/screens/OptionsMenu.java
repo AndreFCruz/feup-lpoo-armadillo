@@ -23,30 +23,55 @@ public abstract class OptionsMenu {
 
     protected Spheral game;
 
-    protected HudMenu hud;
+    private HudMenu hud;
 
     /**
      * A Stage used to represent the Menu that appears when the game is paused / over / won.
      */
     protected Stage menu;
 
-    protected Table table;
+    private Table table;
 
     protected Label message;
 
-    protected Skin skin;
+    private Skin skin;
 
     /**
      * The width of the HUD viewport in pixels. The height is
      * automatically calculated using the screen ratio.
      */
-    protected static final float HUD_VIEWPORT_WIDTH = 1000;
+    private static final float HUD_VIEWPORT_WIDTH = 1000;
 
     /**
      * The height of the viewport in pixels. The height is
      * automatically calculated using the screen ratio.
      */
-    protected static final float HUD_VIEWPORT_HEIGHT = HUD_VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());;
+    private static final float HUD_VIEWPORT_HEIGHT = HUD_VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());;
+
+    /**
+     * The Scale that should be applied to the Message Label's Font.
+     */
+    private static final float MESSAGE_FONT_SCALE = HUD_VIEWPORT_WIDTH / 400;
+    /**
+     * The Scale that should be applied to the Score Label's Font.
+     */
+    private static final float SCORE_FONT_SCALE = HUD_VIEWPORT_WIDTH / 600;
+    /**
+     * Distance between the  Tables and the other stage elements
+     */
+    private static final float LABEL_DISTANCE = HUD_VIEWPORT_HEIGHT/ 18;
+    /**
+     * Width of the Options Menu's Buttons.
+     */
+    private static final float BUTTON_WIDTH = HUD_VIEWPORT_WIDTH / 3;
+    /**
+     * Height of the Options Menu's Buttons.
+     */
+    private static final float BUTTON_HEIGHT = HUD_VIEWPORT_HEIGHT / 8;
+    /**
+     * Distance between and other stage elements.
+     */
+    private static final float BUTTON_DISTANCE = HUD_VIEWPORT_HEIGHT / 14;
 
     /**
      * Options Menu Constructor
@@ -56,7 +81,7 @@ public abstract class OptionsMenu {
      * @param game
      * @param hud
      */
-    public OptionsMenu (Viewport viewport, Spheral game, HudMenu hud) {
+    protected OptionsMenu (Viewport viewport, Spheral game, HudMenu hud) {
         this.game = game;
         this.hud = hud;
 
@@ -91,7 +116,7 @@ public abstract class OptionsMenu {
             }
         });
 
-        table.add(exitBtn).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8);
+        table.add(exitBtn).size(BUTTON_WIDTH, BUTTON_HEIGHT);
     }
 
     /**
@@ -107,7 +132,7 @@ public abstract class OptionsMenu {
             }
         });
 
-        table.add(restartBtn).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8).padBottom(HUD_VIEWPORT_HEIGHT / 14).row();
+        table.add(restartBtn).size(BUTTON_WIDTH, BUTTON_HEIGHT).padBottom(BUTTON_DISTANCE).row();
     }
 
     /**
@@ -123,7 +148,7 @@ public abstract class OptionsMenu {
             }
         });
 
-        table.add(resumeBtn).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8).padBottom(HUD_VIEWPORT_HEIGHT / 14).row();
+        table.add(resumeBtn).size(BUTTON_WIDTH, BUTTON_HEIGHT).padBottom(BUTTON_DISTANCE).row();
     }
 
     /**
@@ -139,7 +164,7 @@ public abstract class OptionsMenu {
             }
         });
 
-        table.add(nextLvlBtn).size(HUD_VIEWPORT_WIDTH / 3, HUD_VIEWPORT_HEIGHT / 8).padBottom(HUD_VIEWPORT_HEIGHT / 14).row();
+        table.add(nextLvlBtn).size(BUTTON_WIDTH, BUTTON_HEIGHT).padBottom(BUTTON_DISTANCE).row();
     }
 
     /**
@@ -163,12 +188,12 @@ public abstract class OptionsMenu {
     protected void initStage() {
         table.setFillParent(true);
 
-        table.add(message).padBottom(HUD_VIEWPORT_HEIGHT/ 18).row();
-        message.setFontScale(HUD_VIEWPORT_WIDTH / 400,HUD_VIEWPORT_WIDTH / 400);
+        table.add(message).padBottom(LABEL_DISTANCE).row();
+        message.setFontScale(MESSAGE_FONT_SCALE, MESSAGE_FONT_SCALE);
 
         Label score = new Label(hud.getScoreString(), skin);
-        table.add(score).padBottom(HUD_VIEWPORT_HEIGHT/ 18).row();
-        score.setFontScale(HUD_VIEWPORT_WIDTH / 600,HUD_VIEWPORT_WIDTH / 600);
+        table.add(score).padBottom(LABEL_DISTANCE).row();
+        score.setFontScale(SCORE_FONT_SCALE, SCORE_FONT_SCALE);
     }
 
     /**

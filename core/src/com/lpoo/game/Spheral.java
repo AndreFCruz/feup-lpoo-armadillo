@@ -52,8 +52,8 @@ public class Spheral extends Game {
 
         font = new BitmapFont();
 
-        skin1 = new Skin(Gdx.files.internal("Armadillo.json"), new TextureAtlas("Armadillo.atlas"));
-        skin2 = new Skin(Gdx.files.internal("smallBtn.json"), new TextureAtlas("smallBtn.atlas"));
+        skin1 = new Skin(Gdx.files.internal("appearance/Armadillo.json"), new TextureAtlas("appearance/Armadillo.atlas"));
+        skin2 = new Skin(Gdx.files.internal("appearance/smallBtn.json"), new TextureAtlas("appearance/smallBtn.atlas"));
 
         loadAssets();
         startGame();
