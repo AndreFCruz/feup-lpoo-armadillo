@@ -1,116 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="122">
- <tileset firstgid="1" name="PlatformerSet" tilewidth="64" tileheight="64" tilecount="64" columns="8">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="8" tilewidth="64" tileheight="64" nextobjectid="17">
+ <tileset firstgid="1" name="Tiles_64x64" tilewidth="64" tileheight="64" tilecount="64" columns="8">
   <image source="../tilesets/Tiles_64x64.png" trans="000000" width="512" height="512"/>
  </tileset>
- <tileset firstgid="65" name="tilesheet-water" tilewidth="64" tileheight="64" tilecount="9" columns="3">
-  <image source="../tilesets/tilesheet-water.png" trans="000000" width="192" height="224"/>
- </tileset>
- <tileset firstgid="74" name="endTile" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="65" name="endTile" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../tilesets/endTile.png" width="65" height="65"/>
  </tileset>
- <layer name="water_tiles" width="60" height="30">
+ <layer name="map" width="20" height="8">
   <data encoding="base64" compression="zlib">
-   eJzt1sEJwCAQRFFrCyjpvyJTgcxBSaLvwb/v3LYUAAC+qD5dQbuoQe216+az196d9t5hALBK8jen/UXyb4wC4GwdEL8Zag==
+   eJxjYBgFpAJHMvTIArEpEEshsc2A2AGI7Qno1UNiw/RJA7EdEHNAzWAEYiMg5gRiCRzmiAGxOBbMhQMLE+078gEAcqkEGw==
   </data>
  </layer>
- <layer name="background" width="60" height="30">
-  <data encoding="base64" compression="zlib">
-   eJztz8EJwCAQRFELkDRh7L/F5BxyWldQeQ/+faYUAAAAotpb/xRVUxbNdf8UtevfK9gOf1tyq6vJrc5ff0/6CwCMeQAZTwmE
-  </data>
- </layer>
- <layer name="map" width="60" height="30">
-  <data encoding="base64" compression="zlib">
-   eJztV9tKAzEQnVottOKTCmsvgj54AYtWaBVB8dn//yAzbIaOIdmdbCbdVnLgsMtekjnJ3AJQUFBQEIc7w0fDJ8P7nm0pKCj4v/ix10XCGAOH+4whbO2cWR5F/ndh+A2HoffGcs7uTwX/HRueBEhYG27Av37PjLvErUO0V0svfjN3xkO/QH/4gNoXVvA3Fq4Mp53VtIM0cmrqnRies2dv9lkT+ffacOdK0TsyrITzUk/2EGmvNs5gG8exHHWYb2mvIf2YP8nHc8V6m79p+uGy5T2vAznzv9QvU0F6MZfnzFN9AnsbqlW0Z5jHr0FW+w8FvB6jvldLnvPee7NOD6QT9aDOMdR5kWohxT/XinE7Y9TEglETXKevtlcQzhNa9ZjHDa0dz32XCWO7c/h6EUltJ6TUaLLhC+oezmcL+tondNfcpLOL3jZgX+rWKn6GGdg5Ua/bN0sZGh/7DVzLF0uuUeqbsfvZtK6plPRXMfup0U/m1CvR7eu5NP13n/Tm1BVCjN3umajpPWdoT3Oe4UKQ9vVuD1N5GIL0u13gF9EOH30=
-  </data>
- </layer>
- <objectgroup name="positions">
-  <object id="79" name="start" x="256" y="1408" width="64" height="64"/>
-  <object id="80" name="end" x="832" y="576" width="64" height="64"/>
- </objectgroup>
- <objectgroup name="water" offsetx="1.47189" offsety="0">
-  <object id="115" x="1216" y="640" width="512" height="320"/>
-  <object id="118" x="1088" y="1408" width="1216" height="128"/>
- </objectgroup>
- <objectgroup name="objects">
-  <object id="89" type="box" x="1728" y="576" width="64" height="64"/>
-  <object id="90" type="box" x="1728" y="512" width="64" height="64"/>
-  <object id="91" type="platform" x="1664" y="448" width="192" height="64">
-   <properties>
-    <property name="density" type="float" value="0.5"/>
-   </properties>
-  </object>
-  <object id="94" type="platform" x="1300" y="1385" width="200" height="50"/>
-  <object id="95" type="platform" x="1656.17" y="1389.59" width="201.511" height="62.9723"/>
-  <object id="96" type="platform" x="1985.73" y="1391.69" width="149.034" height="56.6751"/>
-  <object id="107" type="box" x="3058" y="640" width="64" height="64">
-   <properties>
-    <property name="density" type="float" value="0.3"/>
-   </properties>
-  </object>
-  <object id="108" type="box" x="3048" y="704" width="64" height="64">
-   <properties>
-    <property name="density" type="float" value="0.3"/>
-   </properties>
-  </object>
-  <object id="112" type="platform" x="3230" y="1150" width="160" height="35">
-   <properties>
-    <property name="density" type="float" value="2.5"/>
-    <property name="pivoted" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="114" type="platform" x="1370" y="674.095" width="192.838" height="29.9047">
-   <properties>
-    <property name="pivoted" type="bool" value="true"/>
-   </properties>
-  </object>
- </objectgroup>
  <objectgroup name="ground">
-  <object id="2" x="0" y="1536" width="640" height="384"/>
-  <object id="4" x="640" y="1536" width="64" height="320"/>
-  <object id="9" x="2048" y="1536">
-   <polygon points="0,0 640,-320 640,64 0,64"/>
-  </object>
-  <object id="10" x="2048" y="1600" width="384" height="128"/>
-  <object id="11" x="2688" y="1216" width="448" height="64"/>
-  <object id="12" x="2880" y="1152" width="320" height="64"/>
-  <object id="13" x="2816" y="1280" width="256" height="64"/>
-  <object id="14" x="2752" y="1216">
+  <object id="1" x="192" y="384" width="832" height="64"/>
+  <object id="2" x="640" y="320" width="384" height="64"/>
+  <object id="3" x="1024" y="256" width="128" height="64"/>
+  <object id="4" x="896" y="320">
    <polygon points="0,0 128,-64 128,0"/>
   </object>
-  <object id="15" x="3008" y="1152">
-   <polygon points="0,0 62.8252,-31.7921 128,0"/>
+  <object id="5" x="512" y="384">
+   <polygon points="0,0 128,-64 128,0"/>
   </object>
-  <object id="19" x="3264" y="1280" width="256" height="128"/>
-  <object id="20" x="3392" y="1024" width="320" height="64"/>
-  <object id="22" x="3392" y="960" width="64" height="64"/>
-  <object id="23" x="3456" y="960">
-   <polygon points="0,0 0,64 128,64"/>
+  <object id="6" x="704" y="320">
+   <polygon points="0,0 64.0198,-33.275 128,0"/>
   </object>
-  <object id="26" x="2304" y="768" width="192" height="128"/>
-  <object id="27" x="2432" y="704" width="64" height="64"/>
-  <object id="28" x="2432" y="704">
-   <polygon points="0,0 -128,64 0,64"/>
-  </object>
-  <object id="29" x="1728" y="640" width="448" height="256"/>
-  <object id="32" x="1728" y="896" width="384" height="64"/>
-  <object id="33" x="1152" y="960" width="960" height="128"/>
-  <object id="35" x="1920" y="576" width="256" height="64"/>
-  <object id="58" x="448" y="1536">
-   <polygon points="0,0 256,-128 256,0"/>
-  </object>
-  <object id="83" x="2624" y="768">
-   <polygon points="0,0 64,0 64,128 0,64"/>
-  </object>
-  <object id="105" x="2688" y="768" width="448" height="128"/>
-  <object id="106" x="3136" y="768">
-   <polygon points="0,0 128,64 128,128 0,128"/>
-  </object>
-  <object id="116" x="832" y="640" width="384" height="320"/>
-  <object id="119" x="704" y="1408" width="384" height="448"/>
-  <object id="120" x="1088" y="1408">
-   <polygon points="0,0 128,128 0,128"/>
-  </object>
-  <object id="121" x="1088" y="1536" width="960" height="320"/>
+ </objectgroup>
+ <objectgroup name="positions">
+  <object id="11" name="start" x="320" y="320" width="64" height="64"/>
+  <object id="12" name="end" x="1088" y="192" width="64" height="64"/>
  </objectgroup>
 </map>

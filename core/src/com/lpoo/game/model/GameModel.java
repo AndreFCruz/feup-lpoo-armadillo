@@ -24,7 +24,7 @@ import static com.lpoo.game.model.GameModel.ModelState.WON;
 
 public class GameModel implements Disposable {
 
-    public static final int MAX_HEIGHT = 400;
+    public static final int MAX_HEIGHT = 250;
     public static final int MIN_HEIGHT = 1;
 
     /**

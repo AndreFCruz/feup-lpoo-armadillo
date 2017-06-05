@@ -32,13 +32,16 @@ public class Spheral extends Game {
     private final GameServices gameServices;
 
     static { // Order is reversed for testing
-        gameMaps.put(0, "maps/boxMap.tmx");
-        gameMaps.put(6, "maps/mapGravity.tmx");
-        gameMaps.put(1, "maps/map3.tmx");
+        gameMaps.put(0, "maps/map0.tmx");
+        gameMaps.put(1, "maps/map1.tmx"); // TO
         gameMaps.put(2, "maps/map2.tmx");
-        gameMaps.put(3, "maps/map1.tmx");
-        gameMaps.put(4, "maps/map0.tmx");
-        gameMaps.put(5, "maps/map4.tmx");
+        gameMaps.put(3, "maps/map3.tmx");
+        gameMaps.put(4, "maps/map4.tmx");
+        gameMaps.put(5, "maps/map5.tmx");
+        gameMaps.put(6, "maps/map6.tmx");
+        gameMaps.put(7, "maps/map7.tmx");
+        gameMaps.put(8, "maps/map8.tmx");
+        gameMaps.put(9, "maps/map9.tmx");
     }
 
     public Spheral(GameServices gameServices) {

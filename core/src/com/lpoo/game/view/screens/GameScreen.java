@@ -96,9 +96,7 @@ public class GameScreen extends ScreenAdapter {
         loadNextMap();
 
         camera = createCamera();
-
         controller = new GameController(camera, model);
-
         mapRenderer = new OrthogonalTiledMapRenderer(model.getMap(), game.getBatch());
 
         hud = new HudMenu(game, model);
