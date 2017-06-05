@@ -100,9 +100,9 @@ public class CustomizeMenuScreen extends MenuScreen {
 
         //Adding the Labels to the Table
         for (int i=0; i < game.getNumSkins(); ++i)
-            table.add(skinLabels.get(i)).width(BUTTON_SIZE).center();
+            table.add(skinLabels.get(i)).fill().width(BUTTON_SIZE).center();
 
-        current_skin = 1; //TODO: FAZER LOAD DOS FICHEIROS DA LAST CHOSEN SKINS
+        current_skin = game.getCurrentSkin();
         initializeCurrentSkin();
     }
 
@@ -125,6 +125,7 @@ public class CustomizeMenuScreen extends MenuScreen {
         skinLabels.get(current_skin).setVisible(false);
         skinLabels.get(j).setVisible(true);
         current_skin = j;
+        game.setCurrentSkin(current_skin);
     }
 
     /**

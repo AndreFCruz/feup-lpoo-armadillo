@@ -18,13 +18,7 @@ class BallView extends EntityView {
 
     @Override
     protected Sprite createSprite(Spheral game) {
-        Random rand = new Random();
-        return createSprite(game, rand.nextInt(6));
-    }
-
-    private Sprite createSprite(Spheral game, int skinID) {
-        Texture tex = game.getAssetManager().get("skins/skin0" + skinID + ".png");
+        Texture tex = game.getAssetManager().get("skins/skin0" + game.getCurrentSkin() + ".png");
         return new Sprite(new TextureRegion(tex, tex.getWidth(), tex.getHeight()));
     }
-
 }
