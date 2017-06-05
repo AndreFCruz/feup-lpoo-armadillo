@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="20" height="8" tilewidth="64" tileheight="64" nextobjectid="17">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="8" tilewidth="64" tileheight="64" nextobjectid="17">
  <tileset firstgid="1" name="Tiles_64x64" tilewidth="64" tileheight="64" tilecount="64" columns="8">
   <image source="../tilesets/Tiles_64x64.png" trans="000000" width="512" height="512"/>
  </tileset>
+ <tileset firstgid="65" name="endTile" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="../tilesets/endTile.png" width="65" height="65"/>
+ </tileset>
  <layer name="map" width="20" height="8">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFpAJjMvWZArEUEtsMiB2A2J6APj00M0D6pIHYDog5oGYwAjErEHPiMUcMiMWxYC4cWJgYT1EIAPKaA44=
+   eJxjYBgFpAJHMvTIArEpEEshsc2A2AGI7Qno1UNiw/RJA7EdEHNAzWAEYiMg5gRiCRzmiAGxOBbMhQMLE+078gEAcqkEGw==
   </data>
  </layer>
  <objectgroup name="ground">

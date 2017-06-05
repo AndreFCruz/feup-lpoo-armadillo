@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="80" height="10" tilewidth="64" tileheight="64" nextobjectid="50">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="80" height="10" tilewidth="64" tileheight="64" nextobjectid="50">
  <tileset firstgid="1" name="MyTiles_64x64" tilewidth="64" tileheight="64" tilecount="64" columns="8">
   <image source="../tilesets/MyTiles_64x64.png" trans="000000" width="512" height="512"/>
  </tileset>
+ <tileset firstgid="65" name="Tiles_64x64" tilewidth="64" tileheight="64" tilecount="64" columns="8">
+  <image source="../tilesets/Tiles_64x64.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="129" name="endTile" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="../tilesets/endTile.png" width="65" height="65"/>
+ </tileset>
  <layer name="background" width="80" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYKAO4BtkeKgBHiphVSRMiTlDDVAz3LDh0fAbDT98gNp5dzT8BrYsHGqAFuFHCR5qYKDDazT8Rnb4KQwyTC8AAEdVFs4=
+   eJxjYKAO4BtkeKgBHiphVSRMiTlDDVAz3LDh0fAbDT98gNp5dzT8BrYsHGqAFuFHCR5qYKDDazT8hn74+VKgV2GQYXoBAKP5Fxs=
   </data>
  </layer>
  <layer name="map" width="80" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQClgBmKmgXbEEAGyUIwMrIGYcwDcMhSBGBCLA7E9HjWWQCwJxFJ0cdHgAXpofH0yzWEBYhkgtmXAHo4wc2HpGBYnyBhUHhiTaT+9Aaj8YsSBySnXQPmZCwmDwhE9fEAYFMY2OMzgZSCczgcLALmVCwcWpoL5EjjEzRmGbrkJAKZLBb8=
+   eJxjYBgFo2AUjIJRQClwBmKngXbEEAGyUIwMqoHYcwDcMhQBKK3FALEjHjWVQBwJxFEkmBsLxQxI9FABMPfqMaD6Q59M81wYIGFcy4AZjvlQc/OR7PFggOR/ZFwFxI1k2k9vAEpTjjgwOeUaKD97QXEhAyQc0cMHhGOg8tiAL1RNPRn20xuA3OqFB1MCIqAYGyhnGLrlJgBl2haQ
   </data>
  </layer>
  <objectgroup name="ground">

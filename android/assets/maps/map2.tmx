@@ -6,6 +6,9 @@
  <tileset firstgid="65" name="tilesheet-water" tilewidth="64" tileheight="64" tilecount="9" columns="3">
   <image source="../tilesets/tilesheet-water.png" trans="000000" width="192" height="224"/>
  </tileset>
+ <tileset firstgid="74" name="endTile" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="../tilesets/endTile.png" width="65" height="65"/>
+ </tileset>
  <layer name="water_tiles" width="60" height="30">
   <data encoding="base64" compression="zlib">
    eJzt1sEJwCAQRFFrCyjpvyJTgcxBSaLvwb/v3LYUAAC+qD5dQbuoQe216+az196d9t5hALBK8jen/UXyb4wC4GwdEL8Zag==
@@ -18,7 +21,7 @@
  </layer>
  <layer name="map" width="60" height="30">
   <data encoding="base64" compression="zlib">
-   eJztV9tKAzEQnVottOKTCmsvgj54AYvWUhVB8f+/ygyboWNIdiebSbeVHDjsspdkTjK3ABQUFBTE4c7w0fDJ8L5nWwoKCv4v1va6SBhj4HCfMYStnTPLo8j/Lgx/4DD03ljO2f2p4L9jw5MACRvDN/Cv3zPjLnHrEO3V0ovfzJ3x0C/QHz6h9oUV/I2FK8NpZzXtII2cmnonhufs2bt91kT+vTbcuVL0jgwr4bzUkz1E2quNM9jGcSxHHeZb2mtIP+ZP8vFcsd7mb5p+uGx5z+tAzvwv9ctUkF7M5TnzVJ/A3oZqFe0Z5vFrkNX+QwGvx6jv1ZLnvI/erNMD6UQ9qHMMdV6kWkjxz7Vi3M4YNbFg1ATX6avtFYTzhFY95nFDa8dz32XC2O4cvl5EUtsJKTWabPiGuofz2YK+9gXdNTfp7KK3DdiXurWKn2EGdk7U6/bNUobGx34D1/LFkmuU+mbsfjatayol/VXMfmr0kzn1SnT7ei5N/90nvTl1hRBjt3smanrPGdrTnGe4EKR9vdvDVB6GIP1uF/gFENsfZg==
+   eJztV9tKAzEQnVottOKTCmsvgj54AYtWaBVB8dn//yAzbIaOIdmdbCbdVnLgsMtekjnJ3AJQUFBQEIc7w0fDJ8P7nm0pKCj4v/ix10XCGAOH+4whbO2cWR5F/ndh+A2HoffGcs7uTwX/HRueBEhYG27Av37PjLvErUO0V0svfjN3xkO/QH/4gNoXVvA3Fq4Mp53VtIM0cmrqnRies2dv9lkT+ffacOdK0TsyrITzUk/2EGmvNs5gG8exHHWYb2mvIf2YP8nHc8V6m79p+uGy5T2vAznzv9QvU0F6MZfnzFN9AnsbqlW0Z5jHr0FW+w8FvB6jvldLnvPee7NOD6QT9aDOMdR5kWohxT/XinE7Y9TEglETXKevtlcQzhNa9ZjHDa0dz32XCWO7c/h6EUltJ6TUaLLhC+oezmcL+tondNfcpLOL3jZgX+rWKn6GGdg5Ua/bN0sZGh/7DVzLF0uuUeqbsfvZtK6plPRXMfup0U/m1CvR7eu5NP13n/Tm1BVCjN3umajpPWdoT3Oe4UKQ9vVuD1N5GIL0u13gF9EOH30=
   </data>
  </layer>
  <objectgroup name="positions">

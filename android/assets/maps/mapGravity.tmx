@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="25" height="8" tilewidth="64" tileheight="64" nextobjectid="19">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="8" tilewidth="64" tileheight="64" nextobjectid="19">
  <tileset firstgid="1" source="../tilesets/MyTiles_64x64.tsx"/>
+ <tileset firstgid="65" name="endTile" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="../tilesets/endTile.png" width="65" height="65"/>
+ </tileset>
+ <tileset firstgid="66" name="Tiles_64x64" tilewidth="64" tileheight="64" tilecount="64" columns="8">
+  <image source="../tilesets/Tiles_64x64.png" width="512" height="512"/>
+ </tileset>
  <layer name="map" width="25" height="8">
   <data encoding="base64" compression="zlib">
-   eJxjYMAN9KEYmU8JEABiViDmIhMLI5llDcRsWOyQAGJBCt2Jbt5QB8Z45PSoYL4YENvjkGMGYmkglgFiDjzqkIElEEsCsRSR9oPSAiyNcBKpxxyq3oKAOgAiggQ4
+   eJxjYICAOAZMoA/FyHxsIA6HfnTgAsSNQFwMxN4k4AgobkAyqwaI3bHYEQnEwUS4hVgQSUWzBgKA4sURj7weA/HxhwuEM6DGDTIAxXkMEMcCcSgedcigCoijgDiaSPtBaQGWViqJ1FNBpHoAmYQROQ==
   </data>
  </layer>
  <objectgroup name="ground">
@@ -33,9 +39,6 @@
   <object id="15" name="end" x="1344" y="256" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="objects">
-  <object id="17" x="814.12" y="597.869">
-   <ellipse/>
-  </object>
   <object id="18" type="powerup" x="448" y="128" width="64" height="64">
    <properties>
     <property name="class" value="gravity"/>
