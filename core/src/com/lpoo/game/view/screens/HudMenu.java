@@ -25,7 +25,7 @@ import com.lpoo.game.model.GameModel;
  */
 public class HudMenu {
 
-    public enum Request {LOAD, START, NONE};
+    public enum Request {LOAD, START, NONE}
 
     /**
      * A Stage used to represent the HUD, containing the score and the pause Button.
@@ -68,7 +68,7 @@ public class HudMenu {
      * automatically calculated using the screen ratio.
      */
     private static final float HUD_VIEWPORT_HEIGHT = HUD_VIEWPORT_WIDTH *
-            ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());;
+            ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
 
     //Layout Macros
     /**

@@ -17,12 +17,12 @@ import java.util.Set;
 
 public class BuoyancyController {
 
-    public boolean isFluidFixed = true;
-    public float fluidDrag = 0.25f;
-    public float fluidLift = 0.25f;
-    public float linearDrag = 0.1f;
-    public float maxFluidDrag = 2000;
-    public float maxFluidLift = 500;
+    private boolean isFluidFixed = true;
+    private float fluidDrag = 0.25f;
+    private float fluidLift = 0.25f;
+    private float linearDrag = 0.1f;
+    private float maxFluidDrag = 2000;
+    private float maxFluidLift = 500;
     private Fixture fluidSensor;
     private List<Vector2> fluidVertices;
     private Set<Fixture> fixtures;
@@ -33,7 +33,7 @@ public class BuoyancyController {
         this.fluidSensor = fluidSensor;
         fluidVertices = getFixtureVertices(fluidSensor);
 
-        fixtures = new HashSet<Fixture>();
+        fixtures = new HashSet<>();
     }
 
     public void step() {

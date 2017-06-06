@@ -3,22 +3,19 @@ package com.lpoo.game.controller;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Vector3;
 import com.lpoo.game.model.GameModel;
 
 /**
- * Created by andre on 04/05/2017.
+ * The game's input handler.
  */
 
 public class GameController implements InputHandler {
 
     private GameModel model;
-    private OrthographicCamera camera;
     private Boolean accelerometerAvailable;
 
-    public GameController(OrthographicCamera camera, GameModel model) {
+    public GameController(GameModel model) {
         this.model = model;
-        this.camera = camera;
 
         if (! (accelerometerAvailable = Gdx.input.isPeripheralAvailable(Input.Peripheral.Accelerometer)))
             System.err.println("Accelerometer unavailable");
@@ -54,15 +51,11 @@ public class GameController implements InputHandler {
         }
     }
 
-    int debugCount = 0;
-
     private void pollAccelerometer(float delta) {
-//        float x = Gdx.input.getAccelerometerX();
         float y = Gdx.input.getAccelerometerY();
         float z = Gdx.input.getAccelerometerZ();
 
         float roll = (float) Math.atan2(y, z) * 180 / ((float) Math.PI);
-        //float pitch = (float) Math.atan2(-x, Math.sqrt(y*y + z*z)) * 180 / ((float) Math.PI);
 
         if (roll > 45)
             roll = 45;

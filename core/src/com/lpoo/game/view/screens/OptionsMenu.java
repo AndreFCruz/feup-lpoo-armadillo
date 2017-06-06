@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.lpoo.game.Spheral;
-import com.lpoo.game.model.GameModel;
 
 /**
  * Created by Edgar on 01/06/2017.
@@ -46,7 +45,7 @@ public abstract class OptionsMenu {
      * The height of the viewport in pixels. The height is
      * automatically calculated using the screen ratio.
      */
-    private static final float HUD_VIEWPORT_HEIGHT = HUD_VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());;
+    private static final float HUD_VIEWPORT_HEIGHT = HUD_VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
 
     /**
      * The Scale that should be applied to the Message Label's Font.

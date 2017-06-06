@@ -1,7 +1,6 @@
 package com.lpoo.game.model.entities;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.maps.objects.CircleMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.physics.box2d.World;
 import com.lpoo.game.GameServices;

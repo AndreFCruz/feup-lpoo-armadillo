@@ -1,7 +1,6 @@
 package com.lpoo.game.model;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -11,7 +10,6 @@ import com.lpoo.game.GameServices;
 import com.lpoo.game.Spheral;
 import com.lpoo.game.model.controllers.BuoyancyController;
 import com.lpoo.game.model.entities.BallModel;
-import com.lpoo.game.model.entities.BoxModel;
 import com.lpoo.game.model.entities.EntityModel;
 import com.lpoo.game.model.entities.Hittable;
 
@@ -52,7 +50,7 @@ public class WorldContactListener implements ContactListener {
             @Override
             public void handle(Fixture fluid, Fixture fixB) {
                 if (fixB.getFilterData().categoryBits == BALL_BIT) {
-                    model.setState(GameModel.ModelState.LOST);
+                    model.setLost();
                     logWaterAchievement();
                 }
                 else
@@ -72,7 +70,9 @@ public class WorldContactListener implements ContactListener {
             GameServices gameServices = ((Spheral) (Gdx.app.getApplicationListener())).getGameServices();
             gameServices.unlockAchievement(gameServices.getWaterAchievementID());
         }
-        catch (java.lang.ClassCastException e) {}
+        catch (java.lang.ClassCastException e) {
+            System.err.println("Application listener not of type game.");
+        }
     }
 
     private void addBallContactHandlers() {

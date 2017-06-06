@@ -26,10 +26,10 @@ import static com.lpoo.game.model.entities.EntityModel.GROUND_BIT;
 import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 
 /**
- * Created by andre on 19/05/2017.
+ * A factory for Box2D World objects.
  */
 
-public class B2DFactory {
+class B2DFactory {
 
     static PlatformModel makePlatform(World world, RectangleMapObject object) {
         PlatformModel platform = new PlatformModel(world, object);
