@@ -1,11 +1,15 @@
 package com.lpoo.game.model.entities;
 
 /**
- * Created by andre on 01/06/2017.
+ * Interface for hittable entities.
  */
 
 public interface Hittable {
 
+    /**
+     * Handles the hit event.
+     * @param model The model this object acts upon.
+     */
     void onHit(BallModel model);
 
 }

@@ -4,7 +4,7 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.physics.box2d.World;
 
 /**
- * Created by andre on 31/05/2017.
+ * A model representing a jump powerup.
  */
 
 public class JumpPowerUp extends PowerUp {

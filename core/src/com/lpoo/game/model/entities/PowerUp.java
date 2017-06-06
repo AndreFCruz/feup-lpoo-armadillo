@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 
 /**
- * Created by andre on 31/05/2017.
+ * A model representing an abstract powerup entity.
  */
 
 public abstract class PowerUp extends EntityModel implements Hittable {

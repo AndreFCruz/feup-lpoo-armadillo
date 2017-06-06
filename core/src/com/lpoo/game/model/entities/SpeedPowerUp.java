@@ -7,7 +7,7 @@ import com.lpoo.game.GameServices;
 import com.lpoo.game.Spheral;
 
 /**
- * Created by andre on 01/06/2017.
+ * A model representing a speed powerup.
  */
 
 public class SpeedPowerUp extends PowerUp {

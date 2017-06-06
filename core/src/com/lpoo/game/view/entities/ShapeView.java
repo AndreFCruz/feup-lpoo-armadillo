@@ -36,7 +36,7 @@ public abstract class ShapeView {
 
     public void update(ShapeModel model) {
         rect = (Rectangle) model.getShape();
-        rotation = (float) Math.toDegrees(model.getRotation());
+        rotation = (float) Math.toDegrees(model.getAngle());
         center = new Vector2(model.getX() / PIXEL_TO_METER, model.getY() / PIXEL_TO_METER);
     }
 

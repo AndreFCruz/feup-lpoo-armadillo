@@ -148,6 +148,11 @@ public class PlayServices implements GameServices {
 
     @Override
     public String getWaterAchievementID() {
+        return activity.getString(R.string.achievement_dont_touch_the_water);
+    }
+
+    @Override
+    public String getFallingAchievementID() {
         return activity.getString(R.string.achievement_careful_);
     }
 }

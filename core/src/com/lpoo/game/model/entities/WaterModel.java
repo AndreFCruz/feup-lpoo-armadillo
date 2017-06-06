@@ -12,7 +12,7 @@ import static com.lpoo.game.model.entities.EntityModel.FLUID_BIT;
 import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 
 /**
- * Created by andre on 20/05/2017.
+ * A model representing a single body of water (or any other newtonian fluid).
  */
 
 public class WaterModel {

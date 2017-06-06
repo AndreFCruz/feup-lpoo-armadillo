@@ -1,10 +1,13 @@
 package com.lpoo.game.model;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
+import com.lpoo.game.GameServices;
+import com.lpoo.game.Spheral;
 import com.lpoo.game.model.entities.BallModel;
 import com.lpoo.game.model.entities.EntityModel;
 import com.lpoo.game.model.entities.ShapeModel;
@@ -201,7 +204,18 @@ public class GameModel implements Disposable {
      * @return True if ball is in bounds, false otherwise.
      */
     private boolean ballInBounds() {
-        return ballModel.getY() > MIN_HEIGHT && ballModel.getY() < MAX_HEIGHT;
+        boolean inBounds = ballModel.getY() > MIN_HEIGHT && ballModel.getY() < MAX_HEIGHT;
+        if (!inBounds) {
+            try {
+                GameServices gameServices = ((Spheral) (Gdx.app.getApplicationListener())).getGameServices();
+                gameServices.unlockAchievement(gameServices.getFallingAchievementID());
+            }
+            catch (java.lang.ClassCastException e) {
+                System.err.println("Application listener not of type game.");
+            }
+        }
+
+        return inBounds;
     }
 
     /**

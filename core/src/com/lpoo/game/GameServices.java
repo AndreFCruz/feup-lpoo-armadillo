@@ -19,4 +19,7 @@ public interface GameServices {
     String getSpeedAchievementID();
 
     String getWaterAchievementID();
+
+    String getFallingAchievementID();
+
 }

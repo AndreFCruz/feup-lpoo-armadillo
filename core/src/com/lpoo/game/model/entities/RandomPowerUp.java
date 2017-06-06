@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.Array;
 import java.util.Random;
 
 /**
- * Created by andre on 01/06/2017.
+ * A model representing a random powerup.
  */
 
 public class RandomPowerUp extends PowerUp {
