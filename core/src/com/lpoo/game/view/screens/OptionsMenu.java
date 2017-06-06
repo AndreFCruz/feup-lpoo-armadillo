@@ -69,7 +69,7 @@ public abstract class OptionsMenu {
      */
     private static final float BUTTON_HEIGHT = HUD_VIEWPORT_HEIGHT / 8;
     /**
-     * Distance between and other stage elements.
+     * Distance between Buttons and other stage elements.
      */
     private static final float BUTTON_DISTANCE = HUD_VIEWPORT_HEIGHT / 18;
 
