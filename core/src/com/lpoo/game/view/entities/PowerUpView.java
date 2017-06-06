@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 import com.lpoo.game.model.entities.EntityModel;
 
 import java.util.HashMap;
@@ -32,7 +32,7 @@ public class PowerUpView extends EntityView {
     /**
      * The time between the animation frames
      */
-    private static final float FRAME_TIME = 0.05f;
+    private static final float FRAME_TIME = 0.1f;
 
     /**
      * The power-up's animation
@@ -52,12 +52,12 @@ public class PowerUpView extends EntityView {
      * @param game the game this view belongs to. Needed to access the
      *             asset manager to get textures.
      */
-    PowerUpView(Spheral game, EntityModel.ModelType type) {
+    PowerUpView(Armadillo game, EntityModel.ModelType type) {
         super(game, type);
     }
 
     @Override
-    protected Sprite createSprite(Spheral game) {
+    protected Sprite createSprite(Armadillo game) {
         textureRegion = createAnimation(game, texFiles.get(getType()));
         // Template method is called before this constructor, this.type is not yet initialized!!
         return new Sprite(textureRegion.getKeyFrame(stateTime, true));
@@ -70,7 +70,7 @@ public class PowerUpView extends EntityView {
      *             asset manager to get textures.
      * @return the animation used for this PowerUp
      */
-    private Animation<TextureRegion> createAnimation(Spheral game, String fileName) {
+    private Animation<TextureRegion> createAnimation(Armadillo game, String fileName) {
         Texture texture = game.getAssetManager().get(fileName);
         TextureRegion[][] regions = TextureRegion.split(texture, texture.getWidth() / NUM_FRAMES, texture.getHeight());
 

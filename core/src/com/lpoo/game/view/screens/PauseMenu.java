@@ -1,7 +1,7 @@
 package com.lpoo.game.view.screens;
 
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 
 /**
  * Class used to represent the pop up Menu that shows up when the User pauses the game.
@@ -16,7 +16,7 @@ public class PauseMenu extends OptionsMenu {
      * @param game
      * @param hud
      */
-    PauseMenu (Viewport viewport, Spheral game, HudMenu hud) { super(viewport, game, hud); }
+    PauseMenu (Viewport viewport, Armadillo game, HudMenu hud) { super(viewport, game, hud); }
 
     @Override
     protected void confStage() {

@@ -16,13 +16,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.lpoo.game.GameServices;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 
 /**
  * Abstract Class used to represent all Views that are Menus.
  */
 public abstract class MenuScreen extends ScreenAdapter {
-    protected final Spheral game;
+    protected final Armadillo game;
 
     protected Stage stage;
     protected Viewport viewport;
@@ -66,7 +66,7 @@ public abstract class MenuScreen extends ScreenAdapter {
      * @param game
      *
      */
-    protected MenuScreen(final Spheral game) {
+    protected MenuScreen(final Armadillo game) {
         this.game = game;
         batch = game.getBatch();
         gameServices = game.getGameServices();

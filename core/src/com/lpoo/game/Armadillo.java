@@ -16,7 +16,7 @@ import com.lpoo.game.view.screens.MainMenuScreen;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Spheral extends Game {
+public class Armadillo extends Game {
 	private SpriteBatch batch;
     private AssetManager assetManager;
 
@@ -31,9 +31,9 @@ public class Spheral extends Game {
 
     private final GameServices gameServices;
 
-    static { // Order is reversed for testing
+    static {
         gameMaps.put(0, "maps/map0.tmx");
-        gameMaps.put(1, "maps/map1.tmx"); // TO
+        gameMaps.put(1, "maps/map1.tmx");
         gameMaps.put(2, "maps/map2.tmx");
         gameMaps.put(3, "maps/map3.tmx");
         gameMaps.put(4, "maps/map4.tmx");
@@ -44,7 +44,7 @@ public class Spheral extends Game {
         gameMaps.put(9, "maps/map9.tmx");
     }
 
-    public Spheral(GameServices gameServices) {
+    public Armadillo(GameServices gameServices) {
         this.gameServices = gameServices;
     }
 

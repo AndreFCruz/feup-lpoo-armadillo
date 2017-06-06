@@ -16,11 +16,11 @@
  </layer>
  <layer name="map" width="20" height="8">
   <data encoding="base64" compression="zlib">
-   eJxjYKAukAViXSiNLCaLxEZXj64GGYgBsTgQ22MREycghyyOy3wQ0Mchjg8wAzETDjmQuCOJ5pkDsREOOZCfZICYEYitgNiZSMyGxz4JIOaF2qkENV8RiQ/CIlA7QdiBgHkwYA3EXDiwERpfGIgBV98JLA==
+   eJxjYKAukAViXSiNLCaLxEZXj64GGYgBsTgQ22MREycghyyOy3wQ0Mchjg8wAzETDjmQuCOJ5pkDsREOOZCfZICYEYitgNiZSMyGxz4JIOaF2slPJMZnHgxYAzEXDmyExhcGYgAY2wiX
   </data>
  </layer>
  <objectgroup name="water">
-  <object id="35" x="576" y="320" width="640" height="64"/>
+  <object id="38" x="576" y="320" width="640" height="64"/>
  </objectgroup>
  <objectgroup name="ground">
   <object id="22" x="0" y="128" width="192" height="64"/>
@@ -30,15 +30,28 @@
   <object id="26" x="1216" y="256" width="64" height="256"/>
   <object id="29" x="320" y="320" width="192" height="64"/>
   <object id="30" x="320" y="256" width="64" height="64"/>
-  <object id="37" x="512" y="320" width="64" height="64"/>
-  <object id="39" x="512" y="384" width="704" height="128"/>
+  <object id="35" x="512" y="320" width="64" height="192"/>
+  <object id="39" x="576" y="384" width="640" height="128"/>
  </objectgroup>
  <objectgroup name="positions">
   <object id="11" name="start" x="64" y="14" width="64" height="64"/>
   <object id="12" name="end" x="382" y="254" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="objects">
-  <object id="19" type="platform" x="478" y="62" width="150" height="62"/>
-  <object id="20" type="platform" x="886" y="60" width="150" height="64"/>
+  <object id="19" type="platform" x="478" y="62" width="150" height="62">
+   <properties>
+    <property name="density" type="float" value="0.4"/>
+   </properties>
+  </object>
+  <object id="20" type="platform" x="886" y="60" width="150" height="64">
+   <properties>
+    <property name="density" type="float" value="0.4"/>
+   </properties>
+  </object>
+  <object id="21" type="platform" x="808" y="286" width="144" height="54">
+   <properties>
+    <property name="density" type="float" value="0.4"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

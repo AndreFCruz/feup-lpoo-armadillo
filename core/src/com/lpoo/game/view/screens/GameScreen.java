@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.utils.Array;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 import com.lpoo.game.controller.GameController;
 import com.lpoo.game.controller.InputHandler;
 import com.lpoo.game.model.GameModel;
@@ -30,7 +30,7 @@ public class GameScreen extends ScreenAdapter {
     /**
      * Used to debug the position of the physics fixtures
      */
-    private static final boolean DEBUG_PHYSICS = true;
+    private static final boolean DEBUG_PHYSICS = false;
     private static final float CAMERA_TOLERANCE = 50;
 
     /**
@@ -77,7 +77,7 @@ public class GameScreen extends ScreenAdapter {
 
     private GameModel model;
 
-    private Spheral game;
+    private Armadillo game;
 
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
 
@@ -91,7 +91,7 @@ public class GameScreen extends ScreenAdapter {
      */
     private Texture gameBackground;
 
-    public GameScreen (Spheral game, int currentLevel) {
+    public GameScreen (Armadillo game, int currentLevel) {
         this.game = game;
 
         model = new GameModel();

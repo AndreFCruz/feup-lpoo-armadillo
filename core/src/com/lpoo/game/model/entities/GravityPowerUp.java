@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.physics.box2d.World;
 import com.lpoo.game.GameServices;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 
 /**
  * A model representing a gravity powerup.
@@ -23,11 +23,11 @@ public class GravityPowerUp extends PowerUp {
         model.flipGravity();
 
         try {
-            GameServices gameServices = ((Spheral) (Gdx.app.getApplicationListener())).getGameServices();
+            GameServices gameServices = ((Armadillo) (Gdx.app.getApplicationListener())).getGameServices();
             gameServices.unlockAchievement(gameServices.getGravityAchievementID());
         }
         catch (java.lang.ClassCastException e) {
-            System.err.println("Activity class not of type Spheral. Tests running.");
+            System.err.println("Activity class not a Game. Tests running.");
         }
     }
 }

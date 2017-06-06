@@ -1,7 +1,7 @@
 package com.lpoo.game.view.screens;
 
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 
 
 /**
@@ -17,7 +17,7 @@ public class LostMenu extends OptionsMenu {
      * @param game
      * @param hud
      */
-    LostMenu (Viewport viewport, Spheral game, HudMenu hud) { super(viewport, game, hud); }
+    LostMenu (Viewport viewport, Armadillo game, HudMenu hud) { super(viewport, game, hud); }
 
     @Override
     protected void confStage() {

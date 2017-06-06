@@ -9,14 +9,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 
 /**
  * Abstract class used to represent all the Pop Up Menu's classes, containing several option actions.
  */
 abstract class OptionsMenu {
 
-    protected Spheral game;
+    protected Armadillo game;
 
     private HudMenu hud;
 
@@ -76,7 +76,7 @@ abstract class OptionsMenu {
      * @param game
      * @param hud
      */
-    protected OptionsMenu (Viewport viewport, Spheral game, HudMenu hud) {
+    protected OptionsMenu (Viewport viewport, Armadillo game, HudMenu hud) {
         this.game = game;
         this.hud = hud;
 

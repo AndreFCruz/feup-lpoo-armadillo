@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 
 /**
  * Created by Edgar on 04/06/2017.
@@ -18,7 +18,7 @@ public class NetworkingMenuScreen extends MainMenuScreen {
      * @param game
      *
      */
-    public NetworkingMenuScreen(final Spheral game) {
+    public NetworkingMenuScreen(final Armadillo game) {
         super(game);
     }
 

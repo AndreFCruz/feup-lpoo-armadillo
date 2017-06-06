@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 import com.lpoo.game.model.GameModel;
 
 
@@ -95,9 +95,9 @@ class HudMenu {
 
     private GameModel model;
 
-    private Spheral game;
+    private Armadillo game;
 
-    HudMenu (Spheral game, GameModel model) {
+    HudMenu (Armadillo game, GameModel model) {
 
         this.game = game;
         this.model = model;
@@ -170,7 +170,7 @@ class HudMenu {
                     optionsMenu = new LostMenu(viewport, game, this);
                     break;
                 case WON:
-                    game.getGameServices().submitScore(level, (int) (score * 1000));
+                    game.getGameServices().submitScore(level - 1, (int) (score * 1000));
                     optionsMenu = new WonMenu(viewport, game, this);
                     break;
                 case PAUSED:

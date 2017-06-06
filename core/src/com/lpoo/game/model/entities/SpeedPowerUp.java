@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.physics.box2d.World;
 import com.lpoo.game.GameServices;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 
 /**
  * A model representing a speed powerup.
@@ -22,7 +22,7 @@ public class SpeedPowerUp extends PowerUp {
         model.increaseVelocity();
 
         try {
-            GameServices gameServices = ((Spheral) (Gdx.app.getApplicationListener())).getGameServices();
+            GameServices gameServices = ((Armadillo) (Gdx.app.getApplicationListener())).getGameServices();
             gameServices.unlockAchievement(gameServices.getSpeedAchievementID());
         }
         catch (java.lang.ClassCastException e) {

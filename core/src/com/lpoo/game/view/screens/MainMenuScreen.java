@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 
 /**
  * A view representing the Main Menu screen. This Menu is presented
@@ -34,7 +34,7 @@ public class MainMenuScreen extends MenuScreen {
      * @param game
      *
      */
-    public MainMenuScreen(final Spheral game) {
+    public MainMenuScreen(final Armadillo game) {
         super(game);
     }
 
