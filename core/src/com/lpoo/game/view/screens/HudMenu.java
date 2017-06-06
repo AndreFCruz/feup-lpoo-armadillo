@@ -85,6 +85,8 @@ class HudMenu {
      */
     private static final float VERTICAL_PAD = HUD_VIEWPORT_HEIGHT / 25;
 
+    private int currentLevel;
+
     private Viewport viewport;
 
     private Skin skin;
@@ -158,6 +160,7 @@ class HudMenu {
     }
 
     HudMenu.Request update (GameModel.ModelState state, int level) {
+        currentLevel = level;
 
         if (state != lastState) {
             lastState = state;
@@ -198,6 +201,10 @@ class HudMenu {
     void togglePause() {
         currentRequest = Request.NONE;
         model.togglePause();
+    }
+
+    int getCurrentLevel() {
+        return currentLevel;
     }
 
     void loadNextLevel() {

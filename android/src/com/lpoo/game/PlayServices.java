@@ -52,7 +52,7 @@ public class PlayServices implements GameServices {
 
     @Override
     public void showScores(int level) {
-
+        showScores(getLeaderboardID(level));
     }
 
     private void showScores(String leaderboardID) {

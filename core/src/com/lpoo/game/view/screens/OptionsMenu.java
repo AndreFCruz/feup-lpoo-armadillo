@@ -139,7 +139,7 @@ abstract class OptionsMenu {
         leaderboardBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //TODO: Show score deste nivel
+                game.getGameServices().showScores(hud.getCurrentLevel());
             }
         });
 
