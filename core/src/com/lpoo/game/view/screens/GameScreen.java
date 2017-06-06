@@ -120,7 +120,7 @@ public class GameScreen extends ScreenAdapter {
     public void render(float delta) {
         if (model.getState() == GameModel.ModelState.LIVE)
             controller.handleInput(delta);
-        model.removeFlagged();
+        //model.removeFlagged();
 
         updateCamera();
         drawBackground();
