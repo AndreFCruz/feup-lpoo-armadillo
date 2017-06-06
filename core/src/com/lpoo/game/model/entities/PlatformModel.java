@@ -7,7 +7,6 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
-import static com.lpoo.game.model.entities.EntityModel.FLUID_BIT;
 import static com.lpoo.game.model.entities.EntityModel.GROUND_BIT;
 import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 

@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.lpoo.game.Spheral;
@@ -29,6 +31,7 @@ public class GameScreen extends ScreenAdapter {
      * Used to debug the position of the physics fixtures
      */
     private static final boolean DEBUG_PHYSICS = true;
+    private static final float CAMERA_TOLERANCE = 50;
 
     /**
      * Integer that saves the value of the current Level (Level 0, Level 1, ...).
@@ -88,15 +91,15 @@ public class GameScreen extends ScreenAdapter {
      */
     private Texture gameBackground;
 
-    public GameScreen (Spheral game, int i) {
+    public GameScreen (Spheral game, int currentLevel) {
         this.game = game;
 
         model = new GameModel();
-        currentLevel = i;
+        this.currentLevel = currentLevel;
         loadNextMap();
 
         camera = createCamera();
-        controller = new GameController(camera, model);
+        controller = new GameController(model);
         mapRenderer = new OrthogonalTiledMapRenderer(model.getMap(), game.getBatch());
 
         hud = new HudMenu(game, model);
@@ -204,17 +207,32 @@ public class GameScreen extends ScreenAdapter {
         game.getBatch().end();
     }
 
-    // TODO add looseness to camera's movement
+    /**
+     * Updates camera's position according to the player's position (follows the player).
+     */
     private void updateCamera() {
         // Follow player
-        camera.position.set(model.getBallModel().getX() / PIXEL_TO_METER, model.getBallModel().getY() / PIXEL_TO_METER, 0);
+        Vector2 player_pos = new Vector2(model.getBallModel().getX() / PIXEL_TO_METER,
+                                        model.getBallModel().getY() / PIXEL_TO_METER);
+        Vector2 delta = new Vector2(camera.position.x - player_pos.x, camera.position.y - player_pos.y);
+        Vector3 new_pos = camera.position.cpy();
+
+        if (Math.abs(delta.x) > CAMERA_TOLERANCE)
+            new_pos.x -= delta.x - CAMERA_TOLERANCE * (delta.x < 0 ? -1 : 1);
+
+        if (Math.abs(delta.y) > CAMERA_TOLERANCE)
+            new_pos.y -= delta.y - CAMERA_TOLERANCE * (delta.y < 0 ? -1 : 1);
+
+        camera.position.set(new_pos);
         camera.update();
     }
 
     private OrthographicCamera createCamera() {
-        OrthographicCamera camera = new OrthographicCamera(VIEWPORT_WIDTH / PIXEL_TO_METER, VIEWPORT_HEIGHT / PIXEL_TO_METER );
+        OrthographicCamera camera = new OrthographicCamera(VIEWPORT_WIDTH / PIXEL_TO_METER,
+                                                        VIEWPORT_HEIGHT / PIXEL_TO_METER );
 
-        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+        camera.position.set(model.getBallModel().getX() / PIXEL_TO_METER,
+                model.getBallModel().getY() / PIXEL_TO_METER, 0);
         camera.update();
 
         if (DEBUG_PHYSICS) {

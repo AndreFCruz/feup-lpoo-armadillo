@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.lpoo.game.model.entities.EntityModel.ModelType.BALL;
-import static com.lpoo.game.model.entities.EntityModel.ModelType.BOX;
-import static com.lpoo.game.model.entities.EntityModel.ModelType.POWERUP_GRAVITY;
 import static com.lpoo.game.model.entities.ShapeModel.ModelType.PLATFORM;
 
 /**

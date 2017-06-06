@@ -4,9 +4,7 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 /**
  * Created by andre on 01/06/2017.

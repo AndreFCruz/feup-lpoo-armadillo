@@ -1,6 +1,5 @@
 package com.lpoo.game.model;
 
-import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
@@ -37,7 +36,7 @@ public class GameModel implements Disposable {
     /**
      * Possible Game States the Model may be in.
      */
-    public enum ModelState {PAUSED, LIVE, WON, LOST};
+    public enum ModelState {PAUSED, LIVE, WON, LOST}
 
     /**
      * Current Model State the game is in.
@@ -267,10 +266,9 @@ public class GameModel implements Disposable {
 
     /**
      * Setter for the model's current state.
-     * @param state The model's new state.
      */
-    void setState(ModelState state) {
-        currentState = state;
+    void setLost() {
+        currentState = LOST;
     }
 
     /**
