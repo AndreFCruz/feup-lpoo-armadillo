@@ -2,7 +2,7 @@ package com.lpoo.game.view.entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 import com.lpoo.game.model.entities.EntityModel;
 
 import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
@@ -28,7 +28,7 @@ public abstract class EntityView {
      * @param game the game this view belongs to. Needed to access the
      *             asset manager to get textures.
      */
-    EntityView(Spheral game, EntityModel.ModelType type) {
+    EntityView(Armadillo game, EntityModel.ModelType type) {
         this.type = type;
         sprite = createSprite(game);
     }
@@ -39,7 +39,7 @@ public abstract class EntityView {
      * @param game the game this view belongs to. Needed to access the
      *             asset manager to get textures.
      */
-    EntityView(Spheral game) {
+    EntityView(Armadillo game) {
         this(game, null);
     }
 
@@ -61,7 +61,7 @@ public abstract class EntityView {
      *             asset manager to get textures.
      * @return the sprite representing this view.
      */
-    protected abstract Sprite createSprite(Spheral game);
+    protected abstract Sprite createSprite(Armadillo game);
 
     /**
      * Updates this view based on a certain model.

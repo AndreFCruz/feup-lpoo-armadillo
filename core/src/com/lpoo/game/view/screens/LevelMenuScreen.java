@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 
 import java.util.ArrayList;
 
@@ -49,7 +49,7 @@ public class LevelMenuScreen extends MenuScreen {
      * @param game
      *
      */
-    LevelMenuScreen(final Spheral game) {
+    LevelMenuScreen(final Armadillo game) {
         super(game);
     }
 

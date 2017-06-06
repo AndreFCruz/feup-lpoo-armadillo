@@ -27,7 +27,7 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
 
         PlayServices playServices = new PlayServices(this, gameHelper);
 
-		initialize(new Spheral(playServices), config);
+		initialize(new Armadillo(playServices), config);
 	}
 
     // This snippet hides the system bars.

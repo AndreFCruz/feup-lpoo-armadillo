@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 import com.lpoo.game.view.entities.BallView;
 import com.lpoo.game.view.entities.ViewFactory;
 
@@ -66,7 +66,7 @@ class CustomizeMenuScreen extends MenuScreen {
      * @param game
      *
      */
-    CustomizeMenuScreen(final Spheral game) {
+    CustomizeMenuScreen(final Armadillo game) {
         super(game);
     }
 

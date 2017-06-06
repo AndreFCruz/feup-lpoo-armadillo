@@ -3,7 +3,7 @@ package com.lpoo.game.view.entities;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 
 /**
  * Created by andre on 10/05/2017.
@@ -12,12 +12,12 @@ public class BallView extends EntityView {
 
     private static int currentSkinID = 0;
 
-    BallView(Spheral game) {
+    BallView(Armadillo game) {
         super(game);
     }
 
     @Override
-    protected Sprite createSprite(Spheral game) {
+    protected Sprite createSprite(Armadillo game) {
         Texture tex = game.getAssetManager().get("skins/skin0" + currentSkinID + ".png");
         return new Sprite(new TextureRegion(tex, tex.getWidth(), tex.getHeight()));
     }

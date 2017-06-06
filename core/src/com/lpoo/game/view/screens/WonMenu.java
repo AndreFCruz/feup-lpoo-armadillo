@@ -1,7 +1,7 @@
 package com.lpoo.game.view.screens;
 
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 
 /**
  * Class used to represent the pop up Menu that shows up when the User wins the game.
@@ -16,7 +16,7 @@ public class WonMenu extends OptionsMenu {
      * @param game
      * @param hud
      */
-    WonMenu (Viewport viewport, Spheral game, HudMenu hud) { super(viewport, game, hud); }
+    WonMenu (Viewport viewport, Armadillo game, HudMenu hud) { super(viewport, game, hud); }
 
     @Override
     protected void confStage() {

@@ -1,6 +1,6 @@
 package com.lpoo.game.view.entities;
 
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 import com.lpoo.game.model.entities.EntityModel;
 import com.lpoo.game.model.entities.ShapeModel;
 
@@ -19,7 +19,7 @@ public class ViewFactory {
 
     private static Map<ShapeModel.ModelType, ShapeView> shapesCache = new HashMap<>();
 
-    public static EntityView makeView(Spheral game, EntityModel model) {
+    public static EntityView makeView(Armadillo game, EntityModel model) {
         if (!entitiesCache.containsKey(model.getType())) {
             switch (model.getType()) {
                 case BALL:

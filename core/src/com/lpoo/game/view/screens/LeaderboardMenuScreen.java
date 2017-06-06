@@ -2,7 +2,7 @@ package com.lpoo.game.view.screens;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 
 /**
  * Created by Edgar on 05/06/2017.
@@ -15,7 +15,7 @@ public class LeaderboardMenuScreen extends LevelMenuScreen {
      *
      * @param game
      */
-    LeaderboardMenuScreen(Spheral game) {
+    LeaderboardMenuScreen(Armadillo game) {
         super(game);
     }
 

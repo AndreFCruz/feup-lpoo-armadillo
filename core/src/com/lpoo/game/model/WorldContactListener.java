@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.lpoo.game.GameServices;
-import com.lpoo.game.Spheral;
+import com.lpoo.game.Armadillo;
 import com.lpoo.game.model.controllers.BuoyancyController;
 import com.lpoo.game.model.entities.BallModel;
 import com.lpoo.game.model.entities.EntityModel;
@@ -67,7 +67,7 @@ public class WorldContactListener implements ContactListener {
 
     private void logWaterAchievement() {
         try {
-            GameServices gameServices = ((Spheral) (Gdx.app.getApplicationListener())).getGameServices();
+            GameServices gameServices = ((Armadillo) (Gdx.app.getApplicationListener())).getGameServices();
             gameServices.unlockAchievement(gameServices.getWaterAchievementID());
         }
         catch (java.lang.ClassCastException e) {
