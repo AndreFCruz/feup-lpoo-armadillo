@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="32" height="12" tilewidth="64" tileheight="64" nextobjectid="30">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="8" tilewidth="64" tileheight="64" nextobjectid="19">
  <tileset firstgid="1" source="../tilesets/MyTiles_64x64.tsx"/>
  <tileset firstgid="65" name="endTile" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../tilesets/endTile.png" width="65" height="65"/>
@@ -7,66 +7,42 @@
  <tileset firstgid="66" name="Tiles_64x64" tilewidth="64" tileheight="64" tilecount="64" columns="8">
   <image source="../tilesets/Tiles_64x64.png" width="512" height="512"/>
  </tileset>
- <layer name="map" width="32" height="12">
+ <layer name="map" width="25" height="8">
   <data encoding="base64" compression="zlib">
-   eJzFlN0KwjAMhfNEvoPClLErb1SUTWhfQB2oV4pvbkrPgVAKuvnTwEdLRnLSJl0rIo3iFI898fDbby5Zm0xczpfGzcFCyliFGkvpX6Hv/6B1VnbKNPEvJfbj17ZWNsAa56qUcb5LWbj/b8xf6O9F2Urs8xD9T+6funell/iebwPqGPv+rG7QbCX28YT1iDpWL/K4RH9i9p1ywNpldDk7PHePOvhf85kamJN5K8TVymwED5yVms5o79+MfwLD1DAU
+   eJxjYICAOAZMoA/FyHxsIA6HfnTgAsSNQFwMxN4k4AgobkAyqwaI3bHYEQnEwUS4hVgQSUWzBgKA4sURj7weA/HxhwuEM6DGDTIAxXkMEMcCcSgedcigCoijgDiaSPtBaQGWViqJ1FNBpHoAmYQROQ==
   </data>
  </layer>
  <objectgroup name="ground">
-  <object id="2" x="64" y="0" width="1984" height="64"/>
-  <object id="3" x="0" y="0" width="64" height="768"/>
-  <object id="4" x="64" y="704" width="1984" height="64"/>
-  <object id="6" x="1984" y="64" width="64" height="640"/>
-  <object id="7" x="1920" y="64" width="64" height="64"/>
-  <object id="8" x="1920" y="128">
-   <polygon points="0,0 64,0 64,64 47.1392,18.5211"/>
+  <object id="1" x="128" y="64" width="1088" height="64"/>
+  <object id="3" x="128" y="128" width="128" height="64"/>
+  <object id="4" x="128" y="384" width="320" height="64"/>
+  <object id="5" x="128" y="448" width="192" height="64"/>
+  <object id="6" x="1024" y="448" width="64" height="64"/>
+  <object id="7" x="1280" y="320" width="128" height="64"/>
+  <object id="8" x="1344" y="64" width="128" height="64"/>
+  <object id="9" x="1408" y="128" width="64" height="64"/>
+  <object id="10" x="320" y="448">
+   <polygon points="0,0 61.9644,0.377369 16.7318,19.4038 0.218265,59.9696"/>
   </object>
-  <object id="18" x="1600" y="256">
-   <polygon points="0,0 128,0 64.0701,-33.5284"/>
+  <object id="11" x="960" y="448">
+   <polygon points="0,0 64,-64 192,0"/>
   </object>
-  <object id="19" x="1600" y="256" width="192" height="64"/>
-  <object id="29" x="704" y="704">
-   <polygon points="0,0 512,-256 768,-128 896,0"/>
+  <object id="12" x="1088" y="448">
+   <polygon points="0,0 64,0 19.3151,12.9726 0.18962,57.7622"/>
+  </object>
+  <object id="13" x="1024" y="448">
+   <polygon points="0,0 -64,0 -18.0335,16.8958 0,64"/>
   </object>
  </objectgroup>
+ <objectgroup name="positions">
+  <object id="14" name="start" x="192" y="320" width="64" height="64"/>
+  <object id="15" name="end" x="1344" y="256" width="64" height="64"/>
+ </objectgroup>
  <objectgroup name="objects">
-  <object id="12" type="box" x="1600" y="640" width="64" height="64"/>
-  <object id="13" type="box" x="1600" y="576" width="64" height="64"/>
-  <object id="16" type="platform" x="265" y="250" width="350" height="30">
-   <properties>
-    <property name="density" type="float" value="1.5"/>
-    <property name="pivoted" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="21" type="powerup" x="1600" y="512" width="64" height="64">
-   <properties>
-    <property name="class" value="jump"/>
-   </properties>
-  </object>
-  <object id="23" type="powerup" x="1600" y="192" width="64" height="40">
-   <properties>
-    <property name="class" value="density"/>
-   </properties>
-  </object>
-  <object id="24" type="powerup" x="328.436" y="200.23" width="67.7038" height="56.1798">
+  <object id="18" type="powerup" x="448" y="128" width="64" height="64">
    <properties>
     <property name="class" value="gravity"/>
    </properties>
   </object>
-  <object id="25" type="powerup" x="64" y="64" width="64" height="64">
-   <properties>
-    <property name="class" value="velocity"/>
-   </properties>
-  </object>
-  <object id="27" type="platform" x="685.726" y="403.925" width="250" height="35">
-   <properties>
-    <property name="density" type="float" value="2"/>
-    <property name="pivoted" type="bool" value="true"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup name="positions">
-  <object id="9" name="start" x="192" y="640" width="64" height="64"/>
-  <object id="10" name="end" x="1728" y="192" width="64" height="64"/>
  </objectgroup>
 </map>
