@@ -31,8 +31,8 @@ public class WorldContactListener implements ContactListener {
     }
 
     // Map of categoryBits to functions
-    private Map<Short, ContactHandler> beginContactFunctions = new HashMap<Short, ContactHandler>();
-    private Map<Short, ContactHandler> endContactFunctions = new HashMap<Short, ContactHandler>();
+    private Map<Short, ContactHandler> beginContactFunctions = new HashMap<>();
+    private Map<Short, ContactHandler> endContactFunctions = new HashMap<>();
 
     private final GameModel model;
 

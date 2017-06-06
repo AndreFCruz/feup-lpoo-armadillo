@@ -21,24 +21,22 @@ import java.util.ArrayList;
  * A view representing the Customize Menu screen. In this Menu the User
  * is able to chose which appearance his ball shall have.
  */
-public class CustomizeMenuScreen extends MenuScreen {
+class CustomizeMenuScreen extends MenuScreen {
 
     /**
      * Array containing the the Buttons associated to a skin1
      */
-    ArrayList<Button> skinButtons = new ArrayList<Button>();
+    private ArrayList<Button> skinButtons = new ArrayList<>();
 
     /**
      * Array containing the Labels associated to a skin1
      */
-    ArrayList<Label> skinLabels = new ArrayList<Label>();
+    private ArrayList<Label> skinLabels = new ArrayList<>();
 
     /**
      * Index on the array of Skins of the currently active skin1.
      */
     private static int currentSkin = 0;
-
-    //Layout Macros
 
     /**
      * Constant representing the size of the Buttons

@@ -15,11 +15,9 @@ import static com.lpoo.game.model.entities.ShapeModel.ModelType.PLATFORM;
  */
 
 public class ViewFactory {
-    private static Map<EntityModel.ModelType, EntityView> entitiesCache =
-            new HashMap<EntityModel.ModelType, EntityView>();
+    private static Map<EntityModel.ModelType, EntityView> entitiesCache = new HashMap<>();
 
-    private static Map<ShapeModel.ModelType, ShapeView> shapesCache =
-            new HashMap<ShapeModel.ModelType, ShapeView>();
+    private static Map<ShapeModel.ModelType, ShapeView> shapesCache = new HashMap<>();
 
     public static EntityView makeView(Spheral game, EntityModel model) {
         if (!entitiesCache.containsKey(model.getType())) {

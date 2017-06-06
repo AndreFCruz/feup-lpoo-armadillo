@@ -20,14 +20,14 @@ public class Spheral extends Game {
 	private SpriteBatch batch;
     private AssetManager assetManager;
 
-    public BitmapFont font;
+    private BitmapFont font;
 
     private Skin skin1;
     private Skin skin2;
 
     private static final int NUMBER_OF_SKINS = 6;
 
-    private static final Map<Integer, String> gameMaps = new HashMap<Integer, String>();
+    private static final Map<Integer, String> gameMaps = new HashMap<>();
 
     private final GameServices gameServices;
 

@@ -12,13 +12,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.lpoo.game.Spheral;
 
 /**
- * Created by Edgar on 01/06/2017.
- */
-
-/**
  * Abstract class used to represent all the Pop Up Menu's classes, containing several option actions.
  */
-public abstract class OptionsMenu {
+abstract class OptionsMenu {
 
     protected Spheral game;
 

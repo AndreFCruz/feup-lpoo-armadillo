@@ -16,14 +16,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.lpoo.game.Spheral;
 import com.lpoo.game.model.GameModel;
 
-/**
- * Created by Edgar on 29/05/2017.
- */
 
 /**
  * Class responsible for the HUD during the Game.
  */
-public class HudMenu {
+class HudMenu {
 
     public enum Request {LOAD, START, NONE}
 

@@ -163,7 +163,7 @@ public class BuoyancyController {
         PolygonShape polygon = (PolygonShape) fixture.getShape();
         int verticesCount = polygon.getVertexCount();
 
-        List<Vector2> vertices = new ArrayList<Vector2>(verticesCount);
+        List<Vector2> vertices = new ArrayList<>(verticesCount);
         for (int i = 0; i < verticesCount; i++) {
             Vector2 vertex = new Vector2();
             polygon.getVertex(i, vertex);

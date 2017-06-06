@@ -9,7 +9,7 @@ import java.util.List;
 public class PolygonIntersector {
 
 	/* A close to zero float epsilon value */
-	public static final float EPSILON = 1.1920928955078125E-7f;
+	private static final float EPSILON = 1.1920928955078125E-7f;
 
 	/**
 	 * Returns true if the given point is inside the segment.
@@ -35,20 +35,20 @@ public class PolygonIntersector {
 	 * @param endY Y coordinate of the segment's last point
 	 * @return Whether the point is inside the segment
 	 */
-	public static boolean isPointInLineSegment(float pointX, float pointY,
+	private static boolean isPointInLineSegment(float pointX, float pointY,
 			float startX, float startY, float endX, float endY) {
 		return (endX - startX) * (pointY - startY) > (endY - startY)
 				* (pointX - startX);
 	}
 
-	public static boolean isPointInsideEdge(Vector2 point,
+	private static boolean isPointInsideEdge(Vector2 point,
 			Vector2 edgeStartPoint, Vector2 edgeEndPoint) {
 		return (edgeEndPoint.x - edgeStartPoint.x)
 				* (point.y - edgeStartPoint.y) > (edgeEndPoint.y - edgeStartPoint.y)
 				* (point.x - edgeStartPoint.x);
 	}
 
-	public static Vector2 getEdgesIntersection(Vector2 firstEdgeStartPoint,
+	private static Vector2 getEdgesIntersection(Vector2 firstEdgeStartPoint,
 			Vector2 firstEdgeEndPoint, Vector2 secondEdgeStartPoint,
 			Vector2 secondEdgeEndPoint) {
 		

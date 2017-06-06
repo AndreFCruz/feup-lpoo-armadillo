@@ -13,7 +13,7 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
  */
 public class BallModel extends EntityModel {
     private static final float POWERUP_RATIO = 2f;
-    public static final double VEL_POWERUP_RATIO = 1.6;
+    private static final double VEL_POWERUP_RATIO = 1.6;
 
     public enum State {LANDED, FLYING, DUNKING}
 

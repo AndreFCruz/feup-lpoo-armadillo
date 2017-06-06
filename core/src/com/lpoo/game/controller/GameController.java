@@ -2,7 +2,6 @@ package com.lpoo.game.controller;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.lpoo.game.model.GameModel;
 
 /**

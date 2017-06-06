@@ -53,13 +53,13 @@ public class B2DWorldCreator {
 
     private World world;
     private Map map;
-    private Array<WaterModel> fluids = new Array<WaterModel>();
-    private Array<ShapeModel> shapeModels = new Array<ShapeModel>();
-    private Array<EntityModel> entityModels = new Array<EntityModel>();
+    private Array<WaterModel> fluids = new Array<>();
+    private Array<ShapeModel> shapeModels = new Array<>();
+    private Array<EntityModel> entityModels = new Array<>();
     private BallModel ball;
     private Vector2 endPos;
 
-    private Set<LayerLoader> layerLoaders = new HashSet<LayerLoader>();
+    private Set<LayerLoader> layerLoaders = new HashSet<>();
 
     public B2DWorldCreator(World world, Map map) {
         this.world = world;
