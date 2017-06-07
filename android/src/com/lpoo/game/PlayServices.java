@@ -1,14 +1,9 @@
 package com.lpoo.game;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-
 import com.badlogic.gdx.Gdx;
 import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.GameHelper;
-
-import java.util.HashMap;
 
 /**
  * Created by andre on 04/06/2017.

@@ -1,7 +1,7 @@
 android {
     signingConfigs {
         config {
-            keyAlias 'MyAndroidKey'
+            keyAlias 'myandroidkey'
             keyPassword 'myKeyPassword'
             storeFile file('/Users/andre/Documents/Armadillo/keystore.jks')
             storePassword 'myKeystorePassword'
@@ -32,6 +32,8 @@ android {
         applicationId "com.lpoo.game"
         minSdkVersion 19
         targetSdkVersion 25
+        signingConfig signingConfigs.config
+        versionName '2.0'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -46,7 +48,11 @@ android {
             signingConfig signingConfigs.config
             renderscriptDebuggable false
             renderscriptOptimLevel 3
-            minifyEnabled true
+            minifyEnabled false
+            versionNameSuffix '1'
+        }
+        debug {
+            zipAlignEnabled true
         }
     }
 }
