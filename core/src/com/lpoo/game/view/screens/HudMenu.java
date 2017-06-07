@@ -22,7 +22,12 @@ import com.lpoo.game.model.GameModel;
  */
 class HudMenu {
 
-    public enum Request {LOAD, START, NONE}
+    /**
+     * Possible Requests to the Game Screen.
+     */
+    public enum Request {
+        LOAD, START, NONE
+    }
 
     /**
      * A Stage used to represent the HUD, containing the score and the pause Button.
@@ -40,7 +45,7 @@ class HudMenu {
     private boolean options_flag = false;
 
     /**
-     * Represents the current session's score.
+     * Represents the current level's score.
      */
     private float score;
 
@@ -50,7 +55,7 @@ class HudMenu {
     private GameModel.ModelState lastState;
 
     /**
-     * TODO
+     * Represents the current Hud Menu's Request to the Game Screen.
      */
     private HudMenu.Request currentRequest = Request.NONE;
 
@@ -65,7 +70,7 @@ class HudMenu {
      * automatically calculated using the screen ratio.
      */
     private static final float HUD_VIEWPORT_HEIGHT = HUD_VIEWPORT_WIDTH *
-            ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
+            ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
 
     //Layout Macros
     /**
@@ -75,29 +80,55 @@ class HudMenu {
     /**
      * The Side Size of the HUD elements.
      */
-    private static final float HUD_ELEMENTS_SIZE = HUD_VIEWPORT_WIDTH /15;
+    private static final float HUD_ELEMENTS_SIZE = HUD_VIEWPORT_WIDTH / 15;
     /**
-     * The HUD elements pad, in relation to the vertical limits.
+     * The HUD elements distance to the horizontal screen limits.
      */
     private static final float HORIZONTAL_PAD = HUD_VIEWPORT_WIDTH / 20;
     /**
-     * The HUD elements pad, in relation to the horizontal limits.
+     * The HUD elements distance to the vertical screen limits.
      */
     private static final float VERTICAL_PAD = HUD_VIEWPORT_HEIGHT / 25;
 
+    /**
+     * Current Level Number (Level1, Level2, etc)
+     */
     private int currentLevel;
 
+    /**
+     * The ViewPort used for the HUD Stage.
+     */
     private Viewport viewport;
 
+    /**
+     * Skin used in the HUD elements.
+     */
     private Skin skin;
 
+    /**
+     * Label containing the string referencing the current score.
+     */
     private Label scoreText;
 
+    /**
+     * The current Game Model, in display on the screen.
+     */
     private GameModel model;
 
+    /**
+     * The current game session.
+     */
     private Armadillo game;
 
-    HudMenu (Armadillo game, GameModel model) {
+    /**
+     * HudMenu's Constructor.
+     * It takes the current game and the current game model to initialize.
+     * It initializes all the HUD elements, in the right positions.
+     *
+     * @param game  The current game session.
+     * @param model The current game Model.
+     */
+    HudMenu(Armadillo game, GameModel model) {
 
         this.game = game;
         this.model = model;
@@ -112,17 +143,17 @@ class HudMenu {
     }
 
     /**
-     * Function used to initialize all the elements of the HUD and add their Listeners.
+     * Function used to initialize all the elements of the HUD and add the respective Listeners.
      */
-    private void initHUD () {
+    private void initHUD() {
         Table hudTable = new Table();
         hudTable.setFillParent(true);
 
         Button pauseButton = new Button(new TextureRegionDrawable(
                 new TextureRegion(game.getAssetManager().get("pause.png", Texture.class))));
 
-        scoreText = new Label ("0:00", skin);
-        scoreText.setFontScale(FONT_SCALE,FONT_SCALE);
+        scoreText = new Label("0:00", skin);
+        scoreText.setFontScale(FONT_SCALE, FONT_SCALE);
 
         pauseButton.addListener(new ClickListener() {
             @Override
@@ -159,7 +190,15 @@ class HudMenu {
                 (((int) score % 60) > 9 ? "" : "0") + Integer.toString((int) score % 60));
     }
 
-    HudMenu.Request update (GameModel.ModelState state, int level) {
+    /**
+     * The function responsible for updating the current HudMenu.
+     * Depending of the HudMenu update, the HudMenu might have a request.
+     *
+     * @param state The current Game Model state.
+     * @param level The current level being played.
+     * @return The HudMenu's Request.
+     */
+    HudMenu.Request update(GameModel.ModelState state, int level) {
         currentLevel = level;
 
         if (state != lastState) {
@@ -188,7 +227,10 @@ class HudMenu {
         return currentRequest;
     }
 
-    void draw () {
+    /**
+     * The function that draws the current HudMenu in the screen.
+     */
+    void draw() {
         if (options_flag) {
             optionsMenu.draw();
         } else {
@@ -198,23 +240,38 @@ class HudMenu {
         }
     }
 
+    /**
+     * Function responsible for pausing the current game model.
+     */
     void togglePause() {
         currentRequest = Request.NONE;
         model.togglePause();
     }
 
+    /**
+     * @return current Level being played by the User.
+     */
     int getCurrentLevel() {
         return currentLevel;
     }
 
+    /**
+     * Function used to load the next Level.
+     */
     void loadNextLevel() {
         currentRequest = Request.LOAD;
     }
 
+    /**
+     * Function used to start the next Level.
+     */
     void startLevel() {
         currentRequest = Request.START;
     }
 
+    /**
+     * Function used to set the current HudMenu's request to NONE.
+     */
     void resetRequest() {
         currentRequest = Request.NONE;
     }

@@ -12,12 +12,17 @@ public class WonMenu extends OptionsMenu {
      * Won Menu Constructor.
      * Takes as parameters a viewport, a game and a HUD Menu to call its superclass constructor.
      *
-     * @param viewport
-     * @param game
-     * @param hud
+     * @param viewport The viewport that will be associated to the stage.
+     * @param game     The current game session.
+     * @param hud      The current Hud, associated to the current game being played.
      */
-    WonMenu (Viewport viewport, Armadillo game, HudMenu hud) { super(viewport, game, hud); }
+    WonMenu(Viewport viewport, Armadillo game, HudMenu hud) {
+        super(viewport, game, hud);
+    }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     protected void confStage() {
         initStage();
@@ -27,6 +32,9 @@ public class WonMenu extends OptionsMenu {
         finishStage();
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     protected void setMessage() {
         message.setText("LEVEL FINISHED");

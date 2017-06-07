@@ -41,9 +41,9 @@ public class powerUpTest {
     public void velocityPowerUpTest()
     {
         float initialAcceleration = tester.getBallAcceleration();
-        tester.rotateRightDuringTime(1f);
+        tester.rotateRightDuringTime(1);
         //Stabilize ball
-        tester.noMotionDuringTime(1);
+        tester.noMotionDuringTime(3);
 
         assertTrue(initialAcceleration < tester.getBallAcceleration());
 

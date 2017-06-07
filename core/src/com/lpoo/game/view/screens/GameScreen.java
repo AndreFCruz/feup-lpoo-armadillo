@@ -31,6 +31,9 @@ public class GameScreen extends ScreenAdapter {
      * Used to debug the position of the physics fixtures
      */
     private static final boolean DEBUG_PHYSICS = false;
+    /**
+     * Used for Camera loosness.
+     */
     private static final float CAMERA_TOLERANCE = 50;
 
     /**
@@ -53,7 +56,7 @@ public class GameScreen extends ScreenAdapter {
      * The height of the viewport in meters. The height is
      * automatically calculated using the screen ratio.
      */
-    private static final float VIEWPORT_HEIGHT = VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
+    private static final float VIEWPORT_HEIGHT = VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
 
     /**
      * The camera used to show the viewport.
@@ -71,14 +74,29 @@ public class GameScreen extends ScreenAdapter {
      */
     private Matrix4 debugCamera;
 
+    /**
+     * Map's Renderer of the current level's map.
+     */
     private OrthogonalTiledMapRenderer mapRenderer;
 
+    /**
+     * And Handler used to listen to the User's input.
+     */
     private InputHandler controller;
 
+    /**
+     * The game Model of the current Game eing played by the User.
+     */
     private GameModel model;
 
+    /**
+     * The current game session.
+     */
     private Armadillo game;
 
+    /**
+     * Shape's renderer of the current level's shapes.
+     */
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
 
     /**
@@ -91,7 +109,14 @@ public class GameScreen extends ScreenAdapter {
      */
     private Texture gameBackground;
 
-    public GameScreen (Armadillo game, int currentLevel) {
+    /**
+     * Game Screen's constructor.
+     * The Game Screen's is responsible for drawing the current game.
+     *
+     * @param game         The current game session.
+     * @param currentLevel The game's level that the game screen will draw.
+     */
+    public GameScreen(Armadillo game, int currentLevel) {
         this.game = game;
 
         model = new GameModel();
@@ -106,6 +131,11 @@ public class GameScreen extends ScreenAdapter {
         gameBackground = game.getAssetManager().get("background.png", Texture.class);
     }
 
+    /**
+     * Function responsible for loading the next available Map.
+     *
+     * @return True if no errors occurred and a map was loaded, false otherwise.
+     */
     private Boolean loadNextMap() {
         if (currentLevel == game.getNumMaps())
             return false;
@@ -119,11 +149,13 @@ public class GameScreen extends ScreenAdapter {
         return true;
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public void render(float delta) {
         if (model.getState() == GameModel.ModelState.LIVE)
             controller.handleInput(delta);
-        //model.removeFlagged();
 
         updateCamera();
         drawBackground();
@@ -138,11 +170,17 @@ public class GameScreen extends ScreenAdapter {
         updateHUD(state);
     }
 
+    /**
+     * Function responsible for rendering the current level's map.
+     */
     private void renderMap() {
         mapRenderer.setView(camera);
         mapRenderer.render();
     }
 
+    /**
+     * Function used to draw Debug Lines in the screen, making it easier for the developer to see if the code is working correctly.
+     */
     private void drawDebugLines() {
         if (DEBUG_PHYSICS) {
             debugCamera = camera.combined.cpy();
@@ -151,8 +189,13 @@ public class GameScreen extends ScreenAdapter {
         }
     }
 
+    /**
+     * Function responsible for updating the Hud associatd to the game Screen
+     *
+     * @param state current Game Model state, used in decision making in HUD update.
+     */
     private void updateHUD(GameModel.ModelState state) {
-        switch(hud.update(state, currentLevel)) {
+        switch (hud.update(state, currentLevel)) {
             case LOAD:
                 loadNextMap();
                 resetRequest();
@@ -165,6 +208,9 @@ public class GameScreen extends ScreenAdapter {
         hud.draw();
     }
 
+    /**
+     * Function responsible for drawing the the views corresponding to the shapes.
+     */
     private void drawShapeViews() {
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -172,6 +218,9 @@ public class GameScreen extends ScreenAdapter {
         shapeRenderer.end();
     }
 
+    /**
+     * Function responsible for drawing the the views corresponding to the entities.
+     */
     private void drawEntityViews() {
         game.getBatch().setProjectionMatrix(camera.combined);
         game.getBatch().begin();
@@ -179,10 +228,17 @@ public class GameScreen extends ScreenAdapter {
         game.getBatch().end();
     }
 
+    /**
+     * Function responsible for setting the hud.request to NONE.
+     */
     private void resetRequest() {
         hud.resetRequest();
     }
 
+    /**
+     * Function responsible for drawing the the views corresponding to the entities.
+     * This function is called inside function drawEntityViews().
+     */
     private void drawEntities() {
         Array<EntityModel> models = model.getEntityModels();
         for (EntityModel model : models) {
@@ -192,6 +248,10 @@ public class GameScreen extends ScreenAdapter {
         }
     }
 
+    /**
+     * Function responsible for drawing the the views corresponding to the shapes.
+     * This function is called inside function drawEntityViews().
+     */
     private void drawShapes() {
         Array<ShapeModel> models = model.getShapeModels();
         for (ShapeModel model : models) {
@@ -201,6 +261,9 @@ public class GameScreen extends ScreenAdapter {
         }
     }
 
+    /**
+     * Function responsible for drawing the Game's background.
+     */
     private void drawBackground() {
         game.getBatch().begin();
         game.getBatch().draw(gameBackground, 0, 0);
@@ -213,7 +276,7 @@ public class GameScreen extends ScreenAdapter {
     private void updateCamera() {
         // Follow player
         Vector2 player_pos = new Vector2(model.getBallModel().getX() / PIXEL_TO_METER,
-                                        model.getBallModel().getY() / PIXEL_TO_METER);
+                model.getBallModel().getY() / PIXEL_TO_METER);
         Vector2 delta = new Vector2(camera.position.x - player_pos.x, camera.position.y - player_pos.y);
         Vector3 new_pos = camera.position.cpy();
 
@@ -227,9 +290,14 @@ public class GameScreen extends ScreenAdapter {
         camera.update();
     }
 
+    /**
+     * Creates a new Orthographic Camera for the Game.
+     *
+     * @return the created camera.
+     */
     private OrthographicCamera createCamera() {
         OrthographicCamera camera = new OrthographicCamera(VIEWPORT_WIDTH / PIXEL_TO_METER,
-                                                        VIEWPORT_HEIGHT / PIXEL_TO_METER );
+                VIEWPORT_HEIGHT / PIXEL_TO_METER);
 
         camera.position.set(model.getBallModel().getX() / PIXEL_TO_METER,
                 model.getBallModel().getY() / PIXEL_TO_METER, 0);

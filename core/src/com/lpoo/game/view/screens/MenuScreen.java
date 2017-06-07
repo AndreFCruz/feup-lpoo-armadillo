@@ -22,15 +22,39 @@ import com.lpoo.game.Armadillo;
  * Abstract Class used to represent all Views that are Menus.
  */
 public abstract class MenuScreen extends ScreenAdapter {
+
+    /**
+     * The current game session.
+     */
     protected final Armadillo game;
 
+    /**
+     * The Stage where the menu elements will be organized.
+     */
     protected Stage stage;
+
+    /**
+     * The viewport associated to the Menu's stage.
+     */
     protected Viewport viewport;
-    protected Camera camera;
+
+    /**
+     * The SpriteBatch wused in the Menu's screen.
+     */
     protected SpriteBatch batch;
+
+    /**
+     * One of the skins associated to the Menu.
+     */
     protected Skin skin1;
+    /**
+     * One of the skins associated to the Menu. This skin is majorly used for square-shaped buttons.
+     */
     protected Skin skin2;
 
+    /**
+     * Game Services used for Networking.
+     */
     GameServices gameServices;
 
     /**
@@ -43,9 +67,8 @@ public abstract class MenuScreen extends ScreenAdapter {
      * The height of the viewport in meters. The height is
      * automatically calculated using the screen ratio.
      */
-    protected static final float VIEWPORT_HEIGHT = VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
+    protected static final float VIEWPORT_HEIGHT = VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
 
-    //LayOut
     /**
      * Image representing the Menu's background image.
      */
@@ -59,12 +82,11 @@ public abstract class MenuScreen extends ScreenAdapter {
      */
     protected static final float DEFAULT_BUTTON_SIZE = VIEWPORT_WIDTH / 15;
 
-
     /**
      * Menu Screen's constructor.
+     * It initializes all the Menu elements.
      *
-     * @param game
-     *
+     * @param game The current game session.
      */
     protected MenuScreen(final Armadillo game) {
         this.game = game;
@@ -73,15 +95,10 @@ public abstract class MenuScreen extends ScreenAdapter {
         skin1 = game.getSkinOne();
         skin2 = game.getSkinTwo();
 
-        camera = new OrthographicCamera();
-
         viewport = new FitViewport(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
         viewport.apply();
 
         stage = new Stage(viewport, batch);
-
-        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
-        camera.update();
 
         backgroundImg = new Image(game.getAssetManager().get("background.png", Texture.class));
         backgroundImg.setScale(VIEWPORT_WIDTH / backgroundImg.getWidth(), VIEWPORT_HEIGHT / backgroundImg.getHeight());
@@ -91,6 +108,12 @@ public abstract class MenuScreen extends ScreenAdapter {
         titleImg.setPosition(VIEWPORT_WIDTH / 2 - titleImg.getWidth() / 2, VIEWPORT_HEIGHT * 0.98f - titleImg.getHeight());
     }
 
+    /**
+     * Creates a back Button, that will return the User to the previous Screen
+     *
+     * @param style Style of the button.
+     * @return Newly created button.
+     */
     protected TextButton addBackBtn(boolean style) {
         TextButton back = new TextButton("Back", (style ? skin2 : skin1));
 
@@ -104,6 +127,9 @@ public abstract class MenuScreen extends ScreenAdapter {
         return back;
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public void show() {
         //Displaying the background and the Image
@@ -111,9 +137,12 @@ public abstract class MenuScreen extends ScreenAdapter {
         stage.addActor(titleImg);
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1,1,1,1);
+        Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         stage.act(Gdx.graphics.getDeltaTime());
@@ -122,13 +151,17 @@ public abstract class MenuScreen extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage);
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);
-        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
-        camera.update();
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public void hide() {
         Gdx.input.setInputProcessor(null);

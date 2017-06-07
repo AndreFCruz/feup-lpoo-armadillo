@@ -16,8 +16,14 @@ import com.lpoo.game.Armadillo;
  */
 abstract class OptionsMenu {
 
+    /**
+     * The current game session.
+     */
     protected Armadillo game;
 
+    /**
+     * The Hud associated to the current game being played by the User.
+     */
     private HudMenu hud;
 
     /**
@@ -25,10 +31,19 @@ abstract class OptionsMenu {
      */
     protected Stage menu;
 
+    /**
+     * The table containing the elements, that will be added to the stage.
+     */
     private Table table;
 
+    /**
+     * Message displayed in the Screen, when the pop up Menu appears.
+     */
     protected Label message;
 
+    /**
+     * Skin used in the table elements.
+     */
     private Skin skin;
 
     /**
@@ -41,7 +56,7 @@ abstract class OptionsMenu {
      * The height of the viewport in pixels. The height is
      * automatically calculated using the screen ratio.
      */
-    private static final float HUD_VIEWPORT_HEIGHT = HUD_VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
+    private static final float HUD_VIEWPORT_HEIGHT = HUD_VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
 
     /**
      * The Scale that should be applied to the Message Label's Font.
@@ -54,7 +69,7 @@ abstract class OptionsMenu {
     /**
      * Distance between the Lables and the other stage elements
      */
-    private static final float LABEL_DISTANCE = HUD_VIEWPORT_HEIGHT/ 40;
+    private static final float LABEL_DISTANCE = HUD_VIEWPORT_HEIGHT / 40;
     /**
      * Width of the Options Menu's Buttons.
      */
@@ -69,18 +84,18 @@ abstract class OptionsMenu {
     private static final float BUTTON_DISTANCE = HUD_VIEWPORT_HEIGHT / 18;
 
     /**
-     * Options Menu Constructor
-     * TODO.
+     * Options Menu Constructor.
+     * It initializes all the needed elements.
      *
-     * @param viewport
-     * @param game
-     * @param hud
+     * @param viewport The viewport that will be associated to the stage.
+     * @param game     The current game session.
+     * @param hud      The current Hud, associated to the current game being played.
      */
-    protected OptionsMenu (Viewport viewport, Armadillo game, HudMenu hud) {
+    protected OptionsMenu(Viewport viewport, Armadillo game, HudMenu hud) {
         this.game = game;
         this.hud = hud;
 
-        menu = new Stage (viewport, game.getBatch());
+        menu = new Stage(viewport, game.getBatch());
         table = new Table();
         skin = game.getSkinOne();
 
@@ -163,7 +178,7 @@ abstract class OptionsMenu {
     }
 
     /**
-     * Function that adds a Next Level to the Stage.
+     * Function that adds a Next Level Button to the Stage.
      */
     protected void addNextLvlBtn() {
         TextButton nextLvlBtn = new TextButton("Next Level", skin);
@@ -181,17 +196,23 @@ abstract class OptionsMenu {
     /**
      * Function used to pause or unpause the current Game level.
      */
-    private void togglePause() { hud.togglePause(); }
+    private void togglePause() {
+        hud.togglePause();
+    }
 
     /**
      * Function used to start a new Game level.
      */
-    private void startLevel() { hud.startLevel(); }
+    private void startLevel() {
+        hud.startLevel();
+    }
 
     /**
      * Function used to load the next available Game level.
      */
-    private void loadLevel() { hud.loadNextLevel(); }
+    private void loadLevel() {
+        hud.loadNextLevel();
+    }
 
     /**
      * Function used by all the Pop Up Menus for starting the initial procedures of the stage configuration.

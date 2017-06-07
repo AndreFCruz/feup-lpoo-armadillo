@@ -64,9 +64,7 @@ class CustomizeMenuScreen extends MenuScreen {
      * Customize Menu Screen's Constructor.
      * It takes a game as a parameter and calls its super Class Constructor.
      *
-     * @param game
-     *          The current Game.
-     *
+     * @param game The current Game.
      */
     CustomizeMenuScreen(final Armadillo game) {
         super(game);
@@ -76,18 +74,17 @@ class CustomizeMenuScreen extends MenuScreen {
      * Function used to create the Skins' Buttons and Labels and associate them to a given table, organized.
      * It also adds Listeners to the Skins' Buttons.
      *
-     * @param table
-     *      Table where the Skins' Labels and Buttons will be organized.
+     * @param table Table where the Skins' Labels and Buttons will be organized.
      */
-    private void createSkins (Table table) {
-        for (int i=0; i < game.getNumSkins(); ++i) {
+    private void createSkins(Table table) {
+        for (int i = 0; i < game.getNumSkins(); ++i) {
 
             //Adding Buttons and Labels to the Arrays
-            skinButtons.add( new Button( new TextureRegionDrawable (new TextureRegion (game.getAssetManager().get( "big_skins/skin" + (i < 10 ? "0" : "") + i + ".png", Texture.class)))));
-            skinLabels.add(new Label ("Current", skin1));
+            skinButtons.add(new Button(new TextureRegionDrawable(new TextureRegion(game.getAssetManager().get("big_skins/skin" + (i < 10 ? "0" : "") + i + ".png", Texture.class)))));
+            skinLabels.add(new Label("Current", skin1));
 
             final int j = i; //Needed for Listener initialization
-            skinButtons.get(i).addListener(new ClickListener(){
+            skinButtons.get(i).addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     setCurrentLabel(j);
@@ -98,7 +95,7 @@ class CustomizeMenuScreen extends MenuScreen {
         }
         table.row();
 
-        for (int i=0; i < game.getNumSkins(); ++i)
+        for (int i = 0; i < game.getNumSkins(); ++i)
             table.add(skinLabels.get(i)).fill().width(BUTTON_SIZE).center();
 
         initializeCurrentSkin();
@@ -120,8 +117,7 @@ class CustomizeMenuScreen extends MenuScreen {
     /**
      * Updates the Current Skin, setting it to the index of the skin of the pressed Label.
      *
-     * @param j
-     *          Index of the skin of the pressed Label.
+     * @param j Index of the skin of the pressed Label.
      */
     private void setCurrentLabel(final int j) {
         skinLabels.get(currentSkin).setVisible(false);
@@ -136,12 +132,10 @@ class CustomizeMenuScreen extends MenuScreen {
      * Function responsible for creating the static Elements of the Stage (Scroller and Back Button), and organize them.
      * Also adds Listeners to its Elements.
      *
-     * @param table
-     *          Table where the static elements will be organized.
-     * @param skinsTable
-     *          Table containing the level buttons, that will be associated to the scroller.
+     * @param table      Table where the static elements will be organized.
+     * @param skinsTable Table containing the level buttons, that will be associated to the scroller.
      */
-    private void createStaticElements (Table table, Table skinsTable) {
+    private void createStaticElements(Table table, Table skinsTable) {
         TextButton back = addBackBtn(true);
 
         //Creating and setting the Scroller

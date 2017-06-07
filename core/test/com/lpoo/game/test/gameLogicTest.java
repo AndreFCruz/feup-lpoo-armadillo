@@ -41,7 +41,6 @@ public class gameLogicTest extends GameTest{
             assertNotNull(shape.getShape());
             assertNotNull(shape.getX());
             assertNotNull(shape.getY());
-            assertNotNull(shape.getRotation());
         }
 
         assertEquals(LIVE, loadMap1.model.getState());

@@ -30,9 +30,9 @@ public class MainMenuScreen extends MenuScreen {
 
     /**
      * Main Menu Screen's Constructor.
+     * It creates a Main Menu for the given game.
      *
-     * @param game
-     *
+     * @param game The current Game session.
      */
     public MainMenuScreen(final Armadillo game) {
         super(game);
@@ -42,8 +42,7 @@ public class MainMenuScreen extends MenuScreen {
      * Function responsible for creating and setting the Menu Buttons.
      * It also sets the buttons Layout in the given table.
      *
-     * @param table
-     *      Table where the Menu buttons will be organized
+     * @param table Table where the Menu buttons will be organized
      */
     protected void createMenuButtons(Table table) {
 
@@ -57,6 +56,11 @@ public class MainMenuScreen extends MenuScreen {
         table.padBottom(BOTTOM_EDGE);
     }
 
+    /**
+     * Adds the Exit Button to the Main Menu.
+     *
+     * @param table The table to where the Exit button will be added.
+     */
     private void addExitButton(Table table) {
         TextButton exitButton = new TextButton("Exit", skin1);
         exitButton.addListener(new ClickListener() {
@@ -68,6 +72,11 @@ public class MainMenuScreen extends MenuScreen {
         table.add(exitButton).size(BUTTON_WIDTH, DEFAULT_BUTTON_SIZE).pad(BUTTON_EDGE).row();
     }
 
+    /**
+     * Adds the Networking Button to the Main Menu.
+     *
+     * @param table The table to where the Networking button will be added.
+     */
     private void addNetworkingButton(Table table) {
         TextButton networkingButton = new TextButton("Networking", skin1);
         networkingButton.addListener(new ClickListener() {
@@ -79,6 +88,11 @@ public class MainMenuScreen extends MenuScreen {
         table.add(networkingButton).size(BUTTON_WIDTH, DEFAULT_BUTTON_SIZE).pad(BUTTON_EDGE).row();
     }
 
+    /**
+     * Adds the Options Button to the Main Menu.
+     *
+     * @param table The table to where the Options button will be added.
+     */
     private void addOptionsButton(Table table) {
         TextButton optionsButton = new TextButton("Options", skin1);
         optionsButton.addListener(new ClickListener() {
@@ -90,6 +104,11 @@ public class MainMenuScreen extends MenuScreen {
         table.add(optionsButton).size(BUTTON_WIDTH, DEFAULT_BUTTON_SIZE).pad(BUTTON_EDGE).row();
     }
 
+    /**
+     * Adds the play Button to the Main Menu.
+     *
+     * @param table The table to where the play button will be added.
+     */
     private void addPlayButton(Table table) {
         TextButton playButton = new TextButton("Play", skin1);
         playButton.addListener(new ClickListener() {
@@ -101,6 +120,9 @@ public class MainMenuScreen extends MenuScreen {
         table.add(playButton).size(BUTTON_WIDTH, DEFAULT_BUTTON_SIZE).pad(BUTTON_EDGE).row();
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public void show() {
         super.show();
@@ -110,7 +132,6 @@ public class MainMenuScreen extends MenuScreen {
 
         createMenuButtons(table);
 
-        // Add table to stage
         stage.addActor(table);
     }
 }
