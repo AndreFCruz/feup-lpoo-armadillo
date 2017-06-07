@@ -3,15 +3,20 @@ package com.lpoo.game.view.entities;
 import com.badlogic.gdx.graphics.Color;
 
 /**
- * Created by andre on 20/05/2017.
+ * A class used to represent the Platform's shape view.
  */
-
 class PlatformView extends ShapeView {
 
-    private static Color platformColor = Color.BLACK;
+    /**
+     * Platform's draw Color.
+     */
+    private static Color platformColor = Color.DARK_GRAY;
 
+    /**
+     * Platform's View Constructor.
+     * It defines in which color the platform shape will be drawn.
+     */
     PlatformView() {
         setColor(platformColor);
     }
-
 }

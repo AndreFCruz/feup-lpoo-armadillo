@@ -10,11 +10,14 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 /**
  * A abstract view capable of holding a sprite with a certain
  * position and rotation.
- *
+ * <p>
  * This view is able to update its data based on a entity model.
  */
 public abstract class EntityView {
 
+    /**
+     * The type of entity of the entity view.
+     */
     private final EntityModel.ModelType type;
 
     /**
@@ -27,6 +30,7 @@ public abstract class EntityView {
      *
      * @param game the game this view belongs to. Needed to access the
      *             asset manager to get textures.
+     * @param type the type of entity.
      */
     EntityView(Armadillo game, EntityModel.ModelType type) {
         this.type = type;
@@ -66,7 +70,7 @@ public abstract class EntityView {
     /**
      * Updates this view based on a certain model.
      *
-     * @param model the model used to update this view
+     * @param model the entity model used to update this view
      */
     public void update(EntityModel model) {
         sprite.setCenter(model.getX() / PIXEL_TO_METER, model.getY() / PIXEL_TO_METER);

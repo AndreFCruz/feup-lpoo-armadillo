@@ -13,15 +13,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by andre on 01/06/2017.
+ * A class used to represent the Power Up's entity view.
  */
-
 public class PowerUpView extends EntityView {
 
+    /**
+     * The number of Frames of the animation.
+     */
     private static final int NUM_FRAMES = 8;
 
+    /**
+     * HashMap containing the Power Ups paired with their views.
+     */
     private static Map<EntityModel.ModelType, String> texFiles = new HashMap<>();
 
+    /**
+     * Static bloc, assuring this can happen before an object is created.
+     * Adds the power ups views to the HashMap.
+     */
     static {
         texFiles.put(EntityModel.ModelType.POWERUP_GRAVITY, "animations/crystal-32-blue.png");
         texFiles.put(EntityModel.ModelType.POWERUP_JUMP, "animations/crystal-32-yellow.png");
@@ -45,17 +54,21 @@ public class PowerUpView extends EntityView {
      */
     private float stateTime = 0;
 
-
     /**
      * Creates a PowerUpModel's View.
+     * It calls its superclass constructor. EntityView(Armadillo game, EntityModel.ModelType type).
      *
      * @param game the game this view belongs to. Needed to access the
      *             asset manager to get textures.
+     * @param type
      */
     PowerUpView(Armadillo game, EntityModel.ModelType type) {
         super(game, type);
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     protected Sprite createSprite(Armadillo game) {
         textureRegion = createAnimation(game, texFiles.get(getType()));
@@ -95,5 +108,4 @@ public class PowerUpView extends EntityView {
 
         sprite.draw(batch);
     }
-
 }
