@@ -32,7 +32,7 @@ public class GameScreen extends ScreenAdapter {
      */
     private static final boolean DEBUG_PHYSICS = false;
     /**
-     * Used for Camera loosness.
+     * Used for Camera looseness.
      */
     private static final float CAMERA_TOLERANCE = 50;
 
@@ -85,7 +85,7 @@ public class GameScreen extends ScreenAdapter {
     private InputHandler controller;
 
     /**
-     * The game Model of the current Game eing played by the User.
+     * The game Model of the current Game being played by the User.
      */
     private GameModel model;
 
@@ -190,7 +190,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     /**
-     * Function responsible for updating the Hud associatd to the game Screen
+     * Function responsible for updating the Hud associated to the game Screen
      *
      * @param state current Game Model state, used in decision making in HUD update.
      */

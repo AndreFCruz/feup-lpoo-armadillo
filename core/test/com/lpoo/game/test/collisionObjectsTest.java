@@ -25,10 +25,26 @@ public class collisionObjectsTest extends GameTest {
     }
 
     @Test
-    public void collisionPlatformTest() {
-        //Testing Collision with Boxes
+    public void collisionPivotedPlatformTest() {
+        //Testing Collision with Pivoted Platform
         tester.rotateRightDuringTime(0.5f);
         tester.ballJump();
         assertEquals(LIVE, tester.noMotionDuringTime(2));
+    }
+
+    GameTester otherTester = new GameTester("maps/testmap7.tmx");
+
+    @Test
+    public void collisionPlatformTest() {
+        //Testing Collision with a Platform that is on the Ground
+        otherTester.rotateRightDuringTime(2f);
+        assertEquals(LIVE, otherTester.noMotionDuringTime(2));
+    }
+
+    @Test
+    public void collisionPlatformOnWaterTest()  {
+        //Testing Collision with a Platform that is over the water
+        otherTester.rotateRightDuringTime(2f);
+        assertEquals(LIVE, otherTester.noMotionDuringTime(2));
     }
 }

@@ -149,8 +149,7 @@ public class BuoyancyController {
                 fixtures.add(fixture);
             }
         } catch (ClassCastException e) {
-            Gdx.app.debug("BuoyancyController",
-                    "Fixture shape is not an instance of PolygonShape.");
+            Gdx.app.debug("BuoyancyController", "Fixture shape is not an instance of PolygonShape.");
             System.err.println("Body in water is not a polygon");
         }
     }

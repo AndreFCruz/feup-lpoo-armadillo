@@ -28,7 +28,6 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 /**
  * A factory for Box2D World objects.
  */
-
 class B2DFactory {
 
     static PlatformModel makePlatform(World world, RectangleMapObject object) {

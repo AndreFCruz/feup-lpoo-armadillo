@@ -19,7 +19,7 @@ public class BallView extends EntityView {
      * BallView's Constructor.
      * It calls its superclass constructor. EntityView(Armadillo game).
      *
-     * @param game
+     * @param game The current game session.
      */
     BallView(Armadillo game) {
         super(game);

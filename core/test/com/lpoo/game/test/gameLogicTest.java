@@ -6,6 +6,7 @@ import com.lpoo.game.model.entities.ShapeModel;
 import org.junit.Test;
 
 import static com.lpoo.game.model.GameModel.ModelState.LIVE;
+import static com.lpoo.game.model.GameModel.ModelState.LOST;
 import static org.junit.Assert.*;
 
 /**
@@ -34,7 +35,6 @@ public class gameLogicTest extends GameTest{
         assertNotNull(loadMap1.model.getMap());
         assertNotNull(loadMap1.model.getEntityModels());
 
-        System.out.println(tester.model.getShapeModels().size);
         for (int i = 0; i < loadMap2.model.getShapeModels().size; ++i) {
             ShapeModel shape = loadMap2.model.getShapeModels().get(i);
             assertNotNull(shape.getType());
@@ -87,16 +87,17 @@ public class gameLogicTest extends GameTest{
         float[] init_pos = { otherTester.getBallXPosition(), otherTester.getBallYPosition() };
 
         //Ball will fall and game is lost
-        assertEquals(LIVE, otherTester.rotateRightDuringTime(8));
-        assertEquals(GameModel.ModelState.LOST, otherTester.noMotionDuringTime(3)); //Ball falling
+        assertEquals(LIVE, otherTester.rotateRightDuringTime(1));
+        assertEquals(LIVE, otherTester.noMotionDuringTime(2));
+        assertEquals(LOST, otherTester.rotateRightDuringTime(2)); //Ball falling
         assertTrue(init_pos[1] - 5 > otherTester.getBallYPosition());
 
         float[] final_pos = { otherTester.getBallXPosition(), otherTester.getBallYPosition() };
 
         //After LOST Position ball doesn't move
-        assertEquals(GameModel.ModelState.LOST, otherTester.rotateRightDuringTime(3));
+        assertEquals(LOST, otherTester.rotateRightDuringTime(3));
         otherTester.ballJump();
-        assertEquals(GameModel.ModelState.LOST, otherTester.rotateRightDuringTime(2));
+        assertEquals(LOST, otherTester.rotateRightDuringTime(2));
         assertEquals(final_pos[0], otherTester.getBallXPosition(), deltaError);
         assertEquals(final_pos[1], otherTester.getBallYPosition(), deltaError);
     }
@@ -107,14 +108,14 @@ public class gameLogicTest extends GameTest{
         assertEquals(LIVE, otherTester.noMotionDuringTime(1));
 
         //Ball will touch Water and game is lost
-        assertEquals(GameModel.ModelState.LOST, otherTester.rotateLeftDuringTime(5));
+        assertEquals(LOST, otherTester.rotateLeftDuringTime(5));
 
         float[] final_pos = { otherTester.getBallXPosition(), otherTester.getBallYPosition() };
 
         //After LOST Position ball doesn't move
-        assertEquals(GameModel.ModelState.LOST, otherTester.rotateRightDuringTime(3));
+        assertEquals(LOST, otherTester.rotateRightDuringTime(3));
         tester.ballJump();
-        assertEquals(GameModel.ModelState.LOST, otherTester.rotateRightDuringTime(2));
+        assertEquals(LOST, otherTester.rotateRightDuringTime(2));
         assertEquals(final_pos[0], otherTester.getBallXPosition(), deltaError);
         assertEquals(final_pos[1], otherTester.getBallYPosition(), deltaError);
     }

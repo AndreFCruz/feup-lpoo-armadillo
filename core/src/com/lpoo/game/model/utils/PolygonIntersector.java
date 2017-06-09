@@ -19,10 +19,10 @@ public class PolygonIntersector {
 	 * @param end Segment's last point
 	 * @return Whether the point is inside the segment
 	 */
-	public static boolean isPointInLineSegment(Vector2 point, Vector2 start,
+	/*public static boolean isPointInLineSegment(Vector2 point, Vector2 start,
 			Vector2 end) {
 		return isPointInLineSegment(point.x, point.y, start.x, start.y, end.x, end.y);
-	}
+	}*/
 
 	/**
 	 * Returns true if the given point is inside the segment.
@@ -35,11 +35,11 @@ public class PolygonIntersector {
 	 * @param endY Y coordinate of the segment's last point
 	 * @return Whether the point is inside the segment
 	 */
-	private static boolean isPointInLineSegment(float pointX, float pointY,
+	/*private static boolean isPointInLineSegment(float pointX, float pointY,
 			float startX, float startY, float endX, float endY) {
 		return (endX - startX) * (pointY - startY) > (endY - startY)
 				* (pointX - startX);
-	}
+	}*/
 
 	private static boolean isPointInsideEdge(Vector2 point,
 			Vector2 edgeStartPoint, Vector2 edgeEndPoint) {

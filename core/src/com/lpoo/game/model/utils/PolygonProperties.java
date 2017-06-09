@@ -17,16 +17,16 @@ public class PolygonProperties {
 		return centroid;
 	}
 
-	public void setCentroid(Vector2 centroid) {
+	/*public void setCentroid(Vector2 centroid) {
 		this.centroid = centroid;
-	}
+	}*/
 
 	public float getArea() {
 		return area;
 	}
 
-	public void setArea(float area) {
+	/*public void setArea(float area) {
 		this.area = area;
-	}
+	}*/
 	
 }

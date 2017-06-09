@@ -67,7 +67,7 @@ abstract class OptionsMenu {
      */
     private static final float SCORE_FONT_SCALE = HUD_VIEWPORT_WIDTH / 600;
     /**
-     * Distance between the Lables and the other stage elements
+     * Distance between the Labels and the other stage elements
      */
     private static final float LABEL_DISTANCE = HUD_VIEWPORT_HEIGHT / 40;
     /**

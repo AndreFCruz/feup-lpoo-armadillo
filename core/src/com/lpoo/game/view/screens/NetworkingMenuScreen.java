@@ -65,7 +65,7 @@ public class NetworkingMenuScreen extends MainMenuScreen {
      * @param table The table to where the Leaderboard button will be added.
      */
     private void createLeaderboardButton(Table table) {
-        TextButton leaderboardButton = new TextButton("Leaderbord", skin1);
+        TextButton leaderboardButton = new TextButton("Leaderboard", skin1);
 
         leaderboardButton.addListener(new ClickListener() {
             @Override

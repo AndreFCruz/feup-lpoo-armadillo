@@ -14,7 +14,7 @@ public class BoxView extends EntityView {
      * BoxView's Constructor.
      * It calls its superclass constructor. EntityView(Armadillo game).
      *
-     * @param game
+     * @param game The current game session.
      */
     BoxView(Armadillo game) {
         super(game);

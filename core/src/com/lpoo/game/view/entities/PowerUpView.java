@@ -27,10 +27,6 @@ public class PowerUpView extends EntityView {
      */
     private static Map<EntityModel.ModelType, String> texFiles = new HashMap<>();
 
-    /**
-     * Static bloc, assuring this can happen before an object is created.
-     * Adds the power ups views to the HashMap.
-     */
     static {
         texFiles.put(EntityModel.ModelType.POWERUP_GRAVITY, "animations/crystal-32-blue.png");
         texFiles.put(EntityModel.ModelType.POWERUP_JUMP, "animations/crystal-32-yellow.png");
@@ -60,7 +56,7 @@ public class PowerUpView extends EntityView {
      *
      * @param game the game this view belongs to. Needed to access the
      *             asset manager to get textures.
-     * @param type
+     * @param type The type of PowerUP being created.
      */
     PowerUpView(Armadillo game, EntityModel.ModelType type) {
         super(game, type);
