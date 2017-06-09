@@ -1,12 +1,15 @@
 # LPOO1617_T6G5
 
+[![BCH compliance](https://bettercodehub.com/edge/badge/AndreFCruz/LPOO1617_T6G5AndreFCruz/LPOO1617_T6G5?branch=master&token=f4cdc1d758665692d8603b9b6a9dfc271a8927b3)](https://bettercodehub.com/)
+
 |Table of Contents|
 |:---------------:|
-|[Setup/Installation Procedure](#setup-installation-procedure)|
+|[Setup/Installation Procedure](#setupinstallation-procedure)|
 |[Package and class diagram (UML)](#package-and-class-diagram-uml)|
 |[Design Patterns Used](#design-patterns-used)|
 |[GUI Design and Mock-Ups](#gui-design-and-mock-ups)|
-|[List of Tests](#list-of-tests)|
+|[Tests Coverage](#tests-coverage)|
+|[Relevant design decisions and lessons learned](#relevant-design-decisions-and-lessons-learned)|
 
 ## Setup/Installation Procedure
 1. Sign up for the alpha release on the Google Play store [here](https://play.google.com/apps/testing/com.lpoo.game).
@@ -32,21 +35,8 @@
     * models can have multiple views.
 
 
-  * ### Observer
-    ![Observer Pattern](https://cloud.githubusercontent.com/assets/13498941/25565835/08738738-2dc7-11e7-96d5-9f74cb6ac843.png)
-  
-    Participating classes:
-    * Observers: GameController (implements InputListener), WorldContactListener (implements ContactListener).
-    * Subjects: several GUI elements (extends Actor), EntityModel (which has Fixtures).
-  
-    Why we decided to use it:
-    * Maintains consistency between related objects.
-    * Permits cleaner code with event based design.
-  
-  
   * ### Factory
     ![Factory](https://cloud.githubusercontent.com/assets/13498941/25568305/a50c0ed2-2df7-11e7-9883-cd7e08b9e3cc.png)
-    
     Participating classes: ViewFactory and GameScreen.
     
     Why we decided to use it: 
@@ -55,7 +45,6 @@
   
   * ### Factory Method
     ![Factory Method](https://cloud.githubusercontent.com/assets/13498941/25565883/fbb6c1c6-2dc7-11e7-8301-0bdbcaa90a28.png)
-
     Participating classes: EntityView and all sub-classes (namely BallView, PowerUpView, ...).
     
     Why we decided to use it:
@@ -64,41 +53,47 @@
     
   * ### State
     EntityModel's state is controlled by a state machine and its restrict transactions.
-    Participating classes: BallModel, SquareModel.
+    Participating classes: BallModel.
   
     Why we decide to use it:
     * Useful for making the code more logic and understandable.
     * When the internal state of an object changes, it allows it to change its behaviour.
   
+  * ### Null Object
+  ** UML image ? **
+    Participating classes: NullGameServices.
   
-  * ### GameLoop
-    ![GameLoop Pattern](https://cloud.githubusercontent.com/assets/13498941/25568348/a44aab88-2df8-11e7-95f5-3206f001386a.png)
-    
-    Implemented using LibGDX's Game template method pattern.
-    Participating classes: Spheral, GameScreen and GameModel.
-  
-    Why we decide to use it: decouples the progression of game time from user input and processor speed.
-  
+    Why we decided to use it:
+    * Prevents constant null checks.
+    * The result of the null check would be to do nothing.
   
   * ### Update Method
     ![Update Method](https://cloud.githubusercontent.com/assets/13498941/25568393/cdc324f8-2df9-11e7-9e6c-1d0823576018.png)
-    
-    Participating classes: EntityModel and all sub-classes (BallModel, SquareModel, PowerUp).
+    Participating classes: EntityModel and all its sub-classes (BallModel, PowerUp, etc.), ShapeModel and all its subclasses, as well as the BuoyancyController class.
   
-    Why we decide to use it:
+    Why we decided to use it:
     * facilitates updating all entities in the game. 
     * renders smooth animation of entities (independent of frame-rate).
-  
-  
-  * ### Singleton
-    ![Singleton Pattern](https://cloud.githubusercontent.com/assets/13498941/25568510/4ef3037a-2dfc-11e7-9a61-9559406e8a4a.png)
-  
-    Participating classes: GameModel.
     
-    Why we decided to use it: Game needs only one GameModel, which must be accessed in several different places of our code.
+   * ### GameLoop
+    ![GameLoop Pattern](https://cloud.githubusercontent.com/assets/13498941/25568348/a44aab88-2df8-11e7-95f5-3206f001386a.png)
+    Implemented using LibGDX's Game template method pattern.
+    Participating classes: Armadillo, GameScreen and GameModel.
   
-    
-## GUI Design and Mock-Ups
+    Why we decided to use it: decouples the progression of game time from user input and processor speed.
+
+ 
+## Tests Coverage
+** TODO PRINTSCREEN NEEDED **
+
+## Relevant design decisions and lessons learned
+#### Singleton... and why we decided not to use it
+We had initially planned for the GameModel class to implement the Singleton pattern. Eventually it became more troublesome than the problems it solved, so we decided to refactor it out.
+1. It increases code coupling and makes automated testing more difficult.
+2. 
+
+
+## Original GUI Design and Mock-Ups
 
   * ### Main Menu
     ![MainMenu](http://imgur.com/tJOtAo2.png)
@@ -136,27 +131,3 @@
     **Functionalities:**
     *	By swiping left and right the User can choose which skin his ball will have.
     *	Return to the Main Menu, by clicking in the respective button.
-
- 
-## List of Tests
-
-Note: Ball represents the Object the User is able to control.
-
-* Test if the ball moves accordingly to the User's input. (**testMoveBall**)
-* Test if othe ball jumps acorddingly to the User's input. (**testBallJump**)
-* Test if the score is incresingly correctly over time. (**testScore**)
-* Colliding with an enemy object will make the User lose the game (switching to game over screen). (**testGameOver & testEnemyCollision**)
-* Reaching the Win Position will make the User win the current Level and go to the Next Level. (**testEndOfLevel**)
-* Winning the Level in a faster time than the current fastest time, will set the fastest time to the new time. (**setNewFastestTime**)
-* Picking up a gravity power-up will change the world’s gravity.(**testGravityPowerUp**)
-* Picking up a restitution power-up will change the ball’s restitution coefficient value.
-* Picking up a density power-up will change the ball’s density value. (**testDensityPowerUp**)
-* Picking up a velocity power-up will change the ball’s acceleration value. (**testVelocityPowerUp**)
-* Picking up a power-up will make the power-up disappear.(**testGravityPowerUp & testVelocityPowerUp & testDensityPowerUp**)
-* Test if enemies with random movement eventually move in all directions. (**testEnemyMovement**)
-* Restarting a game will effectively reset all changes made in the level.
-* Colliding with a kinematic body will not change its trajectory. (**testWorldCollision**)
-* Colliding with a static body (for example: a wall), will not affect the body. (**testWorldCollision**)
-* Colliding with a dynamic body will change its trajectory/position. (**testWorldCollision & testMoveSquare**)
-* The ball will not jump, unless there is an object underneath it. (**testBallJump**)
-* Changing the current skin implies that the ball has that skin when the User begins a new Game. (**testSkinChange**)
