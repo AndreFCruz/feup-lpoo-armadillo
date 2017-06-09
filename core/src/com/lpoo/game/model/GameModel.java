@@ -39,7 +39,9 @@ public class GameModel implements Disposable {
     /**
      * Possible Game States the Model may be in.
      */
-    public enum ModelState {PAUSED, LIVE, WON, LOST}
+    public enum ModelState {
+        PAUSED, LIVE, WON, LOST
+    }
 
     /**
      * Current Model State the game is in.
@@ -69,7 +71,7 @@ public class GameModel implements Disposable {
     /**
      * The world's gravity vector.
      */
-    private Vector2 gravity = new Vector2(0, - 9.81f);
+    private Vector2 gravity = new Vector2(0, -9.81f);
 
     /**
      * The world's entities.
@@ -103,6 +105,7 @@ public class GameModel implements Disposable {
 
     /**
      * Constructor for a GameModel with a specific map.
+     *
      * @param map TiledMap to be used in this model.
      */
     public GameModel(TiledMap map) {
@@ -111,6 +114,7 @@ public class GameModel implements Disposable {
 
     /**
      * Loads the given TiledMap.
+     *
      * @param map Map to be loaded.
      */
     public void loadMap(TiledMap map) {
@@ -122,8 +126,7 @@ public class GameModel implements Disposable {
      * Starts (or restarts) a level from the current map.
      */
     public void startLevel() {
-        if (map == null)
-            return;
+        if (map == null) return;
 
         currentRunTime = 0;
         currentState = LIVE;
@@ -163,6 +166,7 @@ public class GameModel implements Disposable {
 
     /**
      * Updates the model. Steps the world and updates its entities.
+     *
      * @param delta Time elapsed since last update.
      * @return The model's current state.
      */
@@ -173,13 +177,13 @@ public class GameModel implements Disposable {
         currentRunTime += delta;
 
         // Step the simulation with a fixed time step of 1/60 of a second
-        world.step(1/60f, 6, 2);
+        world.step(1 / 60f, 6, 2);
         for (WaterModel model : fluids)
             model.step();
 
         removeFlagged();
 
-        if (! ballInBounds())
+        if (!ballInBounds())
             return (currentState = LOST);
         if (ballReachedEnd())
             return (currentState = WON);
@@ -201,6 +205,7 @@ public class GameModel implements Disposable {
 
     /**
      * Checks whether the ball's model is inside the defined bounds.
+     *
      * @return True if ball is in bounds, false otherwise.
      */
     private boolean ballInBounds() {
@@ -209,10 +214,8 @@ public class GameModel implements Disposable {
             try {
                 GameServices gameServices = ((Armadillo) (Gdx.app.getApplicationListener())).getGameServices();
                 gameServices.unlockAchievement(gameServices.getFallingAchievementID());
-            }
-            catch (java.lang.ClassCastException e) {
-                System.err.println("Application listener not of type game.");
-            }
+            } catch (java.lang.ClassCastException e) {
+                System.err.println("Application listener not of type game."); }
         }
 
         return inBounds;
@@ -220,6 +223,7 @@ public class GameModel implements Disposable {
 
     /**
      * Checks whether the ball's model reached the level's end position.
+     *
      * @return True if ball reached end position, false otherwise.
      */
     private boolean ballReachedEnd() {
@@ -240,6 +244,7 @@ public class GameModel implements Disposable {
 
     /**
      * Getter for the model's ball model.
+     *
      * @return The ball model.
      */
     public BallModel getBallModel() {
@@ -248,6 +253,7 @@ public class GameModel implements Disposable {
 
     /**
      * Getter for the model's shape models.
+     *
      * @return The shape models.
      */
     public Array<ShapeModel> getShapeModels() {
@@ -256,6 +262,7 @@ public class GameModel implements Disposable {
 
     /**
      * Getter for the model's entity models
+     *
      * @return The entity models.
      */
     public Array<EntityModel> getEntityModels() {
@@ -264,6 +271,7 @@ public class GameModel implements Disposable {
 
     /**
      * Getter for the model's current map.
+     *
      * @return This model's current map.
      */
     public TiledMap getMap() {
@@ -272,6 +280,7 @@ public class GameModel implements Disposable {
 
     /**
      * Getter for the model's current state.
+     *
      * @return The model's state.
      */
     public ModelState getState() {
@@ -287,6 +296,7 @@ public class GameModel implements Disposable {
 
     /**
      * Getter for this session's current run time.
+     *
      * @return The session's current run time.
      */
     public float getCurrentRunTime() {

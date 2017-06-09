@@ -27,7 +27,6 @@ public class GravityPowerUp extends PowerUp {
             gameServices.unlockAchievement(gameServices.getGravityAchievementID());
         }
         catch (java.lang.ClassCastException e) {
-            System.err.println("Activity class not a Game. Tests running.");
-        }
+            System.err.println("Activity class not a Game. Tests running."); }
     }
 }

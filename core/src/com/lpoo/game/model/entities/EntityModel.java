@@ -105,9 +105,10 @@ public abstract class EntityModel {
 
     /**
      * Creates a polygon shape from a pixel based list of vertices
-     * @param vertices  Vertices defining an image in pixels
-     * @param size      Width/Height of the bitmap the vertices were extracted from
-     * @return      A PolygonShape with the correct vertices
+     *
+     * @param vertices Vertices defining an image in pixels
+     * @param size     Width/Height of the bitmap the vertices were extracted from
+     * @return A PolygonShape with the correct vertices
      */
     static PolygonShape createPolygonShape(float[] vertices, Vector2 size) {
         // Transform pixels into meters, center and invert the y-coordinate

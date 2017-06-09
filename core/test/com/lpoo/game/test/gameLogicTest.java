@@ -1,6 +1,7 @@
 package com.lpoo.game.test;
 
 import com.lpoo.game.model.GameModel;
+import com.lpoo.game.model.entities.EntityModel;
 import com.lpoo.game.model.entities.ShapeModel;
 
 import org.junit.Test;
@@ -39,14 +40,31 @@ public class gameLogicTest extends GameTest{
             ShapeModel shape = loadMap2.model.getShapeModels().get(i);
             assertNotNull(shape.getType());
             assertNotNull(shape.getShape());
+            assertTrue(-360 <= shape.getAngle());
+            assertTrue(shape.getAngle() <= 360);
             assertNotNull(shape.getX());
             assertNotNull(shape.getY());
+        }
+
+        for (int i = 0; i < loadMap2.model.getEntityModels().size; ++i) {
+            EntityModel entity = loadMap2.model.getEntityModels().get(i);
+            assertTrue(-360 <= entity.getAngle());
+            assertTrue(entity.getAngle() <= 360);
+            assertTrue(entity.getType() == EntityModel.ModelType.BALL ||
+                       entity.getType() == EntityModel.ModelType.BOX ||
+                       entity.getType() == EntityModel.ModelType.POWERUP_GRAVITY ||
+                       entity.getType() == EntityModel.ModelType.POWERUP_JUMP ||
+                       entity.getType() == EntityModel.ModelType.POWERUP_VELOCITY ||
+                       entity.getType() == EntityModel.ModelType.POWERUP_RANDOM);
         }
 
         assertEquals(LIVE, loadMap1.model.getState());
         assertEquals(LIVE, loadMap2.model.getState());
 
         tester.model.dispose();
+
+        //Testing Model detects bad maps
+        assertTrue(GameTester.loadBadMap("maps/testmap8.tmx"));
     }
 
     @Test

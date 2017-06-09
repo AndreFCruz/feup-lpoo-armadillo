@@ -12,7 +12,9 @@ public abstract class ShapeModel {
     /**
      * Enum representing the model's type.
      */
-    public enum ModelType {PLATFORM}
+    public enum ModelType {
+        PLATFORM
+    }
 
     /**
      * This model's type.
@@ -31,7 +33,8 @@ public abstract class ShapeModel {
 
     /**
      * Constructor for a ShapeModel.
-     * @param type The model's type.
+     *
+     * @param type  The model's type.
      * @param shape The model's shape.
      */
     ShapeModel(ModelType type, Shape2D shape) {
@@ -41,6 +44,7 @@ public abstract class ShapeModel {
 
     /**
      * Getter for the model's body.
+     *
      * @return This model's body.
      */
     public Body getBody() {
@@ -49,6 +53,7 @@ public abstract class ShapeModel {
 
     /**
      * Getter for the model's type.
+     *
      * @return This model's type
      */
     public ShapeModel.ModelType getType() {
@@ -75,6 +80,7 @@ public abstract class ShapeModel {
 
     /**
      * Wraps the getAndle method from the Box2D body class.
+     *
      * @return the body's rotation in degrees.
      */
     public float getAngle() {
@@ -83,6 +89,7 @@ public abstract class ShapeModel {
 
     /**
      * Getter for the model's shape.
+     *
      * @return this model's shape.
      */
     public Shape2D getShape() {

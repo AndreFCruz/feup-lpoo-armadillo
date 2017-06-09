@@ -18,16 +18,25 @@ public class GameTester {
 
     GameModel model;
 
-    public GameTester(TiledMap map) {
-        model = new GameModel(map);
-    }
-
     public GameTester(String map_name) {
         TiledMap testmap = new TmxMapLoader().load(map_name);
         model = new GameModel(testmap);
 
         //For positions and other stuff initialization
         noMotionDuringTime(0);
+    }
+
+    public static boolean loadBadMap(String map_name) {
+        try {
+            GameTester badMap = new GameTester(map_name);
+        }
+        catch (NullPointerException e) {
+            return true;
+        }
+        catch (ClassCastException e) {
+            return true;
+        }
+        return false;
     }
 
     // In all the functions, param time is in seconds

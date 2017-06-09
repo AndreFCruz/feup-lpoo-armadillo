@@ -52,8 +52,7 @@ public class WorldContactListener implements ContactListener {
                 if (fixB.getFilterData().categoryBits == BALL_BIT) {
                     model.setLost();
                     logWaterAchievement();
-                }
-                else
+                } else
                     ((BuoyancyController) fluid.getBody().getUserData()).addBody(fixB);
             }
         });
@@ -69,10 +68,8 @@ public class WorldContactListener implements ContactListener {
         try {
             GameServices gameServices = ((Armadillo) (Gdx.app.getApplicationListener())).getGameServices();
             gameServices.unlockAchievement(gameServices.getWaterAchievementID());
-        }
-        catch (java.lang.ClassCastException e) {
-            System.err.println("Application listener not of type game.");
-        }
+        } catch (java.lang.ClassCastException e) {
+            System.err.println("Application listener not of type game."); }
     }
 
     private void addBallContactHandlers() {
@@ -94,7 +91,7 @@ public class WorldContactListener implements ContactListener {
         beginContactFunctions.put(HITTABLE_BIT, new ContactHandler() {
             @Override
             public void handle(Fixture fixA, Fixture fixB) {
-                if (! (fixB.getBody().getUserData() instanceof EntityModel))
+                if (!(fixB.getBody().getUserData() instanceof EntityModel))
                     return;
 
                 ((Hittable) fixA.getBody().getUserData()).onHit((BallModel) fixB.getBody().getUserData());
@@ -151,8 +148,10 @@ public class WorldContactListener implements ContactListener {
     }
 
     @Override
-    public void preSolve(Contact contact, Manifold oldManifold) {}
+    public void preSolve(Contact contact, Manifold oldManifold) {
+    }
 
     @Override
-    public void postSolve(Contact contact, ContactImpulse impulse) {}
+    public void postSolve(Contact contact, ContactImpulse impulse) {
+    }
 }

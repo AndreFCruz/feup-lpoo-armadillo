@@ -47,9 +47,8 @@ public class BuoyancyController {
                 List<Vector2> subjectPolygon;
                 if (isFluidFixed) {
                     subjectPolygon = fluidVertices;
-                } else {
+                } else
                     subjectPolygon = getFixtureVertices(fluidSensor);
-                }
 
 				/* Get intersection polygon */
                 List<Vector2> clippedPolygon = PolygonIntersector.clipPolygons(
@@ -150,7 +149,6 @@ public class BuoyancyController {
             }
         } catch (ClassCastException e) {
             Gdx.app.debug("BuoyancyController", "Fixture shape is not an instance of PolygonShape.");
-            System.err.println("Body in water is not a polygon");
         }
     }
 
