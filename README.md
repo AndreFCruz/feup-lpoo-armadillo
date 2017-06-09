@@ -2,15 +2,20 @@
 
 |Table of Contents|
 |:---------------:|
+|[Setup/Installation Procedure](#setup-installation-procedure)|
 |[Package and class diagram (UML)](#package-and-class-diagram-uml)|
-|[Design Patterns Used](#expected-design-patterns-used)|
+|[Design Patterns Used](#design-patterns-used)|
 |[GUI Design and Mock-Ups](#gui-design-and-mock-ups)|
 |[List of Tests](#list-of-tests)|
+
+## Setup/Installation Procedure
+1. Sign up for the alpha release on the Google Play store [here](https://play.google.com/apps/testing/com.lpoo.game).
+2. Download and install the app in your android smartphone.
 
 ## Package and class diagram (UML)
 ![UML Diagram](https://cloud.githubusercontent.com/assets/13498941/25568250/97bd0156-2df6-11e7-89f4-447b37c0c771.png)
 
-## (Expected) Design Patterns Used
+## Design Patterns Used
 
   * ### Model–view–controller (MVC) - architectural pattern
     ![MVC Pattern](https://cloud.githubusercontent.com/assets/13498941/25565780/c646a81e-2dc5-11e7-9bbd-5a8330b1cbbf.png)
