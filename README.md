@@ -33,7 +33,7 @@
 ** INSERT YOUTUBE LINK ? **
 
 ## Package and class diagram (UML)
-![class diagram](https://user-images.githubusercontent.com/13498941/27004016-22679ab4-4dfa-11e7-888c-7799478596d0.png)
+![class diagram](https://user-images.githubusercontent.com/13498941/27004518-2ebf092a-4e02-11e7-99b1-084c11896527.png)
 
 [Original](https://cloud.githubusercontent.com/assets/13498941/25568250/97bd0156-2df6-11e7-89f4-447b37c0c771.png)  package and class diagram for reference. This was drafted before we began development.
 
