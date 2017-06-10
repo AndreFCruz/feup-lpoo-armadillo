@@ -11,36 +11,6 @@ public class PolygonIntersector {
 	/* A close to zero float epsilon value */
 	private static final float EPSILON = 1.1920928955078125E-7f;
 
-	/**
-	 * Returns true if the given point is inside the segment.
-	 * 
-	 * @param point The point to check
-	 * @param start Segment's first point
-	 * @param end Segment's last point
-	 * @return Whether the point is inside the segment
-	 */
-	/*public static boolean isPointInLineSegment(Vector2 point, Vector2 start,
-			Vector2 end) {
-		return isPointInLineSegment(point.x, point.y, start.x, start.y, end.x, end.y);
-	}*/
-
-	/**
-	 * Returns true if the given point is inside the segment.
-	 * 
-	 * @param pointX X coordinate of the point
-	 * @param pointY Y coordinate of the point
-	 * @param startX X coordinate of the segment's first point
-	 * @param startY Y coordinate of the segment's first point
-	 * @param endX X coordinate of the segment's last point
-	 * @param endY Y coordinate of the segment's last point
-	 * @return Whether the point is inside the segment
-	 */
-	/*private static boolean isPointInLineSegment(float pointX, float pointY,
-			float startX, float startY, float endX, float endY) {
-		return (endX - startX) * (pointY - startY) > (endY - startY)
-				* (pointX - startX);
-	}*/
-
 	private static boolean isPointInsideEdge(Vector2 point,
 			Vector2 edgeStartPoint, Vector2 edgeEndPoint) {
 		return (edgeEndPoint.x - edgeStartPoint.x)

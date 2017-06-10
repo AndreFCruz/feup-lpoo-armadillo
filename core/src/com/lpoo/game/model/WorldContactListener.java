@@ -99,6 +99,9 @@ public class WorldContactListener implements ContactListener {
         });
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public void beginContact(Contact contact) {
         Fixture fixA = contact.getFixtureA();
@@ -115,6 +118,9 @@ public class WorldContactListener implements ContactListener {
 
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public void endContact(Contact contact) {
         Fixture fixA = contact.getFixtureA();
@@ -147,10 +153,16 @@ public class WorldContactListener implements ContactListener {
         }
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
     }

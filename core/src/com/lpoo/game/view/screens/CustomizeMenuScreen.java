@@ -96,8 +96,9 @@ class CustomizeMenuScreen extends MenuScreen {
         table.row();
 
         for (int i = 0; i < game.getNumSkins(); ++i)
-            table.add(skinLabels.get(i)).fill().width(BUTTON_SIZE).center();
+            table.add(skinLabels.get(i));
 
+        table.debugAll();
         initializeCurrentSkin();
     }
 
@@ -142,7 +143,7 @@ class CustomizeMenuScreen extends MenuScreen {
         ScrollPane scroller = new ScrollPane(skinsTable, skin1);
         scroller.getStyle().background = null;
 
-        table.add(back).size(DEFAULT_BUTTON_SIZE, DEFAULT_BUTTON_SIZE).top().left().padLeft(SIDE_DISTANCE).padTop(TOP_EDGE / 3).row();
+        table.add(back).size(DEFAULT_BUTTON_SIZE, DEFAULT_BUTTON_SIZE).top().left()     .padLeft(SIDE_DISTANCE).padTop(TOP_EDGE / 3).row();
         table.add(scroller).fill().expand().padBottom(SCROLLER_DISTANCE);
     }
 

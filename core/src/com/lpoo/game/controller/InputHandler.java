@@ -11,5 +11,4 @@ public interface InputHandler {
      * @param delta Time elapsed since last update
      */
     void handleInput(float delta);
-
 }

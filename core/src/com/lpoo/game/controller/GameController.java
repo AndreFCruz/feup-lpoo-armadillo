@@ -31,7 +31,9 @@ public class GameController implements InputHandler {
             System.err.println("Accelerometer unavailable");
     }
 
-
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public void handleInput(float delta) {
         pollTouch(delta);
@@ -43,9 +45,9 @@ public class GameController implements InputHandler {
     }
 
     /**
+     * Decide what to do when the screen is touched.
      *
-     *
-     * @param delta The current
+     * @param delta The time elapsed since the last update
      */
     private void pollTouch(float delta) {
         if (Gdx.input.justTouched()) {
@@ -53,6 +55,11 @@ public class GameController implements InputHandler {
         }
     }
 
+    /**
+     * Decide what to do when the keys are pressed.
+     *
+     * @param delta The time elapsed since the last update
+     */
     private void pollKeys(float delta) {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             model.getBallModel().rotate(delta);
@@ -67,6 +74,11 @@ public class GameController implements InputHandler {
         }
     }
 
+    /**
+     * Decide what to do when the Accelerometer is available and there is movement.
+     *
+     * @param delta The tme elapsed since the last update
+     */
     private void pollAccelerometer(float delta) {
         float y = Gdx.input.getAccelerometerY();
         float z = Gdx.input.getAccelerometerZ();
