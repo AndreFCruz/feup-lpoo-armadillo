@@ -1,9 +1,11 @@
 package com.lpoo.game;
 
+import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -59,7 +61,15 @@ public class Armadillo extends Game {
         skin2 = new Skin(Gdx.files.internal("appearance/smallBtn.json"), new TextureAtlas("appearance/smallBtn.atlas"));
 
         loadAssets();
+        setMusic();
         startGame();
+    }
+
+    private void setMusic() {
+        Music music = Gdx.audio.newMusic(Gdx.files.internal("music/doxent_-_Passing.mp3"));
+        music.setVolume(0.5f);
+        music.setLooping(true);
+        music.play();
     }
 
     private void startGame() {
