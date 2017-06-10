@@ -93,7 +93,11 @@
 
  
 ## Tests Coverage
-** TODO PRINTSCREEN NEEDED **
+* 100% class coverage
+* 100% method coverage
+* 98% line coverage
+
+![code_coverage](https://user-images.githubusercontent.com/13498941/27004102-6e3e222c-4dfb-11e7-89b9-1e63630e8d5a.PNG)
 
 ## Other Considerations
 * ### Lessons learned - Singleton... and why we decided not to use it
@@ -105,6 +109,7 @@
 * ### Difficulties along the way
   * Frustratingly trying to integrate google play services (and getting it to work on a release build);
   * Releasing an alpha on the play store, while adhearing to Google Play App Signing.
+  
   (These are fairly simple once you've done it a couple times, but for first-timers like us it required understanding the inner works of Android Studio)
   
 * ### Developers:
