@@ -9,7 +9,7 @@
 |[Package and class diagram (UML)](#package-and-class-diagram-uml)|
 |[Design Patterns Used](#design-patterns-used)|
 |[Tests Coverage](#tests-coverage)|
-|[Lessons learned](#lessons-learned)|
+|[Other Considerations](#other-considerations)|
 
 ## Setup/Installation Procedure
    * ### To install the android app through the Google Play Store
@@ -29,7 +29,6 @@
      2. To assemble a release apk you will need to change the signing settings to your own, or assemble an unsigned apk.
 
 ## Package and class diagram (UML)
-
 
 [Original](https://cloud.githubusercontent.com/assets/13498941/25568250/97bd0156-2df6-11e7-89f4-447b37c0c771.png)  package and class diagram for reference. This was drafted before we began development.
 
@@ -91,7 +90,18 @@
 ## Tests Coverage
 ** TODO PRINTSCREEN NEEDED **
 
-## Lessons learned
-#### Singleton... and why we decided not to use it
-We had initially planned for the GameModel class to implement the Singleton pattern, but eventually it became more troublesome than the problems it solved. It increased code coupling and made automated testing unnecessarily difficult.
+## Other Considerations
+* ### Lessons learned - Singleton... and why we decided not to use it
+  We had initially planned for the GameModel class to implement the Singleton pattern, but eventually it became more troublesome than the problems it solved. It increased code coupling and made automated testing unnecessarily difficult.
+
+* ### Overall time spent developing:
+  we estimate a total of **300 hours** (150 for each developer), including frustratingly trying to integrate google play services, and releasing the game in the play store.
+
+* ### Developers:
+  Project developed for 'Object Oriented Programming Laboratory', a second year subject @FEUP.
+  
+  Authors: @andrefcruz and @edgaracarneiro
+
+* ### Game Art: ###
+  A big thanks to **Mariana Silva** for providing most of the art we use in the game.
 
