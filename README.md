@@ -36,8 +36,8 @@
 ## Design Patterns Used
 
   * ### Model–view–controller (MVC) - architectural pattern
-    ![MVC Pattern](https://cloud.githubusercontent.com/assets/13498941/25565780/c646a81e-2dc5-11e7-9bbd-5a8330b1cbbf.png)
-    
+    <img height="300" alt="MVC Pattern" src="https://cloud.githubusercontent.com/assets/13498941/25565780/c646a81e-2dc5-11e7-9bbd-5a8330b1cbbf.png">
+        
     The Game features three main packages:
     * **Model**: It expresses the application's behavior in terms of the problem domain, independent of the user interface (Controller package). It directly manages the data, logic and rules of the application.
     * **View**: An output representation of the model's information.
@@ -73,19 +73,19 @@
     Why we decided to use it: Prevents constant null checks which would result in no actions being executed.
   
   * ### Update Method
-    ![Update Method](https://cloud.githubusercontent.com/assets/13498941/25568393/cdc324f8-2df9-11e7-9e6c-1d0823576018.png)
-    
+    <img width="450" alt="Update Method" src="https://cloud.githubusercontent.com/assets/13498941/25568393/cdc324f8-2df9-11e7-9e6c-1d0823576018.png">
+         
     Participating classes: EntityView and ShapeView.
   
-    Why we decided to use it:
-    * facilitates updating all entities in the game. 
+    Why we decided to use it: facilitates updating all view entities in the game. 
     
    * ### GameLoop
-    ![GameLoop Pattern](https://cloud.githubusercontent.com/assets/13498941/25568348/a44aab88-2df8-11e7-95f5-3206f001386a.png)
+     <img width="450" alt="GameLoop Pattern" src="https://cloud.githubusercontent.com/assets/13498941/25568348/a44aab88-2df8-11e7-95f5-3206f001386a.png">
+
     
-    Participating classes: GameController (handles input), GameModel (updates game) and GameScreen (renders).
+     Participating classes: GameController (handles input), GameModel (updates game) and GameScreen (renders).
   
-    Why we decided to use it: decouples the progression of game time from user input and processor speed.
+     Why we decided to use it: decouples the progression of game time from user input and processor speed.
 
  
 ## Tests Coverage
