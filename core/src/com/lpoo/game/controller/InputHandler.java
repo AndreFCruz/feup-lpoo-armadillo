@@ -1,11 +1,15 @@
 package com.lpoo.game.controller;
 
 /**
- * Created by andre on 11/05/2017.
+ * An Interface containing the functions all the Input Handlers should implement.
  */
-
 public interface InputHandler {
 
+    /**
+     * Function where the game handles the User's input.
+     *
+     * @param delta Time elapsed since last update
+     */
     void handleInput(float delta);
 
 }

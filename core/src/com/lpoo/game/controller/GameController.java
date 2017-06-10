@@ -7,18 +7,30 @@ import com.lpoo.game.model.GameModel;
 /**
  * The game's input handler.
  */
-
 public class GameController implements InputHandler {
 
+    /**
+     * The current game being played by the User.
+     */
     private GameModel model;
+
+    /**
+     * Boolean regarding the Accelerometer availability.
+     */
     private Boolean accelerometerAvailable;
 
+    /**
+     * Game Controller's constructor.
+     *
+     * @param model The current game being played by the USer.
+     */
     public GameController(GameModel model) {
         this.model = model;
 
-        if (! (accelerometerAvailable = Gdx.input.isPeripheralAvailable(Input.Peripheral.Accelerometer)))
+        if (!(accelerometerAvailable = Gdx.input.isPeripheralAvailable(Input.Peripheral.Accelerometer)))
             System.err.println("Accelerometer unavailable");
     }
+
 
     @Override
     public void handleInput(float delta) {
@@ -30,6 +42,11 @@ public class GameController implements InputHandler {
             pollKeys(delta);
     }
 
+    /**
+     *
+     *
+     * @param delta The current
+     */
     private void pollTouch(float delta) {
         if (Gdx.input.justTouched()) {
             model.getBallModel().jump();
