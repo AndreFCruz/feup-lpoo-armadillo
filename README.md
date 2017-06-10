@@ -43,6 +43,7 @@
 
   * ### Factory
     ![Factory](https://cloud.githubusercontent.com/assets/13498941/25568305/a50c0ed2-2df7-11e7-9883-cd7e08b9e3cc.png)
+    
     Participating classes: ViewFactory and B2DFactory.
     
     Why we decided to use it: 
@@ -51,6 +52,7 @@
   
   * ### Factory Method
     ![Factory Method](https://cloud.githubusercontent.com/assets/13498941/25565883/fbb6c1c6-2dc7-11e7-8301-0bdbcaa90a28.png)
+    
     Participating classes: EntityView and all sub-classes (BallView, PowerUpView, ...).
     
     Why we decided to use it:
@@ -63,6 +65,7 @@
   
   * ### Update Method
     ![Update Method](https://cloud.githubusercontent.com/assets/13498941/25568393/cdc324f8-2df9-11e7-9e6c-1d0823576018.png)
+    
     Participating classes: EntityView and ShapeView.
   
     Why we decided to use it:
@@ -70,6 +73,7 @@
     
    * ### GameLoop
     ![GameLoop Pattern](https://cloud.githubusercontent.com/assets/13498941/25568348/a44aab88-2df8-11e7-95f5-3206f001386a.png)
+    
     Participating classes: GameController (handles input), GameModel (updates game) and GameScreen (renders).
   
     Why we decided to use it: decouples the progression of game time from user input and processor speed.
