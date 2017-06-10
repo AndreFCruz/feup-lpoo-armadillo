@@ -1,6 +1,6 @@
 # LPOO1617_T6G5
 
-[![BCH compliance](https://bettercodehub.com/edge/badge/AndreFCruz/LPOO1617_T6G5AndreFCruz/LPOO1617_T6G5?branch=master&token=f4cdc1d758665692d8603b9b6a9dfc271a8927b3)](https://bettercodehub.com/)
+[![BCH compliance](https://bettercodehub.com/edge/badge/AndreFCruz/LPOO1617_T6G5?branch=master&token=f4cdc1d758665692d8603b9b6a9dfc271a8927b3)](https://bettercodehub.com/)
 
 |Table of Contents|
 |:---------------:|
@@ -13,10 +13,12 @@
 
 ## Setup/Installation Procedure
 1. Sign up for the alpha release on the Google Play store [here](https://play.google.com/apps/testing/com.lpoo.game).
-2. Download and install the app in your android smartphone.
+2. Download and install the app on your android smartphone.
 
 ## Package and class diagram (UML)
-![UML Diagram](https://cloud.githubusercontent.com/assets/13498941/25568250/97bd0156-2df6-11e7-89f4-447b37c0c771.png)
+
+
+[Original](https://cloud.githubusercontent.com/assets/13498941/25568250/97bd0156-2df6-11e7-89f4-447b37c0c771.png)  package and class diagram for reference. This was drafted before we began development.
 
 ## Design Patterns Used
 
