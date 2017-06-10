@@ -100,8 +100,13 @@
   We had initially planned for the GameModel class to implement the Singleton pattern, but eventually it became more troublesome than the problems it solved. It increased code coupling and made automated testing unnecessarily difficult.
 
 * ### Overall time spent developing:
-  we estimate a total of **300 hours** (150 for each developer), including frustratingly trying to integrate google play services, and releasing the game in the play store.
+  We estimate a total of **300 hours** (evenly distributed between the two developers).
 
+* ### Difficulties along the way
+  * Frustratingly trying to integrate google play services (and getting it to work on a release build);
+  * Releasing an alpha on the play store, while adhearing to Google Play App Signing.
+  (These are fairly simple once you've done it a couple times, but for first-timers like us it required understanding the inner works of Android Studio)
+  
 * ### Developers:
   Project developed for 'Object Oriented Programming Laboratory', a second year subject @FEUP.
   
