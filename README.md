@@ -55,7 +55,7 @@
 
 
   * ### Factory
-    ![Factory](https://cloud.githubusercontent.com/assets/13498941/25568305/a50c0ed2-2df7-11e7-9883-cd7e08b9e3cc.png)
+    ![Factory Pattern in our Project](https://user-images.githubusercontent.com/13498941/27004151-54c2147e-4dfc-11e7-9e40-868e3249bd3b.png)
     
     Participating classes: ViewFactory and B2DFactory.
     
@@ -111,6 +111,9 @@
   * Releasing an alpha on the play store, while adhearing to Google Play App Signing.
   
   (These are fairly simple once you've done it a couple times, but for first-timers like us it required understanding the inner works of Android Studio)
+  
+* ### Notes
+  If you see any references to 'Spheral', it was the original name of this project. We decided to rename it mid-development to Armadillo to better reflect the art style.
   
 * ### Developers:
   Project developed for 'Object Oriented Programming Laboratory', a second year subject @FEUP.
