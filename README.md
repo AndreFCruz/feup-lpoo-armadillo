@@ -1,6 +1,7 @@
 # LPOO1617_T6G5
 
 [![BCH compliance](https://bettercodehub.com/edge/badge/AndreFCruz/LPOO1617_T6G5?branch=master&token=f4cdc1d758665692d8603b9b6a9dfc271a8927b3)](https://bettercodehub.com/)
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
 |Table of Contents|
 |:---------------:|
@@ -12,8 +13,12 @@
 |[Relevant design decisions and lessons learned](#relevant-design-decisions-and-lessons-learned)|
 
 ## Setup/Installation Procedure
-1. Sign up for the alpha release on the Google Play store [here](https://play.google.com/apps/testing/com.lpoo.game).
-2. Download and install the app on your android smartphone.
+   * ### To install the android app
+     1. Sign up for the alpha release on the Google Play store [here](https://play.google.com/apps/testing/com.lpoo.game).
+     2. Download and install the app on your android smartphone.
+   
+   * ### To install the development environment
+     1. Simply clone this repository and open it with Android Studio.
 
 ## Package and class diagram (UML)
 
