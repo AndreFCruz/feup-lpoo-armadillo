@@ -33,6 +33,7 @@
 ** INSERT YOUTUBE LINK ? **
 
 ## Package and class diagram (UML)
+![class diagram](https://user-images.githubusercontent.com/13498941/27004518-2ebf092a-4e02-11e7-99b1-084c11896527.png)
 
 [Original](https://cloud.githubusercontent.com/assets/13498941/25568250/97bd0156-2df6-11e7-89f4-447b37c0c771.png)  package and class diagram for reference. This was drafted before we began development.
 
@@ -54,7 +55,7 @@
 
 
   * ### Factory
-    ![Factory](https://cloud.githubusercontent.com/assets/13498941/25568305/a50c0ed2-2df7-11e7-9883-cd7e08b9e3cc.png)
+    ![Factory Pattern in our Project](https://user-images.githubusercontent.com/13498941/27004151-54c2147e-4dfc-11e7-9e40-868e3249bd3b.png)
     
     Participating classes: ViewFactory and B2DFactory.
     
@@ -92,15 +93,28 @@
 
  
 ## Tests Coverage
-** TODO PRINTSCREEN NEEDED **
+* 100% class coverage
+* 100% method coverage
+* 98% line coverage
+
+![code_coverage](https://user-images.githubusercontent.com/13498941/27004102-6e3e222c-4dfb-11e7-89b9-1e63630e8d5a.PNG)
 
 ## Other Considerations
 * ### Lessons learned - Singleton... and why we decided not to use it
   We had initially planned for the GameModel class to implement the Singleton pattern, but eventually it became more troublesome than the problems it solved. It increased code coupling and made automated testing unnecessarily difficult.
 
 * ### Overall time spent developing:
-  we estimate a total of **300 hours** (150 for each developer), including frustratingly trying to integrate google play services, and releasing the game in the play store.
+  We estimate a total of **300 hours** (evenly distributed between the two developers).
 
+* ### Difficulties along the way
+  * Frustratingly trying to integrate google play services (and getting it to work on a release build);
+  * Releasing an alpha on the play store, while adhearing to Google Play App Signing.
+  
+  (These are fairly simple once you've done it a couple times, but for first-timers like us it required understanding the inner works of Android Studio)
+  
+* ### Notes
+  If you see any references to 'Spheral', it was the original name of this project. We decided to rename it mid-development to Armadillo to better reflect the art style.
+  
 * ### Developers:
   Project developed for 'Object Oriented Programming Laboratory', a second year subject @FEUP.
   
