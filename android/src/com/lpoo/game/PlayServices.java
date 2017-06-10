@@ -42,7 +42,8 @@ public class PlayServices implements GameServices {
 
     @Override
     public void unlockAchievement(String achievementID) {
-        Games.Achievements.unlock(gameHelper.getApiClient(), achievementID);
+        if (isSignedIn())
+            Games.Achievements.unlock(gameHelper.getApiClient(), achievementID);
     }
 
     @Override
@@ -51,7 +52,7 @@ public class PlayServices implements GameServices {
     }
 
     private void showScores(String leaderboardID) {
-        if (gameHelper.isSignedIn()) {
+        if (isSignedIn()) {
             activity.startActivityForResult(Games.Leaderboards.getLeaderboardIntent(gameHelper.getApiClient(),
                     leaderboardID), UNUSED_REQUEST_CODE);
         }
@@ -62,7 +63,7 @@ public class PlayServices implements GameServices {
 
     @Override
     public void showAchievements() {
-        if (gameHelper.isSignedIn()) {
+        if (isSignedIn()) {
             activity.startActivityForResult(Games.Achievements.getAchievementsIntent(
                     gameHelper.getApiClient()), UNUSED_REQUEST_CODE);
         }
