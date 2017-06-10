@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * A class used to represent the Power Up's entity view.
  */
-public class PowerUpView extends EntityView {
+class PowerUpView extends EntityView {
 
     /**
      * The number of Frames of the animation.

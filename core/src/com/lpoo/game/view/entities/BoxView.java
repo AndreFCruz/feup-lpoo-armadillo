@@ -8,7 +8,7 @@ import com.lpoo.game.Armadillo;
 /**
  * A class used to represent a Box's entity view.
  */
-public class BoxView extends EntityView {
+class BoxView extends EntityView {
 
     /**
      * BoxView's Constructor.

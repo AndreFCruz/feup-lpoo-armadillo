@@ -33,7 +33,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 25
         signingConfig signingConfigs.config
-        versionName '1.1'
+        versionName '1.0'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

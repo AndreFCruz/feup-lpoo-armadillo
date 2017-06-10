@@ -66,7 +66,6 @@ public class PlayServices implements GameServices {
             activity.startActivityForResult(Games.Achievements.getAchievementsIntent(
                     gameHelper.getApiClient()), UNUSED_REQUEST_CODE);
         }
-        else if (!gameHelper.isConnecting()) { }
     }
 
     @Override
