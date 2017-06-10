@@ -6,6 +6,7 @@
 |Table of Contents|
 |:---------------:|
 |[Setup/Installation Procedure](#setupinstallation-procedure)|
+|[Video Tutorial](#video-tutorial)|
 |[Package and class diagram (UML)](#package-and-class-diagram-uml)|
 |[Design Patterns Used](#design-patterns-used)|
 |[Tests Coverage](#tests-coverage)|
@@ -27,6 +28,9 @@
    * ### To install the development environment
      1. Simply clone this repository and open it with Android Studio.
      2. To assemble a release apk you will need to change the signing settings to your own, or assemble an unsigned apk.
+
+## Video Tutorial
+** INSERT YOUTUBE LINK ? **
 
 ## Package and class diagram (UML)
 
