@@ -100,7 +100,7 @@
 * ### Developers:
   Project developed for 'Object Oriented Programming Laboratory', a second year subject @FEUP.
   
-  Authors: @andrefcruz and @edgaracarneiro
+  Authors: Andre Cruz and Edgar Carneiro.
 
 * ### Game Art: ###
   A big thanks to **Mariana Silva** for providing most of the art we use in the game.
