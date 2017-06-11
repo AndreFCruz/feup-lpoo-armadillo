@@ -8,12 +8,22 @@ import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.google.example.games.basegameutils.GameHelper;
 
+/**
+ * Class responsible for launching the game in Android.
+ */
 public class AndroidLauncher extends AndroidApplication implements GameHelper.GameHelperListener {
+
+    /**
+     * Android Launcher's game Helper, for intercation with google play services.
+     */
     private GameHelper gameHelper;
 
-	@Override
-	protected void onCreate (Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    /**
+     * {@inheritDoc}}
+     */
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         gameHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
 
@@ -27,10 +37,12 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
 
         PlayServices playServices = new PlayServices(this, gameHelper);
 
-		initialize(new Armadillo(playServices), config);
-	}
+        initialize(new Armadillo(playServices), config);
+    }
 
-    // This snippet hides the system bars.
+    /**
+     * Function used to hide the system bars.
+     */
     private void hideSystemUI() {
         View mDecorView = getWindow().getDecorView();
 
@@ -46,29 +58,44 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     protected void onStart() {
         super.onStart();
         gameHelper.onStart(this);
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     protected void onStop() {
         super.onStop();
         gameHelper.onStop();
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         gameHelper.onActivityResult(requestCode, resultCode, data);
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public void onSignInFailed() {
         System.out.println("Sign in failed");
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public void onSignInSucceeded() {
         System.out.println("Sign in succeeded");
