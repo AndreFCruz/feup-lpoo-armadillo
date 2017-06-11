@@ -1,0 +1,10 @@
+com.google.example.games.basegameutils
+com.lpoo.game
+com.lpoo.game.controller
+com.lpoo.game.desktop
+com.lpoo.game.model
+com.lpoo.game.model.controllers
+com.lpoo.game.model.entities
+com.lpoo.game.model.utils
+com.lpoo.game.view.entities
+com.lpoo.game.view.screens

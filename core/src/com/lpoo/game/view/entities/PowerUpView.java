@@ -73,10 +73,11 @@ class PowerUpView extends EntityView {
     }
 
     /**
-     * Creates the animation used for this PowerUp Type
+     * Creates the animation used for this PowerUp Type.
      *
      * @param game the game this view belongs to. Needed to access the
      *             asset manager to get textures.
+     * @param fileName the path to the file that contains the animation sheet.
      * @return the animation used for this PowerUp
      */
     private Animation<TextureRegion> createAnimation(Armadillo game, String fileName) {
