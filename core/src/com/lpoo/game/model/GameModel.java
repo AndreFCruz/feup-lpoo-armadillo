@@ -19,11 +19,9 @@ import static com.lpoo.game.model.GameModel.ModelState.LOST;
 import static com.lpoo.game.model.GameModel.ModelState.PAUSED;
 import static com.lpoo.game.model.GameModel.ModelState.WON;
 
-
 /**
- * Created by andre on 04/05/2017.
+ * Main class responsible for handling the game's logic.
  */
-
 public class GameModel implements Disposable {
 
     /**

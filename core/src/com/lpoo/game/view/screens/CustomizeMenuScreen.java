@@ -98,7 +98,6 @@ class CustomizeMenuScreen extends MenuScreen {
         for (int i = 0; i < game.getNumSkins(); ++i)
             table.add(skinLabels.get(i));
 
-        table.debugAll();
         initializeCurrentSkin();
     }
 

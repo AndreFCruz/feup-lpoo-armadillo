@@ -27,9 +27,17 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 
 /**
  * A factory for Box2D World objects.
+ * It only contains static methods.
  */
 class B2DFactory {
 
+    /**
+     * Creates a pivoted platform from the given object, at the given world.
+     *
+     * @param world  The world were the platform will be.
+     * @param object The object used to initialize the platform.
+     * @return The Platform Model of the created platform.
+     */
     static PlatformModel makePlatform(World world, RectangleMapObject object) {
         PlatformModel platform = new PlatformModel(world, object);
 
@@ -49,10 +57,24 @@ class B2DFactory {
         return platform;
     }
 
+    /**
+     * Creates water from the given object, at the given world.
+     *
+     * @param world  The world were the water will be.
+     * @param object The object used to initialize the water.
+     * @return The Water Model of the created water.
+     */
     static WaterModel makeWater(World world, RectangleMapObject object) {
         return new WaterModel(world, object.getRectangle());
     }
 
+    /**
+     * Creates polygon ground from the given object, at the given world.
+     *
+     * @param world  The world were the ground will be.
+     * @param object The object used to initialize the ground.
+     * @return The body of the created ground.
+     */
     static Body makePolygonGround(World world, PolygonMapObject object) {
         Polygon polygon = object.getPolygon();
 
@@ -78,6 +100,13 @@ class B2DFactory {
         return body;
     }
 
+    /**
+     * Creates rectangular ground from the given object, at the given world.
+     *
+     * @param world  The world were the ground will be.
+     * @param object The object used to initialize the ground.
+     * @return The body of the created ground.
+     */
     static Body makeRectGround(World world, RectangleMapObject object) {
         Rectangle rect = object.getRectangle();
 
@@ -99,15 +128,36 @@ class B2DFactory {
         return body;
     }
 
+    /**
+     * Creates a box from the given object, at the given world.
+     *
+     * @param world  The world were the box will be.
+     * @param object The object used to initialize the box.
+     * @return The BoxModel of the created box.
+     */
     static BoxModel makeBox(World world, RectangleMapObject object) {
         return new BoxModel(world, object);
     }
 
+    /**
+     * Creates a ball from the given object, at the given world.
+     *
+     * @param world   The world were the ball will be.
+     * @param rectObj The object used to initialize the ball.
+     * @return The BallModel of the created ball.
+     */
     static BallModel makeBall(World world, RectangleMapObject rectObj) {
         Rectangle rect = rectObj.getRectangle();
         return new BallModel(world, new Vector2(rect.getX() * PIXEL_TO_METER, rect.getY() * PIXEL_TO_METER));
     }
 
+    /**
+     * Creates a PowerUp from the given object, at the given world.
+     *
+     * @param world  The world were the PowerUp will be.
+     * @param object The object used to initialize the PowerUp.
+     * @return The created PowerUp.
+     */
     static PowerUp makePowerUp(World world, RectangleMapObject object) {
         String classProperty = object.getProperties().get("class", String.class);
         if (classProperty == null) {

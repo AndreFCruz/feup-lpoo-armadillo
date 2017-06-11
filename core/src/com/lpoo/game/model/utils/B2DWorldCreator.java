@@ -23,19 +23,45 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
  */
 public class B2DWorldCreator {
 
-    private abstract class LayerLoader <T extends MapObject> {
+    /**
+     * Abstract class responsible for loading the Map Layers.
+     *
+     * @param <T> a MapObject
+     */
+    private abstract class LayerLoader<T extends MapObject> {
+        /**
+         * The layer's name.
+         */
         private String name;
 
+        /**
+         * The Layer's associated world.
+         */
         private World world;
 
+        /**
+         * The layer's type.
+         */
         private Class<T> type;
 
+        /**
+         * LayerLoader's constructor.
+         *
+         * @param name  The Layer's name.
+         * @param world The Layer's associated World.
+         * @param type  The Layer's type.
+         */
         LayerLoader(String name, World world, Class<T> type) {
             this.name = name;
             this.world = world;
             this.type = type;
         }
 
+        /**
+         * Loads the layers of a map.
+         *
+         * @return true if the map layers were correctly loaded, false otherwise.
+         */
         Boolean load() {
             MapLayer layer = map.getLayers().get(name);
             if (layer == null)
@@ -48,19 +74,56 @@ public class B2DWorldCreator {
             return true;
         }
 
+        /**
+         * Abstract function that loads an Object.
+         *
+         * @param world  The world where the object will be.
+         * @param object The object to be loaded.
+         */
         protected abstract void loadObject(World world, MapObject object);
     }
 
+    /**
+     * The associated World.
+     */
     private World world;
+    /**
+     * The map were objects are loaded from.
+     */
     private Map map;
+    /**
+     * Array containing all the loaded fluids.
+     */
     private Array<WaterModel> fluids = new Array<>();
+    /**
+     * Array containing all the loaded shape models.
+     */
     private Array<ShapeModel> shapeModels = new Array<>();
+    /**
+     * Array containing all the loaded entity models.
+     */
     private Array<EntityModel> entityModels = new Array<>();
+    /**
+     * Loaded ball.
+     */
     private BallModel ball;
+    /**
+     * Vector containing the loaded ending position.
+     */
     private Vector2 endPos;
 
+    /**
+     * Hash Set containing the layer loaders.
+     */
     private Set<LayerLoader> layerLoaders = new HashSet<>();
 
+    /**
+     * B2DWorldCreator's constructor.
+     * In loads the given map to the given world.
+     *
+     * @param world World to were the map elements will be loaded.
+     * @param map   Map to load the world elements from.
+     */
     public B2DWorldCreator(World world, Map map) {
         this.world = world;
         this.map = map;
@@ -68,6 +131,9 @@ public class B2DWorldCreator {
         addLayerLoaders();
     }
 
+    /**
+     * Adds the layer loaders to the Layer loaders' HashSet.
+     */
     private void addLayerLoaders() {
         addRectGroundLayerLoader();
         addPolyGroundLayerLoader();
@@ -76,6 +142,9 @@ public class B2DWorldCreator {
         addPositionsLayerLoader();
     }
 
+    /**
+     * Initializes layer loader responsible for loading the rectangular ground present in the 'ground' layer of the map.
+     */
     private void addRectGroundLayerLoader() {
         layerLoaders.add(new LayerLoader<RectangleMapObject>("ground", world, RectangleMapObject.class) {
             @Override
@@ -86,6 +155,9 @@ public class B2DWorldCreator {
         });
     }
 
+    /**
+     * Initializes layer loader responsible for loading the polygonal ground present in the 'ground' layer of the map.
+     */
     private void addPolyGroundLayerLoader() {
         layerLoaders.add(new LayerLoader<PolygonMapObject>("ground", world, PolygonMapObject.class) {
             @Override
@@ -95,6 +167,9 @@ public class B2DWorldCreator {
         });
     }
 
+    /**
+     * Initializes layer loader responsible for loading the water present in the 'water' layer of the map.
+     */
     private void addWaterLayerLoader() {
         layerLoaders.add(new LayerLoader<RectangleMapObject>("water", world, RectangleMapObject.class) {
             @Override
@@ -104,6 +179,9 @@ public class B2DWorldCreator {
         });
     }
 
+    /**
+     * Initializes layer loader responsible for loading all the objects present in the 'objects' layer of the map.
+     */
     private void addObjectsLayerLoader() {
         layerLoaders.add(new LayerLoader<RectangleMapObject>("objects", world, RectangleMapObject.class) {
             @Override
@@ -131,6 +209,9 @@ public class B2DWorldCreator {
         });
     }
 
+    /**
+     * Initializes layer loader responsible for loading the starting and ending position present int 'positions' layer of the map.
+     */
     private void addPositionsLayerLoader() {
         layerLoaders.add(new LayerLoader<RectangleMapObject>("positions", world, RectangleMapObject.class) {
             @Override
@@ -151,27 +232,45 @@ public class B2DWorldCreator {
         });
     }
 
+    /**
+     * Creates the world by loading all the map layers.
+     */
     public void generateWorld() {
         for (LayerLoader loader : layerLoaders)
             loader.load();
     }
 
+    /**
+     * @return The map's ending position.
+     */
     public Vector2 getEndPos() {
         return endPos;
     }
 
+    /**
+     * @return The map's ball.
+     */
     public BallModel getBall() {
         return ball;
     }
 
+    /**
+     * @return Array containing the map's fluids.
+     */
     public Array<WaterModel> getFluids() {
         return fluids;
     }
 
+    /**
+     * @return Array containing all the map's generated shapes.
+     */
     public Array<ShapeModel> getShapeModels() {
         return shapeModels;
     }
 
+    /**
+     * @return Array containing the map's generated entities.
+     */
     public Array<EntityModel> getEntityModels() {
         return entityModels;
     }

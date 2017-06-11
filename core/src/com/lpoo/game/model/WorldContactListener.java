@@ -21,30 +21,50 @@ import static com.lpoo.game.model.entities.EntityModel.FLUID_BIT;
 import static com.lpoo.game.model.entities.EntityModel.GROUND_BIT;
 import static com.lpoo.game.model.entities.EntityModel.HITTABLE_BIT;
 
-/**
- * Created by andre on 04/05/2017.
- */
 
+/**
+ * Class responsible for handling all the contacts happening in the game's world.
+ */
 public class WorldContactListener implements ContactListener {
+
+    /**
+     * Interface for Contact Handlers.
+     */
     private interface ContactHandler {
         void handle(Fixture fixA, Fixture fixB);
     }
 
-    // Map of categoryBits to functions
+    /**
+     * Map of categoryBits to functions, for when the contact begins.
+     */
     private Map<Short, ContactHandler> beginContactFunctions = new HashMap<>();
+    /**
+     * Map of categoryBits to functions, for when the contact ends.
+     */
     private Map<Short, ContactHandler> endContactFunctions = new HashMap<>();
 
+    /**
+     * The GameModel of the current game being played by the User.
+     */
     private final GameModel model;
 
+    /**
+     * World Contact Listener's constructor.
+     * It adds contact handlers for the game elements.
+     *
+     * @param model The GameModel of the current game being played by the User.
+     */
     WorldContactListener(final GameModel model) {
         this.model = model;
 
         addBallContactHandlers();
         addFluidContactHandlers();
         addHittableContactHandlers();
-
     }
 
+    /**
+     * Adds a fluids contact handlers to the game elements.
+     */
     private void addFluidContactHandlers() {
         beginContactFunctions.put(FLUID_BIT, new ContactHandler() {
             @Override
@@ -64,6 +84,9 @@ public class WorldContactListener implements ContactListener {
         });
     }
 
+    /**
+     * Increments Water Achievement if possible.
+     */
     private void logWaterAchievement() {
         try {
             GameServices gameServices = ((Armadillo) (Gdx.app.getApplicationListener())).getGameServices();
@@ -72,6 +95,9 @@ public class WorldContactListener implements ContactListener {
             System.err.println("Application listener not of type game."); }
     }
 
+    /**
+     * Adds Ball Contact Handlers to the game elements.
+     */
     private void addBallContactHandlers() {
         beginContactFunctions.put(BALL_BIT, new ContactHandler() {
             @Override
@@ -87,6 +113,9 @@ public class WorldContactListener implements ContactListener {
         });
     }
 
+    /**
+     * Adds hittable contact handlers to all the hittable bodies.
+     */
     private void addHittableContactHandlers() {
         beginContactFunctions.put(HITTABLE_BIT, new ContactHandler() {
             @Override
@@ -137,6 +166,12 @@ public class WorldContactListener implements ContactListener {
 
     }
 
+    /**
+     * Setting the Ball's state upon begin contact with specific fixtures.
+     *
+     * @param ball  The ball's fixture.
+     * @param other The fixture the ball begins contact with
+     */
     private void ballBeginContact(Fixture ball, Fixture other) {
         switch (other.getFilterData().categoryBits) {
             case GROUND_BIT:
@@ -145,6 +180,12 @@ public class WorldContactListener implements ContactListener {
         }
     }
 
+    /**
+     * Setting the Ball's state upon ending contact with specific fixtures.
+     *
+     * @param ball  The ball's fixture.
+     * @param other The fixture the ball ends contact with
+     */
     private void ballEndContact(Fixture ball, Fixture other) {
         switch (other.getFilterData().categoryBits) {
             case GROUND_BIT:
