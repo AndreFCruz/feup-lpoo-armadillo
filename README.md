@@ -30,7 +30,7 @@
      2. To assemble a release apk you will need to change the signing settings to your own, or assemble an unsigned apk.
 
 ## Video Tutorial
-** INSERT YOUTUBE LINK ? **
+[![Video Tutorial](http://img.youtube.com/vi/IB0OUY351hI/0.jpg)](http://www.youtube.com/watch?v=IB0OUY351hI "Armadillo - Video Tutorial")
 
 ## Package and class diagram (UML)
 ![class diagram](https://user-images.githubusercontent.com/13498941/27004518-2ebf092a-4e02-11e7-99b1-084c11896527.png)
