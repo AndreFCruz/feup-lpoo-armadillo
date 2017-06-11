@@ -34,12 +34,12 @@ public abstract class MenuScreen extends ScreenAdapter {
     /**
      * The viewport associated to the Menu's stage.
      */
-    protected Viewport viewport;
+    private Viewport viewport;
 
     /**
      * The SpriteBatch used in the Menu's screen.
      */
-    protected SpriteBatch batch;
+    private SpriteBatch batch;
 
     /**
      * One of the skins associated to the Menu.
@@ -65,16 +65,18 @@ public abstract class MenuScreen extends ScreenAdapter {
      * The height of the viewport in meters. The height is
      * automatically calculated using the screen ratio.
      */
-    protected static final float VIEWPORT_HEIGHT = VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
+    private static final float VIEWPORT_HEIGHT = VIEWPORT_WIDTH * ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
 
     /**
      * Image representing the Menu's background image.
      */
-    protected Image backgroundImg;
+    private Image backgroundImg;
+
     /**
      * Image representing the Menu's Title image.
      */
-    protected Image titleImg;
+    private Image titleImg;
+
     /**
      * Default's Button Side Size
      */
@@ -126,7 +128,7 @@ public abstract class MenuScreen extends ScreenAdapter {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void show() {
@@ -136,7 +138,7 @@ public abstract class MenuScreen extends ScreenAdapter {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void render(float delta) {
@@ -150,7 +152,7 @@ public abstract class MenuScreen extends ScreenAdapter {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void resize(int width, int height) {
@@ -158,7 +160,7 @@ public abstract class MenuScreen extends ScreenAdapter {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void hide() {

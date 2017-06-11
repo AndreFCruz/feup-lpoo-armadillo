@@ -32,7 +32,7 @@ public class GameController implements InputHandler {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void handleInput(float delta) {

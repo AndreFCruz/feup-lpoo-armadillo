@@ -150,7 +150,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void render(float delta) {

@@ -129,7 +129,7 @@ public class WorldContactListener implements ContactListener {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void beginContact(Contact contact) {
@@ -148,7 +148,7 @@ public class WorldContactListener implements ContactListener {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void endContact(Contact contact) {
@@ -195,14 +195,14 @@ public class WorldContactListener implements ContactListener {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {

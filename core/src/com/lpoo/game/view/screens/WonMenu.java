@@ -21,7 +21,7 @@ public class WonMenu extends OptionsMenu {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     protected void confStage() {
@@ -33,7 +33,7 @@ public class WonMenu extends OptionsMenu {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     protected void setMessage() {

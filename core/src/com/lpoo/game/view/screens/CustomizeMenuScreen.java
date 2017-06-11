@@ -147,7 +147,7 @@ class CustomizeMenuScreen extends MenuScreen {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void show() {

@@ -108,7 +108,7 @@ public class LevelMenuScreen extends MenuScreen {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void show() {

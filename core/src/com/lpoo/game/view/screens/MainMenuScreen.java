@@ -121,7 +121,7 @@ public class MainMenuScreen extends MenuScreen {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void show() {

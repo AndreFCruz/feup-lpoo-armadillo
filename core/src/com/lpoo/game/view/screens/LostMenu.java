@@ -23,7 +23,7 @@ public class LostMenu extends OptionsMenu {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     protected void confStage() {
@@ -33,7 +33,7 @@ public class LostMenu extends OptionsMenu {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     protected void setMessage() {

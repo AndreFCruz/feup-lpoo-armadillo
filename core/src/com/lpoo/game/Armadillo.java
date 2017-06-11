@@ -79,7 +79,7 @@ public class Armadillo extends Game {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void create() {
@@ -165,7 +165,7 @@ public class Armadillo extends Game {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void resize(int width, int height) {
@@ -173,7 +173,7 @@ public class Armadillo extends Game {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void dispose() {

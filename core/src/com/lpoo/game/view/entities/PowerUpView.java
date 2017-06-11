@@ -63,7 +63,10 @@ class PowerUpView extends EntityView {
     }
 
     /**
-     * {@inheritDoc}}
+     * Template method implementation to create this view's sprite.
+     * @param game the game this view belongs to. Needed to access the
+     *             asset manager to get textures.
+     * @return This view's sprite.
      */
     @Override
     protected Sprite createSprite(Armadillo game) {

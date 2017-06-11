@@ -9,7 +9,7 @@ import com.lpoo.game.GameServices;
 class NullGameServices implements GameServices {
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void signIn() {
@@ -17,7 +17,7 @@ class NullGameServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void signOut() {
@@ -25,7 +25,7 @@ class NullGameServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public boolean isSignedIn() {
@@ -33,7 +33,7 @@ class NullGameServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void submitScore(int level, int score) {
@@ -41,7 +41,7 @@ class NullGameServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void unlockAchievement(String achievementID) {
@@ -49,7 +49,7 @@ class NullGameServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void showScores(int level) {
@@ -57,7 +57,7 @@ class NullGameServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void showAchievements() {
@@ -65,7 +65,7 @@ class NullGameServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public String getGravityAchievementID() {
@@ -73,7 +73,7 @@ class NullGameServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public String getSpeedAchievementID() {
@@ -81,7 +81,7 @@ class NullGameServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public String getWaterAchievementID() {
@@ -89,7 +89,7 @@ class NullGameServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public String getFallingAchievementID() {

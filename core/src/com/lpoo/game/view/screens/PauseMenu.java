@@ -21,7 +21,7 @@ public class PauseMenu extends OptionsMenu {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     protected void confStage() {
@@ -32,7 +32,7 @@ public class PauseMenu extends OptionsMenu {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     protected void setMessage() {

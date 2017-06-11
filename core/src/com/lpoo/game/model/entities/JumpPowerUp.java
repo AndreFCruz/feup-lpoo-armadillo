@@ -20,7 +20,7 @@ public class JumpPowerUp extends PowerUp {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void onHit(BallModel model) {

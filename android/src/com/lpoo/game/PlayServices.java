@@ -38,7 +38,7 @@ public class PlayServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void signIn() {
@@ -50,7 +50,7 @@ public class PlayServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void signOut() {
@@ -62,7 +62,7 @@ public class PlayServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void unlockAchievement(String achievementID) {
@@ -71,7 +71,7 @@ public class PlayServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void showScores(int level) {
@@ -93,7 +93,7 @@ public class PlayServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void showAchievements() {
@@ -104,7 +104,7 @@ public class PlayServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void submitScore(int level, int score) {
@@ -193,7 +193,7 @@ public class PlayServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public boolean isSignedIn() {
@@ -201,7 +201,7 @@ public class PlayServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public String getGravityAchievementID() {
@@ -209,7 +209,7 @@ public class PlayServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public String getSpeedAchievementID() {
@@ -217,7 +217,7 @@ public class PlayServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public String getWaterAchievementID() {
@@ -225,7 +225,7 @@ public class PlayServices implements GameServices {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public String getFallingAchievementID() {

@@ -20,7 +20,7 @@ public class LeaderboardMenuScreen extends LevelMenuScreen {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     protected void addLevelListener(final int level) {
@@ -33,7 +33,7 @@ public class LeaderboardMenuScreen extends LevelMenuScreen {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     protected TextButton addBackBtn(boolean style) {

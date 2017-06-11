@@ -23,7 +23,7 @@ public class GravityPowerUp extends PowerUp {
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void onHit(BallModel model) {

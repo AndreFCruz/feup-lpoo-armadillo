@@ -19,7 +19,7 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     private GameHelper gameHelper;
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     protected void onStart() {
@@ -68,7 +68,7 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     protected void onStop() {
@@ -77,7 +77,7 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -86,7 +86,7 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void onSignInFailed() {
@@ -94,7 +94,7 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     }
 
     /**
-     * {@inheritDoc}}
+     * {@inheritDoc}
      */
     @Override
     public void onSignInSucceeded() {
