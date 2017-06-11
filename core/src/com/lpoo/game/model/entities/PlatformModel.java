@@ -13,11 +13,20 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 /**
  * A model representing a single platform.
  */
-
 public class PlatformModel extends ShapeModel {
 
+    /**
+     * Platform's default density.
+     */
     private static final float DEFAULT_DENSITY = 0.6f;
 
+    /**
+     * Platform Model's constructor.
+     * Creates a platform model from the given object, into the given world.
+     *
+     * @param world  The world the platform model will be in.
+     * @param object The object to create the platform model with.
+     */
     public PlatformModel(World world, RectangleMapObject object) {
         super(ModelType.PLATFORM, object.getRectangle());
 

@@ -7,15 +7,25 @@ import com.badlogic.gdx.utils.Array;
 import java.util.Random;
 
 /**
- * A model representing a random powerup.
+ * A model representing a random PowerUp.
  */
-
 public class RandomPowerUp extends PowerUp {
 
+    /**
+     * Interface for Ball actors (power ups)
+     */
     interface BallActor {
+        /**
+         * Changes the given ball.
+         *
+         * @param model The ball that will be updated.
+         */
         void actOnBall(BallModel model);
     }
 
+    /**
+     * Array containing the ball actors. This will associate each to a random generated power up.
+     */
     private static Array<BallActor> actors = new Array<>();
 
     static {
@@ -57,10 +67,20 @@ public class RandomPowerUp extends PowerUp {
         });
     }
 
+    /**
+     * Random Power Up's constructor.
+     * Creates a power up from the given object, into the given world.
+     *
+     * @param world  The world the power up will be in.
+     * @param object The object to create the power up with.
+     */
     public RandomPowerUp(World world, RectangleMapObject object) {
         super(world, object, ModelType.POWERUP_RANDOM);
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public void onHit(BallModel model) {
         flagForRemoval();

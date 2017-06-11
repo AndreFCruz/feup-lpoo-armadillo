@@ -6,7 +6,6 @@ import com.badlogic.gdx.physics.box2d.Body;
 /**
  * A model representing an abstract shape entity.
  */
-
 public abstract class ShapeModel {
 
     /**

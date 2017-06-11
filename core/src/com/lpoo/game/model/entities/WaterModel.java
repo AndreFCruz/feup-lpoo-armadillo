@@ -14,11 +14,20 @@ import static com.lpoo.game.view.screens.GameScreen.PIXEL_TO_METER;
 /**
  * A model representing a single body of water (or any other newtonian fluid).
  */
-
 public class WaterModel {
 
+    /**
+     * The Fluid's body.
+     */
     private Body body;
 
+    /**
+     * Water Model's constructor.
+     * Creates a water model from the given object, into the given world.
+     *
+     * @param world The world the water model will be in.
+     * @param rect  The rectangle to create the water model with.
+     */
     public WaterModel(World world, Rectangle rect) {
         // Body and Fixture variables
         BodyDef bdef = new BodyDef();
@@ -43,6 +52,9 @@ public class WaterModel {
 
     }
 
+    /**
+     * Function used to update the water model. This function is called in the game loop.
+     */
     public void step() {
         ((BuoyancyController) this.body.getUserData()).step();
     }
