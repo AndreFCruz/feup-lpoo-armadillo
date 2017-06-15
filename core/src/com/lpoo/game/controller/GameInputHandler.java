@@ -4,14 +4,14 @@ import com.badlogic.gdx.InputAdapter;
 import com.lpoo.game.model.GameModel;
 
 /**
- * Created by andre on 15/06/2017.
+ * Input handler for in-game events.
  */
 
 public class GameInputHandler extends InputAdapter {
 
     private GameModel model;
 
-    GameInputHandler(GameModel model) {
+    public GameInputHandler(GameModel model) {
         this.model = model;
     }
 

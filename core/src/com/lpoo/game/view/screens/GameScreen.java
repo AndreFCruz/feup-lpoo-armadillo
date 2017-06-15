@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.lpoo.game.Armadillo;
 import com.lpoo.game.controller.GameController;
+import com.lpoo.game.controller.GameInputHandler;
 import com.lpoo.game.controller.InputHandler;
 import com.lpoo.game.model.GameModel;
 import com.lpoo.game.model.entities.EntityModel;
@@ -128,6 +129,7 @@ public class GameScreen extends ScreenAdapter {
         mapRenderer = new OrthogonalTiledMapRenderer(model.getMap(), game.getBatch());
 
         hud = new HudMenu(game, model);
+        hud.getInputMultiplexer().addProcessor(new GameInputHandler(model));
         gameBackground = game.getAssetManager().get("background.png", Texture.class);
     }
 
