@@ -13,9 +13,9 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.lpoo.game.Armadillo;
-import com.lpoo.game.controller.GameController;
+import com.lpoo.game.controller.GameInputPoller;
 import com.lpoo.game.controller.GameInputHandler;
-import com.lpoo.game.controller.InputHandler;
+import com.lpoo.game.controller.InputPoller;
 import com.lpoo.game.model.GameModel;
 import com.lpoo.game.model.entities.EntityModel;
 import com.lpoo.game.model.entities.ShapeModel;
@@ -83,7 +83,7 @@ public class GameScreen extends ScreenAdapter {
     /**
      * And Handler used to listen to the User's input.
      */
-    private InputHandler controller;
+    private InputPoller controller;
 
     /**
      * The game Model of the current Game being played by the User.
@@ -125,7 +125,7 @@ public class GameScreen extends ScreenAdapter {
         loadNextMap();
 
         camera = createCamera();
-        controller = new GameController(model);
+        controller = new GameInputPoller(model);
         mapRenderer = new OrthogonalTiledMapRenderer(model.getMap(), game.getBatch());
 
         hud = new HudMenu(game, model);
@@ -156,8 +156,8 @@ public class GameScreen extends ScreenAdapter {
      */
     @Override
     public void render(float delta) {
-//        if (model.getState() == GameModel.ModelState.LIVE)
-//            controller.handleInput(delta);
+        if (model.getState() == GameModel.ModelState.LIVE)
+            controller.pollInput(delta);
 
         updateCamera();
         drawBackground();

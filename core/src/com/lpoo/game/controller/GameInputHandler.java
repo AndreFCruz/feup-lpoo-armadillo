@@ -15,9 +15,11 @@ public class GameInputHandler extends InputAdapter {
         this.model = model;
     }
 
+
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         model.getBallModel().jump();
         return true;
     }
+
 }

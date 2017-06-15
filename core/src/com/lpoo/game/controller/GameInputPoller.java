@@ -5,9 +5,9 @@ import com.badlogic.gdx.Input;
 import com.lpoo.game.model.GameModel;
 
 /**
- * The game's input handler.
+ * Input poller for in-game events. Accelerometer data can only be polled.
  */
-public class GameController implements InputHandler {
+public class GameInputPoller implements InputPoller {
 
     /**
      * The current game being played by the User.
@@ -24,7 +24,7 @@ public class GameController implements InputHandler {
      *
      * @param model The current game being played by the USer.
      */
-    public GameController(GameModel model) {
+    public GameInputPoller(GameModel model) {
         this.model = model;
 
         if (!(accelerometerAvailable = Gdx.input.isPeripheralAvailable(Input.Peripheral.Accelerometer)))
@@ -35,24 +35,11 @@ public class GameController implements InputHandler {
      * {@inheritDoc}
      */
     @Override
-    public void handleInput(float delta) {
-        pollTouch(delta);
-
+    public void pollInput(float delta) {
         if (accelerometerAvailable)
             pollAccelerometer(delta);
         else
             pollKeys(delta);
-    }
-
-    /**
-     * Decide what to do when the screen is touched.
-     *
-     * @param delta The time elapsed since the last update
-     */
-    private void pollTouch(float delta) {
-        if (Gdx.input.justTouched()) {
-            model.getBallModel().jump();
-        }
     }
 
     /**

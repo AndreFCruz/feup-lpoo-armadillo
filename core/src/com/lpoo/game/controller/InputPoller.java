@@ -3,12 +3,12 @@ package com.lpoo.game.controller;
 /**
  * An Interface containing the functions all the Input Handlers should implement.
  */
-public interface InputHandler {
+public interface InputPoller {
 
     /**
-     * Function where the game handles the User's input.
+     * Polls for input to be handled in game.
      *
      * @param delta Time elapsed since last update
      */
-    void handleInput(float delta);
+    void pollInput(float delta);
 }
