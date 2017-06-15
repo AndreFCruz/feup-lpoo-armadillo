@@ -1,6 +1,7 @@
 package com.lpoo.game.view.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -20,7 +21,7 @@ import com.lpoo.game.model.GameModel;
 /**
  * Class responsible for the HUD during the Game.
  */
-class HudMenu {
+class HudMenu extends Stage {
 
     /**
      * Possible Requests to the Game Screen.
@@ -28,11 +29,6 @@ class HudMenu {
     public enum Request {
         LOAD, START, NONE
     }
-
-    /**
-     * A Stage used to represent the HUD, containing the score and the pause Button.
-     */
-    private Stage hud;
 
     /**
      * A Class used to represent the Menu that appears when the game is paused / over / won.
@@ -50,7 +46,7 @@ class HudMenu {
     private float score;
 
     /**
-     * Represents the last game's state. Used for performance efficiency reasons.
+     * Represents the last game's state. Used for performance/efficiency reasons.
      */
     private GameModel.ModelState lastState;
 
@@ -72,7 +68,6 @@ class HudMenu {
     private static final float HUD_VIEWPORT_HEIGHT = HUD_VIEWPORT_WIDTH *
             ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
 
-    //Layout Macros
     /**
      * The Font rescaling factor, for the score representation.
      */
@@ -120,6 +115,8 @@ class HudMenu {
      */
     private Armadillo game;
 
+    private InputMultiplexer inputMultiplexer;
+
     /**
      * HudMenu's Constructor.
      * It takes the current game and the current game model to initialize.
@@ -129,13 +126,15 @@ class HudMenu {
      * @param model The current game Model.
      */
     HudMenu(Armadillo game, GameModel model) {
+        super(new FitViewport(HUD_VIEWPORT_WIDTH, HUD_VIEWPORT_HEIGHT), game.getBatch());
+
+        inputMultiplexer = new InputMultiplexer(this);
+        Gdx.input.setInputProcessor(inputMultiplexer);
 
         this.game = game;
         this.model = model;
 
-        viewport = new FitViewport(HUD_VIEWPORT_WIDTH, HUD_VIEWPORT_HEIGHT);
-
-        hud = new Stage(viewport, game.getBatch());
+        viewport = this.getViewport();
 
         skin = game.getSkinOne();
 
@@ -168,7 +167,7 @@ class HudMenu {
         hudTable.add(pauseButton).size(HUD_ELEMENTS_SIZE, HUD_ELEMENTS_SIZE).fill()
                 .padRight(HORIZONTAL_PAD).padTop(VERTICAL_PAD);
 
-        hud.addActor(hudTable);
+        this.addActor(hudTable);
     }
 
     /**
@@ -199,6 +198,8 @@ class HudMenu {
      * @return The HudMenu's Request.
      */
     HudMenu.Request update(GameModel.ModelState state, int level) {
+        this.act();
+
         currentLevel = level;
 
         if (state != lastState) {
@@ -221,8 +222,10 @@ class HudMenu {
         if (state == GameModel.ModelState.LIVE) {
             options_flag = false;
             updateScore();
-        } else
+            Gdx.input.setInputProcessor(inputMultiplexer);
+        } else if (! options_flag) {
             options_flag = true;
+        }
 
         return currentRequest;
     }
@@ -230,13 +233,12 @@ class HudMenu {
     /**
      * The function that draws the current HudMenu in the screen.
      */
-    void draw() {
-        if (options_flag) {
+    @Override
+    public void draw() {
+        if (options_flag && optionsMenu != null) {
             optionsMenu.draw();
         } else {
-            hud.act(Gdx.graphics.getDeltaTime());
-            hud.draw();
-            Gdx.input.setInputProcessor(hud);
+            super.draw();
         }
     }
 
@@ -274,5 +276,13 @@ class HudMenu {
      */
     void resetRequest() {
         currentRequest = Request.NONE;
+    }
+
+    /**
+     * Getter for the HUD's InputMultiplexer.
+     * @return The HUD's InputMultiplexer.
+     */
+    public InputMultiplexer getInputMultiplexer() {
+        return inputMultiplexer;
     }
 }

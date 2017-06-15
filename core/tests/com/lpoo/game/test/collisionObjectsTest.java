@@ -17,7 +17,6 @@ public class collisionObjectsTest extends GameTest {
 
     @Test
     public void collisionBoxTest() {
-
         //Testing Collision with Boxes
         tester.rotateLeftDuringTime(0.5f);
         tester.ballJump();

@@ -154,8 +154,8 @@ public class GameScreen extends ScreenAdapter {
      */
     @Override
     public void render(float delta) {
-        if (model.getState() == GameModel.ModelState.LIVE)
-            controller.handleInput(delta);
+//        if (model.getState() == GameModel.ModelState.LIVE)
+//            controller.handleInput(delta);
 
         updateCamera();
         drawBackground();

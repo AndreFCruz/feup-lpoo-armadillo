@@ -14,7 +14,7 @@ import com.lpoo.game.Armadillo;
 /**
  * Abstract class used to represent all the Pop Up Menu's classes, containing several option actions.
  */
-abstract class OptionsMenu {
+abstract class OptionsMenu extends Stage {
 
     /**
      * The current game session.
@@ -25,11 +25,6 @@ abstract class OptionsMenu {
      * The Hud associated to the current game being played by the User.
      */
     private HudMenu hud;
-
-    /**
-     * A Stage used to represent the Menu that appears when the game is paused / over / won.
-     */
-    protected Stage menu;
 
     /**
      * The table containing the elements, that will be added to the stage.
@@ -92,10 +87,13 @@ abstract class OptionsMenu {
      * @param hud      The current Hud, associated to the current game being played.
      */
     protected OptionsMenu(Viewport viewport, Armadillo game, HudMenu hud) {
+        super(viewport, game.getBatch());
+
+        Gdx.input.setInputProcessor(this);
+
         this.game = game;
         this.hud = hud;
 
-        menu = new Stage(viewport, game.getBatch());
         table = new Table();
         skin = game.getSkinOne();
 
@@ -107,10 +105,10 @@ abstract class OptionsMenu {
     /**
      * Function used to draw the Pop Up Menu in the screen.
      */
+    @Override
     public void draw() {
-        menu.act(Gdx.graphics.getDeltaTime());
-        menu.draw();
-        Gdx.input.setInputProcessor(menu);
+        super.draw();
+        this.act();
     }
 
     /**
@@ -235,7 +233,7 @@ abstract class OptionsMenu {
         addExitBtn();
 
         setMessage();
-        menu.addActor(table);
+        this.addActor(table);
     }
 
     /**
