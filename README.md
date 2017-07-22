@@ -1,4 +1,4 @@
-# LPOO1617_T6G5
+# Armadillo
 
 [![BCH compliance](https://bettercodehub.com/edge/badge/AndreFCruz/LPOO1617_T6G5?branch=master&token=f4cdc1d758665692d8603b9b6a9dfc271a8927b3)](https://bettercodehub.com/)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
