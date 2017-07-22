@@ -1,0 +1,30 @@
+{
+com.badlogic.gdx.graphics.g2d.BitmapFont: {
+	font-export: {
+		file: font-export.fnt
+	}
+}
+com.badlogic.gdx.graphics.Color: {
+	RGBA_252_250_250_255: {
+		r: 0.99
+		g: 0.9834
+		b: 0.9834
+		a: 1
+	}
+	RGBA_91_48_12_255: {
+		r: 0.36
+		g: 0.19112144
+		b: 0.048000008
+		a: 1
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+	default: {
+		font: font-export
+		fontColor: RGBA_252_250_250_255
+		downFontColor: RGBA_91_48_12_255
+		up: green_button07
+		down: green_button08
+	}
+}
+}

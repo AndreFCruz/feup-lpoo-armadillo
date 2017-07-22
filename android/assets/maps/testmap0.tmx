@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="5" tilewidth="64" tileheight="64" nextobjectid="14">
+ <tileset firstgid="1" name="MyTiles_64x64" tilewidth="64" tileheight="64" tilecount="64" columns="8">
+  <image source="../tilesets/MyTiles_64x64.png" width="512" height="512"/>
+ </tileset>
+ <layer name="map" width="12" height="5">
+  <data encoding="base64" compression="zlib">
+   eJxjYyAesAAxGx3UyxKBjaHqFYGYkUgMUgsAeMwBrQ==
+  </data>
+ </layer>
+ <objectgroup name="ground">
+  <object id="10" x="0" y="0" width="64" height="320"/>
+  <object id="11" x="64" y="256" width="704" height="64"/>
+  <object id="12" x="704" y="0" width="64" height="256"/>
+ </objectgroup>
+ <objectgroup name="objects"/>
+ <objectgroup name="positions">
+  <object id="7" name="start" x="383.667" y="191" width="64" height="64"/>
+  <object id="9" name="end" x="640" y="192" width="64" height="64"/>
+ </objectgroup>
+</map>

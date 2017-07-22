@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="20" height="10" tilewidth="64" tileheight="64" nextobjectid="21">
+ <tileset firstgid="1" name="Tiles_64x64" tilewidth="64" tileheight="64" tilecount="64" columns="8">
+  <image source="../tilesets/Tiles_64x64.png" trans="000000" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="65" name="tilesheet-water" tilewidth="64" tileheight="64" tilecount="9" columns="3">
+  <image source="../tilesets/tilesheet-water.png" width="192" height="224"/>
+ </tileset>
+ <tileset firstgid="74" name="endTile" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="../tilesets/endTile.png" width="65" height="65"/>
+ </tileset>
+ <layer name="background" width="20" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYKA+4ETjS+BQJ4FHnheLmBoQa5KINbCYo4vH7eQAapsHAk5k8J3wyLuSwXclQt4Vi1pc8vjUD1YAAMKLCeM=
+  </data>
+ </layer>
+ <layer name="map" width="20" height="10">
+  <data encoding="base64" compression="zlib">
+   eJytkmEKwjAMhaNbi2wnUPDHcoGtBT2A4B/vfyCfmOAjdMJggY+SvPSRdFMRSUCNAUxGqzZQLerus1e4516h5vkv5o1+a/vewB0cwBlcGjrXXvLddQEncAQPorfZi/WNDZ1rnfVVmzGDJ9Gb7t9sbOg55IXufLQr4Xolv6jnkPM+flaaKcnvP2RvpTtqb8Z5WvEqVJvoXEIv528obBBG
+  </data>
+ </layer>
+ <objectgroup name="positions">
+  <object id="1" name="start" x="66" y="234" width="64" height="64"/>
+  <object id="2" name="end" x="1152" y="258" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="ground">
+  <object id="3" x="0" y="0" width="64" height="640"/>
+  <object id="4" x="64" y="0" width="1216" height="64"/>
+  <object id="5" x="1216" y="64" width="64" height="576"/>
+  <object id="6" x="64" y="512" width="1088" height="128"/>
+  <object id="7" x="64" y="320" width="128" height="192"/>
+  <object id="9" x="384" y="320" width="320" height="192"/>
+  <object id="10" x="896" y="320" width="128" height="192"/>
+  <object id="11" x="1152" y="320" width="64" height="320"/>
+  <object id="12" x="512" y="256" width="64" height="64"/>
+  <object id="13" x="384" y="320">
+   <polygon points="0,0 128,0 128,-64"/>
+  </object>
+  <object id="14" x="576" y="256">
+   <polygon points="0,0 0,64 128,64"/>
+  </object>
+  <object id="20" x="896" y="320">
+   <polygon points="0,0 128,0 64,-32"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="water">
+  <object id="16" x="192" y="320" width="192" height="192"/>
+  <object id="17" x="704" y="320" width="192" height="192"/>
+  <object id="18" x="1024" y="320" width="128" height="192"/>
+ </objectgroup>
+</map>

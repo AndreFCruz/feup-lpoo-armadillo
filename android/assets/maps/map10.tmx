@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="64" tileheight="64" nextobjectid="12">
+ <tileset firstgid="1" name="Tiles_64x64" tilewidth="64" tileheight="64" tilecount="64" columns="8">
+  <image source="../tilesets/Tiles_64x64.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="65" name="endTile" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="../tilesets/endTile.png" width="65" height="65"/>
+ </tileset>
+ <layer name="map" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztklsKgCAURC1vX22gn5YS1P43lYED08VXaX05cCjQ63EiY3p6enrKc/zoso7dsTnGjxyrhyOOiZ6tc/WaPSEvqA16wYVzJeCVyNqbWHP/fkJob4u+uh/3jPWt8aJfilTfp/8Vuul7s6fEC67zBkLUe2wu5NfrMS/uhS7sx514LufW/5b28v4lA5Lbl5oNzZ+MFgXW
+  </data>
+ </layer>
+ <layer name="background" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztVEkOwjAMtCjlDUhNrxFLueTIgf8/i0SKhRnsFJIKEGKkkbvYHi9piT4LH7nP3DX4/PE+HOj1PfiKmF/CUme4ZvalXJORD/c1Ar8JLfNIvWi7CWCXAs+vixwiV435jjS/Q9ZzkX3mRvF3YGvA/a3zfS+sM3RHsDV6qb8z3fbFuVg/6ZZmpcEr/nj+SzVb/fI7jj/R4/eFOl222nkMdL+zoOhinR3cD+L6YtQs67Zg9ct1SSuhzRG1cLdOPE+6+M+S8dsZPutXitXiryqYEFo=
+  </data>
+ </layer>
+ <objectgroup name="ground">
+  <object id="3" x="1664" y="576" width="256" height="704"/>
+  <object id="4" x="0" y="1088" width="512" height="192"/>
+  <object id="5" x="640" y="1024" width="832" height="256"/>
+  <object id="6" x="768" y="960" width="704" height="64"/>
+  <object id="7" x="1280" y="704" width="192" height="256"/>
+  <object id="8" x="1152" y="768" width="128" height="192"/>
+  <object id="10" x="1024" y="832" width="128" height="128"/>
+  <object id="11" x="896" y="896" width="128" height="64"/>
+ </objectgroup>
+ <objectgroup name="positions">
+  <object id="1" name="start" x="85.1925" y="1032.73" width="41.7362" height="37.5626"/>
+  <object id="2" name="end" x="1846.79" y="504.364" width="64" height="64"/>
+ </objectgroup>
+</map>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="23" height="50" tilewidth="64" tileheight="64" nextobjectid="63">
+ <tileset firstgid="1" name="Tiles_64x64" tilewidth="64" tileheight="64" tilecount="64" columns="8">
+  <image source="../tilesets/Tiles_64x64.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="65" name="endTile" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="../tilesets/endTile.png" width="65" height="65"/>
+ </tileset>
+ <layer name="map" width="23" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmN0KwjAMhauyG++cohf2Zn0N8e/9X8oGVowxSRtshUEPHCgsfk1HEsuca6NdIy5o7OxFsJ+N2Mfo0+za7FJ1dmeXKCyAPTAG9ib6Fu2jD9Gr6Ef0dV5jr415W965JXapbIidOvsrFsfjuX+vzC6Jt+TRsk46+7/sgMzNyqRptnfvGYqfc2wtF8pOzID2kPijkGNSENYlkvLG/x212RzPys7Nb8yz3gkoO9UCpxpsSb+yc/WaE8xGuA+cGTZ+v7DPxFiraec+a0xi03irUs9jNtf3EjvXlzRXX5APZmtxlJ07v5W9V+Kle2SyxqY1PZC1J3uDtgozifbhxelnsEjrcY5Nv4lo30iAC7luBQfG6RntKfpbOP8LSEsS9Q==
+  </data>
+ </layer>
+ <objectgroup name="positions">
+  <object id="38" name="start" x="264" y="1464" width="64" height="64"/>
+  <object id="41" name="end" x="828" y="384" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="objects">
+  <object id="42" type="powerup" x="528.727" y="3027.21" width="54.5455" height="57.5758">
+   <properties>
+    <property name="class" value="jump"/>
+   </properties>
+  </object>
+  <object id="53" type="powerup" x="348.727" y="2091.21" width="54.5455" height="57.5758">
+   <properties>
+    <property name="class" value="jump"/>
+   </properties>
+  </object>
+  <object id="54" type="powerup" x="420.727" y="2623.21" width="54.5455" height="57.5758">
+   <properties>
+    <property name="class" value="jump"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="ground">
+  <object id="1" x="0" y="1088" width="64" height="2112"/>
+  <object id="2" x="1408" y="2492" width="64" height="708"/>
+  <object id="3" x="64" y="3136" width="1344" height="64"/>
+  <object id="6" x="1280" y="2496" width="128" height="128"/>
+  <object id="7" x="64" y="2880" width="68" height="64"/>
+  <object id="8" x="256" y="2756" width="64" height="308"/>
+  <object id="9" x="960" y="3072" width="64" height="64"/>
+  <object id="10" x="704" y="3064" width="64" height="72"/>
+  <object id="11" x="576" y="2944" width="64" height="72"/>
+  <object id="12" x="832" y="2944" width="64" height="64"/>
+  <object id="13" x="448" y="2952" width="64" height="184"/>
+  <object id="14" x="512" y="2880" width="512" height="64"/>
+  <object id="15" x="960" y="2688" width="64" height="192"/>
+  <object id="16" x="1024" y="2688" width="64" height="64"/>
+  <object id="17" x="768" y="2752" width="64" height="128"/>
+  <object id="18" x="576" y="2624" width="64" height="128"/>
+  <object id="20" x="384" y="2560" width="512" height="48"/>
+  <object id="21" x="192" y="2368" width="64" height="384"/>
+  <object id="22" x="256" y="2368" width="64" height="64"/>
+  <object id="23" x="64" y="2112" width="128" height="64"/>
+  <object id="24" x="320" y="2176" width="128" height="64"/>
+  <object id="26" x="64" y="1984" width="384" height="64"/>
+  <object id="27" x="640" y="1984" width="64" height="572"/>
+  <object id="28" x="768" y="1984" width="256" height="64"/>
+  <object id="30" x="704" y="1152" width="64" height="896"/>
+  <object id="32" x="64" y="1088" width="704" height="64"/>
+  <object id="33" x="192" y="1536" width="256" height="64"/>
+  <object id="34" x="1088" y="1024" width="192" height="64"/>
+  <object id="35" x="896" y="1600" width="192" height="64"/>
+  <object id="36" x="764" y="450" width="196" height="64"/>
+  <object id="40" x="256" y="2688" width="320" height="64"/>
+  <object id="45" x="448" y="1984" width="64" height="384"/>
+  <object id="46" x="192" y="3008" width="64" height="56"/>
+  <object id="55" x="704" y="2048" width="384" height="64"/>
+  <object id="56" x="512" y="2944" width="64" height="64"/>
+  <object id="58" x="1216" y="2496" width="64" height="64"/>
+  <object id="60" x="1408" y="0" width="64" height="2496"/>
+  <object id="61" x="1280" y="1024" width="128" height="64"/>
+  <object id="62" x="1088" y="1600" width="64" height="64"/>
+ </objectgroup>
+ <layer name="background" width="23" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzlV1EKwzAI9bc32AlGywaF9Wf3P9kaSkAeJmkytY49kFJIo77oiyWKicduz93mqwNxwJ2OXLn9Q949SPXgxQk/D+5zM/K3MdPeV3oiUr6j3FpxMrJ31gzv/sn1YulzZfZLuAmWMXWu90Kr7lKdLdR/3pp9/oJ9pae0FpFqd6F2Pr0xY63W9NtSQ7h/7NEaL56IEocErqlnNK50d3rmWNPKVVjniagzxJtk7a1pi5Y+XzVDRLhPS/2CONs/1n32zRwSWecSWvUcJf5SjDk+PBu8ez1myRJX2vWuDeQE31v/Spa8jnIiffcBOe4X6A==
+  </data>
+ </layer>
+</map>

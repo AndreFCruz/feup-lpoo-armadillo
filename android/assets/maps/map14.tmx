@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="25" height="18" tilewidth="64" tileheight="64" nextobjectid="40">
+ <tileset firstgid="1" name="endTile" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="../tilesets/endTile.png" width="65" height="65"/>
+ </tileset>
+ <tileset firstgid="2" name="lava-tylesheet" tilewidth="64" tileheight="64" tilecount="2" columns="2">
+  <image source="../tilesets/lava-tylesheet.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="4" name="Tiles_64x64" tilewidth="64" tileheight="64" tilecount="64" columns="8">
+  <image source="../tilesets/Tiles_64x64.png" width="512" height="512"/>
+ </tileset>
+ <layer name="map" width="25" height="18">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgYwAzE/FCMzkbm8xNpHiMN3DhSADHxQGy8kBJnlLp3qNtBLQByJxMDatwwoWFKzYZhatqBzQxCmJZmY8P8WDA1zKW3HaMYPwYAqcEDxQ==
+  </data>
+ </layer>
+ <layer name="background" width="25" height="18">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF2IAmEOsAsTaV1A1XoMswcP4fSLthABb/A+0OWgNzEtWTEi7oZpsjYUoBNcwYCLOpDcyx4FGAAACbrQX1
+  </data>
+ </layer>
+ <objectgroup name="positions">
+  <object id="1" name="start" x="280" y="760" width="64" height="64"/>
+  <object id="2" name="end" x="0" y="128" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="ground">
+  <object id="3" x="192" y="832" width="320" height="128"/>
+  <object id="4" x="640" y="768" width="64" height="64"/>
+  <object id="5" x="768" y="704" width="64" height="64"/>
+  <object id="6" x="896" y="640" width="64" height="64"/>
+  <object id="7" x="1024" y="576" width="64" height="64"/>
+  <object id="8" x="1152" y="576" width="192" height="128"/>
+  <object id="9" x="1472" y="320" width="128" height="192"/>
+  <object id="10" x="960" y="320" width="192" height="64"/>
+  <object id="11" x="704" y="320" width="128" height="64"/>
+  <object id="13" x="512" y="320" width="64" height="64"/>
+  <object id="15" x="384" y="64" width="128" height="64"/>
+  <object id="16" x="576" y="64" width="128" height="64"/>
+  <object id="17" x="832" y="64" width="192" height="64"/>
+  <object id="37" x="256" y="320" width="128" height="64"/>
+  <object id="38" x="448" y="320" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="water">
+  <object id="18" x="0" y="832" width="192" height="64"/>
+  <object id="19" x="512" y="832" width="192" height="64"/>
+  <object id="20" x="704" y="768" width="192" height="64"/>
+  <object id="21" x="832" y="704" width="192" height="64"/>
+  <object id="22" x="960" y="640" width="128" height="64"/>
+  <object id="23" x="1088" y="576" width="64" height="128"/>
+  <object id="24" x="1344" y="576" width="256" height="64"/>
+  <object id="25" x="832" y="320" width="128" height="64"/>
+  <object id="27" x="704" y="64" width="128" height="64"/>
+  <object id="28" x="576" y="320" width="128" height="64"/>
+  <object id="29" x="512" y="64" width="64" height="64"/>
+  <object id="31" x="320" y="64" width="64" height="64"/>
+  <object id="39" x="384" y="320" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="objects">
+  <object id="32" type="powerup" x="1406.73" y="387.212" width="54.5455" height="57.5758">
+   <properties>
+    <property name="class" value="jump"/>
+   </properties>
+  </object>
+  <object id="33" type="platform" x="86" y="242" width="170" height="48">
+   <properties>
+    <property name="pivoted" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
