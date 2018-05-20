@@ -119,4 +119,9 @@
 
 * ### Game Art: ###
   A big thanks to **Mariana Silva** for providing most of the art we use in the game.
+  
+* ### Tutorial  Spin-Off
+  As a result of our difficulties in setting up Google Play Services, we decided to write a detailed tutorial on this task: [Setup Google Play Services in LibGDX](https://noprogramming.xyz/2017/setup-google-play-services-in-libgdx).
+  
+  Tutorial Authors: [@AndreFCruz](https://github.com/AndreFCruz) and [@antonioalmeida](https://github.com/antonioalmeida).
 
